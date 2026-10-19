@@ -45,8 +45,9 @@ button{font:inherit;color:inherit}
 /* ---------- COVER ---------- */
 .cover{min-height:100svh;display:grid;grid-template-rows:1fr auto;padding:clamp(1.25rem,5vw,3rem)}
 .cover-inner{align-self:center;width:min(760px,100%);margin:0 auto}
-.cover-photo{position:relative;border:1px solid var(--ink);padding:10px;background:var(--card);transform:rotate(-1.2deg);max-width:560px}
-.cover-photo img{filter:grayscale(1) contrast(1.05);aspect-ratio:16/9;object-fit:cover;width:100%}
+.cover-photo{position:relative;border:1px solid var(--ink);padding:10px;background:var(--card);transform:rotate(-1.2deg);max-width:420px}
+.cover-photo img{filter:grayscale(1) contrast(1.05);aspect-ratio:1;object-fit:cover;object-position:50% 32%;width:100%}
+.cover-photo figcaption{font-family:var(--serif);font-style:italic;font-size:1.05rem;line-height:1.2;padding:.6rem .2rem .1rem}
 .title{font-family:var(--serif);font-weight:400;font-size:clamp(4.2rem,19vw,10.5rem);line-height:.82;letter-spacing:-.02em;margin:clamp(1.5rem,5vw,2.5rem) 0 0;text-transform:uppercase}
 .title span{display:block}
 .title span:last-child{font-style:italic;padding-left:.6em}
@@ -81,6 +82,8 @@ button{font:inherit;color:inherit}
 .ph.wide{grid-column:span 6}
 .ph.tall{grid-row:span 2}
 .ph.third{grid-column:span 2}
+.ph.hero{grid-column:2 / span 4}
+.ph.hero img{aspect-ratio:3/4}
 .ph img{width:100%;height:auto;object-fit:cover;filter:grayscale(1) contrast(1.06);transition:filter 1.6s ease}
 .ph.wide img{aspect-ratio:16/8}
 .ph:not(.wide):not(.tall) img{aspect-ratio:4/5}
@@ -126,16 +129,39 @@ button{font:inherit;color:inherit}
 .again{margin-top:2rem;background:none;border:1px solid var(--ink);border-radius:999px;padding:.7rem 1.3rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}
 
 /* ---------- PLAYER ---------- */
-.player{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:.7rem max(1rem,env(safe-area-inset-left,0px)) calc(.7rem + env(safe-area-inset-bottom,0px));background:var(--bar);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:none;align-items:center;gap:.9rem}
-.player.on{display:flex}
-.pp{flex:none;width:44px;height:44px;border-radius:50%;border:0;background:var(--ink);color:var(--paper);display:grid;place-items:center;cursor:pointer}
+.player{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--bar);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--line);display:none;padding:0 0 env(safe-area-inset-bottom,0px)}
+.player.on{display:block}
+.seek{position:relative;height:18px;margin-top:-9px;cursor:pointer;touch-action:none}
+.seek .rail{position:absolute;left:0;right:0;top:8px;height:2px;background:var(--line)}
+.seek .fill{position:absolute;left:0;top:8px;height:2px;background:var(--tulip);width:0}
+.seek .knob{position:absolute;top:3px;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:var(--tulip);left:0;transform:scale(0);transition:transform .15s}
+.seek:hover .knob,.seek.drag .knob,.seek:focus-visible .knob{transform:scale(1)}
+.bar-row{display:flex;align-items:center;gap:.7rem;padding:.35rem max(.9rem,env(safe-area-inset-left,0px)) .65rem}
+.ctl{flex:none;width:40px;height:40px;border:0;background:none;display:grid;place-items:center;cursor:pointer;border-radius:50%;color:var(--ink)}
+.ctl:hover{background:color-mix(in srgb,var(--ink) 8%,transparent)}
+.ctl.main{width:46px;height:46px;background:var(--ink);color:var(--paper)}
+.ctl.main:hover{background:var(--ink)}
 .now{min-width:0;flex:1}
-.now small{display:block;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+.now small{display:flex;justify-content:space-between;gap:.5rem;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+.now small span,.now small time{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.now small time{flex:none;font-variant-numeric:tabular-nums;letter-spacing:.02em}
 .now b{display:block;font-family:var(--serif);font-weight:400;font-style:italic;font-size:1.3rem;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.player .eq{flex:none}
+.list{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.player.open .list{max-height:420px;overflow:auto}
+.list ol{list-style:none;margin:0;padding:.2rem max(.9rem,env(safe-area-inset-left,0px)) .6rem;counter-reset:t}
+.list li{counter-increment:t}
+.list button{width:100%;display:grid;grid-template-columns:1.8rem 1fr auto;align-items:baseline;gap:.5rem;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:.7rem .2rem;cursor:pointer}
+.list button::before{content:counter(t,decimal-leading-zero);font-size:.75rem;font-weight:700;color:var(--ink-soft)}
+.list .t{font-family:var(--serif);font-style:italic;font-size:1.2rem;line-height:1.1}
+.list .c{font-size:.72rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft)}
+.list button[aria-current="true"] .t{color:var(--tulip)}
+.list button[aria-current="true"]::before{content:"♥";color:var(--tulip)}
+.ctl.lst[aria-expanded="true"]{background:color-mix(in srgb,var(--ink) 10%,transparent)}
+.finale{padding-bottom:12rem}
 
 @media (max-width:520px){
   .ph.third{grid-column:span 3}
+  .ph.hero{grid-column:span 6}
   .lock{grid-template-columns:1fr 1fr}
   .lock .ph.line{grid-column:span 2}
 }
@@ -150,7 +176,7 @@ button{font:inherit;color:inherit}
 
 <header class="cover" id="cover">
   <div class="cover-inner">
-    <div class="cover-photo"><img src="assets/img/cover.jpg" alt="Selfie nina Chico at Chica, magkadikit ang pisngi"></div>
+    <figure class="cover-photo" style="margin:0"><img src="assets/img/cover.jpg" alt="Selfie nina Chico at Chica sa Binondo, unang kita ulit nila"><figcaption>May 7, 2025, sa Binondo. Yung unang kita natin ulit, after ng mahabang panahon.</figcaption></figure>
     <h1 class="title"><span>Kwento</span><span>Natin</span></h1>
     <div class="cover-sub">
       <span>Para sa Chica ko,<br>galing sa Chico mo</span>
@@ -178,13 +204,14 @@ button{font:inherit;color:inherit}
       <div><div class="ch-month">Agosto</div><p class="ch-title">Yung araw na nagsimula ulit tayo</p></div>
     </div>
     <div class="prose">
-      <p>August 6. Karaoke, sine, biruan, at isang araw na puro tawa. Pag-uwi ko, sabi ko sayo: “let’s do it again, Chica!”</p>
+      <p>August 6. S Maison, Spider-Man, at isang gabing hindi ko makakalimutan. Ikaw naka-red, ako naka-black, pareho pa ang design ng jacket natin. Pag-uwi ko, sabi ko sayo: “let’s do it again, Chica!”</p>
       <p>At ginawa nga natin. Araw-araw na.</p>
     </div>
     <div class="grid">
-      <figure class="ph wide"><img src="assets/img/a2.jpg" alt="Chico at Chica sa sinehan" loading="lazy" decoding="async"><figcaption>Sa sine. Ang ganda mo kahit madilim.</figcaption></figure>
+      <figure class="ph hero"><img src="assets/img/a0.jpg" alt="Sina Chico at Chica sa sinehan, naka-red si Chica at naka-black si Chico" loading="lazy" decoding="async"><figcaption>Aug. 6, sa sine. Red at black, parehong jacket. Parang planado. 🕷️❤️</figcaption></figure>
+      <figure class="ph wide"><img src="assets/img/a2.jpg" alt="Chico at Chica sa sinehan" loading="lazy" decoding="async"><figcaption>Bago magsimula ang movie. Ang ganda mo kahit madilim.</figcaption></figure>
       <figure class="ph"><img src="assets/img/a3.jpg" alt="Chico at Chica, magkahawak ang kamay" loading="lazy" decoding="async"><figcaption>Matching brown, matching kilig.</figcaption></figure>
-      <figure class="ph"><img src="assets/img/a5.jpg" alt="Mirror selfie nina Chico at Chica" loading="lazy" decoding="async"><figcaption>Tayong dalawa sa salamin, as always.</figcaption></figure>
+      <figure class="ph"><img src="assets/img/a5.jpg" alt="Sina Chico at Chica na pareho ang pose, nakangiti" loading="lazy" decoding="async"><figcaption>Pati pose, pareho tayo.</figcaption></figure>
       <figure class="ph wide"><img src="assets/img/a4.jpg" alt="Hinalikan ni Chico si Chica sa pisngi" loading="lazy" decoding="async"><figcaption>Huli ka sa kiss. 💋</figcaption></figure>
     </div>
     <div class="prose">
@@ -199,20 +226,20 @@ button{font:inherit;color:inherit}
   </section>
 
   <!-- SETYEMBRE -->
-  <section class="chapter" data-track="paraluman">
+  <section class="chapter" data-track="aura">
     <div class="ch-head">
       <div class="ch-num">09</div>
       <div><div class="ch-month">Setyembre</div><p class="ch-title">24 na tulips para sa 24 mong taon</p></div>
     </div>
     <div class="prose">
-      <p>Ang una mong birthday na kasama ako. Late man natin na-celebrate, sulit na sulit. 24 red tulips, pizza, at si Chicobara na may hawak na bulaklak para sayo.</p>
+      <p>Ang una mong birthday na kasama ako. Late man natin na-celebrate, sulit na sulit. 24 red tulips at si Chicobara, para sayo.</p>
     </div>
     <div class="grid">
-      <figure class="ph wide"><img src="assets/img/b1.jpg" alt="Tulips, pizza at capybara stuffed toy kasama sina Chico at Chica" loading="lazy" decoding="async"><figcaption>Ang birthday celebration natin.</figcaption></figure>
+      <figure class="ph wide"><img src="assets/img/b1.jpg" alt="Sina Chico at Chica kasama ang red tulips at si Chicobara" loading="lazy" decoding="async"><figcaption>Sept. 4. Late birthday celebration mo, at early monthsary na rin natin.</figcaption></figure>
       <figure class="ph tall"><img src="assets/img/b2.jpg" alt="Si Chica kasama ang red tulips at si Chicobara" loading="lazy" decoding="async"><figcaption>Ang birthday girl ko. 🌷</figcaption></figure>
-      <figure class="ph"><img src="assets/img/b7.jpg" alt="Si Chicobara na may hawak na bulaklak" loading="lazy" decoding="async"><figcaption>Si Chicobara, on duty.</figcaption></figure>
+      <figure class="ph"><img src="assets/img/b7.jpg" alt="Si Chicabara, capybara plushie na bigay ni Chica kay Chico, katabi ang crochet flowers" loading="lazy" decoding="async"><figcaption>Sept. 11 din. Si Chicabara at mga bulaklak, galing sayo. Ngayon pareho na tayong may capybara.</figcaption></figure>
       <figure class="ph"><img src="assets/img/b3.jpg" alt="Mirror selfie nina Chico at Chica" loading="lazy" decoding="async"><figcaption>Partner in crime.</figcaption></figure>
-      <figure class="ph wide"><img src="assets/img/b6.jpg" alt="Dalawang kwintas sa kahon" loading="lazy" decoding="async"><figcaption>Kwintas natin. Tig-isa, pareho.</figcaption></figure>
+      <figure class="ph wide"><img src="assets/img/b6.jpg" alt="Dalawang kwintas sa kahon" loading="lazy" decoding="async"><figcaption>Sept. 11. Monogram ng pangalan ko para sayo, at monogram mo para sakin.</figcaption></figure>
       <figure class="ph"><img src="assets/img/b4.jpg" alt="Selfie nina Chico at Chica" loading="lazy" decoding="async"><figcaption>Ikaw lang.</figcaption></figure>
       <figure class="ph"><img src="assets/img/b8.jpg" alt="Si Chica na nakangiti sa restaurant" loading="lazy" decoding="async"><figcaption>Ang ganda talaga.</figcaption></figure>
     </div>
@@ -220,7 +247,7 @@ button{font:inherit;color:inherit}
     <div class="grid">
       <figure class="ph wide"><img src="assets/img/b5.jpg" alt="Hinalikan ni Chico si Chica sa pisngi" loading="lazy" decoding="async"><figcaption>Paulit-ulit kitang pipiliin.</figcaption></figure>
     </div>
-    <p class="song-note"><span class="eq"><i></i><i></i><i></i></span>Kinakanta ni Chico: Paraluman</p>
+    <p class="song-note"><span class="eq"><i></i><i></i><i></i></span>Kinakanta ni Chico: Aura</p>
   </section>
 
   <!-- OKTUBRE -->
@@ -232,15 +259,16 @@ button{font:inherit;color:inherit}
     <div class="prose">
       <p>Pandacan at Angono. Malayo, oo. Pero may voice messages, may video call hanggang makatulog, at may mahigit limampung kanta na pinadala ko sayo.</p>
       <p>Sabi mo, may bago kang favorite: Paru-Paro at Tangerine Boulevard. Nakaka-calm daw pakinggan. Kaya ayan, kinakanta ko ulit para sayo.</p>
+      <p>At sa late celebration ng 2nd monthsary natin, binigay ko sayo yung singsing. Hindi lang siya regalo. Pangako siya. 💍</p>
     </div>
     <div class="grid">
       <figure class="ph"><img src="assets/img/c2.jpg" alt="Video call ni Chica" loading="lazy" decoding="async"><figcaption>Pag hindi magkasama: video call.</figcaption></figure>
       <figure class="ph"><img src="assets/img/c1.jpg" alt="Capybara lamp sa mesa" loading="lazy" decoding="async"><figcaption>Si mini Chicabara, nagpapaliwanag.</figcaption></figure>
       <figure class="ph"><img src="assets/img/c3.jpg" alt="Selfie nina Chico at Chica" loading="lazy" decoding="async"><figcaption>Peace sign, peace of mind.</figcaption></figure>
-      <figure class="ph"><img src="assets/img/c4.jpg" alt="Magkahawak na kamay" loading="lazy" decoding="async"><figcaption>Hawak-kamay. Hindi ko bibitawan.</figcaption></figure>
+      <figure class="ph"><img src="assets/img/c4.jpg" alt="Magkahawak na kamay, suot ni Chica ang promise ring" loading="lazy" decoding="async"><figcaption>Ang promise ring mo, sa late celebration ng 2nd monthsary natin. Hindi kita bibitawan.</figcaption></figure>
       <figure class="ph wide"><img src="assets/img/c6.jpg" alt="Sina Chico at Chica na may fries sa ilong" loading="lazy" decoding="async"><figcaption>Seryoso kami dito. 😂</figcaption></figure>
       <figure class="ph"><img src="assets/img/c5.jpg" alt="Sina Chico at Chica sa date" loading="lazy" decoding="async"><figcaption>Date natin.</figcaption></figure>
-      <figure class="ph"><img src="assets/img/c8.jpg" alt="Si Chica na nahihiya at tinatakpan ang mukha" loading="lazy" decoding="async"><figcaption>Yung hiya-hiya mo pa. 🫣</figcaption></figure>
+      <figure class="ph"><img src="assets/img/c8.jpg" alt="Si Chica na nakahawak sa ulo, pinapakita ang singsing" loading="lazy" decoding="async"><figcaption>Masakit daw ang ulo, pero flex muna ng singsing. 💍😂</figcaption></figure>
       <figure class="ph"><img src="assets/img/c7.jpg" alt="Selfie nina Chico at Chica" loading="lazy" decoding="async"><figcaption>Akin ka, akin ka lang.</figcaption></figure>
       <figure class="ph"><img src="assets/img/c9.jpg" alt="Mirror selfie nina Chico at Chica" loading="lazy" decoding="async"><figcaption>Oct. 17. Isa sa pinaka-memorable nating araw.</figcaption></figure>
     </div>
@@ -252,7 +280,7 @@ button{font:inherit;color:inherit}
     <article class="letter">
       <h2>Para sa Chica ko, <em>sa ikatlong buwan natin</em></h2>
       <p>Tatlong buwan. Parang ang ikli pag binilang mo, pero ang dami na nating napagdaanan. May mga araw na puro tawa, may mga araw na mabigat. Pero sa bawat isa, ikaw pa rin ang pinipili ko. At pipiliin pa rin kita.</p>
-      <p>Salamat sa pakikinig sa bawat kanta ko, kahit yung mga sinend ko nang gabing-gabi na. Salamat sa pag-intindi mo sa schedule ko, sa work, sa church, sa pagod ko. Salamat sa paghihintay mo sa tawag ko, at sa pagpapatulog mo sakin pag alam mong kulang na ako sa pahinga.</p>
+      <p>Salamat sa pakikinig sa bawat kanta ko, kahit yung mga sinend ko nang gabing-gabi na. Salamat sa pag-intindi mo sa schedule ko, sa work, sa church, sa pagod ko. Salamat kasi ikaw lagi yung tumatawag, kahit ako yung madalas busy. Hindi ko yun binabalewala, asawa ko. Babawi ako. At salamat sa pagpapatulog mo sakin pag alam mong kulang na ako sa pahinga.</p>
       <p>Alam kong malayo ang Pandacan sa Angono. Pero sabi ko nga sayo: malayo man tayo, malapit pa rin ang puso ko sayo.</p>
       <p>Kaya sa bawat 6, sa bawat 10:10, 11:11 at 2:22, alalahanin mo: mahal na mahal kita. Parang pag-ibig ng Diyos na lagi kong sinasabi sayo. Noon, ngayon, at magpakailanman.</p>
       <div class="sign">
@@ -286,39 +314,63 @@ button{font:inherit;color:inherit}
 
 </main>
 
-<div class="player" id="player" aria-live="polite">
-  <button class="pp" id="pp" aria-label="I-pause ang kanta">
-    <svg id="ico" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>
-  </button>
-  <div class="now"><small>Kinakanta ni Chico</small><b id="songName">Palagi</b></div>
-  <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+<div class="player" id="player">
+  <div class="list" id="list"><ol id="tracks"></ol></div>
+  <div class="seek" id="seek" role="slider" tabindex="0" aria-label="Posisyon ng kanta" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <div class="rail"></div><div class="fill" id="fill"></div><div class="knob" id="knob"></div>
+  </div>
+  <div class="bar-row">
+    <button class="ctl" id="prev" aria-label="Nakaraang kanta"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="5" y="5" width="2.4" height="14"/><path d="M19 5v14L8.5 12z"/></svg></button>
+    <button class="ctl main" id="pp" aria-label="I-play ang kanta"><svg id="ico" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></button>
+    <button class="ctl" id="next" aria-label="Susunod na kanta"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="16.6" y="5" width="2.4" height="14"/><path d="M5 5v14l10.5-7z"/></svg></button>
+    <div class="now"><small><span>Kinakanta ni Chico</span><time id="time">0:00 / 0:00</time></small><b id="songName">Palagi</b></div>
+    <button class="ctl lst" id="lst" aria-label="Listahan ng kanta" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h11M4 12h11M4 17h7"/><circle cx="18" cy="16.5" r="2.2"/><path d="M20.2 16.5V6.5l-2.5.8"/></svg></button>
+  </div>
 </div>
 
 <script>
 (function(){
-  const TRACKS={
-    "palagi":"Palagi",
-    "binibini":"Binibini",
-    "paraluman":"Paraluman",
-    "paru-paro":"Paru-Paro",
-    "tangerine-boulevard":"Tangerine Boulevard",
-    "forevermore":"Forevermore"
-  };
-  const audio=new Audio();
-  audio.preload="auto";audio.loop=true;
-  let current=null,userPaused=false,fadeTimer=null;
-  const player=document.getElementById('player');
-  const pp=document.getElementById('pp');
-  const ico=document.getElementById('ico');
-  const songName=document.getElementById('songName');
+  const SRC=window.KWENTO_AUDIO||{};
+  const TRACKS=[
+    {key:"palagi",title:"Palagi",ch:"Simula"},
+    {key:"binibini",title:"Binibini",ch:"Agosto"},
+    {key:"aura",title:"Aura",ch:"Setyembre"},
+    {key:"paru-paro",title:"Paru-Paro",ch:"Oktubre"},
+    {key:"tangerine-boulevard",title:"Tangerine Boulevard",ch:"Ang sulat"},
+    {key:"forevermore",title:"Forevermore",ch:"Sa susunod"}
+  ];
+  const idx=k=>TRACKS.findIndex(t=>t.key===k);
+  const $=id=>document.getElementById(id);
+  const audio=new Audio();audio.preload="metadata";
+  let cur=-1,userPaused=false,fadeTimer=null,dragging=false;
+  const player=$('player'),pp=$('pp'),ico=$('ico'),songName=$('songName'),timeEl=$('time'),
+        seek=$('seek'),fill=$('fill'),knob=$('knob'),lst=$('lst'),tracksEl=$('tracks');
   const PAUSE='<rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/>';
   const PLAY='<path d="M7 4.5v15l13-7.5z"/>';
+  const fmt=s=>{if(!isFinite(s))return'0:00';s=Math.floor(s);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
+  const srcFor=k=>SRC[k]||('assets/audio/'+k+'.mp3');
+
+  TRACKS.forEach((t,i)=>{
+    const li=document.createElement('li'),b=document.createElement('button');
+    b.innerHTML='<span class="t"></span><span class="c"></span>';
+    b.querySelector('.t').textContent=t.title;b.querySelector('.c').textContent=t.ch;
+    b.addEventListener('click',()=>{userPaused=false;load(i,true)});
+    li.appendChild(b);tracksEl.appendChild(li);
+  });
 
   function setUI(){
     const playing=!audio.paused;
     ico.innerHTML=playing?PAUSE:PLAY;
     pp.setAttribute('aria-label',playing?'I-pause ang kanta':'I-play ang kanta');
     document.body.classList.toggle('paused',!playing);
+    if('mediaSession' in navigator) navigator.mediaSession.playbackState=playing?'playing':'paused';
+  }
+  function progress(){
+    const d=audio.duration||0,t=audio.currentTime||0,p=d?t/d*100:0;
+    if(!dragging){fill.style.width=p+'%';knob.style.left=p+'%'}
+    timeEl.textContent=fmt(t)+' / '+fmt(d);
+    seek.setAttribute('aria-valuenow',Math.round(p));
+    seek.setAttribute('aria-valuetext',fmt(t)+' sa '+fmt(d));
   }
   function fade(to,ms,done){
     clearInterval(fadeTimer);
@@ -326,38 +378,90 @@ button{font:inherit;color:inherit}
     fadeTimer=setInterval(()=>{i++;try{audio.volume=Math.min(1,Math.max(0,from+(to-from)*i/steps))}catch(e){}
       if(i>=steps){clearInterval(fadeTimer);done&&done()}},40);
   }
-  function play(key){
-    if(key===current) return;
-    current=key;songName.textContent=TRACKS[key];
-    const start=()=>{audio.src='assets/audio/'+key+'.mp3';audio.currentTime=0;
+  function load(i,force){
+    i=(i+TRACKS.length)%TRACKS.length;
+    if(i===cur&&!force) return;
+    if(i===cur&&force){if(audio.paused)audio.play().catch(()=>{});return}
+    cur=i;const t=TRACKS[i];
+    songName.textContent=t.title;
+    tracksEl.querySelectorAll('button').forEach((b,j)=>b.setAttribute('aria-current',j===i));
+    if('mediaSession' in navigator){
+      navigator.mediaSession.metadata=new MediaMetadata({title:t.title,artist:'Kinanta ni Chico',album:'Kwento Natin'});
+    }
+    const start=()=>{
+      audio.src=srcFor(t.key);
       try{audio.volume=0}catch(e){}
-      if(!userPaused){audio.play().then(()=>fade(1,900)).catch(()=>{});}
+      progress();
+      if(!userPaused){audio.play().then(()=>fade(1,700)).catch(()=>setUI())}
       setUI();
     };
-    if(!audio.paused&&audio.src){fade(0,600,start)}else{start()}
+    if(!audio.paused&&audio.src){fade(0,450,start)}else{start()}
   }
-  audio.addEventListener('play',setUI);audio.addEventListener('pause',setUI);
+  audio.addEventListener('play',setUI);
+  audio.addEventListener('pause',setUI);
+  audio.addEventListener('timeupdate',progress);
+  audio.addEventListener('loadedmetadata',progress);
+  audio.addEventListener('ended',()=>load(cur+1));
 
   pp.addEventListener('click',()=>{
-    if(audio.paused){userPaused=false;audio.play().then(()=>fade(1,500)).catch(()=>{})}
+    if(audio.paused){userPaused=false;try{audio.volume=1}catch(e){};audio.play().catch(()=>{})}
     else{userPaused=true;audio.pause()}
   });
+  $('prev').addEventListener('click',()=>{
+    if(audio.currentTime>4){audio.currentTime=0;return}
+    userPaused=false;load(cur-1);
+  });
+  $('next').addEventListener('click',()=>{userPaused=false;load(cur+1)});
+  lst.addEventListener('click',()=>{
+    const open=player.classList.toggle('open');lst.setAttribute('aria-expanded',open);
+  });
+
+  // seeking
+  function seekTo(clientX){
+    const r=seek.getBoundingClientRect(),p=Math.min(1,Math.max(0,(clientX-r.left)/r.width));
+    fill.style.width=p*100+'%';knob.style.left=p*100+'%';
+    if(audio.duration) audio.currentTime=p*audio.duration;
+  }
+  seek.addEventListener('pointerdown',e=>{dragging=true;seek.classList.add('drag');seek.setPointerCapture(e.pointerId);seekTo(e.clientX)});
+  seek.addEventListener('pointermove',e=>{if(dragging)seekTo(e.clientX)});
+  const endDrag=()=>{dragging=false;seek.classList.remove('drag')};
+  seek.addEventListener('pointerup',endDrag);seek.addEventListener('pointercancel',endDrag);
+  seek.addEventListener('keydown',e=>{
+    if(!audio.duration)return;
+    if(e.key==='ArrowRight'){audio.currentTime=Math.min(audio.duration,audio.currentTime+5);e.preventDefault()}
+    if(e.key==='ArrowLeft'){audio.currentTime=Math.max(0,audio.currentTime-5);e.preventDefault()}
+  });
+
+  if('mediaSession' in navigator){
+    const ms=navigator.mediaSession;
+    try{
+      ms.setActionHandler('play',()=>{userPaused=false;audio.play()});
+      ms.setActionHandler('pause',()=>{userPaused=true;audio.pause()});
+      ms.setActionHandler('previoustrack',()=>{userPaused=false;load(cur-1)});
+      ms.setActionHandler('nexttrack',()=>{userPaused=false;load(cur+1)});
+      ms.setActionHandler('seekto',d=>{if(d.seekTime!=null)audio.currentTime=d.seekTime});
+    }catch(e){}
+  }
 
   // open
-  const cover=document.getElementById('cover');
-  const story=document.getElementById('story');
-  document.getElementById('open').addEventListener('click',()=>{
+  const cover=$('cover'),story=$('story');
+  $('open').addEventListener('click',()=>{
     story.classList.add('on');player.classList.add('on');
-    play('palagi');
+    load(0);
     story.querySelector('.intro').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
   });
-  document.getElementById('again').addEventListener('click',()=>{
-    cover.scrollIntoView({behavior:'smooth'});
-  });
+  $('again').addEventListener('click',()=>cover.scrollIntoView({behavior:'smooth'}));
 
-  // chapter music
+  // chapters change the song as she scrolls into them
+  let lastChapter=null;
   const io=new IntersectionObserver(es=>{
-    es.forEach(e=>{if(e.isIntersecting&&story.classList.contains('on')) play(e.target.dataset.track)});
+    es.forEach(e=>{
+      if(!e.isIntersecting||!story.classList.contains('on'))return;
+      const k=e.target.dataset.track;
+      if(k===lastChapter)return;
+      lastChapter=k;
+      const i=idx(k);if(i>-1&&i!==cur)load(i);
+    });
   },{rootMargin:'-45% 0px -45% 0px'});
   document.querySelectorAll('[data-track]').forEach(s=>io.observe(s));
 
