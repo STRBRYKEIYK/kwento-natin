@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KWENTO NATIN 💌</title>
+<meta property="og:title" content="KWENTO NATIN 💌">
+<meta property="og:description" content="Para sa Chica ko. Happy 3rd monthsary.">
+<meta property="og:image" content="/assets/img/cover.jpg">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌷</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wdth,wght@75..100,400..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --paper:#f1f1ee;
+  --card:#ffffff;
+  --ink:#1c1b1a;
+  --ink-soft:#5d5b58;
+  --line:#c9c8c4;
+  --tulip:#a8122a;
+  --bar:rgba(241,241,238,.88);
+  color-scheme:light;
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --sans:"Archivo","Arial Narrow",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#151514;--card:#222120;--ink:#efeeea;--ink-soft:#a7a5a0;--line:#3d3c39;--tulip:#e0465f;--bar:rgba(21,21,20,.88);color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#151514;--card:#222120;--ink:#efeeea;--ink-soft:#a7a5a0;--line:#3d3c39;--tulip:#e0465f;--bar:rgba(21,21,20,.88);color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-stretch:85%;overflow-x:hidden}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--tulip);outline-offset:4px}
+
+/* ---------- COVER ---------- */
+.cover{min-height:100svh;display:grid;grid-template-rows:1fr auto;padding:clamp(1.25rem,5vw,3rem)}
+.cover-inner{align-self:center;width:min(760px,100%);margin:0 auto}
+.cover-photo{position:relative;border:1px solid var(--ink);padding:10px;background:var(--card);transform:rotate(-1.2deg);max-width:560px}
+.cover-photo img{filter:grayscale(1) contrast(1.05);aspect-ratio:16/9;object-fit:cover;width:100%}
+.title{font-family:var(--serif);font-weight:400;font-size:clamp(4.2rem,19vw,10.5rem);line-height:.82;letter-spacing:-.02em;margin:clamp(1.5rem,5vw,2.5rem) 0 0;text-transform:uppercase}
+.title span{display:block}
+.title span:last-child{font-style:italic;padding-left:.6em}
+.cover-sub{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;margin-top:1.5rem;border-top:1px solid var(--ink);padding-top:.9rem;font-weight:600;font-size:.95rem;letter-spacing:.04em;text-transform:uppercase}
+.cover-sub .date{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.6rem;letter-spacing:0;text-transform:none;white-space:nowrap}
+.open-btn{justify-self:center;margin-top:2rem;background:var(--ink);color:var(--paper);border:0;border-radius:999px;padding:1rem 1.7rem;font-weight:700;letter-spacing:.06em;font-size:1rem;cursor:pointer;text-transform:uppercase;display:flex;gap:.6rem;align-items:center}
+.open-btn .dot{width:9px;height:9px;border-radius:50%;background:var(--tulip)}
+
+.story{display:none}
+.story.on{display:block}
+
+/* ---------- INTRO ---------- */
+.intro{width:min(640px,100% - 2.5rem);margin:4rem auto 2rem}
+.intro p{font-size:clamp(1.12rem,4.2vw,1.3rem);line-height:1.55;font-weight:500;text-transform:uppercase;margin:0 0 1.2em}
+.intro .tap-note{display:flex;gap:.9rem;align-items:center;border:1px dashed var(--ink-soft);padding:1rem 1.1rem;font-size:.98rem;line-height:1.45;color:var(--ink-soft)}
+.tap-note svg{flex:none}
+
+/* ---------- CHAPTERS ---------- */
+.chapter{width:min(760px,100% - 2.5rem);margin:0 auto;padding:5rem 0 3rem}
+.ch-head{display:grid;grid-template-columns:auto 1fr;gap:0 1.1rem;align-items:end;border-bottom:1px solid var(--ink);padding-bottom:1rem;margin-bottom:2rem}
+.ch-num{font-family:var(--serif);font-size:clamp(6rem,27vw,12rem);line-height:.72;letter-spacing:-.04em}
+.ch-month{font-weight:800;font-size:clamp(1.3rem,5vw,2rem);letter-spacing:.02em;text-transform:uppercase;line-height:1}
+.ch-title{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,4vw,1.55rem);line-height:1.15;margin:.35rem 0 0;color:var(--ink-soft)}
+.prose{max-width:36rem}
+.prose p{font-size:clamp(1.06rem,3.9vw,1.2rem);line-height:1.6;font-weight:500;text-transform:uppercase;margin:0 0 1.15em}
+.quote{font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,6vw,2.2rem);line-height:1.15;margin:2.2rem 0 2.4rem;padding-left:1.1rem;border-left:3px solid var(--tulip)}
+.quote small{display:block;font-family:var(--sans);font-style:normal;font-size:.85rem;font-weight:600;letter-spacing:.05em;color:var(--ink-soft);margin-top:.6rem;text-transform:uppercase}
+
+/* photo grid */
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(.6rem,2.2vw,1.1rem);margin:2.2rem 0}
+.ph{grid-column:span 3;margin:0;background:var(--card);border:1px solid var(--line);padding:7px 7px 0;cursor:pointer;position:relative;-webkit-tap-highlight-color:transparent}
+.ph.wide{grid-column:span 6}
+.ph.tall{grid-row:span 2}
+.ph.third{grid-column:span 2}
+.ph img{width:100%;height:auto;object-fit:cover;filter:grayscale(1) contrast(1.06);transition:filter 1.6s ease}
+.ph.wide img{aspect-ratio:16/8}
+.ph:not(.wide):not(.tall) img{aspect-ratio:4/5}
+.ph.tall{display:flex;flex-direction:column}
+.ph.tall img{flex:1;min-height:0;height:100%}
+.ph.kulay img{filter:none}
+.ph figcaption{font-family:var(--serif);font-style:italic;font-size:clamp(.95rem,3.3vw,1.12rem);line-height:1.25;padding:.55rem .2rem .7rem;min-height:2.2em}
+.ph:hover img{filter:grayscale(.6) contrast(1.06)}
+.ph.kulay:hover img{filter:none}
+.lock{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:clamp(.6rem,2.2vw,1.1rem);margin:2.2rem 0;align-items:end}
+.lock .ph{grid-column:auto}
+.lock .ph img{aspect-ratio:9/19}
+.lock .ph.line img{aspect-ratio:1}
+
+.song-note{display:flex;gap:.8rem;align-items:center;margin:2rem 0 0;font-weight:600;font-size:.92rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft)}
+.song-note .eq{display:flex;gap:2px;height:14px;align-items:flex-end}
+.eq i{width:3px;background:var(--tulip);height:40%;animation:eq 1s ease-in-out infinite}
+.eq i:nth-child(2){animation-delay:.2s}.eq i:nth-child(3){animation-delay:.4s}
+@keyframes eq{50%{height:100%}}
+.paused .eq i{animation:none}
+
+/* ---------- LETTER ---------- */
+.letter-wrap{padding:5rem 1.25rem 3rem}
+.letter{width:min(640px,100%);margin:0 auto;background:var(--card);border:1px solid var(--ink);padding:clamp(1.6rem,6vw,3.2rem);position:relative}
+.letter::before{content:"";position:absolute;inset:7px;border:1px solid var(--line);pointer-events:none}
+.letter h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,10vw,3.6rem);line-height:.95;margin:0 0 1.8rem}
+.letter h2 em{display:block}
+.letter p{font-size:clamp(1.05rem,3.8vw,1.18rem);line-height:1.62;font-weight:500;text-transform:uppercase;margin:0 0 1.2em;position:relative}
+.sign{margin-top:2.2rem;text-align:right}
+.sign span{display:block;font-weight:600;text-transform:uppercase;color:var(--ink-soft)}
+.sign strong{display:block;font-family:var(--serif);font-weight:400;font-style:italic;font-size:2.4rem;line-height:1.1;color:var(--tulip)}
+
+/* ---------- NEXT ---------- */
+.next{width:min(760px,100% - 2.5rem);margin:0 auto;padding:5rem 0 2rem}
+.next ol{list-style:none;padding:0;margin:2rem 0;counter-reset:n}
+.next li{counter-increment:n;display:grid;grid-template-columns:3.2rem 1fr;align-items:baseline;border-top:1px solid var(--line);padding:1.1rem 0;font-size:clamp(1.05rem,3.9vw,1.2rem);line-height:1.5;font-weight:500;text-transform:uppercase}
+.next li::before{content:counter(n);font-family:var(--serif);font-style:italic;font-size:2rem;line-height:1;color:var(--ink-soft)}
+.finale{width:min(760px,100% - 2.5rem);margin:0 auto;padding:2rem 0 9rem;text-align:center}
+.finale .ph{display:inline-block;width:min(380px,100%);transform:rotate(1.5deg)}
+.finale .ph img{aspect-ratio:4/5}
+.finale h3{font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,12vw,5rem);line-height:.92;margin:2.5rem 0 1rem}
+.finale p{font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);margin:0}
+.again{margin-top:2rem;background:none;border:1px solid var(--ink);border-radius:999px;padding:.7rem 1.3rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}
+
+/* ---------- PLAYER ---------- */
+.player{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:.7rem max(1rem,env(safe-area-inset-left,0px)) calc(.7rem + env(safe-area-inset-bottom,0px));background:var(--bar);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:none;align-items:center;gap:.9rem}
+.player.on{display:flex}
+.pp{flex:none;width:44px;height:44px;border-radius:50%;border:0;background:var(--ink);color:var(--paper);display:grid;place-items:center;cursor:pointer}
+.now{min-width:0;flex:1}
+.now small{display:block;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+.now b{display:block;font-family:var(--serif);font-weight:400;font-style:italic;font-size:1.3rem;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.player .eq{flex:none}
+
+@media (max-width:520px){
+  .ph.third{grid-column:span 3}
+  .lock{grid-template-columns:1fr 1fr}
+  .lock .ph.line{grid-column:span 2}
+}
+@media (prefers-reduced-motion:reduce){
+  .ph img{transition:none}
+  .eq i{animation:none}
+  .cover-photo{transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="cover" id="cover">
+  <div class="cover-inner">
+    <div class="cover-photo"><img src="assets/img/cover.jpg" alt="Selfie nina Chico at Chica, magkadikit ang pisngi"></div>
+    <h1 class="title"><span>Kwento</span><span>Natin</span></h1>
+    <div class="cover-sub">
+      <span>Para sa Chica ko,<br>galing sa Chico mo</span>
+      <span class="date">Nob. 6, 2026</span>
+    </div>
+  </div>
+  <button class="open-btn" id="open"><span class="dot"></span>Buksan ang kwento</button>
+</header>
+
+<main class="story" id="story">
+
+  <section class="intro" data-track="palagi">
+    <p>Happy 3rd monthsary, asawa kooo! 🥹❤️</p>
+    <p>Tatlong buwan na tayo. Kaya ginawa ko ’to: yung kwento natin, buwan-buwan, mula sa simula hanggang ngayon. Habang nagbabasa ka, ako yung kumakanta sa background. Lahat ng kanta dito, ako mismo ang kumanta para sayo. 🎤</p>
+    <div class="tap-note">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10m0-.5V4.5a1.5 1.5 0 0 1 3 0V10m0-1a1.5 1.5 0 0 1 3 0v5.5A6.5 6.5 0 0 1 11.5 21h-.6a6 6 0 0 1-4.6-2.2L3.6 15.5a1.5 1.5 0 0 1 2.2-2l3.2 2.8V11a1.5 1.5 0 0 1 3 0"/></svg>
+      <span>Black and white lahat ng litrato, kasi yan ang gusto mo. Pero i-tap mo sila isa-isa, kasi ikaw ang nagbibigay ng kulay sa mundo ko.</span>
+    </div>
+  </section>
+
+  <!-- AGOSTO -->
+  <section class="chapter" data-track="binibini">
+    <div class="ch-head">
+      <div class="ch-num">08</div>
+      <div><div class="ch-month">Agosto</div><p class="ch-title">Yung araw na nagsimula ulit tayo</p></div>
+    </div>
+    <div class="prose">
+      <p>August 6. Karaoke, sine, biruan, at isang araw na puro tawa. Pag-uwi ko, sabi ko sayo: “let’s do it again, Chica!”</p>
+      <p>At ginawa nga natin. Araw-araw na.</p>
+    </div>
+    <div class="grid">
+      <figure class="ph wide"><img src="assets/img/a2.jpg" alt="Chico at Chica sa sinehan" loading="lazy" decoding="async"><figcaption>Sa sine. Ang ganda mo kahit madilim.</figcaption></figure>
+      <figure class="ph"><img src="assets/img/a3.jpg" alt="Chico at Chica, magkahawak ang kamay" loading="lazy" decoding="async"><figcaption>Matching brown, matching kilig.</figcaption></figure>
+      <figure class="ph"><img src="assets/img/a5.jpg" alt="Mirror selfie nina Chico at Chica" loading="lazy" decoding="async"><figcaption>Tayong dalawa sa salamin, as always.</figcaption></figure>
+      <figure class="ph wide"><img src="assets/img/a4.jpg" alt="Hinalikan ni Chico si Chica sa pisngi" loading="lazy" decoding="async"><figcaption>Huli ka sa kiss. 💋</figcaption></figure>
+    </div>
+    <div class="prose">
+      <p>Tapos nagsimula yung mga oras natin. 10:10. 11:11. 2:22. Kahit anong oras ka tumingin, may “I love you” na nakaabang.</p>
+    </div>
+    <div class="lock">
+      <figure class="ph"><img src="assets/img/a6.jpg" alt="Lockscreen na may line art nina Chico at Chica" loading="lazy" decoding="async"><figcaption>10:10</figcaption></figure>
+      <figure class="ph"><img src="assets/img/a7.jpg" alt="Lockscreen na 11:11" loading="lazy" decoding="async"><figcaption>11:11</figcaption></figure>
+      <figure class="ph line"><img src="assets/img/a8.jpg" alt="Line art ni Chica na may hawak na phone" loading="lazy" decoding="async"><figcaption>Sabi mo gusto mo black and white at minimalist. Tinandaan ko.</figcaption></figure>
+    </div>
+    <p class="song-note"><span class="eq"><i></i><i></i><i></i></span>Kinakanta ni Chico: Binibini</p>
+  </section>
+
+  <!-- SETYEMBRE -->
+  <section class="chapter" data-track="paraluman">
+    <div class="ch-head">
+      <div class="ch-num">09</div>
+      <div><div class="ch-month">Setyembre</div><p class="ch-title">24 na tulips para sa 24 mong taon</p></div>
+    </div>
+    <div class="prose">
+      <p>Ang una mong birthday na kasama ako. Late man natin na-celebrate, sulit na sulit. 24 red tulips, pizza, at si Chicobara na may hawak na bulaklak para sayo.</p>
+    </div>
+    <div class="grid">
+      <figure class="ph wide"><img src="assets/img/b1.jpg" alt="Tulips, pizza at capybara stuffed toy kasama sina Chico at Chica" loading="lazy" decoding="async"><figcaption>Ang birthday celebration natin.</figcaption></figure>
+      <figure class="ph tall"><img src="assets/img/b2.jpg" alt="Si Chica kasama ang red tulips at si Chicobara" loading="lazy" decoding="async"><figcaption>Ang birthday girl ko. 🌷</figcaption></figure>
+      <figure class="ph"><img src="assets/img/b7.jpg" alt="Si Chicobara na may hawak na bulaklak" loading="lazy" decoding="async"><figcaption>Si Chicobara, on duty.</figcaption></figure>
+      <figure class="ph"><img src="assets/img/b3.jpg" alt="Mirror selfie nina Chico at Chica" loading="lazy" decoding="async"><figcaption>Partner in crime.</figcaption></figure>
+      <figure class="ph wide"><img src="assets/img/b6.jpg" alt="Dalawang kwintas sa kahon" loading="lazy" decoding="async"><figcaption>Kwintas natin. Tig-isa, pareho.</figcaption></figure>
+      <figure class="ph"><img src="assets/img/b4.jpg" alt="Selfie nina Chico at Chica" loading="lazy" decoding="async"><figcaption>Ikaw lang.</figcaption></figure>
+      <figure class="ph"><img src="assets/img/b8.jpg" alt="Si Chica na nakangiti sa restaurant" loading="lazy" decoding="async"><figcaption>Ang ganda talaga.</figcaption></figure>
+    </div>
+    <blockquote class="quote">“Every single day I love you more and more moreee.”<small>Ikaw, sa 1st monthsary natin, Sept. 6</small></blockquote>
+    <div class="grid">
+      <figure class="ph wide"><img src="assets/img/b5.jpg" alt="Hinalikan ni Chico si Chica sa pisngi" loading="lazy" decoding="async"><figcaption>Paulit-ulit kitang pipiliin.</figcaption></figure>
+    </div>
+    <p class="song-note"><span class="eq"><i></i><i></i><i></i></span>Kinakanta ni Chico: Paraluman</p>
+  </section>
+
+  <!-- OKTUBRE -->
+  <section class="chapter" data-track="paru-paro">
+    <div class="ch-head">
+      <div class="ch-num">10</div>
+      <div><div class="ch-month">Oktubre</div><p class="ch-title">Malayo man, malapit ang puso</p></div>
+    </div>
+    <div class="prose">
+      <p>Pandacan at Angono. Malayo, oo. Pero may voice messages, may video call hanggang makatulog, at may mahigit limampung kanta na pinadala ko sayo.</p>
+      <p>Sabi mo, may bago kang favorite: Paru-Paro at Tangerine Boulevard. Nakaka-calm daw pakinggan. Kaya ayan, kinakanta ko ulit para sayo.</p>
+    </div>
+    <div class="grid">
+      <figure class="ph"><img src="assets/img/c2.jpg" alt="Video call ni Chica" loading="lazy" decoding="async"><figcaption>Pag hindi magkasama: video call.</figcaption></figure>
+      <figure class="ph"><img src="assets/img/c1.jpg" alt="Capybara lamp sa mesa" loading="lazy" decoding="async"><figcaption>Si mini Chicabara, nagpapaliwanag.</figcaption></figure>
+      <figure class="ph"><img src="assets/img/c3.jpg" alt="Selfie nina Chico at Chica" loading="lazy" decoding="async"><figcaption>Peace sign, peace of mind.</figcaption></figure>
+      <figure class="ph"><img src="assets/img/c4.jpg" alt="Magkahawak na kamay" loading="lazy" decoding="async"><figcaption>Hawak-kamay. Hindi ko bibitawan.</figcaption></figure>
+      <figure class="ph wide"><img src="assets/img/c6.jpg" alt="Sina Chico at Chica na may fries sa ilong" loading="lazy" decoding="async"><figcaption>Seryoso kami dito. 😂</figcaption></figure>
+      <figure class="ph"><img src="assets/img/c5.jpg" alt="Sina Chico at Chica sa date" loading="lazy" decoding="async"><figcaption>Date natin.</figcaption></figure>
+      <figure class="ph"><img src="assets/img/c8.jpg" alt="Si Chica na nahihiya at tinatakpan ang mukha" loading="lazy" decoding="async"><figcaption>Yung hiya-hiya mo pa. 🫣</figcaption></figure>
+      <figure class="ph"><img src="assets/img/c7.jpg" alt="Selfie nina Chico at Chica" loading="lazy" decoding="async"><figcaption>Akin ka, akin ka lang.</figcaption></figure>
+      <figure class="ph"><img src="assets/img/c9.jpg" alt="Mirror selfie nina Chico at Chica" loading="lazy" decoding="async"><figcaption>Oct. 17. Isa sa pinaka-memorable nating araw.</figcaption></figure>
+    </div>
+    <p class="song-note"><span class="eq"><i></i><i></i><i></i></span>Kinakanta ni Chico: Paru-Paro</p>
+  </section>
+
+  <!-- LETTER -->
+  <section class="letter-wrap" data-track="tangerine-boulevard">
+    <article class="letter">
+      <h2>Para sa Chica ko, <em>sa ikatlong buwan natin</em></h2>
+      <p>Tatlong buwan. Parang ang ikli pag binilang mo, pero ang dami na nating napagdaanan. May mga araw na puro tawa, may mga araw na mabigat. Pero sa bawat isa, ikaw pa rin ang pinipili ko. At pipiliin pa rin kita.</p>
+      <p>Salamat sa pakikinig sa bawat kanta ko, kahit yung mga sinend ko nang gabing-gabi na. Salamat sa pag-intindi mo sa schedule ko, sa work, sa church, sa pagod ko. Salamat sa paghihintay mo sa tawag ko, at sa pagpapatulog mo sakin pag alam mong kulang na ako sa pahinga.</p>
+      <p>Alam kong malayo ang Pandacan sa Angono. Pero sabi ko nga sayo: malayo man tayo, malapit pa rin ang puso ko sayo.</p>
+      <p>Kaya sa bawat 6, sa bawat 10:10, 11:11 at 2:22, alalahanin mo: mahal na mahal kita. Parang pag-ibig ng Diyos na lagi kong sinasabi sayo. Noon, ngayon, at magpakailanman.</p>
+      <div class="sign">
+        <span>I love you sooo muchhh, mwuaaaa!</span>
+        <strong>Ang iyong Chico ❤️</strong>
+      </div>
+    </article>
+  </section>
+
+  <!-- NEXT -->
+  <section class="next" data-track="forevermore">
+    <div class="ch-head">
+      <div class="ch-num">11</div>
+      <div><div class="ch-month">At sa susunod</div><p class="ch-title">Yung mga kabanatang isusulat pa natin</p></div>
+    </div>
+    <ol>
+      <li><span>Yung araw na hindi na tayo kailangang mag-bye pagkatapos ng bawat date.</span></li>
+      <li><span>Bahay sa probinsya. Malamig na hangin, puro puno, malayo sa ingay ng Manila.</span></li>
+      <li><span>Mga aso at pusang inampon natin. (Ikaw na bahala sa pangalan.)</span></li>
+      <li><span>Isang pamilyang si Lord ang sentro, kung saan tayo ang modelo ng pag-ibig sa mga anak natin.</span></li>
+      <li><span>At ako, aawitan ka pa rin kahit paos na paos na pag tanda natin.</span></li>
+    </ol>
+  </section>
+
+  <section class="finale">
+    <figure class="ph"><img src="assets/img/end.jpg" alt="Si Chica na nakangiti" loading="lazy" decoding="async"><figcaption>Ikaw. Ikaw nga. Ikaw na talaga.</figcaption></figure>
+    <h3>Hanggang sa susunod na 6.</h3>
+    <p>At sa lahat ng 6 pagkatapos non.</p>
+    <button class="again" id="again">Balikan ang simula</button>
+  </section>
+
+</main>
+
+<div class="player" id="player" aria-live="polite">
+  <button class="pp" id="pp" aria-label="I-pause ang kanta">
+    <svg id="ico" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>
+  </button>
+  <div class="now"><small>Kinakanta ni Chico</small><b id="songName">Palagi</b></div>
+  <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+</div>
+
+<script>
+(function(){
+  const TRACKS={
+    "palagi":"Palagi",
+    "binibini":"Binibini",
+    "paraluman":"Paraluman",
+    "paru-paro":"Paru-Paro",
+    "tangerine-boulevard":"Tangerine Boulevard",
+    "forevermore":"Forevermore"
+  };
+  const audio=new Audio();
+  audio.preload="auto";audio.loop=true;
+  let current=null,userPaused=false,fadeTimer=null;
+  const player=document.getElementById('player');
+  const pp=document.getElementById('pp');
+  const ico=document.getElementById('ico');
+  const songName=document.getElementById('songName');
+  const PAUSE='<rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/>';
+  const PLAY='<path d="M7 4.5v15l13-7.5z"/>';
+
+  function setUI(){
+    const playing=!audio.paused;
+    ico.innerHTML=playing?PAUSE:PLAY;
+    pp.setAttribute('aria-label',playing?'I-pause ang kanta':'I-play ang kanta');
+    document.body.classList.toggle('paused',!playing);
+  }
+  function fade(to,ms,done){
+    clearInterval(fadeTimer);
+    const from=audio.volume,steps=Math.max(1,Math.round(ms/40));let i=0;
+    fadeTimer=setInterval(()=>{i++;try{audio.volume=Math.min(1,Math.max(0,from+(to-from)*i/steps))}catch(e){}
+      if(i>=steps){clearInterval(fadeTimer);done&&done()}},40);
+  }
+  function play(key){
+    if(key===current) return;
+    current=key;songName.textContent=TRACKS[key];
+    const start=()=>{audio.src='assets/audio/'+key+'.mp3';audio.currentTime=0;
+      try{audio.volume=0}catch(e){}
+      if(!userPaused){audio.play().then(()=>fade(1,900)).catch(()=>{});}
+      setUI();
+    };
+    if(!audio.paused&&audio.src){fade(0,600,start)}else{start()}
+  }
+  audio.addEventListener('play',setUI);audio.addEventListener('pause',setUI);
+
+  pp.addEventListener('click',()=>{
+    if(audio.paused){userPaused=false;audio.play().then(()=>fade(1,500)).catch(()=>{})}
+    else{userPaused=true;audio.pause()}
+  });
+
+  // open
+  const cover=document.getElementById('cover');
+  const story=document.getElementById('story');
+  document.getElementById('open').addEventListener('click',()=>{
+    story.classList.add('on');player.classList.add('on');
+    play('palagi');
+    story.querySelector('.intro').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  });
+  document.getElementById('again').addEventListener('click',()=>{
+    cover.scrollIntoView({behavior:'smooth'});
+  });
+
+  // chapter music
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting&&story.classList.contains('on')) play(e.target.dataset.track)});
+  },{rootMargin:'-45% 0px -45% 0px'});
+  document.querySelectorAll('[data-track]').forEach(s=>io.observe(s));
+
+  // tap to bring back color
+  document.querySelectorAll('.ph').forEach(f=>{
+    f.setAttribute('tabindex','0');f.setAttribute('role','button');
+    f.setAttribute('aria-pressed','false');
+    const toggle=()=>{const on=f.classList.toggle('kulay');f.setAttribute('aria-pressed',on)};
+    f.addEventListener('click',toggle);
+    f.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();toggle()}});
+  });
+})();
+</script>
+</body>
+</html>
