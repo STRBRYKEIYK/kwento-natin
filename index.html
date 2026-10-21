@@ -68,7 +68,7 @@
   color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 3.5rem);-webkit-text-size-adjust:100%}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 6.5rem);scrollbar-gutter:stable;-webkit-text-size-adjust:100%}
 body{
   margin:0;
   background-color:var(--paper);
@@ -107,14 +107,21 @@ button{font:inherit;color:inherit}
   justify-content:space-between;
   gap:.75rem;
   padding:.65rem clamp(1rem,4vw,2rem);
-  pointer-events:none;
+  flex-wrap:wrap;
+  background:var(--bar);
+  -webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
 }
 .topbar > *{pointer-events:auto}
+.brand{border:0;background:none;padding:0;text-align:left;cursor:pointer;font-family:var(--serif);font-size:1.45rem;white-space:nowrap}
+.reading-label{display:block;font:600 .62rem var(--sans);letter-spacing:.06em;color:var(--ink-soft);margin-top:.15rem}
+.reading-progress{position:absolute;bottom:-1px;left:0;height:2px;background:var(--tulip);width:0;pointer-events:none;transition:width .15s linear}
 .ch-pills{
   display:flex;
   align-items:center;
   gap:.2rem;
-  background:var(--bar);
+  background:transparent;
   -webkit-backdrop-filter:blur(16px);
   backdrop-filter:blur(16px);
   border:1px solid var(--line);
@@ -125,7 +132,7 @@ button{font:inherit;color:inherit}
   transform:translateY(-10px);
   pointer-events:none;
   transition:opacity .4s ease,transform .4s ease;
-  max-width:calc(100vw - 8.5rem);
+  max-width:100%;
   overflow-x:auto;
   scrollbar-width:none;
 }
@@ -139,6 +146,7 @@ button{font:inherit;color:inherit}
   background:none;
   border:0;
   border-radius:999px;
+  min-height:44px;
   padding:.34rem .68rem;
   font-size:.72rem;
   font-weight:700;
@@ -169,6 +177,7 @@ button{font:inherit;color:inherit}
   backdrop-filter:blur(16px);
   border:1px solid var(--line);
   border-radius:999px;
+  min-height:44px;
   padding:.38rem .75rem;
   font-size:.72rem;
   font-weight:700;
@@ -190,8 +199,8 @@ button{font:inherit;color:inherit}
 }
 .pill-stat.all .dot-stat{box-shadow:0 0 0 3px var(--tulip-soft);transform:scale(1.15)}
 .theme-btn{
-  width:36px;
-  height:36px;
+  width:44px;
+  height:44px;
   border-radius:50%;
   border:1px solid var(--line);
   background:var(--bar);
@@ -211,7 +220,7 @@ button{font:inherit;color:inherit}
   min-height:100svh;
   display:grid;
   grid-template-rows:1fr auto;
-  padding:clamp(3.4rem,6vw,4.6rem) clamp(1.25rem,5vw,3rem) clamp(1.75rem,4vw,2.75rem);
+  padding:clamp(6rem,9vw,8rem) clamp(1.25rem,5vw,3rem) clamp(1.75rem,4vw,2.75rem);
   position:relative;
 }
 .cover-inner{
@@ -344,7 +353,7 @@ button{font:inherit;color:inherit}
 }
 .open-btn{
   justify-self:center;
-  margin-top:2.2rem;
+  margin-top:0;
   background:var(--ink);
   color:var(--paper);
   border:1px solid var(--ink);
@@ -366,6 +375,12 @@ button{font:inherit;color:inherit}
   box-shadow:var(--shadow-lift);
 }
 .open-btn:active{transform:translateY(0)}
+.cover-actions{display:grid;justify-items:center;gap:.8rem;margin-top:2.5rem}
+.quiet-btn,.resume-btn{border:0;background:none;color:var(--ink-soft);cursor:pointer;min-height:44px;padding:.5rem .8rem;font-size:.85rem;text-underline-offset:4px}
+.quiet-btn:hover,.resume-btn:hover{color:var(--tulip);text-decoration:underline}
+.resume-btn{color:var(--tulip);border:1px solid var(--line);border-radius:999px;background:var(--card)}
+.cover-hint{margin:0;font-size:.72rem;color:var(--ink-soft);text-align:center;line-height:1.5}
+[hidden]{display:none!important}
 .open-btn .dot{
   width:9px;
   height:9px;
@@ -389,10 +404,22 @@ button{font:inherit;color:inherit}
 
 /* ---------- INTRO ---------- */
 .intro{
-  width:min(640px,100% - 2.5rem);
+  width:min(780px,100% - 2.5rem);
   margin:4.5rem auto 2.5rem;
   padding-top:1rem;
 }
+.intro > p{max-width:640px}
+.chapter-directory{margin-top:3rem}
+.directory-heading{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;border-bottom:1px solid var(--line);padding-bottom:.8rem}
+.directory-heading h2{font:400 1.8rem var(--serif);margin:0}
+.directory-heading span{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+.chapter-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem;margin-top:1rem}
+.chapter-link{display:flex;flex-direction:column;gap:.45rem;position:relative;min-height:135px;padding:1.15rem;background:var(--card);border:1px solid var(--line);border-radius:4px;color:var(--ink);text-decoration:none;transition:transform .2s,border-color .2s}
+.chapter-link:hover{transform:translateY(-3px);border-color:var(--tulip)}
+.chapter-link small{font-size:.68rem;letter-spacing:.08em;color:var(--tulip);text-transform:uppercase}
+.chapter-link strong{font:400 1.65rem var(--serif)}
+.chapter-link span{font-size:.78rem;line-height:1.4;color:var(--ink-soft);padding-right:.75rem}
+.chapter-link::after{content:'↗';position:absolute;right:.9rem;bottom:.9rem;color:var(--tulip)}
 .intro-lead{
   font-family:var(--serif);
   font-style:italic;
@@ -531,13 +558,15 @@ button{font:inherit;color:inherit}
   background:var(--card);
   border:1px solid var(--line);
   padding:8px 8px 0;
-  cursor:pointer;
   position:relative;
   box-shadow:var(--shadow-card);
   transition:transform .38s cubic-bezier(.2,.8,.2,1),box-shadow .38s ease,border-color .38s ease;
   -webkit-tap-highlight-color:transparent;
   overflow:hidden;
 }
+.ph-color{position:absolute;inset:0;width:100%;height:100%;z-index:1;border:0;background:none;cursor:pointer;border-radius:0}
+.ph-color:focus-visible{outline-offset:-4px}
+.ph-color:focus-visible ~ .ph-zoom{opacity:1;transform:scale(1)}
 .ph:nth-child(odd){transform:rotate(-.35deg)}
 .ph:nth-child(even){transform:rotate(.35deg)}
 .ph.wide,.ph.hero{transform:none}
@@ -580,8 +609,8 @@ button{font:inherit;color:inherit}
   position:absolute;
   top:15px;
   left:15px;
-  width:28px;
-  height:28px;
+  width:44px;
+  height:44px;
   border-radius:50%;
   border:0;
   background:rgba(20,20,19,.55);
@@ -590,8 +619,8 @@ button{font:inherit;color:inherit}
   color:#fff;
   display:grid;
   place-items:center;
-  opacity:0;
-  transform:scale(.9);
+  opacity:.9;
+  transform:scale(1);
   transition:opacity .25s ease,transform .25s ease,background-color .2s ease;
   cursor:pointer;
   z-index:3;
@@ -608,7 +637,7 @@ button{font:inherit;color:inherit}
 .ph.tall{grid-row:span 2}
 .ph.third{grid-column:span 2}
 .ph.hero{grid-column:2 / span 4}
-.ph.hero img{aspect-ratio:3/4}
+.ph.hero:not(.wide):not(.tall) img{aspect-ratio:3/4}
 .ph img{
   width:100%;
   height:auto;
@@ -632,6 +661,9 @@ button{font:inherit;color:inherit}
 }
 .ph:hover img{filter:grayscale(.45) contrast(1.04)}
 .ph.kulay:hover img{filter:none;transform:scale(1.015)}
+.cover-photo.ph{grid-column:auto;min-width:0;width:100%;transform:rotate(-1.4deg)}
+.cover-photo.ph:hover{transform:rotate(-.3deg) translateY(-3px)}
+.cover-photo.ph:not(.wide):not(.tall) img{aspect-ratio:1;object-position:50% 32%}
 .lock{
   display:grid;
   grid-template-columns:1fr 1fr 1.4fr;
@@ -840,8 +872,21 @@ button{font:inherit;color:inherit}
   display:none;
   place-items:center;
   padding:clamp(1rem,4vw,2.5rem);
+  margin:0;
+  width:100%;
+  height:100%;
+  max-width:none;
+  max-height:none;
+  border:0;
+  color:#f2efe9;
+  touch-action:pan-y;
 }
-.lightbox.on{display:grid;animation:lb-in .25s ease}
+.lightbox[open]{display:grid;animation:lb-in .25s ease}
+.lightbox::backdrop{background:rgba(15,15,14,.92)}
+body.modal-open{overflow:hidden}
+.lb-footer{display:flex;align-items:center;justify-content:center;gap:1.5rem;position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 1rem);left:1rem;right:1rem}
+.lb-nav{width:44px;height:44px;border:1px solid rgba(255,255,255,.3);border-radius:50%;background:rgba(255,255,255,.1);color:#fff;font-size:1.3rem;cursor:pointer}
+.lb-count{font-size:.8rem;font-variant-numeric:tabular-nums;min-width:4rem;text-align:center}
 @keyframes lb-in{from{opacity:0}to{opacity:1}}
 .lb-close{
   position:absolute;
@@ -862,14 +907,14 @@ button{font:inherit;color:inherit}
 .lb-figure{
   margin:0;
   max-width:min(860px,94vw);
-  max-height:84svh;
+  max-height:calc(100svh - 11rem);
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:.85rem;
 }
 .lb-figure img{
-  max-height:74svh;
+  max-height:calc(100svh - 17rem);
   width:auto;
   max-width:100%;
   object-fit:contain;
@@ -912,7 +957,7 @@ button{font:inherit;color:inherit}
 .seek .knob{position:absolute;top:4px;width:13px;height:13px;margin-left:-6.5px;border-radius:50%;background:var(--tulip);left:0;transform:scale(0);transition:transform .15s;box-shadow:0 1px 4px rgba(0,0,0,.3)}
 .seek:hover .knob,.seek.drag .knob,.seek:focus-visible .knob{transform:scale(1)}
 .bar-row{display:flex;align-items:center;gap:.75rem;padding:.4rem max(1rem,env(safe-area-inset-left,0px)) .7rem}
-.ctl{flex:none;width:40px;height:40px;border:0;background:none;display:grid;place-items:center;cursor:pointer;border-radius:50%;color:var(--ink);transition:background-color .2s ease,transform .15s ease}
+.ctl{flex:none;width:44px;height:44px;border:0;background:none;display:grid;place-items:center;cursor:pointer;border-radius:50%;color:var(--ink);transition:background-color .2s ease,transform .15s ease}
 .ctl:hover{background:color-mix(in srgb,var(--ink) 8%,transparent)}
 .ctl:active{transform:scale(.94)}
 .ctl.main{width:46px;height:46px;background:var(--ink);color:var(--paper);box-shadow:0 4px 12px rgba(0,0,0,.15)}
@@ -923,7 +968,14 @@ button{font:inherit;color:inherit}
 .now small time{flex:none;font-variant-numeric:tabular-nums;letter-spacing:.02em}
 .now b{display:block;font-family:var(--serif);font-weight:400;font-style:italic;font-size:1.35rem;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .list{max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.22,1,.36,1)}
-.player.open .list{max-height:360px;overflow:auto}
+.player.open .list{max-height:min(390px,60svh);overflow:auto}
+.playlist-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.2rem .5rem}
+.playlist-head strong{font:400 1.6rem var(--serif)}
+.follow-btn{min-height:44px;border:1px solid var(--line);border-radius:999px;background:var(--card);padding:.5rem .75rem;font-size:.72rem;cursor:pointer}
+.follow-btn[aria-pressed="true"]{color:var(--tulip);border-color:var(--tulip)}
+.playlist-hint{margin:0;padding:0 1.2rem .8rem;color:var(--ink-soft);font-size:.75rem;line-height:1.5}
+.audio-status{font-size:.8rem;color:var(--tulip);margin:0;padding:.65rem 1.2rem;border-top:1px solid var(--line)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
 .list ol{list-style:none;margin:0;padding:.3rem max(1rem,env(safe-area-inset-left,0px)) .7rem;counter-reset:t}
 .list li{counter-increment:t}
 .list button{width:100%;display:grid;grid-template-columns:2rem 1fr auto;align-items:baseline;gap:.5rem;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:.75rem .35rem;cursor:pointer;border-radius:4px;transition:background-color .2s ease}
@@ -951,13 +1003,30 @@ button{font:inherit;color:inherit}
   .ph.hero{grid-column:span 6}
   .lock{grid-template-columns:1fr 1fr}
   .lock .ph.line{grid-column:span 2}
-  .ch-pills{max-width:calc(100vw - 6.5rem)}
+  .ch-pills{order:3;width:100%;max-width:100%;display:none;justify-content:space-between;box-shadow:none;border:0;border-top:1px solid var(--line);border-radius:0;padding:.35rem 0 0;gap:0}
+  .ch-pills.on{display:flex}
+  .ch-pills button{padding:.3rem .5rem;font-size:.64rem;letter-spacing:0;flex:none}
+  .topbar{gap:.35rem;padding:.5rem 1rem}
+  .chapter-links{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bar-row{gap:.2rem;padding:.35rem .65rem .65rem}
+  .now{padding-left:.35rem}
+  .now small{display:block;font-size:.6rem}
+  .now small span{display:block}
+  .now small time{display:block;margin-top:.2rem}
+  .now b{font-size:1.2rem}
+  .cover-top-meta{font-size:.62rem;letter-spacing:.05em}
   .pill-stat span.lbl{display:none}
 }
+@media (min-width:561px) and (max-width:900px){
+  .ch-pills{order:3;width:100%;justify-content:center;box-shadow:none;border:0;padding:0}
+  .ch-pills:not(.on){display:none}
+}
 @media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
   .ph,.ph img,.reveal,.story.on{transition:none;animation:none}
   .eq i,.open-btn .dot{animation:none}
   .cover-photo,.ph:nth-child(odd),.ph:nth-child(even){transform:none}
+  .cover-photo.ph,.cover-photo.ph:hover,.ph:hover{transform:none}
   .reveal{opacity:1;transform:none}
 }
 </style>
@@ -965,7 +1034,8 @@ button{font:inherit;color:inherit}
 <body>
 
 <nav class="topbar" aria-label="Nabigasyon at Tema">
-  <div class="ch-pills" id="chPills" role="navigation" aria-label="Mga Kabanata">
+  <button type="button" class="brand" id="home" aria-label="Bumalik sa pabalat">Kwento <em>Natin.</em><span class="reading-label" id="readingLabel">Chico &amp; Chica · Vol. 03</span></button>
+  <div class="ch-pills" id="chPills" role="navigation" aria-label="Mga Kabanata" inert>
     <button type="button" data-jump="sec-intro" aria-current="true">Simula</button>
     <button type="button" data-jump="sec-08">08 · Ago</button>
     <button type="button" data-jump="sec-09">09 · Set</button>
@@ -985,6 +1055,7 @@ button{font:inherit;color:inherit}
       </svg>
     </button>
   </div>
+  <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
 </nav>
 
 <header class="cover" id="cover">
@@ -1005,7 +1076,12 @@ button{font:inherit;color:inherit}
       </div>
     </div>
   </div>
-  <button class="open-btn" id="open"><span class="dot"></span>Buksan ang kwento</button>
+  <div class="cover-actions">
+    <button class="open-btn" id="open"><span class="dot" aria-hidden="true"></span>Buksan ang kwento <span aria-hidden="true">↗</span></button>
+    <p class="cover-hint">Kasama ang mga kantang kinanta ko para sa ’yo.</p>
+    <button class="quiet-btn" id="openQuiet">Magbasa muna nang tahimik →</button>
+    <button class="resume-btn" id="resume" hidden>Ituloy ang pagbabasa →</button>
+  </div>
 </header>
 
 <main class="story" id="story">
@@ -1017,6 +1093,17 @@ button{font:inherit;color:inherit}
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10m0-.5V4.5a1.5 1.5 0 0 1 3 0V10m0-1a1.5 1.5 0 0 1 3 0v5.5A6.5 6.5 0 0 1 11.5 21h-.6a6 6 0 0 1-4.6-2.2L3.6 15.5a1.5 1.5 0 0 1 2.2-2l3.2 2.8V11a1.5 1.5 0 0 1 3 0"/></svg>
       <span><strong>I-tap ang bawat litrato:</strong> Black and white lahat ng litrato, kasi yan ang gusto mo. Pero i-tap mo sila isa-isa, kasi ikaw ang nagbibigay ng kulay sa mundo ko.</span>
     </div>
+    <nav class="chapter-directory" aria-label="Piliin ang kabanata">
+      <div class="directory-heading"><h2>Mga pahina natin</h2><span>Balikan ang bawat sandali</span></div>
+      <div class="chapter-links">
+        <a class="chapter-link" href="#sec-08" data-jump="sec-08"><small>Kabanata 01 · Agosto</small><strong>Ang simula ulit</strong><span>S Maison, isang pelikula, at tayo.</span></a>
+        <a class="chapter-link" href="#sec-09" data-jump="sec-09"><small>Kabanata 02 · Setyembre</small><strong>Mas malapit</strong><span>Mga araw na mas nakilala kita.</span></a>
+        <a class="chapter-link" href="#sec-10" data-jump="sec-10"><small>Kabanata 03 · Oktubre</small><strong>Ikaw pa rin</strong><span>Mga pangako at bagong alaala.</span></a>
+        <a class="chapter-link" href="#sec-letter" data-jump="sec-letter"><small>Isang liham</small><strong>Para sa Chica ko</strong><span>Mga salitang galing sa puso.</span></a>
+        <a class="chapter-link" href="#sec-11" data-jump="sec-11"><small>Susunod na kabanata</small><strong>At sa susunod</strong><span>Mga pangarap na bubuuin natin.</span></a>
+        <a class="chapter-link" href="#sec-finale" data-jump="sec-finale"><small>Hanggang sa muli</small><strong>Sa bawat 6</strong><span>Ikaw, ngayon at sa susunod pa.</span></a>
+      </div>
+    </nav>
   </section>
 
   <!-- AGOSTO -->
@@ -1110,7 +1197,7 @@ button{font:inherit;color:inherit}
   </section>
 
   <!-- LETTER -->
-  <section class="letter-wrap" id="sec-letter" data-track="Tangerine-boulevard">
+  <section class="letter-wrap" id="sec-letter" data-track="tangerine-boulevard">
     <article class="letter reveal">
       <div class="letter-stamp">💌 Personal na Liham · Nobyembre 6</div>
       <h2>Para sa Chica ko, <em>sa ikatlong buwan natin</em></h2>
@@ -1144,7 +1231,7 @@ button{font:inherit;color:inherit}
     </ol>
   </section>
 
-  <section class="finale">
+  <section class="finale" id="sec-finale">
     <figure class="ph reveal"><img src="assets/img/end.jpg" alt="Si Chica na nakangiti" loading="lazy" decoding="async"><figcaption>Ikaw. Ikaw nga. Ikaw na talaga.</figcaption></figure>
     <h3 class="reveal">Hanggang sa susunod na 6.</h3>
     <p class="reveal">At sa lahat ng 6 pagkatapos non.</p>
@@ -1155,7 +1242,7 @@ button{font:inherit;color:inherit}
 
 </main>
 
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Buong larawan">
+<dialog class="lightbox" id="lightbox" aria-label="Buong larawan" aria-describedby="lbCap">
   <button type="button" class="lb-close" id="lbClose" aria-label="Isara ang larawan">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
   </button>
@@ -1163,11 +1250,21 @@ button{font:inherit;color:inherit}
     <img id="lbImg" src="" alt="">
     <figcaption id="lbCap"></figcaption>
   </figure>
-</div>
+  <div class="lb-footer">
+    <button type="button" class="lb-nav" id="lbPrev" aria-label="Nakaraang larawan">←</button>
+    <span class="lb-count" id="lbCount" aria-live="polite"></span>
+    <button type="button" class="lb-nav" id="lbNext" aria-label="Susunod na larawan">→</button>
+  </div>
+</dialog>
 
 <div class="player" id="player">
   <div class="player-inner">
-    <div class="list" id="list"><ol id="tracks"></ol></div>
+    <div class="list" id="list" inert>
+      <div class="playlist-head"><strong>Mga kanta para sa ’yo</strong><button type="button" class="follow-btn" id="follow" aria-pressed="true">Sabay sa kwento: On</button></div>
+      <p class="playlist-hint">Kusang papalit ang kanta sa bawat kabanata. Puwede mo ring piliin ang gusto mong pakinggan.</p>
+      <ol id="tracks"></ol>
+    </div>
+    <p class="audio-status" id="audioStatus" role="status" hidden></p>
     <div class="seek" id="seek" role="slider" tabindex="0" aria-label="Posisyon ng kanta" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
       <div class="rail"></div><div class="fill" id="fill"></div><div class="knob" id="knob"></div>
     </div>
@@ -1176,7 +1273,7 @@ button{font:inherit;color:inherit}
       <button class="ctl main" id="pp" aria-label="I-play ang kanta"><svg id="ico" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></button>
       <button class="ctl" id="next" aria-label="Susunod na kanta"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="16.6" y="5" width="2.4" height="14"/><path d="M5 5v14l10.5-7z"/></svg></button>
       <div class="now"><small><span id="songMeta">Kinakanta ni Chico</span><time id="time">0:00 / 0:00</time></small><b id="songName">Palagi</b></div>
-      <button class="ctl lst" id="lst" aria-label="Listahan ng kanta" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h11M4 12h11M4 17h7"/><circle cx="18" cy="16.5" r="2.2"/><path d="M20.2 16.5V6.5l-2.5.8"/></svg></button>
+      <button class="ctl lst" id="lst" aria-label="Listahan ng kanta" aria-expanded="false" aria-controls="list"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h11M4 12h11M4 17h7"/><circle cx="18" cy="16.5" r="2.2"/><path d="M20.2 16.5V6.5l-2.5.8"/></svg></button>
     </div>
   </div>
 </div>
@@ -1189,19 +1286,45 @@ button{font:inherit;color:inherit}
     {key:"binibini",title:"Binibini",ch:"Agosto"},
     {key:"aura",title:"Aura",ch:"Setyembre"},
     {key:"paru-paro",title:"Paru-Paro",ch:"Oktubre"},
-    {key:"Tangerine-boulevard",title:"Tangerine Boulevard",ch:"Ang sulat"},
+    {key:"tangerine-boulevard",title:"Tangerine Boulevard",ch:"Ang sulat"},
     {key:"forevermore",title:"Forevermore",ch:"Sa susunod"}
   ];
   const idx=k=>TRACKS.findIndex(t=>t.key.toLowerCase()===String(k).toLowerCase());
   const $=id=>document.getElementById(id);
   const audio=new Audio();audio.preload="metadata";
-  let cur=-1,userPaused=false,fadeTimer=null,dragging=false;
+  let cur=-1,userPaused=false,fadeTimer=null,dragging=false,followStory=true,playRequest=0;
   const player=$('player'),pp=$('pp'),ico=$('ico'),songName=$('songName'),songMeta=$('songMeta'),timeEl=$('time'),
         seek=$('seek'),fill=$('fill'),knob=$('knob'),lst=$('lst'),tracksEl=$('tracks');
   const PAUSE='<rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/>';
   const PLAY='<path d="M7 4.5v15l13-7.5z"/>';
   const fmt=s=>{if(!isFinite(s))return'0:00';s=Math.floor(s);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
   const srcFor=k=>SRC[k]||('assets/audio/'+k+'.mp3');
+  const readSaved=(key,fallback)=>{try{return JSON.parse(localStorage.getItem(key))??fallback}catch(e){return fallback}};
+  const save=(key,value)=>{try{localStorage.setItem(key,JSON.stringify(value))}catch(e){}};
+  const scrollToSection=el=>el.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  const audioStatus=$('audioStatus');
+  function showAudioStatus(message){audioStatus.textContent=message;audioStatus.hidden=!message}
+  function playAudio(){
+    const request=++playRequest;
+    showAudioStatus('');
+    audio.play().then(()=>{
+      if(request!==playRequest)return;
+      fade(1,700);
+    }).catch(error=>{
+      if(request!==playRequest||error.name==='AbortError')return;
+      setUI();
+      showAudioStatus(error.name==='NotAllowedError'?'Pindutin ang play para simulan ang kanta.':'Hindi ma-play ang kanta. Subukang muli o pumili ng ibang kanta.');
+    });
+  }
+  function setFollow(on){
+    followStory=on;
+    $('follow').setAttribute('aria-pressed',on);
+    $('follow').textContent='Sabay sa kwento: '+(on?'On':'Off');
+  }
+  function closePlaylist(){
+    if($('list').contains(document.activeElement))lst.focus();
+    player.classList.remove('open');lst.setAttribute('aria-expanded','false');$('list').inert=true;
+  }
 
   // Theme toggle
   const root=document.documentElement,themeBtn=$('themeBtn'),themeIco=$('themeIco');
@@ -1214,12 +1337,14 @@ button{font:inherit;color:inherit}
   }
   function syncThemeUI(){
     themeIco.innerHTML=isDark()?SUN:MOON;
+    themeBtn.setAttribute('aria-label',isDark()?'Gamitin ang light theme':'Gamitin ang dark theme');
   }
   try{
     const saved=localStorage.getItem('kwento-theme');
     if(saved==='dark'||saved==='light')root.setAttribute('data-theme',saved);
   }catch(e){}
   syncThemeUI();
+  matchMedia('(prefers-color-scheme:dark)').addEventListener('change',syncThemeUI);
   themeBtn.addEventListener('click',()=>{
     const next=isDark()?'light':'dark';
     root.setAttribute('data-theme',next);
@@ -1232,8 +1357,8 @@ button{font:inherit;color:inherit}
     b.innerHTML='<span class="t"></span><span class="c"></span>';
     b.querySelector('.t').textContent=t.title;b.querySelector('.c').textContent=t.ch;
     b.addEventListener('click',()=>{
-      userPaused=false;load(i,true);
-      player.classList.remove('open');lst.setAttribute('aria-expanded','false');
+      setFollow(false);userPaused=false;load(i,true);
+      closePlaylist();
     });
     li.appendChild(b);tracksEl.appendChild(li);
   });
@@ -1243,6 +1368,11 @@ button{font:inherit;color:inherit}
     ico.innerHTML=playing?PAUSE:PLAY;
     pp.setAttribute('aria-label',playing?'I-pause ang kanta':'I-play ang kanta');
     document.body.classList.toggle('paused',!playing);
+    document.querySelectorAll('.song-note[data-play]').forEach(btn=>{
+      const active=idx(btn.dataset.play)===cur&&playing;
+      btn.classList.toggle('paused',!active);
+      btn.setAttribute('aria-pressed',active);
+    });
     if('mediaSession' in navigator) navigator.mediaSession.playbackState=playing?'playing':'paused';
   }
   function progress(){
@@ -1261,47 +1391,60 @@ button{font:inherit;color:inherit}
   function load(i,force){
     i=(i+TRACKS.length)%TRACKS.length;
     if(i===cur&&!force) return;
-    if(i===cur&&force){if(audio.paused)audio.play().catch(()=>{});return}
+    if(i===cur&&force){if(audio.paused&&!userPaused)playAudio();return}
+    ++playRequest;clearInterval(fadeTimer);
+    audio.pause();
     cur=i;const t=TRACKS[i];
     songName.textContent=t.title;
     songMeta.textContent='Kinakanta ni Chico · '+t.ch;
     tracksEl.querySelectorAll('button').forEach((b,j)=>b.setAttribute('aria-current',j===i));
-    if('mediaSession' in navigator){
+    if('mediaSession' in navigator&&'MediaMetadata' in window){
       navigator.mediaSession.metadata=new MediaMetadata({title:t.title,artist:'Kinanta ni Chico',album:'Kwento Natin'});
     }
-    const start=()=>{
-      audio.src=srcFor(t.key);
-      try{audio.volume=0}catch(e){}
-      progress();
-      if(!userPaused){audio.play().then(()=>fade(1,700)).catch(()=>setUI())}
-      setUI();
-    };
-    if(!audio.paused&&audio.src){fade(0,450,start)}else{start()}
+    audio.src=srcFor(t.key);
+    try{audio.volume=0}catch(e){}
+    showAudioStatus('');progress();
+    if(!userPaused)playAudio();
+    setUI();
   }
   audio.addEventListener('play',setUI);
   audio.addEventListener('pause',setUI);
   audio.addEventListener('timeupdate',progress);
   audio.addEventListener('loadedmetadata',progress);
+  audio.addEventListener('error',()=>{
+    setUI();showAudioStatus('Hindi ma-load ang kanta. Subukang muli o pumili ng ibang kanta.');
+  });
   audio.addEventListener('ended',()=>load(cur+1));
 
   pp.addEventListener('click',()=>{
-    if(audio.paused){userPaused=false;try{audio.volume=1}catch(e){};audio.play().catch(()=>{})}
-    else{userPaused=true;audio.pause()}
+    if(audio.paused){userPaused=false;playAudio()}
+    else{userPaused=true;++playRequest;clearInterval(fadeTimer);audio.pause()}
   });
   $('prev').addEventListener('click',()=>{
+    setFollow(false);
     if(audio.currentTime>4){audio.currentTime=0;return}
     userPaused=false;load(cur-1);
   });
-  $('next').addEventListener('click',()=>{userPaused=false;load(cur+1)});
+  $('next').addEventListener('click',()=>{setFollow(false);userPaused=false;load(cur+1)});
   lst.addEventListener('click',()=>{
-    const open=player.classList.toggle('open');lst.setAttribute('aria-expanded',open);
+    const open=player.classList.toggle('open');lst.setAttribute('aria-expanded',open);$('list').inert=!open;
   });
+  $('follow').addEventListener('click',()=>{
+    setFollow(!followStory);
+    if(followStory&&lastChapter){const i=idx(lastChapter);if(i>-1)load(i)}
+  });
+  document.addEventListener('click',e=>{if(!player.contains(e.target))closePlaylist()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&player.classList.contains('open')){closePlaylist();lst.focus()}});
 
   // Song note buttons inside chapters
   document.querySelectorAll('.song-note[data-play]').forEach(btn=>{
     btn.addEventListener('click',()=>{
       const i=idx(btn.dataset.play);
-      if(i>-1){userPaused=false;load(i,true)}
+      if(i>-1){
+        setFollow(false);
+        if(i===cur&&!audio.paused){userPaused=true;++playRequest;clearInterval(fadeTimer);audio.pause()}
+        else{userPaused=false;load(i,true)}
+      }
     });
   });
 
@@ -1309,64 +1452,97 @@ button{font:inherit;color:inherit}
   function seekTo(clientX){
     const r=seek.getBoundingClientRect(),p=Math.min(1,Math.max(0,(clientX-r.left)/r.width));
     fill.style.width=p*100+'%';knob.style.left=p*100+'%';
-    if(audio.duration) audio.currentTime=p*audio.duration;
+    if(Number.isFinite(audio.duration)&&audio.duration>0) audio.currentTime=p*audio.duration;
   }
   seek.addEventListener('pointerdown',e=>{dragging=true;seek.classList.add('drag');seek.setPointerCapture(e.pointerId);seekTo(e.clientX)});
   seek.addEventListener('pointermove',e=>{if(dragging)seekTo(e.clientX)});
   const endDrag=()=>{dragging=false;seek.classList.remove('drag')};
   seek.addEventListener('pointerup',endDrag);seek.addEventListener('pointercancel',endDrag);
   seek.addEventListener('keydown',e=>{
-    if(!audio.duration)return;
+    if(!Number.isFinite(audio.duration)||audio.duration<=0)return;
     if(e.key==='ArrowRight'){audio.currentTime=Math.min(audio.duration,audio.currentTime+5);e.preventDefault()}
     if(e.key==='ArrowLeft'){audio.currentTime=Math.max(0,audio.currentTime-5);e.preventDefault()}
+    if(e.key==='Home'){audio.currentTime=0;e.preventDefault()}
+    if(e.key==='End'){audio.currentTime=audio.duration;e.preventDefault()}
   });
 
   if('mediaSession' in navigator){
     const ms=navigator.mediaSession;
     try{
-      ms.setActionHandler('play',()=>{userPaused=false;audio.play()});
-      ms.setActionHandler('pause',()=>{userPaused=true;audio.pause()});
-      ms.setActionHandler('previoustrack',()=>{userPaused=false;load(cur-1)});
-      ms.setActionHandler('nexttrack',()=>{userPaused=false;load(cur+1)});
+      ms.setActionHandler('play',()=>{userPaused=false;playAudio()});
+      ms.setActionHandler('pause',()=>{userPaused=true;++playRequest;clearInterval(fadeTimer);audio.pause()});
+      ms.setActionHandler('previoustrack',()=>{setFollow(false);userPaused=false;load(cur-1)});
+      ms.setActionHandler('nexttrack',()=>{setFollow(false);userPaused=false;load(cur+1)});
       ms.setActionHandler('seekto',d=>{if(d.seekTime!=null)audio.currentTime=d.seekTime});
     }catch(e){}
   }
 
   // open & navigation pills
   const cover=$('cover'),story=$('story'),chPills=$('chPills'),colorStat=$('colorStat');
-  $('open').addEventListener('click',()=>{
+  const sections=Array.from(story.querySelectorAll('section[id]'));
+  const savedSection=readSaved('kwento-reading',null);
+  let resumeTarget=typeof savedSection==='string'&&sections.find(s=>s.id===savedSection);
+  function syncResume(){
+    $('resume').hidden=!resumeTarget||resumeTarget.id==='sec-intro';
+    if($('resume').hidden)return;
+    const label=chPills.querySelector('[data-jump="'+resumeTarget.id+'"]');
+    $('resume').textContent='Ituloy sa '+(label?label.textContent:'huling pahina')+' →';
+  }
+  syncResume();
+  function openStory(quiet,target=$('sec-intro')){
     story.classList.add('on');player.classList.add('on');
-    chPills.classList.add('on');colorStat.classList.add('on');
-    load(0);
-    story.querySelector('.intro').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
-  });
-  $('again').addEventListener('click',()=>cover.scrollIntoView({behavior:'smooth'}));
+    chPills.classList.add('on');chPills.inert=false;colorStat.classList.add('on');
+    userPaused=quiet;
+    const track=idx(target.dataset.track||'palagi');
+    load(track<0?0:track,true);
+    if(quiet){++playRequest;clearInterval(fadeTimer);audio.pause()}
+    $('open').innerHTML='<span class="dot" aria-hidden="true"></span>Balikan ang kwento <span aria-hidden="true">↗</span>';
+    scrollToSection(target);
+    target.tabIndex=-1;target.focus({preventScroll:true});
+    queueReadingUpdate();
+  }
+  $('open').addEventListener('click',()=>openStory(false));
+  $('openQuiet').addEventListener('click',()=>openStory(true));
+  $('resume').addEventListener('click',()=>openStory(true,resumeTarget||$('sec-intro')));
+  $('again').addEventListener('click',()=>scrollToSection(cover));
+  $('home').addEventListener('click',()=>scrollToSection(cover));
 
-  chPills.querySelectorAll('button[data-jump]').forEach(btn=>{
-    btn.addEventListener('click',()=>{
+  document.querySelectorAll('[data-jump]').forEach(btn=>{
+    btn.addEventListener('click',e=>{
+      e.preventDefault();
       const target=$(btn.dataset.jump);
-      if(target) target.scrollIntoView({behavior:'smooth'});
+      if(target){scrollToSection(target);target.tabIndex=-1;target.focus({preventScroll:true})}
     });
   });
 
-  // chapters change the song & active nav pill as she scrolls into them
-  let lastChapter=null;
-  const io=new IntersectionObserver(es=>{
-    es.forEach(e=>{
-      if(!e.isIntersecting||!story.classList.contains('on'))return;
-      const id=e.target.id;
-      if(id){
-        chPills.querySelectorAll('button[data-jump]').forEach(b=>{
-          b.setAttribute('aria-current',b.dataset.jump===id);
-        });
-      }
-      const k=e.target.dataset.track;
-      if(!k||k===lastChapter)return;
-      lastChapter=k;
-      const i=idx(k);if(i>-1&&i!==cur)load(i);
-    });
-  },{rootMargin:'-42% 0px -42% 0px'});
-  document.querySelectorAll('[data-track]').forEach(s=>io.observe(s));
+  // One reading position drives the progress, chapter navigation, and optional soundtrack.
+  let lastChapter=null,activeSection=null,readingFrame=null;
+  function updateReading(){
+    readingFrame=null;
+    if(!story.classList.contains('on'))return;
+    const start=story.offsetTop-document.querySelector('.topbar').offsetHeight;
+    const distance=Math.max(1,story.scrollHeight-innerHeight+document.querySelector('.topbar').offsetHeight);
+    const percent=Math.min(100,Math.max(0,Math.round((scrollY-start)/distance*100)));
+    $('readingProgress').style.width=percent+'%';
+    $('readingLabel').textContent=percent+'% ng kwento';
+    if(scrollY<start-100)return;
+    let current=sections[0];
+    sections.forEach(section=>{if(section.getBoundingClientRect().top<=innerHeight*.4)current=section});
+    if(current!==activeSection){
+      activeSection=current;resumeTarget=current;syncResume();save('kwento-reading',current.id);
+      chPills.querySelectorAll('button[data-jump]').forEach(b=>{
+        const active=b.dataset.jump===current.id||(current.id==='sec-finale'&&b.dataset.jump==='sec-11');
+        b.setAttribute('aria-current',active);
+        if(active)chPills.scrollTo({left:Math.max(0,b.offsetLeft-chPills.offsetLeft-chPills.clientWidth/2+b.offsetWidth/2),behavior:'instant'});
+      });
+      const k=current.dataset.track;
+      if(k){lastChapter=k;const i=idx(k);if(followStory&&i>-1&&i!==cur)load(i)}
+    }
+  }
+  function queueReadingUpdate(){if(readingFrame===null)readingFrame=requestAnimationFrame(updateReading)}
+  addEventListener('scroll',queueReadingUpdate,{passive:true});
+  addEventListener('resize',queueReadingUpdate);
+  story.querySelectorAll('img').forEach(img=>img.addEventListener('load',queueReadingUpdate));
 
   // Scroll reveal observer
   const revIo=new IntersectionObserver(es=>{
@@ -1381,67 +1557,98 @@ button{font:inherit;color:inherit}
 
   // Lightbox
   const lightbox=$('lightbox'),lbImg=$('lbImg'),lbCap=$('lbCap'),lbClose=$('lbClose');
+  let photoIndex=0,returnFocus=null,swipeStart=null;
   function openLightbox(fig){
+    photoIndex=allPhotos.indexOf(fig);
     const img=fig.querySelector('img'),cap=fig.querySelector('figcaption');
     if(!img)return;
     lbImg.src=img.src;
     lbImg.alt=img.alt||'';
     lbCap.textContent=cap?cap.textContent:'';
-    lightbox.classList.add('on');
+    $('lbCount').textContent=(photoIndex+1)+' / '+allPhotos.length;
+    if(!lightbox.open){
+      returnFocus=document.activeElement;
+      lightbox.showModal();document.body.classList.add('modal-open');lbClose.focus();
+    }
   }
   function closeLightbox(){
-    lightbox.classList.remove('on');
+    lightbox.close();
   }
+  function stepPhoto(direction){
+    const next=allPhotos[(photoIndex+direction+allPhotos.length)%allPhotos.length];
+    setPhotoColor(next,true);updateColorStat();openLightbox(next);
+  }
+  $('lbPrev').addEventListener('click',()=>stepPhoto(-1));
+  $('lbNext').addEventListener('click',()=>stepPhoto(1));
   lbClose.addEventListener('click',closeLightbox);
+  lightbox.addEventListener('close',()=>{document.body.classList.remove('modal-open');if(returnFocus&&returnFocus.isConnected)returnFocus.focus({preventScroll:true})});
   lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLightbox()});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&lightbox.classList.contains('on'))closeLightbox()});
+  lightbox.addEventListener('keydown',e=>{
+    if(e.key==='ArrowLeft'){e.preventDefault();stepPhoto(-1)}
+    if(e.key==='ArrowRight'){e.preventDefault();stepPhoto(1)}
+  });
+  lightbox.addEventListener('pointerdown',e=>{swipeStart=e.isPrimary&&e.pointerType==='touch'?{x:e.clientX,y:e.clientY}:null});
+  lightbox.addEventListener('pointerup',e=>{
+    if(!swipeStart)return;
+    const dx=e.clientX-swipeStart.x,dy=e.clientY-swipeStart.y;
+    swipeStart=null;
+    if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)stepPhoto(dx<0?1:-1);
+  });
+  lightbox.addEventListener('pointercancel',()=>{swipeStart=null});
 
   // Tap to bring back color + color counter + zoom button
   const allPhotos=Array.from(document.querySelectorAll('.ph'));
   const colorCount=$('colorCount');
+  const savedColors=readSaved('kwento-colors',[]);
+  function setPhotoColor(fig,on){
+    fig.classList.toggle('kulay',on);
+    fig.querySelector('.ph-color').setAttribute('aria-pressed',on);
+  }
   function updateColorStat(){
     const colored=allPhotos.filter(f=>f.classList.contains('kulay')).length;
     colorCount.textContent=colored+'/'+allPhotos.length;
     colorStat.classList.toggle('all',colored===allPhotos.length);
+    const label=colored===allPhotos.length?'Ibalik sa black and white ang lahat ng litrato':'Kulayan ang lahat ng litrato';
+    colorStat.title=label;colorStat.setAttribute('aria-label',label+' ('+colored+' sa '+allPhotos.length+')');
+    colorStat.setAttribute('aria-pressed',colored===allPhotos.length);
+    save('kwento-colors',allPhotos.filter(f=>f.classList.contains('kulay')).map(f=>f.querySelector('img').getAttribute('src')));
   }
   allPhotos.forEach(f=>{
-    f.setAttribute('tabindex','0');f.setAttribute('role','button');
-    f.setAttribute('aria-pressed','false');
+    const img=f.querySelector('img');
+    const color=document.createElement('button');
+    color.type='button';color.className='ph-color';
+    color.setAttribute('aria-label','Kulayan o ibalik sa black and white: '+img.alt);
+    color.setAttribute('aria-pressed','false');
+    f.appendChild(color);
+    setPhotoColor(f,Array.isArray(savedColors)&&savedColors.includes(img.getAttribute('src')));
 
     // Add subtle zoom button for full-screen view
     const z=document.createElement('button');
     z.type='button';
     z.className='ph-zoom';
-    z.setAttribute('aria-label','Tingnan nang buo ang larawan');
+    z.setAttribute('aria-label','Tingnan nang buo: '+img.alt);
     z.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>';
     z.addEventListener('click',ev=>{
       ev.stopPropagation();
-      f.classList.add('kulay');f.setAttribute('aria-pressed','true');
+      setPhotoColor(f,true);
       updateColorStat();
       openLightbox(f);
     });
     f.appendChild(z);
 
-    const toggle=()=>{
-      const on=f.classList.toggle('kulay');
-      f.setAttribute('aria-pressed',on);
+    color.addEventListener('click',()=>{
+      setPhotoColor(f,!f.classList.contains('kulay'));
       updateColorStat();
-    };
-    f.addEventListener('click',toggle);
-    f.addEventListener('keydown',ev=>{
-      if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();toggle()}
     });
   });
   updateColorStat();
 
   colorStat.addEventListener('click',()=>{
     const allColored=allPhotos.every(f=>f.classList.contains('kulay'));
-    allPhotos.forEach(f=>{
-      f.classList.toggle('kulay',!allColored);
-      f.setAttribute('aria-pressed',!allColored);
-    });
+    allPhotos.forEach(f=>setPhotoColor(f,!allColored));
     updateColorStat();
   });
+  setUI();
 })();
 </script>
 </body>
