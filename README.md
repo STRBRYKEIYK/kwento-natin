@@ -1,6 +1,6 @@
 # Kwento Natin 💌
 
-A personal love letter built with React, Vite, and Framer Motion. The original photos, chapter text, letter, and six recordings are preserved.
+A personal love letter built with React, Vite, and Framer Motion. The original photos, chapter text, letter, and eight recordings are preserved.
 
 ## Run locally
 

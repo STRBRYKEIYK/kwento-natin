@@ -5,17 +5,17 @@ import { photos, tracks, chapters, letter, formatTime } from '../data/content';
 import { readPreference } from '../hooks/usePersistentState';
 
 describe('content and saved preferences', () => {
-  it('preserves 27 displayed memories and six songs, with case-correct asset paths', () => {
-    expect(photos).toHaveLength(27);
-    expect(new Set(photos.map(photo => photo.id)).size).toBe(27);
-    expect(tracks).toHaveLength(6);
+  it('preserves the original memories and both new October dates, with case-correct asset paths', () => {
+    expect(photos).toHaveLength(57);
+    expect(new Set(photos.map(photo => photo.id)).size).toBe(57);
+    expect(tracks).toHaveLength(8);
     const files = [...photos.map(photo => photo.src), ...tracks.map(track => `assets/audio/${track.key}.mp3`)];
     for (const file of files) {
       const full = path.resolve('public', file);
       expect(fs.readdirSync(path.dirname(full)), file).toContain(path.basename(full));
     }
-    expect(chapters).toHaveLength(3);
-    expect(letter.paragraphs).toHaveLength(6);
+    expect(chapters).toHaveLength(5);
+    expect(letter.paragraphs).toHaveLength(8);
     const bytes = photos.reduce((sum, photo) => sum + fs.statSync(path.resolve('public', photo.src)).size, 0);
     console.info(`Displayed source photos: ${(bytes / 1024 / 1024).toFixed(2)} MB; loaded lazily after the cover.`);
   });

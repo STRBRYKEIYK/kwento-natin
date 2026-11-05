@@ -31,7 +31,7 @@ export class MockAudio extends window.EventTarget {
   emit(name) { this.dispatchEvent(new window.Event(name)); }
 }
 
-export const sectionTops = { cover: 0, story: 1000, 'sec-intro': 1060, 'sec-08': 2200, 'sec-09': 6000, 'sec-10': 9000, 'sec-letter': 12000, 'sec-11': 14000, 'sec-finale': 16000 };
+export const sectionTops = { cover: 0, story: 1000, 'sec-intro': 1060, 'sec-08': 2200, 'sec-09': 6000, 'sec-10': 9000, 'sec-10-20': 10000, 'sec-10-29': 11000, 'sec-letter': 12000, 'sec-11': 14000, 'sec-finale': 16000 };
 let scrollPosition = 0;
 beforeEach(() => {
   localStorage.clear();

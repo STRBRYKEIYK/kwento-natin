@@ -16,7 +16,8 @@ export function MusicPlayer({ soundtrack }) {
     document.addEventListener('keydown', escape);
     return () => { document.removeEventListener('pointerdown', outside); document.removeEventListener('keydown', escape); };
   }, [open]);
-  return <m.aside className="music-player" ref={playerRef} aria-label="Mga kantang kinanta ni Chico"
+  const progress = soundtrack.duration > 0 ? Math.min(100, (soundtrack.time / soundtrack.duration) * 100) : 0;
+  return <m.aside className={`music-player ${soundtrack.playing ? 'is-playing' : ''}`} ref={playerRef} aria-label="Mga kantang kinanta ni Chico"
     initial={reduced ? false : { opacity: 0, y: 80 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduced ? 0 : .45 }}>
     <m.div className="playlist" id="playlist" inert={!open} aria-hidden={!open} initial={false}
       animate={{ height: open ? 'auto' : 0, opacity: open ? 1 : 0 }} transition={{ duration: reduced ? 0 : .25 }}>
@@ -31,9 +32,14 @@ export function MusicPlayer({ soundtrack }) {
     </m.div>
     {soundtrack.error && <p className="audio-error" role="status">{soundtrack.error}</p>}
     <label className="seek"><span className="sr-only">Posisyon ng kanta</span><input type="range" min="0" max={soundtrack.duration || 1} step="1" value={Math.min(soundtrack.time, soundtrack.duration || 1)} disabled={!soundtrack.duration}
+      style={{ '--seek-fill': `${progress}%` }}
       aria-valuetext={`${formatTime(soundtrack.time)} sa ${formatTime(soundtrack.duration)}`} onChange={event => soundtrack.seek(Number(event.target.value))} /></label>
     <div className="player-row">
-      <div className="now-playing"><small>Kinakanta ni Chico</small><strong>{soundtrack.track.title}</strong><time>{formatTime(soundtrack.time)} / {formatTime(soundtrack.duration)}</time></div>
+      <div className="now-playing">
+        <small><span className="equalizer" aria-hidden="true"><i /><i /><i /></span>Kinakanta ni Chico</small>
+        <strong>{soundtrack.track.title}</strong>
+        <time>{formatTime(soundtrack.time)} / {formatTime(soundtrack.duration)}</time>
+      </div>
       <div className="playback-controls">
         <button className="icon-button" type="button" aria-label="Nakaraang kanta" onClick={soundtrack.previous}><Icon name="previous" size={18} /></button>
         <button className="icon-button play-button" type="button" aria-label={soundtrack.playing ? 'I-pause ang kanta' : 'I-play ang kanta'} aria-busy={soundtrack.loading} onClick={soundtrack.toggle}>

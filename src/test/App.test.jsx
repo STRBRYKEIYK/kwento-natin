@@ -42,7 +42,9 @@ describe('love letter experience', () => {
 
   it('preserves the full personal letter and every displayed photo', async () => {
     const user = userEvent.setup(); mount(); await openQuiet(user);
-    expect(document.querySelectorAll('figure.photo')).toHaveLength(27);
+    expect(document.querySelectorAll('figure.photo')).toHaveLength(57);
+    expect(screen.getByRole('region', { name: 'Oktubre 20' })).toBeInTheDocument();
+    expect(screen.getByRole('region', { name: 'Oktubre 29' })).toBeInTheDocument();
     expect(screen.getByText(/Salamat sa pakikinig sa bawat kanta ko/)).toBeInTheDocument();
     expect(screen.getByText(/I love you sooo muchhh, mwuaaaa!/)).toBeInTheDocument();
     expect(document.querySelectorAll('button button')).toHaveLength(0);
@@ -72,7 +74,7 @@ describe('love letter experience', () => {
     expect(color).toHaveAttribute('aria-pressed', 'true');
     expect(JSON.parse(localStorage.getItem('kwento-colors'))).toContain(photos[0].src);
     await user.click(screen.getByRole('button', { name: /Kulayan ang lahat ng litrato/ }));
-    expect(document.querySelectorAll('.photo.is-colored')).toHaveLength(27);
+    expect(document.querySelectorAll('.photo.is-colored')).toHaveLength(57);
     await user.click(screen.getByRole('button', { name: /Ibalik sa black and white ang lahat/ }));
     expect(document.querySelectorAll('.photo.is-colored')).toHaveLength(0);
   });
