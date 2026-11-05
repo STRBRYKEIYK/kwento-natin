@@ -38,7 +38,7 @@ describe('soundtrack behavior', () => {
     const { result, audio } = setup();
     await act(async () => result.current.select(1, { manual: true }));
     act(() => result.current.followChapter('forevermore'));
-    expect(currentAudio().src).toMatch(/binibini\.mp3$/);
+    expect(currentAudio().src).toMatch(/rollercoaster\.mp3$/);
     expect(result.current.follow).toBe(false);
     await act(async () => result.current.toggleFollow());
     expect(currentAudio().src).toMatch(/forevermore\.mp3$/);
@@ -68,7 +68,7 @@ describe('soundtrack behavior', () => {
     act(() => { audio.currentTime = 30; audio.emit('loadedmetadata'); audio.emit('timeupdate'); });
     expect(result.current.time).toBe(30);
     await act(async () => audio.emit('ended'));
-    expect(result.current.track.title).toBe('Binibini');
+    expect(result.current.track.title).toBe('Rollercoaster');
     expect(result.current.time).toBe(0);
     expect(result.current.duration).toBe(0);
   });
@@ -92,7 +92,7 @@ describe('soundtrack behavior', () => {
     await act(async () => result.current.select(1));
     await act(async () => rejectOld(new Error('old request failed')));
     expect(result.current.error).toBe('');
-    expect(result.current.track.title).toBe('Binibini');
+    expect(result.current.track.title).toBe('Rollercoaster');
     expect(result.current.playing).toBe(true);
   });
 
@@ -203,10 +203,10 @@ describe('soundtrack behavior', () => {
     await act(async () => result.current.select(0));
     act(() => vi.advanceTimersByTime(CROSSFADE_MS));
     await act(async () => { audio.currentTime = 179; audio.emit('timeupdate'); });
-    expect(result.current.track.title).toBe('Binibini');
+    expect(result.current.track.title).toBe('Rollercoaster');
     expect(audio.paused).toBe(false);
     act(() => audio.emit('ended'));
-    expect(result.current.track.title).toBe('Binibini');
+    expect(result.current.track.title).toBe('Rollercoaster');
   });
 
   it('silences failed transitions and cancels fades when unmounted', async () => {

@@ -1,5 +1,5 @@
 import { m, useReducedMotion } from 'framer-motion';
-import { chapters, directory, dreams, intro, letter, tracks } from '../data/content';
+import { assetUrl, chapters, directory, dreams, intro, letter, tracks } from '../data/content';
 import { Photo } from './PhotoAlbum';
 import { Reveal } from './Reveal';
 
@@ -22,10 +22,17 @@ function SongNote({ track, soundtrack }) {
   </button>;
 }
 
-function ChapterBlock({ block }) {
+function ChapterBlock({ block, soundtrack }) {
   if (block.type === 'prose') return <Reveal className="prose">{block.paragraphs.map((paragraph, i) => <p key={i}>{paragraph}</p>)}</Reveal>;
   if (block.type === 'note') return <Reveal as="p" className="handwritten-note">{block.text}</Reveal>;
   if (block.type === 'quote') return <Reveal as="blockquote" className="quote">{block.text}<cite>{block.attribution}</cite></Reveal>;
+  if (block.type === 'video') return <Reveal className="memory-video"><figure>
+    <video controls playsInline preload="none" src={assetUrl(block.src)} poster={block.poster ? assetUrl(block.poster) : undefined}
+      aria-label={block.label} aria-describedby={`${block.id}-caption`} onPlay={soundtrack.pause}>
+      <a href={assetUrl(block.src)}>Buksan ang video</a>
+    </video>
+    <figcaption id={`${block.id}-caption`}>{block.caption}</figcaption>
+  </figure></Reveal>;
   return <div className={`photo-grid ${block.layout === 'lock' ? 'photo-grid--lock' : ''}`}>{block.photos.map(id => <Photo key={id} id={id} />)}</div>;
 }
 
@@ -44,7 +51,7 @@ export function Story({ storyRef, onJump, soundtrack }) {
     </section>
     {chapters.map(chapter => <section className="chapter section" key={chapter.id} id={chapter.id} tabIndex={-1} aria-label={chapter.month}>
       <ChapterHeading {...chapter} />
-      {chapter.blocks.map((block, i) => <ChapterBlock key={i} block={block} />)}
+      {chapter.blocks.map((block, i) => <ChapterBlock key={i} block={block} soundtrack={soundtrack} />)}
       <SongNote track={chapter.track} soundtrack={soundtrack} />
     </section>)}
     <section className="letter-section section" id="sec-letter" tabIndex={-1} aria-label="Personal na liham">

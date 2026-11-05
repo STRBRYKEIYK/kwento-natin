@@ -1,0 +1,1 @@
+Video analysis unavailable: Gemini CLI authentication returned UNSUPPORTED_CLIENT / IneligibleTierError. No Gemini findings were used. A local frame was extracted with FFmpeg for the poster; prose was based on the user's chat export and clarification.

@@ -1,0 +1,1 @@
+2026-11-05: Attempted three-brain Gemini video inspection. Authentication unavailable; continued using chat context, direct photo inspection, and a locally extracted video poster. The clip is included with explicit playback controls.

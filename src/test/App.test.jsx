@@ -41,9 +41,10 @@ describe('love letter experience', () => {
 
   it('preserves the full personal letter and every displayed photo', async () => {
     const user = userEvent.setup(); mount(); await openQuiet(user);
-    expect(document.querySelectorAll('figure.photo')).toHaveLength(57);
+    expect(document.querySelectorAll('figure.photo')).toHaveLength(61);
     expect(screen.getByRole('region', { name: 'Oktubre 20' })).toBeInTheDocument();
     expect(screen.getByRole('region', { name: 'Oktubre 29' })).toBeInTheDocument();
+    expect(screen.getByRole('region', { name: 'Nobyembre 5' })).toBeInTheDocument();
     expect(screen.getByText(/Salamat sa pakikinig sa bawat kanta ko/)).toBeInTheDocument();
     expect(screen.getByText(/I love you sooo muchhh, mwuaaaa!/)).toBeInTheDocument();
     expect(document.querySelectorAll('button button')).toHaveLength(0);
@@ -56,6 +57,25 @@ describe('love letter experience', () => {
     await waitFor(() => expect(document.activeElement.id).toBe('sec-10'));
     expect(activeAudio().paused).toBe(true);
     expect(activeAudio().src).toMatch(/paru-paro\.mp3$/);
+  });
+
+  it('pauses the soundtrack when the November 5 video starts and leaves it paused afterward', async () => {
+    const user = userEvent.setup(); mount(); await openQuiet(user);
+    const november = screen.getByRole('region', { name: 'Nobyembre 5' });
+    expect(within(november).getByText(/Si Mama rin, pumayag at sabi dapat sumama ka/)).toBeInTheDocument();
+    const video = within(november).getByLabelText('Video ni Chica noong Nobyembre 5');
+    expect(video).toHaveAttribute('controls');
+    expect(video).toHaveAttribute('playsinline');
+    expect(video).toHaveAttribute('preload', 'none');
+    expect(video).not.toHaveAttribute('autoplay');
+    await user.click(screen.getByRole('button', { name: 'I-play ang kanta' }));
+    const audio = activeAudio();
+    const playCalls = audio.playCalls;
+    fireEvent.play(video);
+    await waitFor(() => expect(audio.paused).toBe(true));
+    fireEvent.ended(video);
+    expect(audio.playCalls).toBe(playCalls);
+    expect(screen.getByRole('button', { name: 'I-play ang kanta' })).toBeInTheDocument();
   });
 
   it('updates active chapter and saved reading position as the page scrolls', async () => {
@@ -74,7 +94,7 @@ describe('love letter experience', () => {
     expect(color).toHaveAttribute('aria-pressed', 'true');
     expect(JSON.parse(localStorage.getItem('kwento-colors'))).toContain(photos[0].src);
     await user.click(screen.getByRole('button', { name: /Kulayan ang lahat ng litrato/ }));
-    expect(document.querySelectorAll('.photo.is-colored')).toHaveLength(57);
+    expect(document.querySelectorAll('.photo.is-colored')).toHaveLength(61);
     await user.click(screen.getByRole('button', { name: /Ibalik sa black and white ang lahat/ }));
     expect(document.querySelectorAll('.photo.is-colored')).toHaveLength(0);
   });
