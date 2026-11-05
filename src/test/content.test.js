@@ -8,7 +8,7 @@ describe('content and saved preferences', () => {
   it('preserves the original memories and both new October dates, with case-correct asset paths', () => {
     expect(photos).toHaveLength(57);
     expect(new Set(photos.map(photo => photo.id)).size).toBe(57);
-    expect(tracks).toHaveLength(8);
+    expect(tracks).toHaveLength(9);
     const files = [...photos.map(photo => photo.src), ...tracks.map(track => `assets/audio/${track.key}.mp3`)];
     for (const file of files) {
       const full = path.resolve('public', file);

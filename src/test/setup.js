@@ -3,6 +3,9 @@ import { afterEach, beforeEach, vi } from 'vitest';
 import { cleanup } from '@testing-library/react';
 
 export const audioInstances = [];
+let sourceOrder = 0;
+export const currentAudio = () => audioInstances.filter(audio => audio.src)
+  .sort((a, b) => b.sourceOrder - a.sourceOrder)[0];
 export class MockAudio extends window.EventTarget {
   constructor() {
     super();
@@ -16,7 +19,7 @@ export class MockAudio extends window.EventTarget {
     this.pendingNext = null;
     audioInstances.push(this);
   }
-  set src(value) { this.source = value; this.currentTime = 0; }
+  set src(value) { this.source = value; this.sourceOrder = ++sourceOrder; this.currentTime = 0; }
   get src() { return this.source || ''; }
   play() {
     this.playCalls++;

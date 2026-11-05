@@ -1,6 +1,6 @@
 # Kwento Natin 💌
 
-A personal love letter built with React, Vite, and Framer Motion. The original photos, chapter text, letter, and eight recordings are preserved.
+A personal love letter built with React, Vite, and Framer Motion. The original photos, chapter text, letter, and nine recordings are preserved.
 
 ## Run locally
 
@@ -29,6 +29,7 @@ The production website is in `dist/`. Publish that directory on a static host. R
 - React components live in `src/components/`; audio, reading, theme, and persistence logic live in `src/hooks/`.
 - Reading position, photo colors, and theme stay in browser local storage. Existing saved values are accepted.
 - Music starts from an explicit user action. Quiet mode, pause intent, manual song choice, and optional chapter following are supported.
+- Songs crossfade over 1.2 seconds, including chapter changes and automatic advancement. Play fades in; pause fades out briefly. Web Audio gain nodes handle fades on mobile, with media-volume fades as a fallback.
 - Framer Motion animates the envelope, section entrances, progress, photo changes, and player. Reduced-motion preferences are respected.
 - Layouts cover narrow phones, larger phones, tablets, desktop, and landscape photo viewing. Photos load lazily and all primary touch controls are at least 44px.
 

@@ -5,12 +5,11 @@ import { LazyMotion, domAnimation, MotionConfig } from 'framer-motion';
 import { describe, expect, it } from 'vitest';
 import App from '../App';
 import { photos } from '../data/content';
-import { audioInstances } from './setup';
+import { audioInstances, currentAudio as activeAudio } from './setup';
 
 function mount() {
   return render(<StrictMode><MotionConfig reducedMotion="user"><LazyMotion features={domAnimation} strict><App /></LazyMotion></MotionConfig></StrictMode>);
 }
-const activeAudio = () => audioInstances.find(audio => audio.src);
 async function openQuiet(user) {
   await user.click(screen.getByRole('button', { name: 'Basahin muna nang tahimik ♡' }));
   await waitFor(() => expect(document.activeElement.id).toBe('sec-intro'));

@@ -10,6 +10,7 @@ export const tracks = [
   { key: 'bloom', title: 'Bloom', chapter: 'Oktubre 20' },
   { key: 'rollercoaster', title: 'Rollercoaster', chapter: 'Oktubre 29' },
   { key: 'tangerine-boulevard', title: 'Tangerine Boulevard', chapter: 'Ang sulat' },
+  { key: 'tenerife-sea', title: 'Tenerife Sea', chapter: 'Para sa ’yo' },
   { key: 'forevermore', title: 'Forevermore', chapter: 'Sa susunod' },
 ];
 export const sections = [
