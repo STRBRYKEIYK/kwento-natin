@@ -11,10 +11,10 @@ export function useSoundtrack() {
   const [time, setTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [error, setError] = useState('');
-  const [follow, setFollowState] = useState(false);
+  const [follow, setFollowState] = useState(true);
   const current = useRef(-1);
   const wantsPlay = useRef(false);
-  const followRef = useRef(false);
+  const followRef = useRef(true);
   const chapterTrack = useRef('palagi');
   const request = useRef(0);
 

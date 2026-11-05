@@ -17,15 +17,16 @@ describe('soundtrack behavior', () => {
     act(() => result.current.select(0, { shouldPlay: false }));
     expect(audio.src).toMatch(/palagi\.mp3$/);
     expect(audio.playCalls).toBe(0);
-    expect(result.current.follow).toBe(false);
+    expect(result.current.follow).toBe(true);
     act(() => result.current.followChapter('forevermore'));
-    expect(result.current.track.title).toBe('Palagi');
+    expect(result.current.track.title).toBe('Forevermore');
+    expect(currentAudio().paused).toBe(true);
+    expect(currentAudio().playCalls).toBe(0);
   });
 
   it('keeps pause intent across chapters', async () => {
     const { result, audio } = setup();
     await act(async () => result.current.select(0));
-    act(() => result.current.toggleFollow());
     act(() => result.current.pause());
     act(() => result.current.followChapter('tangerine-boulevard'));
     expect(currentAudio().src).toMatch(/tangerine-boulevard\.mp3$/);

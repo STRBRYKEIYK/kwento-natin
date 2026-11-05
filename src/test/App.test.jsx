@@ -64,7 +64,7 @@ describe('love letter experience', () => {
     await waitFor(() => expect(localStorage.getItem('kwento-reading')).toBe('"sec-10"'));
     expect(screen.getByRole('button', { name: 'Oktubre' })).toHaveAttribute('aria-current', 'location');
     expect(activeAudio().paused).toBe(true);
-    expect(activeAudio().src).toMatch(/palagi\.mp3$/);
+    expect(activeAudio().src).toMatch(/paru-paro\.mp3$/);
   });
 
   it('persists photo colors and supports reversible bulk color changes', async () => {
@@ -112,7 +112,7 @@ describe('love letter experience', () => {
   it('keeps a chosen song while scrolling and supports re-enabling chapter following', async () => {
     const user = userEvent.setup(); mount(); await openQuiet(user);
     await user.click(screen.getByRole('button', { name: 'Listahan ng kanta' }));
-    expect(screen.getByRole('button', { name: 'Sabay sa kwento: Off' })).toHaveAttribute('aria-pressed', 'false');
+    expect(screen.getByRole('button', { name: 'Sabay sa kwento: On' })).toHaveAttribute('aria-pressed', 'true');
     const playlist = document.getElementById('playlist');
     await user.click(within(playlist).getByRole('button', { name: /Forevermore/ }));
     expect(screen.getByRole('button', { name: 'Listahan ng kanta' })).toHaveFocus();
