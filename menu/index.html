@@ -992,19 +992,37 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
   var DAYS = ["LINGGO", "LUNES", "MARTES", "MIYERKULES", "HUWEBES", "BIYERNES", "SABADO"];
   var DKEY = "chica.dates.v1", SVGNS = "http://www.w3.org/2000/svg";
   var HEART_D = "M20 11 C17 4 6 3 4.5 13 C3.5 21 12 27 20.5 33.5 C29 27 37.5 21 35.5 12.5 C34 3.5 23 4 20 11.5 C19.5 13 18.8 14.5 18 16";
-  var calSet = [], calMap = {}, calRaw = null, calHome = null, calViews = [];
+  // Dates that should always show a heart on every device, whatever is in her browser storage.
+  // Same shape Date Tayo saves: { id, date: "YYYY-MM-DD", time, place, area, vibe, sent }
+  var SEEDED = [];
+  var SERVER = "/date/api/dates", SKEY = "chica.dates.srv";
+  var calSet = [], calMap = {}, calRaw = null, calHome = null, calViews = [], calRemote = [], calRemoteRaw = "";
+  try { var cached = JSON.parse(localStorage.getItem(SKEY) || "[]"); if (Array.isArray(cached)) { calRemote = cached; calRemoteRaw = JSON.stringify(cached); } } catch (e) {}
 
   function isoOf(y, mo, d) { return y + "-" + pad(mo + 1) + "-" + pad(d); }
   function todayIso() { var t = new Date(); return isoOf(t.getFullYear(), t.getMonth(), t.getDate()); }
 
-  function readSet() {
+  function localList(track) {
     var raw = null, arr = [];
     try { raw = localStorage.getItem(DKEY); } catch (e) {}
-    calRaw = raw;
+    if (track) calRaw = raw;
     if (raw) { try { arr = JSON.parse(raw); } catch (e) { arr = []; } }
-    if (!Array.isArray(arr)) arr = [];
-    calSet = arr.filter(function (x) {
-      if (!x || typeof x.date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(x.date)) return false;
+    return Array.isArray(arr) ? arr : [];
+  }
+
+  function readSet() {
+    // dates saved on this phone, dates the server remembers (so Chico sees them too), and any pinned in SEEDED; newest wins per plan
+    var byId = {}, all = [];
+    localList(true).concat(calRemote, SEEDED).forEach(function (x) {
+      if (!x || typeof x !== "object") return;
+      var k = x.id || (x.date + "|" + (x.place || ""));
+      var c = byId[k];
+      if (!c) { byId[k] = x; all.push(k); return; }
+      if ((x.savedAt || 0) >= (c.savedAt || 0)) byId[k] = Object.assign({}, x, { sent: !!(x.sent || c.sent) });
+      else if (x.sent && !c.sent) byId[k] = Object.assign({}, c, { sent: true });
+    });
+    calSet = all.map(function (k) { return byId[k]; }).filter(function (x) {
+      if (typeof x.date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(x.date)) return false;
       var d = new Date(+x.date.slice(0, 4), +x.date.slice(5, 7) - 1, +x.date.slice(8, 10));
       return d.getMonth() === +x.date.slice(5, 7) - 1 && d.getDate() === +x.date.slice(8, 10);
     }).sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : (a.savedAt || 0) - (b.savedAt || 0); });
@@ -1169,20 +1187,52 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
   function openCalSheet() {
     if (panel) return;
     renderCalendars();
+    pullRemote(true);
     openPanel($("calSheet"), miniEl);
   }
 
   renderCalendars();
+  // dates live on the server too: pull them, and send up any this phone has that the server does not know yet
+  var pulling = false, lastPull = 0;
+  function pullRemote(force) {
+    var now = Date.now();
+    if (pulling || (!force && now - lastPull < 12000) || typeof fetch !== "function") return;
+    pulling = true; lastPull = now;
+    fetch(SERVER, { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+      pulling = false;
+      if (!j || j.ok !== true || !Array.isArray(j.dates)) return;
+      var raw = JSON.stringify(j.dates);
+      if (raw !== calRemoteRaw) {
+        calRemoteRaw = raw; calRemote = j.dates;
+        try { localStorage.setItem(SKEY, raw); } catch (e) {}
+        renderCalendars();
+      }
+      if (!j.enabled) return;
+      var known = {};
+      j.dates.forEach(function (x) { if (x && x.id) known[x.id] = x; });
+      localList().filter(function (x) {
+        return x && typeof x.id === "string" && typeof x.date === "string" && (!known[x.id] || (x.sent && !known[x.id].sent));
+      }).slice(0, 10).forEach(function (x) {
+        try {
+          fetch(SERVER, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(x) }).then(function () { lastPull = 0; });
+        } catch (e) {}
+      });
+    }).catch(function () { pulling = false; });
+  }
+
   // she may have just set a date in Date Tayo (same site, same storage): refresh when she comes back
   function refreshCalendars() {
     var raw = null;
     try { raw = localStorage.getItem(DKEY); } catch (e) {}
     if (raw !== calRaw) renderCalendars();
+    pullRemote();
   }
   window.addEventListener("pageshow", refreshCalendars);
   window.addEventListener("focus", refreshCalendars);
   window.addEventListener("storage", function (e) { if (e.key === DKEY || e.key === null) refreshCalendars(); });
   document.addEventListener("visibilitychange", function () { if (!document.hidden) refreshCalendars(); });
+  setInterval(function () { if (!document.hidden) pullRemote(); }, 45000);
+  pullRemote(true);
 
   // coming back from a page (back button / reload): reopen the same book and page
   var m = /^#([a-z]+)-(\d+)$/.exec(location.hash || "");
