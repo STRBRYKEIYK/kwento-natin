@@ -28,11 +28,18 @@ The production website is in `dist/`. `npm run build` builds the letter into `di
 | `/` | Library bookshelf: books are categories, pages are entries | `menu/index.html` (this repo) |
 | `/second` | Para sa Chica ko | proxied to the `para-sa-chica` project |
 | `/third` | Kwento Natin (this letter) | this repo, built by Vite with `base: '/third/'` |
+| `/oras` | Mga Oras Natin: the timed messages (10:10, 11:11 ... 5:55) | `menu/oras/`, copied to `dist/oras/` by `scripts/build-menu.mjs` |
 | `/555` | 5:55 Limang Pandama | proxied to `chica-date-scheduler` |
 | `/date` | Date scheduler | proxied to `chica-date-scheduler` |
 | `/vouchers` | Love Voucher Book | proxied to `love-voucher-book` |
 
 The proxies are the `rewrites` in `vercel.json`. To add something to the library, edit the `LIB` list at the top of the script in `menu/index.html`: a book is a category, and each item in its `pages` is one entry (title, blurb, `href`, `stamp`, a thumbnail in `menu/img/`; set `frame: true` for a colour photo in a picture frame, and `photo: "key"` to make the frame open large when tapped; the big versions live in `PHOTOS`, with a 900px copy in `menu/img/`). A new book also needs its id in `SHELVES`. The BAGO tag and counts are filled in by the page. Add a rewrite here if the entry lives in another project. The wall calendar beside the shelf (wide screens) and the small one hung inside the shelf (phones, tap to open the full calendar) read the dates Date Tayo saves in `localStorage` under `chica.dates.v1`: each set date gets a pentel-pen heart. Dates are also kept by the scheduler's `/date/api/dates` (needs its Blob store connected, see that repo) so any device sees them; whatever a phone has that the server lacks is sent up automatically. To pin a date on every device whatever happens, add it to `SEEDED` in the calendar script. The local save only works because `/date` and the menu share the `chica.keicodes.dev` origin.
+
+## Mga Oras Natin (`/oras`)
+
+A static page (`menu/oras/index.html`) that reads `menu/oras/messages.json`. A little panel holds the toggles (the hour, long or short, AM or PM, order, a search box, Surprise me) and a big panel lists the messages by day. `/oras#1010` opens on one hour; at one of the times of day the page opens on that hour by itself.
+
+`messages.json` is made from the WhatsApp export with `node scripts/build-oras.mjs path/to/timed-messages.json` (the export itself is not kept here, this repo is public). The script leaves out drafts, messages that name other people (`mentionsOthers`) and the ids in its `HOLD` list; pass `--include-others` to put the others back.
 
 ## Content and behavior
 

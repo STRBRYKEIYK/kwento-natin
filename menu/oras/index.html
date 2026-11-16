@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="tl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MGA ORAS NATIN · LIBRARY NI CHICO</title>
+<meta name="description" content="Lahat ng 10:10, 11:11 at 5:55 na pinadala ko sa'yo, Chica, nasa isang lugar na.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#121111">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@1,900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#121111; --char:#3a3836; --paper:#f3f3f0; --card:#fdfdfb; --red:#c8102e; --red2:#ff4b63; --mute:#67635d; --line:#d6d3cb;
+  --serif:"Playfair Display",Georgia,serif; --sans:"DM Sans",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;min-height:100svh;overflow-x:hidden;text-transform:uppercase}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.09;mix-blend-mode:multiply;z-index:300;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+button,input{font:inherit;text-transform:inherit;color:inherit;background:none;border:0;border-radius:0}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+a{color:inherit;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.wrap{max-width:460px;margin:0 auto;padding:0 16px 56px}
+
+/* ticker */
+.ticker{background:var(--ink);color:var(--paper);overflow:hidden;white-space:nowrap;font-size:11px;letter-spacing:.22em;font-weight:700}
+.ticker .track{display:inline-flex;animation:slide 40s linear infinite;padding:9px 0}
+.ticker span{padding:0 18px}
+.ticker b{color:var(--red2);font-weight:700}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+.back{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin:10px 0 0 -4px;padding:0 12px 0 4px;font-size:11px;font-weight:700;letter-spacing:.22em}
+.back svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.hero{padding:14px 0 6px}
+.eyebrow{font-size:11px;letter-spacing:.26em;font-weight:700;color:var(--red)}
+h1{margin-top:10px;font-family:var(--serif);font-style:italic;font-weight:900;font-size:clamp(46px,14.5vw,76px);line-height:.9;letter-spacing:-.02em;text-wrap:balance}
+h1 em{display:block;color:var(--red)}
+.lede{margin-top:16px;max-width:36ch;font-size:15px;line-height:1.6}
+
+/* two panels: a little one for the toggles, a big one for the messages */
+.room{margin-top:26px;display:grid;gap:18px}
+.lbl{font-size:10px;font-weight:700;letter-spacing:.26em;color:rgba(243,243,240,.55)}
+.lbl.red{color:var(--red2)}
+.side{background:var(--ink);color:var(--paper);border-radius:12px;padding:16px;min-width:0}
+.side .top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.acts{display:grid;gap:8px;margin-top:12px}
+.act{display:flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 18px;border:1.5px dashed rgba(243,243,240,.7);border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.18em;text-align:center}
+.act:hover{border-color:var(--red2)}
+.act:disabled{opacity:.4;cursor:default}
+.act svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.act b{color:var(--red2)}
+.grp{margin-top:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chips.scroll{flex-wrap:nowrap;overflow-x:auto;margin-left:-16px;margin-right:-16px;padding:0 16px 4px;scrollbar-width:none}
+.chips.scroll::-webkit-scrollbar{display:none}
+.chip{display:inline-flex;align-items:center;gap:7px;flex:none;min-height:44px;padding:0 15px;border:1.5px solid rgba(243,243,240,.4);border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.12em;white-space:nowrap;transition:background-color .15s,border-color .15s}
+.chip small{font-size:11px;font-weight:700;color:rgba(243,243,240,.5);letter-spacing:.04em}
+.chip[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff}
+.chip[aria-pressed="true"] small{color:rgba(255,255,255,.8)}
+.chip:disabled{opacity:.35;cursor:default}
+details.more{margin-top:16px;border-top:1px solid rgba(243,243,240,.2)}
+details.more summary{list-style:none;display:flex;align-items:center;justify-content:space-between;min-height:48px;font-size:11px;font-weight:700;letter-spacing:.2em;cursor:pointer;color:rgba(243,243,240,.85)}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transition:rotate .2s}
+details.more[open] summary svg{rotate:180deg}
+.find{display:block;width:100%;min-height:44px;margin-top:8px;padding:0 16px;border:1.5px solid rgba(243,243,240,.4);border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.12em;background:transparent}
+.find::placeholder{color:rgba(243,243,240,.45)}
+.find:focus-visible{outline-offset:2px}
+.status{margin-top:14px;font-size:11px;font-weight:500;letter-spacing:.08em;line-height:1.5;color:rgba(243,243,240,.75)}
+.status button{display:inline-flex;align-items:center;min-height:44px;margin:-14px 0 -14px 4px;padding:0 6px;font-weight:700;color:var(--red2);text-decoration:underline;text-underline-offset:4px}
+
+.panel{border:1.5px solid var(--ink);border-radius:12px;overflow:hidden;min-width:0}
+.ph{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:var(--card);border-bottom:1.5px solid var(--ink);font-size:10px;font-weight:700;letter-spacing:.26em}
+.ph .r{color:var(--red)}
+.ph .n{color:var(--mute)}
+.pb{padding:12px}
+.day{margin-top:22px}
+.day:first-child{margin-top:0}
+.day h2{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:0 2px 8px;font-size:11px;font-weight:700;letter-spacing:.22em;color:var(--mute)}
+.day h2 span:first-child{color:var(--ink)}
+.msg{position:relative;background:var(--card);border:1.5px solid var(--ink);border-radius:8px;padding:14px 16px 14px}
+.msg + .msg{margin-top:10px}
+.msg .mh{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.msg .tm{font-family:var(--serif);font-style:italic;font-weight:900;font-size:24px;line-height:1;color:var(--red)}
+.msg .tm i{font-family:var(--sans);font-style:normal;font-size:10px;letter-spacing:.2em;color:var(--mute);margin-left:6px}
+.tag{font-size:9px;font-weight:700;letter-spacing:.16em;color:var(--mute);text-align:right;line-height:1.3}
+.tx{font-size:15px;line-height:1.65;text-transform:none;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal}
+.tx a{color:var(--red);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.clamp .tx{max-height:11.5em;overflow:hidden;-webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
+.clamp.open .tx{max-height:none;-webkit-mask-image:none;mask-image:none}
+.rd{display:inline-flex;align-items:center;min-height:44px;margin:4px 0 -10px;padding:0 2px;font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--red);text-decoration:underline;text-underline-offset:5px}
+.feat{background:var(--ink);color:var(--paper);border-radius:8px;padding:14px 16px 16px;margin-bottom:22px}
+.feat .fh{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.feat .fh .lbl{letter-spacing:.2em}
+.feat .again{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:1.5px solid rgba(243,243,240,.6);border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.14em}
+.feat .again svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.feat .tm{font-family:var(--serif);font-style:italic;font-weight:900;font-size:26px;color:var(--red2)}
+.feat .tm i{font-family:var(--sans);font-style:normal;font-size:10px;letter-spacing:.2em;color:rgba(243,243,240,.6);margin-left:6px}
+.feat .dt{margin:2px 0 10px;font-size:10px;font-weight:700;letter-spacing:.2em;color:rgba(243,243,240,.6)}
+.feat .tx a{color:var(--red2)}
+.feat + .day{margin-top:0}
+.more-btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;margin-top:18px;border:1.5px solid var(--ink);border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.2em}
+.empty{padding:30px 16px;text-align:center;border:1.5px dashed var(--ink);border-radius:8px}
+.empty p{font-family:var(--serif);font-style:italic;font-weight:900;font-size:22px;line-height:1.2;text-transform:none}
+.empty button{margin-top:12px;min-height:44px;font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--red);text-decoration:underline;text-underline-offset:5px}
+footer{margin-top:34px;text-align:center}
+.sign{font-family:var(--serif);font-style:italic;font-weight:900;font-size:26px}
+.fine{margin-top:6px;font-size:10px;letter-spacing:.26em;font-weight:700;color:var(--mute)}
+
+@media (min-width:900px){
+  .wrap{max-width:1080px;padding:0 28px 72px}
+  .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);column-gap:40px;align-items:end}
+  .hero .eyebrow{grid-column:1/-1}
+  h1{font-size:clamp(70px,7.4vw,96px)}
+  .lede{margin:0;padding-bottom:8px}
+  .room{grid-template-columns:300px minmax(0,1fr);gap:28px;align-items:start;margin-top:34px}
+  .side{position:sticky;top:20px;padding:20px;max-height:calc(100svh - 40px);overflow-y:auto}
+  .chips.scroll{flex-wrap:wrap;overflow:visible;margin:8px 0 0;padding:0}
+  .chip{min-height:36px;padding:0 12px}
+  details.more summary{display:none}
+  details.more{border-top:0;margin-top:0}
+  .pb{padding:20px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ticker .track{animation:none}
+  .chip,details.more summary svg{transition:none}
+}
+</style>
+</head>
+<body>
+
+<div class="ticker" aria-hidden="true"><div class="track" id="tk"></div></div>
+
+<main class="wrap" id="main">
+  <a class="back" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>LIBRARY</a>
+
+  <header class="hero">
+    <p class="eyebrow">ORAS-ORAS · PARA KAY CHICA</p>
+    <h1>Mga oras <em>natin.</em></h1>
+    <p class="lede">Isang oras, isang "I love you". Lahat ng pinadala ko sa'yo, nandito na. Pumili ka ng oras, asawa ko.</p>
+  </header>
+
+  <div class="room">
+    <aside class="side" aria-label="Mga toggle">
+      <div class="top"><p class="lbl red">MGA TOGGLE</p></div>
+      <div class="acts">
+        <button class="act" id="now" type="button"></button>
+        <button class="act" id="rnd" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="15" cy="15" r="1" fill="currentColor"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg>SURPRISE ME</button>
+      </div>
+      <div class="grp">
+        <p class="lbl">ORAS</p>
+        <div class="chips scroll" id="slots" role="group" aria-label="Oras"></div>
+      </div>
+      <details class="more" id="more">
+        <summary>MAS MARAMING TOGGLE <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <div class="grp">
+          <p class="lbl">HABA</p>
+          <div class="chips" id="kinds" role="group" aria-label="Haba"></div>
+        </div>
+        <div class="grp">
+          <p class="lbl">UMAGA O GABI</p>
+          <div class="chips" id="aps" role="group" aria-label="AM o PM"></div>
+        </div>
+        <div class="grp">
+          <p class="lbl">AYOS</p>
+          <div class="chips" id="sorts" role="group" aria-label="Ayos"></div>
+        </div>
+        <div class="grp">
+          <label class="lbl" for="q">HANAPIN</label>
+          <input class="find" id="q" type="search" placeholder="ISANG SALITA LANG" autocomplete="off" enterkeyhint="search">
+        </div>
+      </details>
+      <p class="status" id="status" role="status"></p>
+    </aside>
+
+    <section class="panel" aria-label="Mga message">
+      <div class="ph"><span class="r">MGA MESSAGE</span><span class="n" id="phn"></span></div>
+      <div class="pb" id="list"></div>
+    </section>
+  </div>
+
+  <footer>
+    <p class="sign">— Chico</p>
+    <p class="fine">LIBRARY NI CHICO · PARA KAY CHICA</p>
+  </footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var SLOTS = ["10:10", "11:11", "12:12", "1:11", "2:22", "3:33", "4:44", "5:55"];
+  // the two times of day each slot comes round, in minutes after midnight (Manila)
+  var CLOCK = { "10:10": [610, 1330], "11:11": [671, 1391], "12:12": [12, 732], "1:11": [71, 791], "2:22": [142, 862], "3:33": [213, 933], "4:44": [284, 1004], "5:55": [355, 1075] };
+  var DAYS = ["LINGGO", "LUNES", "MARTES", "MIYERKULES", "HUWEBES", "BIYERNES", "SABADO"];
+  var MONTHS = ["ENE", "PEB", "MAR", "ABR", "MAY", "HUN", "HUL", "AGO", "SET", "OKT", "NOV", "DIS"];
+  var MEDIA = { image: "LITRATO", video: "VIDEO", audio: "VOICE MESSAGE" };
+  var PAGE = 40;
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var all = [];
+  var S = { slot: "", kind: "", ap: "", sort: "new", q: "", shown: PAGE, feat: null };
+
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+  // ticker
+  (function () {
+    var t = $("tk"), unit = "";
+    for (var r = 0; r < 4; r++) SLOTS.forEach(function (s) { unit += "<span>" + s + "</span><span><b>●</b></span>"; });
+    t.innerHTML = unit + unit;
+  })();
+
+  // minutes since midnight in Manila, to find the slot closest to now
+  function manilaMinutes() {
+    try {
+      var p = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Manila", hour: "2-digit", minute: "2-digit", hour12: false }).formatToParts(new Date());
+      var h = 0, m = 0;
+      p.forEach(function (x) { if (x.type === "hour") h = +x.value % 24; if (x.type === "minute") m = +x.value; });
+      return h * 60 + m;
+    } catch (e) { var d = new Date(); return d.getHours() * 60 + d.getMinutes(); }
+  }
+  function nearestSlot() {
+    var now = manilaMinutes(), best = null, bd = 1e9;
+    SLOTS.forEach(function (s) {
+      CLOCK[s].forEach(function (c) {
+        var d = Math.abs(now - c); d = Math.min(d, 1440 - d);
+        if (d < bd) { bd = d; best = s; }
+      });
+    });
+    return { slot: best, away: bd };
+  }
+
+  function match(m, skip) {
+    if (skip !== "slot" && S.slot && m.t !== S.slot) return false;
+    if (S.kind && (S.kind === "long" ? m.k !== 1 : m.k !== 0)) return false;
+    if (S.ap && m.p !== S.ap) return false;
+    if (S.q && m.x.toLowerCase().indexOf(S.q) < 0) return false;
+    return true;
+  }
+  function filtered() {
+    var l = all.filter(function (m) { return match(m); });
+    l.sort(function (a, b) { return S.sort === "new" ? (a.s < b.s ? 1 : -1) : (a.s < b.s ? -1 : 1); });
+    return l;
+  }
+
+  function dayLabel(d) {
+    var x = new Date(d + "T00:00:00");
+    return [DAYS[x.getDay()], MONTHS[x.getMonth()] + " " + x.getDate()];
+  }
+
+  // text with our own links made tappable, everything else stays plain text
+  function fill(node, text) {
+    var re = /(https:\/\/chica\.keicodes\.dev\/[^\s]*)/g, last = 0, m;
+    while ((m = re.exec(text))) {
+      if (m.index > last) node.appendChild(document.createTextNode(text.slice(last, m.index)));
+      var a = el("a", "", m[1]); a.href = m[1]; node.appendChild(a);
+      last = m.index + m[1].length;
+    }
+    if (last < text.length) node.appendChild(document.createTextNode(text.slice(last)));
+  }
+
+  function tm(m, cls) {
+    var t = el("p", cls || "tm", m.t); var i = el("i", "", m.p); t.appendChild(i); return t;
+  }
+  function tag(m) {
+    if (!m.a || !m.a.length) return null;
+    var names = m.a.map(function (a) { return MEDIA[a] || a.toUpperCase(); });
+    return el("p", "tag", "MAY KASAMANG " + names.join(" AT ") + " SA CHAT");
+  }
+
+  function card(m) {
+    var art = el("article", "msg"), h = el("div", "mh");
+    h.appendChild(tm(m)); var g = tag(m); if (g) h.appendChild(g);
+    art.appendChild(h);
+    var tx = el("p", "tx"); fill(tx, m.x); art.appendChild(tx);
+    if (m.x.length > 520 || m.x.split("\n").length > 9) {
+      art.classList.add("clamp");
+      var b = el("button", "rd", "BASAHIN LAHAT"); b.type = "button"; b.setAttribute("aria-expanded", "false");
+      b.addEventListener("click", function () {
+        var open = art.classList.toggle("open");
+        b.textContent = open ? "ITAGO" : "BASAHIN LAHAT"; b.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      art.appendChild(b);
+    }
+    return art;
+  }
+
+  function featCard(m) {
+    var f = el("div", "feat"), h = el("div", "fh");
+    h.appendChild(el("p", "lbl red", "PINILI NG TADHANA"));
+    var b = el("button", "again"); b.type = "button";
+    b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="15" cy="15" r="1" fill="currentColor"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg>';
+    b.appendChild(document.createTextNode("ISA PA")); b.addEventListener("click", surprise);
+    h.appendChild(b); f.appendChild(h);
+    f.appendChild(tm(m, "tm"));
+    var d = dayLabel(m.d); f.appendChild(el("p", "dt", d[0] + " · " + d[1] + ", " + m.d.slice(0, 4)));
+    var tx = el("p", "tx"); fill(tx, m.x); f.appendChild(tx);
+    var g = tag(m); if (g) { g.style.textAlign = "left"; g.style.marginTop = "10px"; g.style.color = "rgba(243,243,240,.6)"; f.appendChild(g); }
+    return f;
+  }
+
+  // the toggles are built once and only updated, so a tap never resets the scroll or the focus
+  var chips = [];
+  function mk(parent, label, def) {
+    var b = el("button", "chip", label); b.type = "button";
+    var sm = null; if (def.count) { sm = el("small"); b.appendChild(sm); }
+    b.addEventListener("click", def.click);
+    parent.appendChild(b); chips.push({ b: b, sm: sm, def: def });
+  }
+  function updateChips() {
+    chips.forEach(function (c) {
+      c.b.setAttribute("aria-pressed", c.def.on() ? "true" : "false");
+      if (c.sm) { var n = c.def.count(); c.sm.textContent = n; c.b.disabled = !!(c.def.off && c.def.off(n)); }
+    });
+  }
+  function buildControls() {
+    var sl = $("slots");
+    mk(sl, "LAHAT", { on: function () { return !S.slot; }, click: function () { set({ slot: "" }); }, count: function () { return all.filter(function (m) { return match(m, "slot"); }).length; } });
+    SLOTS.forEach(function (s) {
+      mk(sl, s, {
+        on: function () { return S.slot === s; }, click: function () { set({ slot: S.slot === s ? "" : s }); },
+        count: function () { return all.filter(function (m) { return m.t === s && match(m, "slot"); }).length; },
+        off: function (n) { return !n && S.slot !== s; }
+      });
+    });
+    [["", "LAHAT"], ["long", "MAHABA"], ["short", "MAIKLI"]].forEach(function (x) { mk($("kinds"), x[1], { on: function () { return S.kind === x[0]; }, click: function () { set({ kind: x[0] }); } }); });
+    [["", "LAHAT"], ["AM", "UMAGA (AM)"], ["PM", "GABI (PM)"]].forEach(function (x) { mk($("aps"), x[1], { on: function () { return S.ap === x[0]; }, click: function () { set({ ap: x[0] }); } }); });
+    [["new", "PINAKABAGO"], ["old", "PINAKALUMA"]].forEach(function (x) { mk($("sorts"), x[1], { on: function () { return S.sort === x[0]; }, click: function () { set({ sort: x[0] }); } }); });
+  }
+  function set(patch) { for (var k in patch) S[k] = patch[k]; S.shown = PAGE; if (!("feat" in patch)) S.feat = null; render(); persist(); }
+
+  function persist() {
+    try { history.replaceState(null, "", S.slot ? "#" + S.slot.replace(":", "") : location.pathname + location.search); } catch (e) {}
+  }
+
+  function render() {
+    updateChips();
+    var list = filtered(), box = $("list"); box.textContent = "";
+    var active = !!(S.slot || S.kind || S.ap || S.q);
+    $("phn").textContent = list.length + (active ? " / " + all.length : "");
+    var st = $("status"); st.textContent = "";
+    st.appendChild(document.createTextNode(active ? list.length + " SA " + all.length + " MESSAGE ANG BAGAY." : all.length + " MESSAGE SA KABUUAN."));
+    if (active) { var c = el("button", "", "ALISIN"); c.type = "button"; c.addEventListener("click", clearAll); st.appendChild(c); }
+    $("rnd").disabled = !list.length;
+
+    if (S.feat && list.indexOf(S.feat) >= 0) box.appendChild(featCard(S.feat));
+    if (!list.length) {
+      var e = el("div", "empty"); e.appendChild(el("p", "", "WALANG BAGAY SA MGA TOGGLE."));
+      var b = el("button", "", "ALISIN ANG MGA FILTER"); b.type = "button"; b.addEventListener("click", clearAll); e.appendChild(b); box.appendChild(e); return;
+    }
+    var shown = list.slice(0, S.shown), day = "", sec = null;
+    shown.forEach(function (m) {
+      if (m.d !== day) {
+        day = m.d; sec = el("section", "day");
+        var d = dayLabel(m.d), h = el("h2");
+        h.appendChild(el("span", "", d[0] + " · " + d[1])); h.appendChild(el("span", "", m.d.slice(0, 4)));
+        sec.appendChild(h); box.appendChild(sec);
+      }
+      sec.appendChild(card(m));
+    });
+    if (list.length > shown.length) {
+      var more = el("button", "more-btn", "MAS MARAMI PA (" + (list.length - shown.length) + ")"); more.type = "button";
+      more.addEventListener("click", function () { S.shown += PAGE; render(); });
+      box.appendChild(more);
+    }
+  }
+
+  function clearAll() { S.slot = ""; S.kind = ""; S.ap = ""; S.q = ""; $("q").value = ""; S.shown = PAGE; S.feat = null; render(); persist(); }
+
+  function surprise() {
+    var list = filtered(); if (!list.length) return;
+    var pool = list.filter(function (m) { return m !== S.feat; }); if (!pool.length) pool = list;
+    S.feat = pool[Math.floor(Math.random() * pool.length)];
+    render();
+    var f = document.querySelector(".feat");
+    if (f && f.scrollIntoView) f.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" });
+  }
+
+  function nowButton() {
+    var n = nearestSlot(), b = $("now");
+    b.innerHTML = "";
+    b.appendChild(document.createTextNode("ORAS NGAYON · "));
+    b.appendChild(el("b", "", n.slot));
+    b.addEventListener("click", function () { set({ slot: n.slot }); });
+    return n;
+  }
+
+  // the toggles beyond the hour fold away on a phone and sit open on a wide screen
+  var wide = window.matchMedia("(min-width: 900px)");
+  function syncMore() { $("more").open = wide.matches; }
+  syncMore(); if (wide.addEventListener) wide.addEventListener("change", syncMore);
+
+  var timer = 0;
+  $("q").addEventListener("input", function () {
+    var v = this.value.trim().toLowerCase();
+    clearTimeout(timer); timer = setTimeout(function () { set({ q: v }); }, 160);
+  });
+  $("rnd").addEventListener("click", surprise);
+
+  var near = nowButton();
+  var hash = (location.hash || "").replace("#", "");
+  var fromHash = SLOTS.filter(function (s) { return s.replace(":", "") === hash; })[0];
+
+  fetch("/oras/messages.json").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (d) {
+    all = d;
+    buildControls();
+    // opened right at one of the times? start on it. a hash in the link wins.
+    S.slot = fromHash || (near.away <= 20 ? near.slot : "");
+    render();
+  }).catch(function () {
+    $("list").appendChild(el("div", "empty")).appendChild(el("p", "", "HINDI MA-LOAD ANG MGA MESSAGE. SUBUKAN ULIT MAMAYA."));
+  });
+})();
+</script>
+</body>
+</html>

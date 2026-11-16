@@ -4,4 +4,5 @@ import { cpSync, mkdirSync } from 'node:fs';
 mkdirSync('dist/menu', { recursive: true });
 cpSync('menu/index.html', 'dist/index.html');
 cpSync('menu/img', 'dist/menu/img', { recursive: true });
+cpSync('menu/oras', 'dist/oras', { recursive: true });
 console.log('menu copied to dist/');
