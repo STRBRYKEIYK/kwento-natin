@@ -2,6 +2,8 @@
   "rewrites": [
     { "source": "/date", "destination": "https://chica-date-scheduler.vercel.app/date/index.html" },
     { "source": "/date/", "destination": "https://chica-date-scheduler.vercel.app/date/index.html" },
+    { "source": "/date/five", "destination": "https://chica-date-scheduler.vercel.app/date/five/index.html" },
+    { "source": "/date/five/", "destination": "https://chica-date-scheduler.vercel.app/date/five/index.html" },
     { "source": "/date/:path+", "destination": "https://chica-date-scheduler.vercel.app/date/:path+" }
   ]
 }
