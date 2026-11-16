@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/date",
+      "destination": "/date/",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/date/:path*",
+      "destination": "https://chica-date-scheduler.vercel.app/date/:path*"
+    }
+  ]
+}
