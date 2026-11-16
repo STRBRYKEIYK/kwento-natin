@@ -2,6 +2,7 @@
 //   node scripts/build-oras.mjs path/to/timed-messages.json
 // The export itself is not kept in this repo (the repo is public). Messages in HOLD, drafts and anything that
 // names other people (mentionsOthers) are left out until Chico says to include them.
+// A draft that Chico has since sent goes in SENT below.
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 
 const src = process.argv[2];
@@ -16,10 +17,14 @@ const HOLD = new Set([
   '2026-10-13-1111-pm', // apology for being annoyed
   '2026-11-14-0444-pm', // says her head hurts
 ]);
+// Drafts in the export that Chico confirmed he sent.
+const SENT = new Set([
+  '2026-11-16-1010-pm',
+]);
 const INCLUDE_OTHERS = process.argv.includes('--include-others');
 
 const all = JSON.parse(readFileSync(src, 'utf8'));
-const keep = all.filter((m) => !m.draft && !HOLD.has(m.id) && (INCLUDE_OTHERS || !m.mentionsOthers));
+const keep = all.filter((m) => (!m.draft || SENT.has(m.id)) && !HOLD.has(m.id) && (INCLUDE_OTHERS || !m.mentionsOthers));
 keep.sort((a, b) => (a.sentAt < b.sentAt ? -1 : 1));
 
 // short keys: this file is the biggest thing the page downloads
