@@ -1012,12 +1012,16 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
     return Array.isArray(arr) ? arr : [];
   }
 
+  // the same day at the same place is one date, whichever plan id (new tab, new session, other phone) saved it
+  function slotOf(x) { return x.date + "|" + String(x.place || "").toLowerCase().replace(/\s+/g, " ").trim(); }
+
   function readSet() {
-    // dates saved on this phone, dates the server remembers (so Chico sees them too), and any pinned in SEEDED; newest wins per plan
-    var byId = {}, all = [];
+    // dates saved on this phone, dates the server remembers (so Chico sees them too), and any pinned in SEEDED;
+    // newest wins per plan id, then repeats of the same date + place collapse into one
+    var byId = {}, all = [], bySlot = {}, order = [];
     var real = {}, mine = localList(true);
-    mine.concat(calRemote).forEach(function (x) { if (x && x.date) real[x.date + "|" + String(x.place || "").toLowerCase()] = 1; });
-    var pinned = SEEDED.filter(function (x) { return !real[x.date + "|" + String(x.place || "").toLowerCase()]; });
+    mine.concat(calRemote).forEach(function (x) { if (x && typeof x.date === "string") real[slotOf(x)] = 1; });
+    var pinned = SEEDED.filter(function (x) { return !real[slotOf(x)]; });
     mine.concat(calRemote, pinned).forEach(function (x) {
       if (!x || typeof x !== "object") return;
       var k = x.id || (x.date + "|" + (x.place || ""));
@@ -1026,7 +1030,14 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
       if ((x.savedAt || 0) >= (c.savedAt || 0)) byId[k] = Object.assign({}, x, { sent: !!(x.sent || c.sent) });
       else if (x.sent && !c.sent) byId[k] = Object.assign({}, c, { sent: true });
     });
-    calSet = all.map(function (k) { return byId[k]; }).filter(function (x) {
+    all.forEach(function (k) {
+      var x = byId[k];
+      if (typeof x.date !== "string") return;
+      var s = slotOf(x), c = bySlot[s];
+      if (!c) { bySlot[s] = x; order.push(s); return; }
+      bySlot[s] = Object.assign({}, (x.savedAt || 0) >= (c.savedAt || 0) ? x : c, { sent: !!(x.sent || c.sent) });
+    });
+    calSet = order.map(function (s) { return bySlot[s]; }).filter(function (x) {
       if (typeof x.date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(x.date)) return false;
       var d = new Date(+x.date.slice(0, 4), +x.date.slice(5, 7) - 1, +x.date.slice(8, 10));
       return d.getMonth() === +x.date.slice(5, 7) - 1 && d.getDate() === +x.date.slice(8, 10);
@@ -1213,10 +1224,19 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
         renderCalendars();
       }
       if (!j.enabled) return;
+      // known by date + place, not by plan id: the server keeps one entry per date, so a same-date copy under another id is not "missing"
       var known = {};
-      j.dates.forEach(function (x) { if (x && x.id) known[x.id] = x; });
-      localList().filter(function (x) {
-        return x && typeof x.id === "string" && typeof x.date === "string" && (!known[x.id] || (x.sent && !known[x.id].sent));
+      j.dates.forEach(function (x) {
+        if (!x || typeof x.date !== "string") return;
+        var s = slotOf(x); known[s] = { sent: !!(x.sent || (known[s] && known[s].sent)) };
+      });
+      var sentUp = {};
+      localList().slice().sort(function (a, b) { return (b && b.sent ? 1 : 0) - (a && a.sent ? 1 : 0); }).filter(function (x) {
+        if (!x || typeof x.id !== "string" || typeof x.date !== "string") return false;
+        var s = slotOf(x), k = known[s];
+        if (sentUp[s] || (k && !(x.sent && !k.sent))) return false;
+        sentUp[s] = 1;
+        return true;
       }).slice(0, 10).forEach(function (x) {
         try {
           fetch(SERVER, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(x) }).then(function () { lastPull = 0; });
