@@ -25,14 +25,14 @@ The production website is in `dist/`. `npm run build` builds the letter into `di
 
 | Path | What | Where it comes from |
 | --- | --- | --- |
-| `/` | Library menu, grouped by category | `menu/index.html` (this repo) |
+| `/` | Library bookshelf: books are categories, pages are entries | `menu/index.html` (this repo) |
 | `/second` | Para sa Chica ko | proxied to the `para-sa-chica` project |
 | `/third` | Kwento Natin (this letter) | this repo, built by Vite with `base: '/third/'` |
 | `/555` | 5:55 Limang Pandama | proxied to `chica-date-scheduler` |
 | `/date` | Date scheduler | proxied to `chica-date-scheduler` |
 | `/vouchers` | Love Voucher Book | proxied to `love-voucher-book` |
 
-The proxies are the `rewrites` in `vercel.json`. To add something to the library, add a `<a class="card">` inside the right category section of `menu/index.html` (counts and the BAGO tag are filled in by the page itself), and add a rewrite here if it lives in another project.
+The proxies are the `rewrites` in `vercel.json`. To add something to the library, edit the `LIB` list at the top of the script in `menu/index.html`: a book is a category, and each item in its `pages` is one entry (title, blurb, `href`, `stamp`, a thumbnail in `menu/img/`; set `frame: true` for a colour photo in a picture frame). A new book also needs its id in `SHELVES`. The BAGO tag and counts are filled in by the page. Add a rewrite here if the entry lives in another project. The wall calendar beside the shelf always shows the current month and links to `/date`.
 
 ## Content and behavior
 
