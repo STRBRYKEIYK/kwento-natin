@@ -372,7 +372,10 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
   padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px);
 }
 .panel[hidden]{display:none}
-.pn-body{flex:1;min-height:0;overflow:auto;display:grid;align-content:center;justify-items:center;gap:18px;padding:14px 20px 30px}
+.pn-body{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;align-items:center;gap:18px;padding:14px 20px 30px}
+.pn-body>*{flex:none}
+.pn-body>:first-child{margin-top:auto}
+.pn-body>:last-child{margin-bottom:auto}
 .panel .cal{max-width:380px;animation:none}
 .pv{
   --ph:min(calc(100vh - 290px),600px,calc((88vw - 52px) * 1.3333));
@@ -387,6 +390,77 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
 .pv-cap{text-align:center;max-width:34ch}
 .pv-cap b{display:block;font-family:var(--serif);font-style:italic;font-weight:900;font-size:22px;line-height:1.15;text-wrap:balance}
 .pv-cap span{display:block;margin-top:8px;font-size:11px;letter-spacing:.22em;font-weight:700;color:rgba(243,243,240,.7)}
+
+/* ---------- special days, countdown, day sheet, memories ---------- */
+button.d{font:inherit;font-weight:700;font-size:13px;color:inherit;padding:0;width:100%}
+.d.tap{cursor:pointer;z-index:2}
+.d.tap:active{opacity:.6}
+.d.tap:focus-visible{outline-offset:-3px}
+.sp-dot{position:absolute;left:50%;bottom:2px;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:var(--red);pointer-events:none}
+.sp-dot.ring{background:none;box-shadow:inset 0 0 0 1.5px var(--red)}
+.mc-d .sp-dot{bottom:-.5px;width:3px;height:3px;margin-left:-1.5px}
+.mc-d .sp-dot.ring{box-shadow:inset 0 0 0 1px var(--red)}
+.hm.prop path{stroke-width:1.5;opacity:.7}
+.hm.prop path.ghost{display:none}
+.mc-d .hm.prop path{stroke-width:2}
+.cal-key{display:flex;flex-wrap:wrap;justify-content:center;gap:2px 14px;margin:4px 0 2px;padding:6px 0 4px;border-top:1px solid var(--line);font-size:8.5px;letter-spacing:.14em;font-weight:700;color:var(--mute)}
+.cal-key span{display:inline-flex;align-items:center;gap:5px}
+.cal-key i{display:block;width:6px;height:6px;border-radius:50%;background:var(--red)}
+.cal-key svg{width:11px;height:11px;fill:var(--red)}
+.cal-sub{margin:8px 0 0;font-size:9.5px;letter-spacing:.24em;font-weight:700;color:var(--mute)}
+.panel .cal-sub{color:rgba(243,243,240,.72)}
+.cal-item .ci-h.ring svg{fill:none;stroke:var(--red);stroke-width:2.4}
+.cal-next{display:grid;grid-template-columns:66px minmax(0,1fr);gap:12px;align-items:center;width:100%;padding:11px 12px;border:2px solid var(--ink);background:var(--ink);color:var(--paper);text-align:left;box-shadow:4px 4px 0 var(--red)}
+.panel .cal-next{border-color:rgba(243,243,240,.6)}
+.cal-next:active{translate:2px 2px;box-shadow:2px 2px 0 var(--red)}
+.cn-n{display:grid;justify-items:center;line-height:1;text-align:center}
+.cn-n b{font-family:var(--serif);font-style:italic;font-weight:900;font-size:40px;color:var(--red2)}
+.cn-n small{margin-top:4px;font-size:8.5px;letter-spacing:.2em;font-weight:700}
+.cal-next.soon .cn-n b{font-family:var(--sans);font-style:normal;font-size:14px;letter-spacing:.1em}
+.cn-t{display:block;min-width:0}
+.cn-t em{display:block;font-style:normal;font-size:9px;letter-spacing:.2em;font-weight:700;color:var(--red2)}
+.cn-t b{display:block;margin-top:3px;font-size:12.5px;letter-spacing:.1em;font-weight:700;line-height:1.35;overflow-wrap:anywhere}
+.cn-t span{display:block;margin-top:2px;font-size:11px;letter-spacing:.06em;font-weight:500;line-height:1.4;color:rgba(243,243,240,.8);overflow-wrap:anywhere}
+
+.dd{width:100%;max-width:380px;background:var(--card);color:var(--ink);border:2px solid var(--ink);box-shadow:7px 7px 0 var(--ink)}
+.dd-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:14px 16px 13px;background:var(--ink);color:var(--paper);border-bottom:2px solid var(--ink)}
+.dd-tl{display:block;min-width:0}
+.dd-top .k{display:block;font-size:9.5px;letter-spacing:.26em;font-weight:700;color:var(--red2)}
+.dd-top .big{display:block;margin-top:5px;font-family:var(--serif);font-style:italic;font-weight:900;font-size:28px;line-height:1.05;overflow-wrap:anywhere}
+.dd-top .dd-wd{display:block;margin-top:5px;font-size:10px;letter-spacing:.2em;font-weight:700;color:rgba(243,243,240,.75)}
+.dd-chip{flex:none;max-width:104px;padding:6px 9px;background:var(--red);color:#fff;font-size:9.5px;letter-spacing:.14em;font-weight:700;line-height:1.3;text-align:center}
+.dd-sec{padding:14px 16px}
+.dd-sec+.dd-sec,.dd-extra .dd-sec{border-top:1px solid var(--line)}
+.dd-h{font-size:9.5px;letter-spacing:.24em;font-weight:700;color:var(--red)}
+.dd-place{margin:0;font-family:var(--serif);font-style:italic;font-weight:900;font-size:23px;line-height:1.12;overflow-wrap:anywhere}
+.dd-h+.dd-place{margin-top:6px}
+.dd-sub{margin-top:5px;font-size:11px;letter-spacing:.16em;font-weight:700;color:var(--mute);overflow-wrap:anywhere}
+.dd-meta{margin-top:6px;font-size:13px;letter-spacing:.1em;font-weight:700}
+.dd-stat{margin-top:6px;font-size:9.5px;letter-spacing:.2em;font-weight:700;color:var(--red)}
+.dd-note{margin-top:8px;font-size:12.5px;line-height:1.5;font-weight:500;letter-spacing:.03em;white-space:pre-wrap;overflow-wrap:anywhere}
+.dd-list{display:grid;gap:6px;margin:9px 0 0;padding:0;list-style:none}
+.dd-list li{position:relative;padding-left:17px;font-size:12.5px;line-height:1.4;font-weight:500;letter-spacing:.02em;overflow-wrap:anywhere}
+.dd-list li::before{content:"";position:absolute;left:0;top:.38em;width:7px;height:7px;border:1.5px solid var(--ink)}
+.dd-budget{margin-top:8px;font-size:13px;font-weight:700;letter-spacing:.06em}
+.dd-budget b{color:var(--red);font-size:15px}
+.dd-fine{margin-top:7px;font-size:10.5px;line-height:1.45;letter-spacing:.03em;color:var(--mute);text-transform:none}
+.dd-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px}
+.dd-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 14px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-align:center;line-height:1.25;position:relative}
+.dd-btn:active{background:var(--ink);color:var(--paper)}
+.dd-btn.red{background:var(--red);border-color:var(--red);color:#fff}
+.dd-btn:disabled{opacity:.4;cursor:default}
+.dd-file input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.dd-file:focus-within{outline:3px solid var(--red);outline-offset:3px}
+.dd-photo{margin:12px 0 0;padding:8px 8px 20px;background:#fdfdfb;rotate:-1.2deg;box-shadow:0 1px 0 rgba(0,0,0,.08),0 12px 22px -12px rgba(0,0,0,.55)}
+.dd-photo img{display:block;width:100%;height:auto;max-height:360px;object-fit:cover;background:var(--line)}
+.dd-prev{display:block;width:100%;max-height:200px;margin-top:11px;object-fit:cover;border:1.5px solid var(--ink)}
+.dd-prev[hidden],.dd-form[hidden]{display:none}
+.dd-ta{display:block;width:100%;margin-top:11px;padding:10px;border:1.5px solid var(--ink);border-radius:0;background:#fff;color:var(--ink);font:inherit;font-size:16px;line-height:1.4;letter-spacing:0;text-transform:none;resize:vertical}
+.dd-ta:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.dd-count{margin-top:4px;text-align:right;font-size:9px;letter-spacing:.14em;font-weight:700;color:var(--mute)}
+.dd-msg{min-height:16px;margin-top:9px;font-size:10.5px;letter-spacing:.1em;font-weight:700;line-height:1.4;color:var(--red)}
+.mem-h:focus{outline:none}
+.mem-note{font-style:italic}
 
 @media (max-height:720px){
   .page{padding-top:18px;padding-bottom:12px}
@@ -405,6 +479,8 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
   .hm path.fillp{animation:none;opacity:1}
   .sframe,.minical{transition:none}
   .spine,.rd-nav button{transition:none}
+  .dd-photo{rotate:none}
+  .cal-next:active{translate:none}
 }
 </style>
 </head>
@@ -468,6 +544,14 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
     <p class="rd-title">KALENDARYO</p>
   </div>
   <div class="pn-body" id="csBody"></div>
+</div>
+
+<div class="panel" id="dateSheet" role="dialog" aria-modal="true" aria-label="Detalye ng araw" hidden>
+  <div class="rd-top">
+    <button class="rd-close" data-close type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>BALIK</button>
+    <p class="rd-title">DETALYE</p>
+  </div>
+  <div class="pn-body dd-body" id="ddBody"></div>
 </div>
 
 <div class="panel" id="photoView" role="dialog" aria-modal="true" aria-label="Litrato" hidden>
@@ -837,7 +921,7 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
     if (panel) {
       if (e.key === "Escape") { e.preventDefault(); closePanel(); }
       else if (e.key === "Tab") {
-        var pf = Array.prototype.slice.call(panel.el.querySelectorAll("button:not([disabled]), a[href]")).filter(function (n) { return !n.closest("[hidden]"); });
+        var pf = Array.prototype.slice.call(panel.el.querySelectorAll("button:not([disabled]), a[href], textarea:not([disabled]), input:not([disabled])")).filter(function (n) { return !n.closest("[hidden]") && !n.closest("[inert]"); });
         if (!pf.length) return;
         var pfirst = pf[0], plast = pf[pf.length - 1];
         if (e.shiftKey && document.activeElement === pfirst) { e.preventDefault(); plast.focus(); }
@@ -955,6 +1039,14 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
       finished = true;
       clearAnimsOn(pn.el); // closing holds its last frame (opacity 0): drop it so the next open is not blank
       pn.el.hidden = true;
+      if (pn.back) { // the day sheet was opened from the calendar sheet: back to it
+        var bk = pn.back; bk.closing = false; panel = bk;
+        clearAnimsOn(bk.el); bk.el.hidden = false;
+        if (!reduce) bk.el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 200, easing: "ease-out" });
+        var tg = pn.opener && pn.opener.isConnected ? pn.opener : bk.el.querySelector("[data-close]");
+        try { tg.focus({ preventScroll: true }); } catch (e) {}
+        return;
+      }
       if (pn.fromReader) reader.removeAttribute("inert");
       else { main.removeAttribute("inert"); document.documentElement.style.overflow = ""; }
       try { if (pn.origin) pn.origin.focus({ preventScroll: true }); } catch (e) {}
@@ -970,7 +1062,7 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
     setTimeout(finish, 800); // never leave an overlay stuck if the animation event is skipped
   }
 
-  ["calSheet", "photoView"].forEach(function (id) {
+  ["calSheet", "dateSheet", "photoView"].forEach(function (id) {
     var el = $(id);
     Array.prototype.forEach.call(el.querySelectorAll("[data-close]"), function (b) { b.addEventListener("click", closePanel); });
     el.querySelector(".pn-body").addEventListener("click", function (e) { if (e.target === e.currentTarget) closePanel(); });
@@ -991,22 +1083,21 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
     openPanel($("photoView"), origin);
   }
 
-  /* ====== CALENDAR: dates she set in Date Tayo, marked with a pentel-pen heart ====== */
+  /* ====== CALENDAR: dates she set in Date Tayo (pentel-pen hearts), our special days, the countdown,
+     the day sheet and the memories after a date ====== */
   var MONTHS = ["ENERO", "PEBRERO", "MARSO", "ABRIL", "MAYO", "HUNYO", "HULYO", "AGOSTO", "SETYEMBRE", "OKTUBRE", "NOBYEMBRE", "DISYEMBRE"];
   var DAYS = ["LINGGO", "LUNES", "MARTES", "MIYERKULES", "HUWEBES", "BIYERNES", "SABADO"];
   var DKEY = "chica.dates.v1", SVGNS = "http://www.w3.org/2000/svg";
   var HEART_D = "M20 11 C17 4 6 3 4.5 13 C3.5 21 12 27 20.5 33.5 C29 27 37.5 21 35.5 12.5 C34 3.5 23 4 20 11.5 C19.5 13 18.8 14.5 18 16";
-  // Dates that should always show a heart on every device, whatever is in her browser storage.
-  // Same shape Date Tayo saves: { id, date: "YYYY-MM-DD", time, place, area, vibe, sent }
-  var SEEDED = [
-    { id: "seed-2026-11-17-binondo", date: "2026-11-17", time: "12:00 PM", place: "Binondo", area: "Manila", vibe: "Cultural & Culinary Food Crawls", sent: true, savedAt: 1 }
-  ];
-  var SERVER = "/date/api/dates", SKEY = "chica.dates.srv";
-  var calSet = [], calMap = {}, calRaw = null, calHome = null, calViews = [], calRemote = [], calRemoteRaw = "";
+  var SERVER = "/date/api/dates", SKEY = "chica.dates.srv", MEMORY = "/date/api/memory", PHOTO = "/date/api/photo", CALAPI = "/date/api/cal";
+  var calAll = [], calSet = [], calMap = {}, calRaw = null, calHome = null, calViews = [], calRemote = [], calRemoteRaw = "";
   try { var cached = JSON.parse(localStorage.getItem(SKEY) || "[]"); if (Array.isArray(cached)) { calRemote = cached; calRemoteRaw = JSON.stringify(cached); } } catch (e) {}
 
   function isoOf(y, mo, d) { return y + "-" + pad(mo + 1) + "-" + pad(d); }
   function todayIso() { var t = new Date(); return isoOf(t.getFullYear(), t.getMonth(), t.getDate()); }
+  function dateOf(iso) { return new Date(+iso.slice(0, 4), +iso.slice(5, 7) - 1, +iso.slice(8, 10)); }
+  function daysTo(iso) { var t = new Date(), a = dateOf(iso), b = new Date(t.getFullYear(), t.getMonth(), t.getDate()); return Math.round((a - b) / 86400000); }
+  function cdWord(n) { return n === 0 ? "NGAYON NA!" : n === 1 ? "BUKAS NA!" : n + " ARAW NA LANG"; }
 
   function localList(track) {
     var raw = null, arr = [];
@@ -1019,43 +1110,102 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
   // the same day at the same place is one date, whichever plan id (new tab, new session, other phone) saved it
   function slotOf(x) { return x.date + "|" + String(x.place || "").toLowerCase().replace(/\s+/g, " ").trim(); }
 
-  // Google Maps search for the place, same query Date Tayo puts in the calendar event ("Pasay or Malate" keeps the first)
-  function mapUrl(x) {
+  // Google Maps for the place, same query Date Tayo puts in the calendar event ("Pasay or Malate" keeps the first)
+  function mapQ(x) {
     var place = String(x.place || "").trim();
     if (!place) return "";
     var area = String(x.area || "").split(/\s+or\s+/i)[0].trim();
-    return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent([place, area, "Philippines"].filter(Boolean).join(", "));
+    return [place, area, "Philippines"].filter(Boolean).join(", ");
+  }
+  function mapUrl(x) { var q = mapQ(x); return q ? "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q) : ""; }
+  function dirUrl(x) { var q = mapQ(x); return q ? "https://www.google.com/maps/dir/?api=1&travelmode=transit&destination=" + encodeURIComponent(q) : ""; }
+
+  /* ---- what counts as one date: the same rules as src/dates-core.js in chica-date-scheduler, keep them in step ----
+     confirmed (default) | proposed (Chico suggested it, Chica has not said yes) | cancelled (kept so a cancel reaches every device) */
+  function statusOf(x) { return x && (x.status === "proposed" || x.status === "cancelled") ? x.status : "confirmed"; }
+  function isCancelled(x) { return statusOf(x) === "cancelled"; }
+  function validEntry(x) { return x && typeof x === "object" && typeof x.date === "string"; }
+  function mergePair(a, b) {
+    var win = (b.savedAt || 0) >= (a.savedAt || 0) ? b : a, lose = win === b ? a : b, gone = isCancelled(win);
+    var out = Object.assign({}, win, { sent: gone ? !!win.sent : [a, b].some(function (e) { return e.sent && !isCancelled(e); }) });
+    if (!gone && !out.mem && lose.mem && !isCancelled(lose)) out.mem = lose.mem;
+    return out;
+  }
+  function dedupeList(list) {
+    var by = {}, order = [];
+    list.forEach(function (x) {
+      if (!validEntry(x)) return;
+      var k = slotOf(x);
+      if (by[k]) by[k] = mergePair(by[k], x); else { by[k] = x; order.push(k); }
+    });
+    return order.map(function (k) { return by[k]; });
+  }
+  // several lists (this phone, the server) into one: by plan id first (a plan that moved day keeps only its newest day), then by date + place
+  function mergeAll(lists) {
+    var byIdm = {}, ids = [];
+    lists.forEach(function (l) {
+      (Array.isArray(l) ? l : []).forEach(function (x) {
+        if (!validEntry(x)) return;
+        var k = x.id || slotOf(x);
+        if (byIdm[k]) byIdm[k] = mergePair(byIdm[k], x); else { byIdm[k] = x; ids.push(k); }
+      });
+    });
+    return dedupeList(ids.map(function (k) { return byIdm[k]; }));
   }
 
   function readSet() {
-    // dates saved on this phone, dates the server remembers (so Chico sees them too), and any pinned in SEEDED;
-    // newest wins per plan id, then repeats of the same date + place collapse into one
-    var byId = {}, all = [], bySlot = {}, order = [];
-    var real = {}, mine = localList(true);
-    mine.concat(calRemote).forEach(function (x) { if (x && typeof x.date === "string") real[slotOf(x)] = 1; });
-    var pinned = SEEDED.filter(function (x) { return !real[slotOf(x)]; });
-    mine.concat(calRemote, pinned).forEach(function (x) {
-      if (!x || typeof x !== "object") return;
-      var k = x.id || (x.date + "|" + (x.place || ""));
-      var c = byId[k];
-      if (!c) { byId[k] = x; all.push(k); return; }
-      if ((x.savedAt || 0) >= (c.savedAt || 0)) byId[k] = Object.assign({}, x, { sent: !!(x.sent || c.sent) });
-      else if (x.sent && !c.sent) byId[k] = Object.assign({}, c, { sent: true });
-    });
-    all.forEach(function (k) {
-      var x = byId[k];
-      if (typeof x.date !== "string") return;
-      var s = slotOf(x), c = bySlot[s];
-      if (!c) { bySlot[s] = x; order.push(s); return; }
-      bySlot[s] = Object.assign({}, (x.savedAt || 0) >= (c.savedAt || 0) ? x : c, { sent: !!(x.sent || c.sent) });
-    });
-    calSet = order.map(function (s) { return bySlot[s]; }).filter(function (x) {
-      if (typeof x.date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(x.date)) return false;
-      var d = new Date(+x.date.slice(0, 4), +x.date.slice(5, 7) - 1, +x.date.slice(8, 10));
+    calAll = mergeAll([localList(true), calRemote]);
+    calSet = calAll.filter(function (x) {
+      if (isCancelled(x) || !/^\d{4}-\d{2}-\d{2}$/.test(x.date)) return false;
+      var d = dateOf(x.date);
       return d.getMonth() === +x.date.slice(5, 7) - 1 && d.getDate() === +x.date.slice(8, 10);
     }).sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : (a.savedAt || 0) - (b.savedAt || 0); });
     calMap = {};
-    calSet.forEach(function (x) { var c = calMap[x.date]; calMap[x.date] = { sent: !!x.sent || !!(c && c.sent) }; });
+    calSet.forEach(function (x) {
+      var c = calMap[x.date] || { filled: false, proposed: true };
+      if (statusOf(x) === "confirmed") { c.proposed = false; if (x.sent || x.by === "chico") c.filled = true; }
+      calMap[x.date] = c;
+    });
+  }
+
+  // the entry the server holds for this date: its id is the one the memory and calendar links need
+  function serverEntryFor(x) {
+    var s = slotOf(x), i;
+    for (i = 0; i < calRemote.length; i++) if (validEntry(calRemote[i]) && !isCancelled(calRemote[i]) && slotOf(calRemote[i]) === s) return calRemote[i];
+    return null;
+  }
+
+  /* ---- our special days ----
+     Anniversary: August 6 (2026). Monthsary: the 6th of every month, the first was September 6, 2026. Her birthday: September 2, 2002. */
+  function specialsFor(iso) {
+    var y = +iso.slice(0, 4), m = +iso.slice(5, 7) - 1, d = +iso.slice(8, 10), out = [], n;
+    if (y < 2026) return out;
+    if (d === 6) {
+      n = (y - 2026) * 12 + (m - 7);
+      if (n === 0) out.push({ kind: "anniv", title: "ANNIVERSARY NATIN", sub: "ANG UNANG ARAW NATIN" });
+      else if (n > 0 && n % 12 === 0) out.push({ kind: "anniv", title: "ANNIVERSARY NATIN", sub: (n / 12) + " TAON NA TAYO" });
+      else if (n > 0) out.push({ kind: "ms", title: "MONTHSARY NATIN", sub: n + " BUWAN NA TAYO" });
+    }
+    if (m === 8 && d === 2) out.push({ kind: "bday", title: "BIRTHDAY MO, CHICA!", sub: "IKA-" + (y - 2002) + " NA TAON MO" });
+    return out;
+  }
+  function upcomingSpecials(count) {
+    var out = [], t = new Date(), i, d, iso, list;
+    for (i = 0; i < 400 && out.length < count; i++) {
+      d = new Date(t.getFullYear(), t.getMonth(), t.getDate() + i);
+      iso = isoOf(d.getFullYear(), d.getMonth(), d.getDate());
+      list = specialsFor(iso);
+      list.forEach(function (sp) { if (out.length < count) out.push({ iso: iso, kind: sp.kind, title: sp.title, sub: sp.sub }); });
+    }
+    return out;
+  }
+  // what is coming first: a date she set (or Chico suggested) or one of our special days
+  function nextUp() {
+    var ti = todayIso(), best = null, i, sp;
+    for (i = 0; i < calSet.length; i++) if (calSet[i].date >= ti) { best = { iso: calSet[i].date, x: calSet[i] }; break; }
+    sp = upcomingSpecials(1)[0];
+    if (sp && (!best || sp.iso < best.iso)) best = { iso: sp.iso, sp: sp };
+    return best;
   }
 
   // the month she should see first: this month if anything is set in it, otherwise the next set date, otherwise this month
@@ -1074,24 +1224,33 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
     return cells;
   }
 
-  // a heart drawn like a pentel pen: a bold stroke, a faint second pass, and a soft fill once she's sent it to Chico
-  function heartMark(sent, k) {
+  // a heart drawn like a pentel pen: a bold stroke, a faint second pass, and a soft fill once it is settled.
+  // A date Chico suggested that she has not said yes to yet is drawn lighter.
+  function heartMark(c, k) {
     var sv = document.createElementNS(SVGNS, "svg");
-    sv.setAttribute("viewBox", "0 0 40 36"); sv.setAttribute("class", "hm"); sv.setAttribute("aria-hidden", "true");
+    sv.setAttribute("viewBox", "0 0 40 36"); sv.setAttribute("class", c.proposed ? "hm prop" : "hm"); sv.setAttribute("aria-hidden", "true");
     sv.style.setProperty("--k", k);
     function path(cls) {
       var pth = document.createElementNS(SVGNS, "path");
       pth.setAttribute("d", HEART_D); pth.setAttribute("pathLength", "100"); if (cls) pth.setAttribute("class", cls);
       sv.appendChild(pth);
     }
-    if (sent) path("fillp");
+    if (c.filled) path("fillp");
     path("ghost"); path("");
     return sv;
   }
+  function spDot(list) { return mk("i", "sp-dot" + (list[0].kind === "ms" ? " ring" : "")); }
 
   function when(iso) {
-    var d = new Date(+iso.slice(0, 4), +iso.slice(5, 7) - 1, +iso.slice(8, 10));
+    var d = dateOf(iso);
     return DAYS[d.getDay()] + " · " + MONTHS[d.getMonth()].slice(0, 3) + " " + d.getDate();
+  }
+
+  // one line about where a date stands (for the list)
+  function statusText(x) {
+    if (statusOf(x) === "proposed") return "PLANO NI CHICO · SAGUTIN SA DATE TAYO";
+    if (x.by === "chico") return "NAKATAKDA NA";
+    return x.sent ? "NAIPADALA NA KAY CHICO" : "NAKATAKDA";
   }
 
   // the full wall calendar card (used beside the shelf on wide screens and inside the sheet on phones)
@@ -1103,7 +1262,8 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
       '<button type="button" data-d="-1" aria-label="Nakaraang buwan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>' +
       '<button type="button" data-d="1" aria-label="Susunod na buwan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>' +
       '</span></span></div>' +
-      '<div class="cal-body"><div class="cal-wd" aria-hidden="true"><span>LIN</span><span>LUN</span><span>MAR</span><span>MIY</span><span>HUW</span><span>BIY</span><span>SAB</span></div><div class="cal-grid" aria-hidden="true"></div></div>' +
+      '<div class="cal-body"><div class="cal-wd" aria-hidden="true"><span>LIN</span><span>LUN</span><span>MAR</span><span>MIY</span><span>HUW</span><span>BIY</span><span>SAB</span></div><div class="cal-grid"></div>' +
+      '<p class="cal-key" aria-hidden="true"><span>' + HEART + 'DATE NATIN</span><span><i></i>ESPESYAL NA ARAW</span></p></div>' +
       '<a class="cal-cta" href="/date" aria-label="Date Tayo: pumili ka ng araw"><span class="cta-t">DATE TAYO · PUMILI KA NG ARAW</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>';
     host.appendChild(card);
     if (listEl) host.appendChild(listEl);
@@ -1112,65 +1272,107 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
     function go(delta) {
       var d = new Date(view.y, view.m + delta, 1);
       view.y = d.getFullYear(); view.m = d.getMonth();
-      draw();
+      drawGrid();
     }
     Array.prototype.forEach.call(nav.querySelectorAll("button"), function (b) {
       b.addEventListener("click", function () { go(+b.getAttribute("data-d")); });
     });
+    grid.addEventListener("click", function (e) {
+      var c = e.target.closest ? e.target.closest("button.d") : null;
+      if (c) openDay(c.getAttribute("data-iso"), c);
+    });
 
-    function draw() {
+    function drawGrid() {
       var ti = todayIso(), cells = monthCells(view.y, view.m), i, j, k = 0;
       mEl.textContent = MONTHS[view.m];
       yEl.textContent = String(view.y);
-      nav.hidden = !calSet.length;
+      nav.hidden = false;
       grid.textContent = "";
       for (i = 0; i < cells.length; i += 7) {
         var wk = mk("div", "wk");
         for (j = 0; j < 7; j++) {
-          var n = cells[i + j], d = mk("span", "d");
+          var n = cells[i + j], iso = n ? isoOf(view.y, view.m, n) : "", c = iso ? calMap[iso] : null, sp = iso ? specialsFor(iso) : [];
+          var d = mk(c || sp.length ? "button" : "span", "d");
+          if (c || sp.length) {
+            d.type = "button"; d.setAttribute("data-iso", iso); d.classList.add("tap");
+            d.setAttribute("aria-label", when(iso) + ", " + [c ? "may date tayo" : "", sp.length ? sp[0].title : ""].filter(Boolean).join(", ") + ". Buksan ang detalye");
+          } else d.setAttribute("aria-hidden", "true");
           if (n) {
-            var iso = isoOf(view.y, view.m, n);
             d.textContent = n;
             if (j === 0) d.classList.add("sun");
             if (iso < ti) d.classList.add("past");
             if (iso === ti) d.classList.add("today");
-            if (calMap[iso]) { d.classList.add("set"); d.appendChild(heartMark(calMap[iso].sent, k++)); }
+            if (c) { d.classList.add("set"); d.appendChild(heartMark(c, k++)); }
+            if (sp.length) { d.classList.add("sp"); d.appendChild(spDot(sp)); }
           }
           wk.appendChild(d);
         }
         grid.appendChild(wk);
       }
-      if (listEl) {
-        listEl.textContent = "";
-        if (!calSet.length) {
-          if (o.empty) listEl.appendChild(txt("p", "cal-empty", "WALA PA TAYONG NAKATAKDANG DATE.\nPUMILI KA NA SA DATE TAYO!"));
-        } else {
-          var up = calSet.filter(function (x) { return x.date >= ti; }), past = calSet.filter(function (x) { return x.date < ti; }).reverse();
-          up.concat(past).slice(0, o.list).forEach(function (x) {
-            var it = mk("div", "cal-item"), main = mk("button", "ci-main"); main.type = "button";
-            main.appendChild(mk("span", "ci-h", HEART));
-            var tx = mk("span", "ci-t");
-            tx.appendChild(txt("b", "", when(x.date)));
-            var place = [x.place, x.time].filter(Boolean).join(" · ");
-            if (place) tx.appendChild(txt("span", "", place));
-            if (x.sent) tx.appendChild(txt("em", "", "NAIPADALA NA KAY CHICO"));
-            main.appendChild(tx);
-            main.addEventListener("click", function () {
-              view.y = +x.date.slice(0, 4); view.m = +x.date.slice(5, 7) - 1; draw();
-            });
-            it.appendChild(main);
-            var mu = mapUrl(x);
-            if (mu) {
-              var ma = txt("a", "ci-map", "TINGNAN SA MAPA");
-              ma.href = mu; ma.target = "_blank"; ma.rel = "noopener";
-              ma.setAttribute("aria-label", "Tingnan ang " + x.place + " sa Google Maps (bubukas sa bagong tab)");
-              it.appendChild(ma);
-            }
-            listEl.appendChild(it);
-          });
-        }
+    }
+
+    function item(opts) {
+      var it = mk("div", "cal-item"), main = mk("button", "ci-main"); main.type = "button";
+      main.appendChild(mk("span", "ci-h" + (opts.ring ? " ring" : ""), opts.ring ? '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6"/></svg>' : HEART));
+      var tx = mk("span", "ci-t");
+      tx.appendChild(txt("b", "", opts.title));
+      if (opts.line) tx.appendChild(txt("span", "", opts.line));
+      (opts.tags || []).forEach(function (t) { tx.appendChild(txt("em", "", t)); });
+      main.appendChild(tx);
+      main.addEventListener("click", function () {
+        if (view.y !== +opts.iso.slice(0, 4) || view.m !== +opts.iso.slice(5, 7) - 1) { view.y = +opts.iso.slice(0, 4); view.m = +opts.iso.slice(5, 7) - 1; drawGrid(); }
+        openDay(opts.iso, main);
+      });
+      it.appendChild(main);
+      return it;
+    }
+
+    function drawList() {
+      if (!listEl) return;
+      var ti = todayIso(), nx = nextUp();
+      listEl.textContent = "";
+      if (nx) {
+        var n = daysTo(nx.iso), nb = mk("button", "cal-next" + (n <= 1 ? " soon" : "")); nb.type = "button";
+        var big = n === 0 ? "NGAYON" : n === 1 ? "BUKAS" : String(n);
+        var cn = mk("span", "cn-n"); cn.appendChild(txt("b", "", big)); if (n > 1) cn.appendChild(txt("small", "", "ARAW"));
+        nb.appendChild(cn);
+        var ct = mk("span", "cn-t");
+        ct.appendChild(txt("em", "", nx.sp ? "SUSUNOD NA ESPESYAL NA ARAW" : "SUSUNOD NA DATE NATIN"));
+        ct.appendChild(txt("b", "", nx.sp ? nx.sp.title : (nx.x.place || "DATE NATIN").toUpperCase()));
+        ct.appendChild(txt("span", "", nx.sp ? when(nx.iso) + " · " + nx.sp.sub : when(nx.iso) + (nx.x.time ? " · " + nx.x.time : "")));
+        nb.appendChild(ct);
+        nb.setAttribute("aria-label", cdWord(n) + " " + (nx.sp ? nx.sp.title : nx.x.place) + ", " + when(nx.iso) + ". Buksan ang detalye");
+        nb.addEventListener("click", function () { openDay(nx.iso, nb); });
+        listEl.appendChild(nb);
+      }
+      if (!calSet.length) {
+        if (o.empty) listEl.appendChild(txt("p", "cal-empty", "WALA PA TAYONG NAKATAKDANG DATE.\nPUMILI KA NA SA DATE TAYO!"));
+      } else {
+        var up = calSet.filter(function (x) { return x.date >= ti; }), past = calSet.filter(function (x) { return x.date < ti; }).reverse();
+        up.concat(past).slice(0, o.list).forEach(function (x) {
+          var isPast = x.date < ti, tags = [statusText(x)];
+          if (isPast && statusOf(x) === "confirmed") tags = [x.mem ? "MAY ALAALA NA" : "DAGDAGAN NG ALAALA"];
+          var it = item({ iso: x.date, title: when(x.date), line: [x.place, x.time].filter(Boolean).join(" · "), tags: tags });
+          var mu = mapUrl(x);
+          if (mu) {
+            var ma = txt("a", "ci-map", "TINGNAN SA MAPA");
+            ma.href = mu; ma.target = "_blank"; ma.rel = "noopener";
+            ma.setAttribute("aria-label", "Tingnan ang " + x.place + " sa Google Maps (bubukas sa bagong tab)");
+            it.appendChild(ma);
+          }
+          listEl.appendChild(it);
+        });
+      }
+      var sps = upcomingSpecials(3).filter(function (s) { return !(nx && nx.sp && nx.iso === s.iso && nx.sp.kind === s.kind); }).slice(0, 2);
+      if (sps.length) {
+        listEl.appendChild(txt("p", "cal-sub", "MGA ESPESYAL NA ARAW"));
+        sps.forEach(function (s) {
+          listEl.appendChild(item({ iso: s.iso, ring: s.kind === "ms", title: when(s.iso), line: s.title, tags: [cdWord(daysTo(s.iso))] }));
+        });
       }
     }
+
+    function draw() { drawGrid(); drawList(); }
     var api = { reset: function () { view.y = calHome.y; view.m = calHome.m; draw(); } };
     calViews.push(api);
     return api;
@@ -1195,12 +1397,13 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
     cells.forEach(function (c, idx) {
       var d = mk("span", "mc-d");
       if (c) {
-        var iso = isoOf(calHome.y, calHome.m, c);
+        var iso = isoOf(calHome.y, calHome.m, c), sp = specialsFor(iso);
         d.textContent = c;
         if (idx % 7 === 0) d.classList.add("sun");
         if (iso < ti) d.classList.add("past");
         if (iso === ti) d.classList.add("today");
-        if (calMap[iso]) { d.classList.add("set"); n++; d.appendChild(heartMark(calMap[iso].sent, k++)); }
+        if (calMap[iso]) { d.classList.add("set"); n++; d.appendChild(heartMark(calMap[iso], k++)); }
+        if (sp.length) { d.classList.add("sp"); d.appendChild(spDot(sp)); }
       }
       g.appendChild(d);
     });
@@ -1217,6 +1420,279 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
     drawMini();
   }
 
+  /* ---- the day sheet: everything about one day (the date, the special day, what to bring, the memory) ---- */
+  var PL = null, plP = null, ddToken = 0;
+  function loadPlaces() {
+    if (PL) return Promise.resolve(PL);
+    if (!plP) {
+      plP = fetch("/date/places.json").then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+        PL = j && j.places ? j : null;
+        return PL;
+      }).catch(function () { plP = null; return null; });
+    }
+    return plP;
+  }
+  function placeFor(x) {
+    if (!PL) return null;
+    if (x.pid && PL.places[x.pid]) return PL.places[x.pid];
+    var nm = String(x.place || "").trim().toLowerCase(), k;
+    for (k in PL.places) if (String(PL.places[k].name).toLowerCase() === nm) return PL.places[k];
+    return null;
+  }
+  function btnLink(label, href, cls, blank) {
+    var a = txt("a", "dd-btn" + (cls ? " " + cls : ""), label);
+    a.href = href;
+    if (blank) { a.target = "_blank"; a.rel = "noopener"; }
+    return a;
+  }
+  function section(head) {
+    var s = mk("div", "dd-sec");
+    if (head) s.appendChild(txt("p", "dd-h", head));
+    return s;
+  }
+  function listOf(items) {
+    var ul = mk("ul", "dd-list");
+    items.forEach(function (t) { ul.appendChild(txt("li", "", t)); });
+    return ul;
+  }
+  function cardTop(kind, bigText, sub, n) {
+    var top = mk("div", "dd-top"), l = mk("div", "dd-tl");
+    l.appendChild(txt("span", "k", kind));
+    l.appendChild(txt("span", "big", bigText));
+    l.appendChild(txt("span", "dd-wd", sub));
+    top.appendChild(l);
+    if (n >= 0) top.appendChild(txt("span", "dd-chip", cdWord(n)));
+    return top;
+  }
+  function fullDay(iso) { var d = dateOf(iso); return { big: MONTHS[d.getMonth()] + " " + d.getDate(), sub: DAYS[d.getDay()] + " · " + d.getFullYear() }; }
+
+  function specialCard(iso, sp, n, planned) {
+    var card = mk("section", "dd sp"), fd = fullDay(iso);
+    card.appendChild(cardTop("ESPESYAL NA ARAW", sp.title, fd.big + " · " + fd.sub, n));
+    var s = section();
+    s.appendChild(txt("p", "dd-place", sp.sub));
+    if (n >= 0 && !planned) {
+      s.appendChild(txt("p", "dd-note", "WALA PA TAYONG DATE SA ARAW NA ITO. GUSTO MO BANG PLANUHIN?"));
+      var row = mk("div", "dd-links");
+      row.appendChild(btnLink("DATE TAYO", "/date", "red"));
+      s.appendChild(row);
+    }
+    card.appendChild(s);
+    return card;
+  }
+
+  function dateCard(x, n, flash) {
+    var card = mk("section", "dd"), proposed = statusOf(x) === "proposed", past = n < 0, fd = fullDay(x.date);
+    card.appendChild(cardTop(proposed ? "PLANO NI CHICO" : "DATE NATIN", fd.big, fd.sub, n));
+
+    var s1 = section();
+    s1.appendChild(txt("p", "dd-place", x.place || "DATE NATIN"));
+    if (x.area) s1.appendChild(txt("p", "dd-sub", x.area));
+    if (x.time) s1.appendChild(txt("p", "dd-meta", x.time));
+    s1.appendChild(txt("p", "dd-stat", past ? "NAKARAAN NA" : statusText(x)));
+    if (x.note) s1.appendChild(txt("p", "dd-note", x.note));
+    var links = mk("div", "dd-links");
+    if (mapUrl(x)) {
+      links.appendChild(btnLink("TINGNAN SA MAPA", mapUrl(x), "", true));
+      links.appendChild(btnLink("PAANO PUMUNTA", dirUrl(x), "", true));
+    }
+    s1.appendChild(links);
+    card.appendChild(s1);
+
+    // what to do, the budget and what to bring: filled in when places.json arrives
+    var extra = mk("div", "dd-extra");
+    card.appendChild(extra);
+    var token = ddToken;
+    if (!past) loadPlaces().then(function () {
+      if (token !== ddToken) return;
+      var p = placeFor(x), pl = PL;
+      if (!pl) return;
+      if (p && p.highlights && p.highlights.length) { var a = section("ANO'NG GAGAWIN"); a.appendChild(listOf(p.highlights)); extra.appendChild(a); }
+      if (p && pl.tiers && pl.tiers[p.budget]) {
+        var t = pl.tiers[p.budget], b = section("BUDGET PARA SA DALAWA");
+        var bl = mk("p", "dd-budget"); bl.appendChild(txt("b", "", t.sign)); bl.appendChild(document.createTextNode(" · " + t.range.toUpperCase()));
+        b.appendChild(bl);
+        b.appendChild(txt("p", "dd-fine", pl.budgetNote));
+        extra.appendChild(b);
+      }
+      var c = section("DALHIN"); c.appendChild(listOf(p ? p.checklist : pl.generic)); c.appendChild(txt("p", "dd-fine", pl.checkNote)); extra.appendChild(c);
+    });
+
+    if (!past) {
+      var srv = serverEntryFor(x), rem = section("PAALALA");
+      rem.appendChild(txt("p", "dd-note", srv ? "I-SAVE SA CALENDAR PARA MAY ALARM: 1 ARAW AT 2 ORAS BAGO ANG DATE." : "I-SAVE SA CALENDAR SA DATE TAYO PARA MAY ALARM: 1 ARAW AT 2 ORAS BAGO ANG DATE."));
+      var cr = mk("div", "dd-links");
+      if (srv) {
+        cr.appendChild(btnLink("GOOGLE CALENDAR", CALAPI + "?id=" + encodeURIComponent(srv.id) + "&f=google", "", true));
+        cr.appendChild(btnLink("APPLE / OUTLOOK", CALAPI + "?id=" + encodeURIComponent(srv.id) + "&f=ics", ""));
+      } else cr.appendChild(btnLink("BUKSAN ANG DATE TAYO", "/date/?open=dates", ""));
+      rem.appendChild(cr);
+      card.appendChild(rem);
+      var ch = section();
+      var chr = mk("div", "dd-links");
+      chr.appendChild(btnLink(proposed ? "SAGUTIN SA DATE TAYO" : "PALITAN O I-CANCEL", "/date/?open=dates", proposed ? "red" : ""));
+      ch.appendChild(chr);
+      card.appendChild(ch);
+    } else if (statusOf(x) === "confirmed") {
+      card.appendChild(memorySection(x, flash));
+    }
+    return card;
+  }
+
+  /* ---- memories: one photo and a few words after the date ---- */
+  function shrinkPhoto(file) {
+    function draw(src, w, h) {
+      var steps = [[1, 0.84], [1, 0.72], [0.8, 0.72], [0.64, 0.66], [0.5, 0.6]], i, out = "";
+      for (i = 0; i < steps.length; i++) {
+        var s = Math.min(1, 1280 / Math.max(w, h)) * steps[i][0], cw = Math.max(1, Math.round(w * s)), ch = Math.max(1, Math.round(h * s));
+        var cv = document.createElement("canvas"); cv.width = cw; cv.height = ch;
+        var g = cv.getContext("2d"); g.fillStyle = "#fff"; g.fillRect(0, 0, cw, ch); g.drawImage(src, 0, 0, cw, ch);
+        out = cv.toDataURL("image/jpeg", steps[i][1]);
+        if (out.length <= 1100000) return out;
+      }
+      throw new Error("too big");
+    }
+    function viaImage() {
+      return new Promise(function (resolve, reject) {
+        var url = URL.createObjectURL(file), im = new Image();
+        im.onload = function () { try { resolve(draw(im, im.naturalWidth, im.naturalHeight)); } catch (e) { reject(e); } URL.revokeObjectURL(url); };
+        im.onerror = function () { URL.revokeObjectURL(url); reject(new Error("decode")); };
+        im.src = url;
+      });
+    }
+    if (window.createImageBitmap) {
+      return createImageBitmap(file, { imageOrientation: "from-image" }).catch(function () { return createImageBitmap(file); }).then(function (bm) {
+        var out = draw(bm, bm.width, bm.height);
+        if (bm.close) bm.close();
+        return out;
+      }).catch(viaImage);
+    }
+    return viaImage();
+  }
+
+  function refreshRemote() {
+    return fetch(SERVER, { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+      if (!j || j.ok !== true || !Array.isArray(j.dates)) return;
+      calRemote = j.dates; calRemoteRaw = JSON.stringify(j.dates);
+      try { localStorage.setItem(SKEY, calRemoteRaw); } catch (e) {}
+      renderCalendars();
+    }).catch(function () {});
+  }
+
+  function applyMemory(entry) {
+    calRemote = calRemote.map(function (e) { return e && e.id === entry.id ? entry : e; });
+    calRemoteRaw = JSON.stringify(calRemote);
+    try { localStorage.setItem(SKEY, calRemoteRaw); } catch (e) {}
+    renderCalendars();
+  }
+
+  function memorySection(x, flash) {
+    var sec = section(), srv = serverEntryFor(x), mem = (srv && srv.mem) || x.mem || null;
+    var h = txt("p", "dd-h mem-h", "ALAALA NG DATE NATIN"); h.tabIndex = -1; sec.appendChild(h);
+    var status = txt("p", "dd-msg", flash || ""); status.setAttribute("role", "status");
+    var form = mk("div", "dd-form"), hasMem = !!(mem && (mem.photo || mem.note));
+
+    if (hasMem) {
+      if (mem.photo) {
+        var fig = mk("figure", "dd-photo"), im = mk("img");
+        im.alt = "Litrato ng date natin sa " + (x.place || "date natin"); im.loading = "lazy"; im.decoding = "async";
+        im.src = PHOTO + "?k=" + encodeURIComponent(mem.photo);
+        fig.appendChild(im);
+        sec.appendChild(fig);
+      }
+      if (mem.note) sec.appendChild(txt("p", "dd-note mem-note", mem.note));
+    } else {
+      sec.appendChild(txt("p", "dd-note", "WALA PA TAYONG ALAALA DITO. MAGLAGAY KA NG LITRATO, O KAHIT ISANG LINYA LANG."));
+    }
+    var toggle = null;
+    if (hasMem) {
+      toggle = txt("button", "dd-btn", "PALITAN ANG ALAALA"); toggle.type = "button";
+      toggle.setAttribute("aria-expanded", "false");
+      var tr = mk("div", "dd-links"); tr.appendChild(toggle); sec.appendChild(tr);
+      form.hidden = true;
+      toggle.addEventListener("click", function () {
+        form.hidden = !form.hidden; toggle.setAttribute("aria-expanded", form.hidden ? "false" : "true");
+        if (!form.hidden) ta.focus();
+      });
+    }
+
+    var pick = mk("label", "dd-btn dd-file"), fi = mk("input"); fi.type = "file"; fi.accept = "image/*";
+    pick.appendChild(fi); pick.appendChild(document.createTextNode(hasMem && mem.photo ? "IBANG LITRATO" : "PUMILI NG LITRATO"));
+    var prev = mk("img", "dd-prev"); prev.alt = ""; prev.hidden = true;
+    var ta = mk("textarea", "dd-ta"); ta.maxLength = 300; ta.rows = 3; ta.value = (mem && mem.note) || "";
+    ta.placeholder = "ISULAT MO KUNG ANO ANG NAGUSTUHAN MO";
+    ta.setAttribute("aria-label", "Isulat ang alaala ng date natin");
+    var count = txt("p", "dd-count", ta.value.length + " / 300");
+    ta.addEventListener("input", function () { count.textContent = ta.value.length + " / 300"; });
+    var save = txt("button", "dd-btn red", "I-SAVE ANG ALAALA"); save.type = "button";
+    var photoData = "";
+    if (!srv) { save.disabled = true; status.textContent = "SANDALI LANG, NAG-SA-SYNC PA ANG DATE NATIN. SUBUKAN ULIT MAMAYA."; }
+    fi.addEventListener("change", function () {
+      var f = fi.files && fi.files[0];
+      if (!f) return;
+      status.textContent = "SANDALI LANG...";
+      shrinkPhoto(f).then(function (data) {
+        photoData = data; prev.src = data; prev.hidden = false; status.textContent = "";
+      }).catch(function () { photoData = ""; prev.hidden = true; status.textContent = "HINDI MABASA ANG LITRATO. SUBUKAN ANG IBA."; });
+    });
+    var row = mk("div", "dd-links"); row.appendChild(pick); form.appendChild(row); form.appendChild(prev); form.appendChild(ta); form.appendChild(count);
+    var sr = mk("div", "dd-links"); sr.appendChild(save); form.appendChild(sr);
+    save.addEventListener("click", function () {
+      var note = ta.value.trim();
+      if (!srv || (!photoData && !note)) { status.textContent = "MAGLAGAY KA NG LITRATO O KAHIT ISANG LINYA."; return; }
+      save.disabled = true; status.textContent = "SINESAVE...";
+      function post(id) {
+        var body = { id: id }; if (photoData) body.photo = photoData; if (note) body.note = note;
+        return fetch(MEMORY, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) })
+          .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { status: r.status, j: j }; }); });
+      }
+      post(srv.id)
+        // the date may have been saved again under a new id since this page last asked the server: ask once more and retry
+        .then(function (res) {
+          if (res.status !== 404) return res;
+          return refreshRemote().then(function () { var s2 = serverEntryFor(x); return s2 && s2.id !== srv.id ? post(s2.id) : res; });
+        })
+        .then(function (res) {
+          if (res.j && res.j.ok === true && res.j.entry) {
+            applyMemory(res.j.entry);
+            buildDay(x.date, "NAI-SAVE NA ANG ALAALA NATIN.");
+            var hh = $("ddBody").querySelector(".mem-h"); if (hh) hh.focus({ preventScroll: true });
+            return;
+          }
+          save.disabled = false;
+          status.textContent = res.status === 409 ? "MAGAGAWA LANG ITO PAGKATAPOS NG DATE." : res.status === 400 && res.j && res.j.why === "photo" ? "HINDI GUMANA ANG LITRATO. SUBUKAN ANG IBA." : "HINDI NAI-SAVE. SUBUKAN ULIT MAMAYA.";
+        }).catch(function () { save.disabled = false; status.textContent = "HINDI NAI-SAVE. SUBUKAN ULIT MAMAYA."; });
+    });
+    sec.appendChild(form);
+    sec.appendChild(status);
+    return sec;
+  }
+
+  function buildDay(iso, flash) {
+    var body = $("ddBody"), n = daysTo(iso), sps = specialsFor(iso), items = calSet.filter(function (x) { return x.date === iso; });
+    ddToken++;
+    body.textContent = "";
+    sps.forEach(function (sp) { body.appendChild(specialCard(iso, sp, n, items.length > 0)); });
+    items.forEach(function (x) { body.appendChild(dateCard(x, n, flash)); });
+    if (!sps.length && !items.length) body.appendChild(txt("p", "cal-empty", "WALA PANG LAMAN ANG ARAW NA ITO."));
+  }
+
+  function openDay(iso, origin) {
+    var prev = panel;
+    if (prev && (prev.el.id !== "calSheet" || prev.closing)) return;
+    buildDay(iso);
+    var el = $("dateSheet");
+    $("ddBody").scrollTop = 0;
+    if (!prev) { openPanel(el, origin); return; }
+    // opened from the calendar sheet: it steps aside, and BALIK brings it back
+    clearAnimsOn(prev.el); prev.el.hidden = true;
+    clearAnimsOn(el);
+    panel = { el: el, origin: null, opener: origin || null, fromReader: prev.fromReader, closing: false, back: prev };
+    el.hidden = false;
+    if (!reduce) el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 220, easing: "ease-out" });
+    var cb = el.querySelector("[data-close]"); if (cb) cb.focus({ preventScroll: true });
+  }
+
   makeCal($("calWrap"), { list: 4, empty: false });
   makeCal($("csBody"), { list: 12, empty: true });
 
@@ -1229,7 +1705,7 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
 
   renderCalendars();
   // dates live on the server too: pull them, and send up any this phone has that the server does not know yet
-  var pulling = false, lastPull = 0;
+  var pulling = false, lastPull = 0, healed = {};
   function pullRemote(force) {
     var now = Date.now();
     if (pulling || (!force && now - lastPull < 12000) || typeof fetch !== "function") return;
@@ -1244,20 +1720,23 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
         renderCalendars();
       }
       if (!j.enabled) return;
-      // known by date + place, not by plan id: the server keeps one entry per date, so a same-date copy under another id is not "missing"
-      var known = {};
-      j.dates.forEach(function (x) {
-        if (!x || typeof x.date !== "string") return;
-        var s = slotOf(x); known[s] = { sent: !!(x.sent || (known[s] && known[s].sent)) };
-      });
-      var sentUp = {};
-      localList().slice().sort(function (a, b) { return (b && b.sent ? 1 : 0) - (a && a.sent ? 1 : 0); }).filter(function (x) {
-        if (!x || typeof x.id !== "string" || typeof x.date !== "string") return false;
-        var s = slotOf(x), k = known[s];
-        if (sentUp[s] || (k && !(x.sent && !k.sent))) return false;
-        sentUp[s] = 1;
-        return true;
-      }).slice(0, 10).forEach(function (x) {
+      // what the server holds, by date + place (not plan id: it keeps one entry per date). A cancelled one counts: it is the server's answer for that date.
+      var srv = {};
+      j.dates.forEach(function (x) { if (validEntry(x)) srv[slotOf(x)] = x; });
+      // This phone has something the server lacks (it was offline when she saved): send it up, once per date per visit.
+      // A live copy is never sent over a cancel the server holds, and a cancel is only sent over a live copy that is older than it.
+      var send = localList().filter(function (x) {
+        if (!validEntry(x) || typeof x.id !== "string") return false;
+        var s = slotOf(x), k = srv[s];
+        if (healed[s]) return false;
+        if (isCancelled(x)) return !!k && !isCancelled(k) && (x.savedAt || 0) > (k.savedAt || 0);
+        if (!k) return true;
+        return !isCancelled(k) && !!x.sent && !k.sent;
+      }).sort(function (a, b) { return (b.sent ? 1 : 0) - (a.sent ? 1 : 0); });
+      send.slice(0, 10).forEach(function (x) {
+        var s = slotOf(x);
+        if (healed[s]) return;
+        healed[s] = 1;
         try {
           fetch(SERVER, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(x) }).then(function () { lastPull = 0; });
         } catch (e) {}
