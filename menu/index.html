@@ -994,7 +994,9 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
   var HEART_D = "M20 11 C17 4 6 3 4.5 13 C3.5 21 12 27 20.5 33.5 C29 27 37.5 21 35.5 12.5 C34 3.5 23 4 20 11.5 C19.5 13 18.8 14.5 18 16";
   // Dates that should always show a heart on every device, whatever is in her browser storage.
   // Same shape Date Tayo saves: { id, date: "YYYY-MM-DD", time, place, area, vibe, sent }
-  var SEEDED = [];
+  var SEEDED = [
+    { id: "seed-2026-11-17-binondo", date: "2026-11-17", time: "12:00 PM", place: "Binondo", area: "Manila", vibe: "Cultural & Culinary Food Crawls", sent: true, savedAt: 1 }
+  ];
   var SERVER = "/date/api/dates", SKEY = "chica.dates.srv";
   var calSet = [], calMap = {}, calRaw = null, calHome = null, calViews = [], calRemote = [], calRemoteRaw = "";
   try { var cached = JSON.parse(localStorage.getItem(SKEY) || "[]"); if (Array.isArray(cached)) { calRemote = cached; calRemoteRaw = JSON.stringify(cached); } } catch (e) {}
@@ -1013,7 +1015,10 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
   function readSet() {
     // dates saved on this phone, dates the server remembers (so Chico sees them too), and any pinned in SEEDED; newest wins per plan
     var byId = {}, all = [];
-    localList(true).concat(calRemote, SEEDED).forEach(function (x) {
+    var real = {}, mine = localList(true);
+    mine.concat(calRemote).forEach(function (x) { if (x && x.date) real[x.date + "|" + String(x.place || "").toLowerCase()] = 1; });
+    var pinned = SEEDED.filter(function (x) { return !real[x.date + "|" + String(x.place || "").toLowerCase()]; });
+    mine.concat(calRemote, pinned).forEach(function (x) {
       if (!x || typeof x !== "object") return;
       var k = x.id || (x.date + "|" + (x.place || ""));
       var c = byId[k];
