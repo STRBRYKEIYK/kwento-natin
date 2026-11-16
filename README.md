@@ -39,7 +39,7 @@ The proxies are the `rewrites` in `vercel.json`. To add something to the library
 
 A static page (`menu/oras/index.html`) that reads `menu/oras/messages.json`. A little panel holds the toggles (the hour, long or short, AM or PM, order, a search box, Surprise me) and a big panel lists the messages by day. `/oras#1010` opens on one hour; at one of the times of day the page opens on that hour by itself.
 
-`messages.json` is made from the WhatsApp export with `node scripts/build-oras.mjs path/to/timed-messages.json` (the export itself is not kept here, this repo is public). The script leaves out drafts (unless their id is in `SENT`, for a draft that was sent after the export), messages that name other people (`mentionsOthers`) and the ids in its `HOLD` list; pass `--include-others` to put the others back.
+`messages.json` is made from the WhatsApp export with `node scripts/build-oras.mjs path/to/timed-messages.json` (the export itself is not kept here, this repo is public). The script leaves out drafts (unless their id is in `SENT`, with the text that was really sent, for a draft sent after the export), messages that name other people (`mentionsOthers`) and the ids in its `HOLD` list; pass `--include-others` to put the others back.
 
 ## Content and behavior
 
