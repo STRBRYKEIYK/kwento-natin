@@ -11,7 +11,7 @@ npm ci
 npm run dev
 ```
 
-Open the local URL printed by Vite. React source needs the dev server; opening `index.html` directly does not run the app.
+Open the local URL printed by Vite and add `/third/` (the letter is served under that path). React source needs the dev server; opening `index.html` directly does not run the app.
 
 ```sh
 npm test
@@ -19,7 +19,20 @@ npm run build
 npm run preview
 ```
 
-The production website is in `dist/`. Publish that directory on a static host. Relative asset URLs support hosting inside a project subdirectory.
+The production website is in `dist/`. `npm run build` builds the letter into `dist/third/` and copies the library menu from `menu/` to the root of `dist/`.
+
+## chica.keicodes.dev layout
+
+| Path | What | Where it comes from |
+| --- | --- | --- |
+| `/` | Library menu, grouped by category | `menu/index.html` (this repo) |
+| `/second` | Para sa Chica ko | proxied to the `para-sa-chica` project |
+| `/third` | Kwento Natin (this letter) | this repo, built by Vite with `base: '/third/'` |
+| `/555` | 5:55 Limang Pandama | proxied to `chica-date-scheduler` |
+| `/date` | Date scheduler | proxied to `chica-date-scheduler` |
+| `/vouchers` | Love Voucher Book | proxied to `love-voucher-book` |
+
+The proxies are the `rewrites` in `vercel.json`. To add something to the library, add a `<a class="card">` inside the right category section of `menu/index.html` (counts and the BAGO tag are filled in by the page itself), and add a rewrite here if it lives in another project.
 
 ## Content and behavior
 
