@@ -6,6 +6,9 @@
     { "source": "/date/five/", "destination": "https://chica-date-scheduler.vercel.app/date/five/index.html" },
     { "source": "/555", "destination": "https://chica-date-scheduler.vercel.app/date/five/index.html" },
     { "source": "/555/", "destination": "https://chica-date-scheduler.vercel.app/date/five/index.html" },
-    { "source": "/date/:path+", "destination": "https://chica-date-scheduler.vercel.app/date/:path+" }
+    { "source": "/date/:path+", "destination": "https://chica-date-scheduler.vercel.app/date/:path+" },
+    { "source": "/vouchers", "destination": "https://love-voucher-book.vercel.app/vouchers" },
+    { "source": "/vouchers/", "destination": "https://love-voucher-book.vercel.app/vouchers" },
+    { "source": "/vouchers/:path+", "destination": "https://love-voucher-book.vercel.app/vouchers/:path+" }
   ]
 }
