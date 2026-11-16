@@ -354,7 +354,11 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
 .panel .cal-cta::after{display:none}
 .panel .cal:active{translate:none;box-shadow:7px 7px 0 var(--ink)}
 .panel .cal-list{max-width:380px}
-.cal-item{width:100%;text-align:left;font:inherit}
+.cal-item{display:block;width:100%;padding:0;text-align:left;font:inherit}
+.cal-item .ci-main{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start;width:100%;padding:11px 12px;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.cal-item .ci-map{display:inline-block;margin:-4px 0 0 44px;padding:10px 12px 12px 0;font-size:10px;letter-spacing:.2em;font-weight:700;color:var(--ink);text-decoration:underline;text-decoration-color:var(--red);text-decoration-thickness:2px;text-underline-offset:4px}
+.cal-item .ci-map:hover{color:var(--red)}
+.cal-item .ci-map:focus-visible,.cal-item .ci-main:focus-visible{outline:2px solid var(--red);outline-offset:-2px}
 .cal-item .ci-h{display:block;line-height:0;margin-top:1px}
 .cal-item .ci-h svg{width:20px;height:20px;fill:var(--red)}
 .cal-item .ci-t{display:block;min-width:0}
@@ -1015,6 +1019,14 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
   // the same day at the same place is one date, whichever plan id (new tab, new session, other phone) saved it
   function slotOf(x) { return x.date + "|" + String(x.place || "").toLowerCase().replace(/\s+/g, " ").trim(); }
 
+  // Google Maps search for the place, same query Date Tayo puts in the calendar event ("Pasay or Malate" keeps the first)
+  function mapUrl(x) {
+    var place = String(x.place || "").trim();
+    if (!place) return "";
+    var area = String(x.area || "").split(/\s+or\s+/i)[0].trim();
+    return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent([place, area, "Philippines"].filter(Boolean).join(", "));
+  }
+
   function readSet() {
     // dates saved on this phone, dates the server remembers (so Chico sees them too), and any pinned in SEEDED;
     // newest wins per plan id, then repeats of the same date + place collapse into one
@@ -1135,17 +1147,25 @@ footer .fine{margin-top:26px;font-size:11px;letter-spacing:.22em;font-weight:700
         } else {
           var up = calSet.filter(function (x) { return x.date >= ti; }), past = calSet.filter(function (x) { return x.date < ti; }).reverse();
           up.concat(past).slice(0, o.list).forEach(function (x) {
-            var it = mk("button", "cal-item"); it.type = "button";
-            it.appendChild(mk("span", "ci-h", HEART));
+            var it = mk("div", "cal-item"), main = mk("button", "ci-main"); main.type = "button";
+            main.appendChild(mk("span", "ci-h", HEART));
             var tx = mk("span", "ci-t");
             tx.appendChild(txt("b", "", when(x.date)));
             var place = [x.place, x.time].filter(Boolean).join(" · ");
             if (place) tx.appendChild(txt("span", "", place));
             if (x.sent) tx.appendChild(txt("em", "", "NAIPADALA NA KAY CHICO"));
-            it.appendChild(tx);
-            it.addEventListener("click", function () {
+            main.appendChild(tx);
+            main.addEventListener("click", function () {
               view.y = +x.date.slice(0, 4); view.m = +x.date.slice(5, 7) - 1; draw();
             });
+            it.appendChild(main);
+            var mu = mapUrl(x);
+            if (mu) {
+              var ma = txt("a", "ci-map", "TINGNAN SA MAPA");
+              ma.href = mu; ma.target = "_blank"; ma.rel = "noopener";
+              ma.setAttribute("aria-label", "Tingnan ang " + x.place + " sa Google Maps (bubukas sa bagong tab)");
+              it.appendChild(ma);
+            }
             listEl.appendChild(it);
           });
         }
