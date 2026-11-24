@@ -5,6 +5,7 @@
   const configuredPage = source?.dataset.page || "library";
   const API = "https://chica.keicodes.dev/date/api/comments";
   const STORAGE = "chica.comments.access.v1";
+  const LOCK = "chica.comments.lock.v1";
   const MAX = 1200;
   const SLOTS = new Set(["1010", "1111", "1212", "111", "222", "333", "444", "555"]);
   const invitation = /^#comment-key=([A-Za-z0-9_-]{43})$/.exec(location.hash)?.[1] || "";
@@ -12,6 +13,7 @@
   if (configuredPage === "oras" && SLOTS.has(location.hash.slice(1))) currentPage = `oras-${location.hash.slice(1)}`;
   const readKey = () => { try { return localStorage.getItem(STORAGE) || ""; } catch { return ""; } };
   const saveKey = key => { try { key ? localStorage.setItem(STORAGE, key) : localStorage.removeItem(STORAGE); } catch { /* Access still works in this tab. */ } };
+  const lockEpoch = () => { try { return localStorage.getItem(LOCK) || ""; } catch { return ""; } };
   const make = (tag, className, text) => {
     const node = document.createElement(tag);
     if (className) node.className = className;
@@ -63,6 +65,7 @@
       this.next = null;
       this.generation = 0;
       this.pending = new Map();
+      this.confirmed = new Map();
     }
     connectedCallback() {
       if (this.initialized) return;
@@ -113,9 +116,9 @@
       this.content = make("div"); this.content.hidden = true;
       const identity = make("div", "identity");
       this.who = make("span", "who");
-      const change = make("button", "", "IBANG ACCESS"); change.type = "button";
-      change.addEventListener("click", () => this.lock());
-      identity.append(this.who, change);
+      this.change = make("button", "", "IBANG ACCESS"); this.change.type = "button";
+      this.change.addEventListener("click", () => this.lock({ clearDrafts: true }));
+      identity.append(this.who, this.change);
       this.form = make("form");
       const field = make("div", "field");
       const label = make("label", "label", "MENSAHE MO"); label.htmlFor = "notes-message";
@@ -151,9 +154,16 @@
       this.context.textContent = slot ? `${slot.slice(0, -2)}:${slot.slice(-2)} · Mga Oras Natin` : document.title.split(" · ")[0] || "Library ni Chico";
     }
     updateCount() { this.counter.textContent = `${this.textarea.value.length} / ${MAX}`; }
-    lock() {
+    lock({ forget = true, clearDrafts = false } = {}) {
       this.generation++;
-      saveKey(""); this.key = ""; this.viewer = null; this.comments = []; this.next = null;
+      if (clearDrafts && this.viewer) {
+        try {
+          for (const key of Object.keys(sessionStorage)) if ((key.startsWith("chica.comments.draft.") && key.endsWith(`.${this.viewer.author}`)) || (key.startsWith("chica.comments.pending.") && key.endsWith(`:${this.viewer.author}`))) sessionStorage.removeItem(key);
+        } catch { /* Browser storage may be unavailable. */ }
+        this.pending.clear();
+      }
+      if (forget) { try { localStorage.setItem(LOCK, crypto.randomUUID()); } catch { /* This tab still locks immediately. */ } saveKey(""); }
+      this.key = ""; this.viewer = null; this.draftScope = null; this.comments = []; this.next = null;
       this.gate.hidden = false; this.content.hidden = true; this.access.value = ""; this.textarea.value = "";
       this.status.textContent = ""; this.error.textContent = "";
       this.refresh.disabled = false; this.older.disabled = false; this.list.removeAttribute("aria-busy");
@@ -166,14 +176,15 @@
         const url = new URL(API); url.searchParams.set("page", page);
         if (before) url.searchParams.set("before", before);
         const response = await fetch(url, { method, headers: { authorization: `Bearer ${key}`, ...(body ? { "content-type": "application/json" } : {}) }, ...(body ? { body: JSON.stringify(body) } : {}), cache: "no-store", signal: controller.signal, credentials: "omit" });
-        const result = await response.json();
+        let result;
+        try { result = await response.json(); } catch { result = {}; }
         if (!response.ok || !result.ok) { const error = new Error(result.error || "network"); error.status = response.status; throw error; }
         return result;
       } finally { clearTimeout(timeout); }
     }
     async load(older = false) {
       if (!this.key || (older && !this.next)) return;
-      const generation = ++this.generation, page = this.page, key = this.key;
+      const generation = ++this.generation, page = this.page, key = this.key, epoch = lockEpoch();
       if (this.verifiedKey && key !== this.verifiedKey) { this.viewer = null; this.content.hidden = true; this.gate.hidden = false; }
       this.status.textContent = "BINUBUKLAT ANG MGA TALA…"; this.error.textContent = "";
       this.refresh.disabled = true; this.older.disabled = true;
@@ -181,12 +192,16 @@
       try {
         const result = await this.request("GET", page, null, older ? this.next : null, key);
         if (generation !== this.generation) return;
+        if (epoch !== lockEpoch()) { this.lock({ forget: false }); return; }
         this.viewer = result.viewer; this.verifiedKey = key; saveKey(key);
         this.access.value = ""; this.gate.hidden = true; this.content.hidden = false;
         this.who.textContent = `NAGSUSULAT BILANG ${result.viewer.name.toUpperCase()}`;
-        this.textarea.value = draft(page, result.viewer.author);
+        const scope = `${page}:${result.viewer.author}`;
+        if (scope !== this.draftScope) { this.textarea.value = draft(page, result.viewer.author); this.draftScope = scope; }
         this.updateCount();
-        this.comments = older ? [...this.comments, ...result.comments] : result.comments;
+        const confirmed = [...(this.confirmed.get(page)?.values() || [])];
+        this.comments = older ? [...this.comments, ...result.comments] : [...confirmed, ...result.comments];
+        this.comments.sort((a, b) => b.createdAt - a.createdAt);
         this.next = result.next;
         this.renderList();
         this.status.textContent = "";
@@ -194,7 +209,7 @@
         if (generation !== this.generation) return;
         this.status.textContent = "";
         if (error.status === 401) {
-          this.lock(); this.error.textContent = "Hindi nakilala ang access. Pakibuksan ang private link na para sa iyo.";
+          this.lock({ forget: key === readKey() }); this.error.textContent = "Hindi nakilala ang access. Pakibuksan ang private link na para sa iyo.";
         } else this.error.textContent = "Hindi muna mabuksan ang mga tala. Nakatabi pa ang draft mo. Subukan muli.";
       } finally {
         if (generation === this.generation) { this.refresh.disabled = false; this.older.disabled = false; this.list.removeAttribute("aria-busy"); }
@@ -211,8 +226,10 @@
         head.append(make("strong", comment.author === "chicaaa" ? "chicaaa" : "", comment.name));
         const time = make("time");
         const date = new Date(comment.createdAt);
-        time.dateTime = date.toISOString();
-        time.textContent = new Intl.DateTimeFormat("en-PH", { timeZone: "Asia/Manila", month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" }).format(date) + " · PH";
+        if (Number.isFinite(date.getTime())) {
+          time.dateTime = date.toISOString();
+          time.textContent = new Intl.DateTimeFormat("en-PH", { timeZone: "Asia/Manila", month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" }).format(date) + " · PH";
+        }
         head.append(time);
         article.append(head, make("p", "body", comment.text)); li.append(article); this.list.append(li);
       }
@@ -228,10 +245,13 @@
       if (!pending || pending.text !== text || !/^[a-f0-9-]{36}$/.test(pending.id || "")) pending = { id: uuid(), text };
       this.pending.set(scope, pending); pendingDraft(scope, pending);
       this.sending = true; this.submit.setAttribute("aria-disabled", "true"); this.submit.textContent = "INILALAGAY…"; this.textarea.readOnly = true;
+      this.change.disabled = true;
       this.error.textContent = ""; this.status.textContent = "Inilalagay ang tala mo…";
       try {
         const result = await this.request("POST", page, { page, ...pending }, null, key);
         this.pending.delete(scope); pendingDraft(scope, null); draft(page, viewer.author, "");
+        if (!this.confirmed.has(page)) this.confirmed.set(page, new Map());
+        this.confirmed.get(page).set(`${result.comment.author}:${result.comment.id}`, result.comment);
         if (page === this.page && key === this.key) {
           this.textarea.value = ""; this.updateCount();
           this.comments.unshift(result.comment); this.renderList();
@@ -240,11 +260,17 @@
       } catch (error) {
         if (page === this.page && key === this.key) {
           this.status.textContent = "";
-          if (error.status === 401) { this.lock(); this.error.textContent = "Pakibuksan muli ang private link mo. Nakatabi pa ang draft mo."; }
+          if (error.status === 401) { this.lock({ forget: key === readKey() }); this.error.textContent = "Pakibuksan muli ang private link mo. Nakatabi pa ang draft mo."; }
+          else if (error.status === 409) {
+            this.pending.delete(scope); pendingDraft(scope, null);
+            this.error.textContent = "Hindi na mababago ang dating tala. Nakatabi pa ang isinulat mo; ipadala muli bilang bagong tala.";
+          }
+          else if (error.status >= 400 && error.status < 500 && ![408, 429].includes(error.status)) this.error.textContent = "Hindi matanggap ang tala. Suriin ang mensahe o buksan muli ang private link mo. Nakatabi pa ang draft mo.";
           else this.error.textContent = "Hindi pa nakumpirma ang pag-save. Nakatabi pa ang isinulat mo; pindutin muli ang Ilagay sa pahina para subukan ulit.";
         }
       } finally {
         this.sending = false; this.submit.removeAttribute("aria-disabled"); this.submit.textContent = "ILAGAY SA PAHINA"; this.textarea.readOnly = false;
+        this.change.disabled = false;
       }
     }
   }
@@ -255,13 +281,14 @@
     document.querySelector("library-notes")?.setAttribute("page-key", currentPage);
   });
   const boot = () => {
-    if (invitation && /^#comment-key=/.test(location.hash)) history.replaceState(null, "", location.pathname + location.search);
-    if (document.querySelector("library-notes")) return;
-    const notes = document.createElement("library-notes"); notes.setAttribute("page-key", currentPage);
-    document.body.append(notes);
+    if (invitation && /^#comment-key=/.test(location.hash)) history.replaceState(history.state, "", location.pathname + location.search);
+    const existing = document.querySelector("library-notes");
+    const notes = existing || document.createElement("library-notes");
+    if (!notes.hasAttribute("page-key")) notes.setAttribute("page-key", currentPage);
+    if (!existing) document.body.append(notes);
     window.addEventListener("storage", event => {
       if (event.key !== STORAGE) return;
-      if (!event.newValue) notes.lock();
+      if (!event.newValue) notes.lock({ forget: false });
       else { notes.key = event.newValue; notes.load(); }
     });
   };

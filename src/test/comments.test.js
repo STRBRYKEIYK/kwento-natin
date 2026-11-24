@@ -97,4 +97,38 @@ describe("shared two-person notes", () => {
     notes.setAttribute("page-key", "ilychicaaa");
     await waitFor(() => expect(notes.textarea.value).toBe("12:12 draft"));
   });
+  it("does not wipe a visible draft on refresh when session storage is blocked", async () => {
+    mount(); await waitFor(() => expect(notes.viewer).not.toBeNull());
+    notes.textarea.value = "Keep the visible text";
+    const spy = vi.spyOn(Storage.prototype, "getItem").mockImplementation(() => { throw new Error("Storage blocked"); });
+    await notes.load();
+    expect(notes.textarea.value).toBe("Keep the visible text");
+    spy.mockRestore();
+  });
+  it("retains a confirmed note when a refresh returns an older list", async () => {
+    mount(); await waitFor(() => expect(notes.viewer).not.toBeNull());
+    notes.textarea.value = "Saved already";
+    fetch.mockImplementationOnce(async (_url, options) => response({ ok: true, comment: { ...JSON.parse(options.body), ...viewer, createdAt: Date.now() } }, 201));
+    await notes.send(); await notes.load();
+    expect(notes.list.textContent).toContain("Saved already");
+  });
+  it("a wrong candidate key does not remove valid access in other tabs", async () => {
+    mount(); await waitFor(() => expect(notes.viewer).not.toBeNull());
+    notes.key = "x".repeat(43);
+    fetch.mockResolvedValueOnce(response({ ok: false, error: "access" }, 401));
+    await notes.load();
+    expect(localStorage.getItem("chica.comments.access.v1")).toBe(key);
+  });
+  it("a late read cannot undo a newer cross-tab lock", async () => {
+    mount(); await waitFor(() => expect(notes.viewer).not.toBeNull());
+    let finish;
+    fetch.mockImplementationOnce(() => new Promise(resolve => { finish = resolve; }));
+    const loading = notes.load();
+    localStorage.setItem("chica.comments.lock.v1", "new-lock");
+    localStorage.removeItem("chica.comments.access.v1");
+    finish(response({ ok: true, viewer, comments: [], next: null }));
+    await loading;
+    expect(localStorage.getItem("chica.comments.access.v1")).toBeNull();
+    expect(notes.content.hidden).toBe(true);
+  });
 });
