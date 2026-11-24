@@ -134,7 +134,6 @@ footer{margin-top:34px;text-align:center}
   .chip,details.more summary svg{transition:none}
 }
 </style>
-<script src="https://chica.keicodes.dev/shared/comments.js" data-page="oras"></script>
 </head>
 <body>
 
@@ -343,7 +342,6 @@ footer{margin-top:34px;text-align:center}
   }
 
   function render() {
-    document.dispatchEvent(new CustomEvent("chica:comment-page", { detail: { page: S.slot ? "oras-" + S.slot.replace(":", "") : "oras" } }));
     updateChips();
     var list = filtered(), box = $("list"); box.textContent = "";
     var active = !!(S.slot || S.kind || S.ap || S.q);

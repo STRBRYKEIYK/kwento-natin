@@ -5,5 +5,4 @@ mkdirSync('dist/menu', { recursive: true });
 cpSync('menu/index.html', 'dist/index.html');
 cpSync('menu/img', 'dist/menu/img', { recursive: true });
 cpSync('menu/oras', 'dist/oras', { recursive: true });
-cpSync('public/shared', 'dist/shared', { recursive: true });
 console.log('menu copied to dist/');
