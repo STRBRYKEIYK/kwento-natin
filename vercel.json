@@ -70,15 +70,15 @@
     },
     {
       "source": "/ilychicaaa",
-      "destination": "https://chica-ilychicaaa.vercel.app/"
+      "destination": "https://chica-ilychicaaa.vercel.app/ilychicaaa/index.html"
     },
     {
       "source": "/ilychicaaa/",
-      "destination": "https://chica-ilychicaaa.vercel.app/"
+      "destination": "https://chica-ilychicaaa.vercel.app/ilychicaaa/index.html"
     },
     {
       "source": "/ilychicaaa/:path+",
-      "destination": "https://chica-ilychicaaa.vercel.app/:path+"
+      "destination": "https://chica-ilychicaaa.vercel.app/ilychicaaa/:path+"
     }
   ]
 }
