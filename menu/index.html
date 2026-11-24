@@ -147,6 +147,11 @@ h1 em{display:block;color:var(--red)}
 @keyframes draw{to{stroke-dashoffset:0}}
 @keyframes fillin{to{opacity:1}}
 
+/* camera icon on a date that already happened (has photos/videos in PETSA) */
+.dm{position:absolute;right:-1px;bottom:0;width:14px;height:14px;border-radius:50%;background:var(--ink);display:grid;place-items:center;z-index:1;pointer-events:none}
+.dm svg{width:9px;height:9px;fill:var(--paper);stroke:none}
+.d.done{opacity:1}
+
 .cal-list{display:grid;gap:8px;width:100%}
 .cal-item{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start;padding:11px 12px;border:1.5px solid var(--ink);background:var(--card);color:var(--ink)}
 .cal-item svg{width:20px;height:20px;fill:var(--red);margin-top:1px}
@@ -407,6 +412,7 @@ button.d{font:inherit;font-weight:700;font-size:13px;color:inherit;padding:0;wid
 .cal-key span{display:inline-flex;align-items:center;gap:5px}
 .cal-key i{display:block;width:6px;height:6px;border-radius:50%;background:var(--red)}
 .cal-key svg{width:11px;height:11px;fill:var(--red)}
+.dm-key{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--ink)}
 .cal-sub{margin:8px 0 0;font-size:9.5px;letter-spacing:.24em;font-weight:700;color:var(--mute)}
 .panel .cal-sub{color:rgba(243,243,240,.72)}
 .cal-item .ci-h.ring svg{fill:none;stroke:var(--red);stroke-width:2.4}
@@ -588,12 +594,11 @@ button.d{font:inherit;font-weight:700;font-size:13px;color:inherit;padding:0;wid
       { title: "5:55 · Limang Pandama", blurb: "Limang pandama, isang puso. Buksan mo isa-isa hanggang sa pang-anim.", href: "/555", made: "2026-11-16", stamp: "NOV 16", img: "/menu/img/oras.jpg", iw: 600, ih: 450 },
       { title: "12:12 · Para Kay Chicaaa", blurb: "Isang kanta mula sa puso at munting sulat para sa babaeng mahal ko. Para sa'yo, Chicaaa ko.", href: "/ilychicaaa", made: "2026-11-24", stamp: "NOV 24", img: "/menu/img/oras-1212.png", iw: 679, ih: 416 }
     ] },
-    { id: "petsa", no: "03", title: "PETSA", lines: ["PETSA"], ts: 0.2, sub: "MGA AYA, PLANO AT ALAALA", theme: "char", w: 58, h: 188, pages: [
-      { title: "Date Tayo", blurb: "Ako ang nag-aya, ikaw ang pipili ng vibe, lugar, araw at oras. Ako na ang bahala sa iba.", href: "/date", made: "2026-11-16", stamp: "NOV 16", img: "/menu/img/petsa.jpg", iw: 600, ih: 450 },
-      { title: "Agosto 8", blurb: "142 litrato at video. Ang unang date natin.", href: "/menu/petsa?d=0", made: "2026-08-08", stamp: "AGO 8", img: "/third/assets/photos/photo_1@08-08-2026_14-13-20_thumb.jpg", iw: 400, ih: 533 },
+    { id: "petsa", no: "03", title: "PETSA", lines: ["PETSA"], ts: 0.2, sub: "MGA ALAALA NG MGA DATE NATIN", theme: "char", w: 58, h: 188, pages: [
+      { title: "Agosto 6", blurb: "142 litrato at video. Ang unang date natin — anniversary natin.", href: "/menu/petsa?d=0", made: "2026-08-06", stamp: "AGO 6", img: "/third/assets/photos/photo_1@08-08-2026_14-13-20_thumb.jpg", iw: 400, ih: 533 },
       { title: "Agosto 13", blurb: "21 litrato.", href: "/menu/petsa?d=1", made: "2026-08-13", stamp: "AGO 13", img: "/third/assets/photos/photo_146@13-08-2026_19-53-12_thumb.jpg", iw: 400, ih: 533 },
       { title: "Agosto 16", blurb: "14 litrato at video.", href: "/menu/petsa?d=2", made: "2026-08-16", stamp: "AGO 16", img: "/third/assets/photos/photo_167@16-08-2026_18-54-42_thumb.jpg", iw: 400, ih: 533 },
-      { title: "Setyembre 5", blurb: "Late birthday celebration mo. 22 litrato at video.", href: "/menu/petsa?d=3", made: "2026-09-05", stamp: "SET 5", img: "/third/assets/photos/photo_187@05-09-2026_04-00-05_thumb.jpg", iw: 400, ih: 533 },
+      { title: "Setyembre 4", blurb: "Late birthday celebration mo. 22 litrato at video.", href: "/menu/petsa?d=3", made: "2026-09-04", stamp: "SET 4", img: "/third/assets/photos/photo_187@05-09-2026_04-00-05_thumb.jpg", iw: 400, ih: 533 },
       { title: "Setyembre 11", blurb: "Monthsary at mga regalo. 69 litrato.", href: "/menu/petsa?d=4", made: "2026-09-11", stamp: "SET 11", img: "/third/assets/photos/photo_206@11-09-2026_22-29-43_thumb.jpg", iw: 400, ih: 533 },
       { title: "Oktubre 1", blurb: "7 litrato.", href: "/menu/petsa?d=5", made: "2026-10-01", stamp: "OKT 1", img: "/third/assets/photos/photo_279@01-10-2026_22-29-07_thumb.jpg", iw: 400, ih: 533 },
       { title: "Oktubre 5", blurb: "27 litrato.", href: "/menu/petsa?d=6", made: "2026-10-05", stamp: "OKT 5", img: "/third/assets/photos/photo_286@05-10-2026_07-05-29_thumb.jpg", iw: 400, ih: 533 },
@@ -1197,6 +1202,28 @@ button.d{font:inherit;font-weight:700;font-size:13px;color:inherit;padding:0;wid
     return null;
   }
 
+  var PETSA_DATES = [
+    {iso:"2026-08-06",d:0,label:"AGOSTO 6",blurb:"Ang unang date natin"},
+    {iso:"2026-08-13",d:1,label:"AGOSTO 13",blurb:""},
+    {iso:"2026-08-16",d:2,label:"AGOSTO 16",blurb:""},
+    {iso:"2026-09-04",d:3,label:"SETYEMBRE 4",blurb:"Late birthday celebration mo"},
+    {iso:"2026-09-11",d:4,label:"SETYEMBRE 11",blurb:"Monthsary at mga regalo"},
+    {iso:"2026-10-01",d:5,label:"OKTUBRE 1",blurb:""},
+    {iso:"2026-10-05",d:6,label:"OKTUBRE 5",blurb:""},
+    {iso:"2026-10-10",d:7,label:"OKTUBRE 10",blurb:""},
+    {iso:"2026-10-11",d:8,label:"OKTUBRE 11",blurb:""},
+    {iso:"2026-10-18",d:9,label:"OKTUBRE 18",blurb:""},
+    {iso:"2026-10-20",d:10,label:"OKTUBRE 20",blurb:"Yung saya na nauwi natin pareho"},
+    {iso:"2026-10-29",d:11,label:"OKTUBRE 29",blurb:"Isa pang frame, isa pang dahilan para ngumiti"},
+    {iso:"2026-11-03",d:12,label:"NOBYEMBRE 3",blurb:""},
+    {iso:"2026-11-05",d:13,label:"NOBYEMBRE 5",blurb:"Sana kasama ka namin, asawa"},
+    {iso:"2026-11-12",d:14,label:"NOBYEMBRE 12",blurb:""},
+    {iso:"2026-11-19",d:15,label:"NOBYEMBRE 19",blurb:""},
+    {iso:"2026-11-23",d:16,label:"NOBYEMBRE 23",blurb:""}
+  ];
+  var petsaMap = {};
+  PETSA_DATES.forEach(function(p){ petsaMap[p.iso] = p; });
+
   /* ---- our special days ----
      Anniversary: August 6 (2026). Monthsary: the 6th of every month, the first was September 6, 2026. Her birthday: September 2, 2002. */
   function specialsFor(iso) {
@@ -1285,7 +1312,7 @@ button.d{font:inherit;font-weight:700;font-size:13px;color:inherit;padding:0;wid
       '<button type="button" data-d="1" aria-label="Susunod na buwan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>' +
       '</span></span></div>' +
       '<div class="cal-body"><div class="cal-wd" aria-hidden="true"><span>LIN</span><span>LUN</span><span>MAR</span><span>MIY</span><span>HUW</span><span>BIY</span><span>SAB</span></div><div class="cal-grid"></div>' +
-      '<p class="cal-key" aria-hidden="true"><span>' + HEART + 'DATE NATIN</span><span><i></i>ESPESYAL NA ARAW</span></p></div>' +
+      '<p class="cal-key" aria-hidden="true"><span>' + HEART + 'DATE NATIN</span><span><i></i>ESPESYAL NA ARAW</span><span><b class="dm-key"></b>NAGKITA TAYO</span></p></div>' +
       '<a class="cal-cta" href="/date" aria-label="Date Tayo: pumili ka ng araw"><span class="cta-t">DATE TAYO · PUMILI KA NG ARAW</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>';
     host.appendChild(card);
     if (listEl) host.appendChild(listEl);
@@ -1313,19 +1340,20 @@ button.d{font:inherit;font-weight:700;font-size:13px;color:inherit;padding:0;wid
       for (i = 0; i < cells.length; i += 7) {
         var wk = mk("div", "wk");
         for (j = 0; j < 7; j++) {
-          var n = cells[i + j], iso = n ? isoOf(view.y, view.m, n) : "", c = iso ? calMap[iso] : null, sp = iso ? specialsFor(iso) : [];
-          var d = mk(c || sp.length ? "button" : "span", "d");
-          if (c || sp.length) {
+          var n = cells[i + j], iso = n ? isoOf(view.y, view.m, n) : "", c = iso ? calMap[iso] : null, sp = iso ? specialsFor(iso) : [], pd = iso ? petsaMap[iso] : null;
+          var d = mk(c || sp.length || pd ? "button" : "span", "d");
+          if (c || sp.length || pd) {
             d.type = "button"; d.setAttribute("data-iso", iso); d.classList.add("tap");
-            d.setAttribute("aria-label", when(iso) + ", " + [c ? "may date tayo" : "", sp.length ? sp[0].title : ""].filter(Boolean).join(", ") + ". Buksan ang detalye");
+            d.setAttribute("aria-label", when(iso) + ", " + [pd ? "nagkita tayo" : "", c ? "may date tayo" : "", sp.length ? sp[0].title : ""].filter(Boolean).join(", ") + ". Buksan ang detalye");
           } else d.setAttribute("aria-hidden", "true");
           if (n) {
             d.textContent = n;
             if (j === 0) d.classList.add("sun");
-            if (iso < ti) d.classList.add("past");
+            if (iso < ti && !pd) d.classList.add("past");
             if (iso === ti) d.classList.add("today");
             if (c) { d.classList.add("set"); d.appendChild(heartMark(c, k++)); }
             if (sp.length) { d.classList.add("sp"); d.appendChild(spDot(sp)); }
+            if (pd) { d.classList.add("done"); var dm = mk("span","dm",'<svg viewBox="0 0 24 24"><path d="M9.5 4h5l1.5 2H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3L9.5 4z"/><circle cx="12" cy="12.5" r="3.5"/></svg>'); d.appendChild(dm); }
           }
           wk.appendChild(d);
         }
@@ -1419,13 +1447,14 @@ button.d{font:inherit;font-weight:700;font-size:13px;color:inherit;padding:0;wid
     cells.forEach(function (c, idx) {
       var d = mk("span", "mc-d");
       if (c) {
-        var iso = isoOf(calHome.y, calHome.m, c), sp = specialsFor(iso);
+        var iso = isoOf(calHome.y, calHome.m, c), sp = specialsFor(iso), pd = petsaMap[iso];
         d.textContent = c;
         if (idx % 7 === 0) d.classList.add("sun");
-        if (iso < ti) d.classList.add("past");
+        if (iso < ti && !pd) d.classList.add("past");
         if (iso === ti) d.classList.add("today");
         if (calMap[iso]) { d.classList.add("set"); n++; d.appendChild(heartMark(calMap[iso], k++)); }
         if (sp.length) { d.classList.add("sp"); d.appendChild(spDot(sp)); }
+        if (pd) d.classList.add("done");
       }
       g.appendChild(d);
     });
@@ -1690,13 +1719,27 @@ button.d{font:inherit;font-weight:700;font-size:13px;color:inherit;padding:0;wid
     return sec;
   }
 
+  function petsaCard(pd) {
+    var card = mk("section", "dd"), fd = fullDay(pd.iso);
+    card.appendChild(cardTop("NAGKITA TAYO", fd.big, fd.sub, -1));
+    var s = section();
+    s.appendChild(txt("p", "dd-place", pd.blurb || "DATE NATIN"));
+    s.appendChild(txt("p", "dd-stat", "NANGYARI NA — MAY LITRATO AT ALAALA"));
+    var row = mk("div", "dd-links");
+    row.appendChild(btnLink("TINGNAN ANG MGA LITRATO", "/menu/petsa?d=" + pd.d, "red"));
+    s.appendChild(row);
+    card.appendChild(s);
+    return card;
+  }
+
   function buildDay(iso, flash) {
-    var body = $("ddBody"), n = daysTo(iso), sps = specialsFor(iso), items = calSet.filter(function (x) { return x.date === iso; });
+    var body = $("ddBody"), n = daysTo(iso), sps = specialsFor(iso), items = calSet.filter(function (x) { return x.date === iso; }), pd = petsaMap[iso];
     ddToken++;
     body.textContent = "";
+    if (pd) body.appendChild(petsaCard(pd));
     sps.forEach(function (sp) { body.appendChild(specialCard(iso, sp, n, items.length > 0)); });
     items.forEach(function (x) { body.appendChild(dateCard(x, n, flash)); });
-    if (!sps.length && !items.length) body.appendChild(txt("p", "cal-empty", "WALA PANG LAMAN ANG ARAW NA ITO."));
+    if (!sps.length && !items.length && !pd) body.appendChild(txt("p", "cal-empty", "WALA PANG LAMAN ANG ARAW NA ITO."));
   }
 
   function openDay(iso, origin) {

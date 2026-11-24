@@ -79,6 +79,14 @@
     {
       "source": "/ilychicaaa/:path+",
       "destination": "https://chica-ilychicaaa.vercel.app/ilychicaaa/:path+"
+    },
+    {
+      "source": "/menu/petsa",
+      "destination": "/menu/petsa/index.html"
+    },
+    {
+      "source": "/menu/petsa/",
+      "destination": "/menu/petsa/index.html"
     }
   ]
 }
