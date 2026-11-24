@@ -87,6 +87,14 @@
     {
       "source": "/menu/petsa/",
       "destination": "/menu/petsa/index.html"
+    },
+    {
+      "source": "/1212-stars",
+      "destination": "/1212-stars/index.html"
+    },
+    {
+      "source": "/1212-stars/",
+      "destination": "/1212-stars/index.html"
     }
   ]
 }
