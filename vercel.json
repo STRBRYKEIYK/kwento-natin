@@ -67,6 +67,18 @@
     {
       "source": "/second/:path+",
       "destination": "https://para-sa-chica.vercel.app/second/:path+"
+    },
+    {
+      "source": "/ilychicaaa",
+      "destination": "https://chica-ilychicaaa.vercel.app/"
+    },
+    {
+      "source": "/ilychicaaa/",
+      "destination": "https://chica-ilychicaaa.vercel.app/"
+    },
+    {
+      "source": "/ilychicaaa/:path+",
+      "destination": "https://chica-ilychicaaa.vercel.app/:path+"
     }
   ]
 }
