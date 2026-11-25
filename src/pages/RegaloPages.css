@@ -1,0 +1,366 @@
+/* ── Regalo Pages shared styles ── */
+
+.regalo-page {
+  --gold: #c9a84c;
+  --gold-light: #e8d48b;
+  --bg: #0e0a06;
+  --text: #f5efe6;
+  --muted: #a09080;
+  --card-bg: #1a140d;
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Georgia', 'Times New Roman', serif;
+  overflow-x: hidden;
+}
+
+/* Nav */
+.regalo-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 12px 16px;
+  background: rgba(14, 10, 6, .85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.regalo-nav button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: var(--gold);
+  font: 700 11px/1 system-ui, sans-serif;
+  letter-spacing: .12em;
+  cursor: pointer;
+  padding: 6px 0;
+}
+.regalo-nav svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Header */
+.regalo-header {
+  text-align: center;
+  padding: 48px 24px 24px;
+}
+.regalo-eye {
+  font: 700 10px/1 system-ui, sans-serif;
+  letter-spacing: .2em;
+  color: var(--gold);
+  margin: 0 0 16px;
+}
+.regalo-header h1 {
+  font: italic 300 clamp(28px, 7vw, 48px)/1.15 'Georgia', 'Times New Roman', serif;
+  color: var(--gold-light);
+  margin: 0 0 12px;
+}
+.regalo-sub {
+  font: 400 14px/1.5 system-ui, sans-serif;
+  color: var(--muted);
+  margin: 0;
+  max-width: 400px;
+  margin-inline: auto;
+}
+
+/* Footer */
+.regalo-footer {
+  text-align: center;
+  padding: 48px 24px 32px;
+  border-top: 1px solid rgba(201, 168, 76, .15);
+  margin-top: 48px;
+}
+.regalo-footer p {
+  font: 700 10px/1.6 system-ui, sans-serif;
+  letter-spacing: .15em;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ── Garden Page ── */
+
+.regalo-showcase {
+  display: flex;
+  justify-content: center;
+  padding: 0 16px 24px;
+  perspective: 1000px;
+}
+.regalo-img-btn {
+  position: relative;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: zoom-in;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform .6s cubic-bezier(.2, .8, .2, 1), box-shadow .6s ease;
+  max-width: 500px;
+  width: 100%;
+}
+.regalo-img-btn img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+.regalo-showcase.zoomed .regalo-img-btn {
+  cursor: zoom-out;
+  transform: scale(1.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .6);
+}
+
+/* Sparkle overlay */
+.sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.regalo-showcase.sparkle .sparkles {
+  opacity: 1;
+}
+.spark {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 4px;
+  height: 4px;
+  background: var(--gold-light);
+  border-radius: 50%;
+  transform: scale(var(--s));
+  animation: twinkle var(--d) ease-in-out infinite;
+  box-shadow: 0 0 6px var(--gold);
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(var(--s)); }
+}
+
+/* Letter */
+.regalo-letter {
+  max-width: 480px;
+  margin: 32px auto;
+  padding: 32px 24px;
+  background: rgba(26, 20, 13, .6);
+  border: 1px solid rgba(201, 168, 76, .2);
+  border-radius: 12px;
+  margin-inline: max(16px, calc(50% - 240px));
+}
+.regalo-letter p {
+  font: 400 15px/1.7 'Georgia', 'Times New Roman', serif;
+  color: var(--text);
+  margin: 0 0 16px;
+}
+.letter-to {
+  font-style: italic;
+  color: var(--gold-light) !important;
+  margin-bottom: 20px !important;
+}
+.letter-sign {
+  text-align: right;
+  font-style: italic;
+  color: var(--gold) !important;
+  margin-bottom: 0 !important;
+}
+
+/* ── Moments / Polaroid Page ── */
+
+.polaroid-wrap {
+  padding: 24px 16px 0;
+}
+.polaroid {
+  max-width: 460px;
+  margin: 0 auto;
+  transform: rotate(-2deg);
+  transition: transform .8s cubic-bezier(.2, .8, .2, 1);
+}
+.polaroid-wrap.revealed .polaroid {
+  transform: rotate(0deg);
+}
+.polaroid-inner {
+  background: #f8f4ee;
+  padding: 16px 16px 48px;
+  border-radius: 4px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, .4), 0 2px 8px rgba(0, 0, 0, .2);
+}
+.polaroid-inner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+
+.regalo-quote {
+  text-align: center;
+  padding: 40px 24px 16px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.regalo-quote blockquote {
+  font: italic 300 clamp(18px, 5vw, 26px)/1.4 'Georgia', 'Times New Roman', serif;
+  color: var(--gold-light);
+  margin: 0 0 12px;
+}
+.quote-attr {
+  font: 400 12px/1 system-ui, sans-serif;
+  color: var(--muted);
+  letter-spacing: .1em;
+}
+
+/* ── Chicaaa Card + Voucher Page ── */
+
+.chicaaa-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 16px 24px;
+}
+.chicaaa-tabs button {
+  background: transparent;
+  border: 1px solid rgba(201, 168, 76, .3);
+  color: var(--muted);
+  font: 700 11px/1 system-ui, sans-serif;
+  letter-spacing: .15em;
+  padding: 10px 20px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+.chicaaa-tabs button.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--bg);
+}
+
+.chicaaa-cards {
+  padding: 0 16px;
+}
+.chicaaa-card-wrap {
+  text-align: center;
+  transition: opacity .4s ease;
+}
+.chicaaa-card-wrap.hide {
+  display: none;
+}
+
+.card-flipper {
+  position: relative;
+  display: inline-block;
+  max-width: 460px;
+  width: 100%;
+  aspect-ratio: 1;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  perspective: 1000px;
+}
+.voucher-flipper {
+  aspect-ratio: 3/2;
+}
+.card-front, .card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform .7s cubic-bezier(.4, .0, .2, 1);
+}
+.card-front {
+  transform: rotateY(0deg);
+}
+.card-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, #1c1510, #2a1f16);
+  border: 1px solid rgba(201, 168, 76, .3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-flipper.flipped .card-front {
+  transform: rotateY(-180deg);
+}
+.card-flipper.flipped .card-back {
+  transform: rotateY(0deg);
+}
+.card-front img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+.card-back-content {
+  padding: 32px 24px;
+  text-align: center;
+}
+.cb-to, .cb-title {
+  font: 700 11px/1 system-ui, sans-serif;
+  letter-spacing: .2em;
+  color: var(--gold);
+  margin: 0 0 20px;
+}
+.card-back-content p {
+  font: 400 15px/1.7 'Georgia', 'Times New Roman', serif;
+  color: var(--text);
+  margin: 0 0 14px;
+}
+.cb-sign {
+  font-style: italic;
+  color: var(--gold-light) !important;
+  margin-top: 24px !important;
+}
+.cb-fine {
+  font: 700 10px/1 system-ui, sans-serif !important;
+  letter-spacing: .15em;
+  color: var(--muted) !important;
+  margin-top: 20px !important;
+}
+
+.voucher-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+}
+.voucher-list li {
+  font: 400 14px/1.6 'Georgia', 'Times New Roman', serif;
+  color: var(--text);
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(201, 168, 76, .1);
+}
+.voucher-list li:last-child {
+  border-bottom: none;
+}
+.voucher-back {
+  background: linear-gradient(135deg, #1c0a0a, #2a1210);
+  border-color: rgba(180, 40, 40, .3);
+}
+
+.flip-hint {
+  font: 700 10px/1 system-ui, sans-serif;
+  letter-spacing: .15em;
+  color: var(--muted);
+  margin: 16px 0 0;
+  text-align: center;
+  animation: pulse-hint 2s ease-in-out infinite;
+}
+@keyframes pulse-hint {
+  0%, 100% { opacity: .5; }
+  50% { opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .regalo-header { padding: 36px 16px 16px; }
+  .regalo-letter { padding: 24px 20px; }
+  .polaroid-inner { padding: 10px 10px 36px; }
+}

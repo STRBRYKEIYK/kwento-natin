@@ -24,6 +24,9 @@ export const LIB = [
   ] },
   { id: 'regalo', no: '04', title: 'REGALO', lines: ['REGALO'], ts: 0.17, sub: 'MGA BAGAY NA PWEDE MONG KUNIN', theme: 'paper', w: 64, h: 184, pages: [
     { title: 'Love Voucher Book', blurb: 'Pitong voucher at isang nakatagong surprise. I-redeem mo kahit anong oras, walang expiration.', href: '/vouchers', made: '2026-11-16', stamp: 'NOV 16', img: '/menu/img/regalo.jpg', iw: 600, ih: 450 },
+    { title: "Chicaaaa's Little Garden", blurb: 'Isang munting hardin sa loob ng globe — para sa asawa kong mahal ko.', href: '/regalo/garden', made: '2026-11-25', stamp: 'NOV 25', img: '/menu/img/garden.png', iw: 600, ih: 600 },
+    { title: 'Beautiful Moments', blurb: 'The woman who turned little moments into beautiful memories.', href: '/regalo/moments', made: '2026-11-25', stamp: 'NOV 25', img: '/menu/img/moments.png', iw: 600, ih: 600 },
+    { title: 'Para Kay Chicaaa', blurb: 'Isang card at isang voucher — unlimited love mula kay Chicooo mo.', href: '/regalo/chicaaa', made: '2026-11-25', stamp: 'NOV 25', img: '/menu/img/chicaaa-card.png', iw: 600, ih: 600 },
   ] },
 ];
 

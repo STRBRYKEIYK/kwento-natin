@@ -8,6 +8,9 @@ const LibraryPage = lazy(() => import('./pages/LibraryPage.jsx'));
 const PetsaPage = lazy(() => import('./pages/PetsaPage.jsx'));
 const OrasPage = lazy(() => import('./pages/OrasPage.jsx'));
 const StarsPage = lazy(() => import('./pages/StarsPage.jsx'));
+const RegaloGardenPage = lazy(() => import('./pages/RegaloGardenPage.jsx'));
+const RegaloMomentsPage = lazy(() => import('./pages/RegaloMomentsPage.jsx'));
+const RegaloChicaaaPage = lazy(() => import('./pages/RegaloChicaaaPage.jsx'));
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -18,6 +21,9 @@ createRoot(document.getElementById('root')).render(
           <Route path="/menu/petsa" element={<PetsaPage />} />
           <Route path="/oras" element={<OrasPage />} />
           <Route path="/1212-stars" element={<StarsPage />} />
+          <Route path="/regalo/garden" element={<RegaloGardenPage />} />
+          <Route path="/regalo/moments" element={<RegaloMomentsPage />} />
+          <Route path="/regalo/chicaaa" element={<RegaloChicaaaPage />} />
           <Route path="/third" element={
             <MotionConfig reducedMotion="user">
               <LazyMotion features={domAnimation} strict>
