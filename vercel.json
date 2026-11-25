@@ -41,22 +41,6 @@
       "destination": "https://love-voucher-book.vercel.app/vouchers/:path+"
     },
     {
-      "source": "/oras",
-      "destination": "/oras/index.html"
-    },
-    {
-      "source": "/oras/",
-      "destination": "/oras/index.html"
-    },
-    {
-      "source": "/third",
-      "destination": "/third/index.html"
-    },
-    {
-      "source": "/third/",
-      "destination": "/third/index.html"
-    },
-    {
       "source": "/second",
       "destination": "https://para-sa-chica.vercel.app/second"
     },
@@ -81,20 +65,8 @@
       "destination": "https://chica-ilychicaaa.vercel.app/ilychicaaa/:path+"
     },
     {
-      "source": "/menu/petsa",
-      "destination": "/menu/petsa/index.html"
-    },
-    {
-      "source": "/menu/petsa/",
-      "destination": "/menu/petsa/index.html"
-    },
-    {
-      "source": "/1212-stars",
-      "destination": "/1212-stars/index.html"
-    },
-    {
-      "source": "/1212-stars/",
-      "destination": "/1212-stars/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }

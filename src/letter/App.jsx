@@ -1,3 +1,4 @@
+import './styles.css';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useReducedMotion } from 'framer-motion';
 import { PhotoAlbumContext } from './components/PhotoAlbum';
