@@ -1,24 +1,13 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, addDoc, getDocs, orderBy, query, serverTimestamp } from 'firebase/firestore';
-import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { collection, addDoc, getDocs, orderBy, query, serverTimestamp } from 'firebase/firestore';
+import { ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { db, storage } from '../firebase.js';
 import { LibraryLayout } from '../library/LibraryLayout.jsx';
 import { Ticker } from '../library/Ticker.jsx';
 import { BackLink } from '../library/BackLink.jsx';
 import { DATES, imgSrc, thumbSrc, videoSrc, videoThumbSrc, getMedia } from './petsaData.js';
 import './PetsaPage.css';
-
-const fbApp = initializeApp({
-  apiKey: 'AIzaSyDt5xOekBmIC-GnNDqlpDcRRX2KQPZchTA',
-  authDomain: 'chica-keicodes-dev.firebaseapp.com',
-  projectId: 'chica-keicodes-dev',
-  storageBucket: 'chica-keicodes-dev.firebasestorage.app',
-  messagingSenderId: '359088819077',
-  appId: '1:359088819077:web:e88d4d052b25289735d2ec',
-});
-const db = getFirestore(fbApp);
-const storage = getStorage(fbApp);
 
 const HASH_CHICA = '87e4e4a0ef9f70519b544309fe8b04dbac53b1f20803140d8ee6b60c11c33b23';
 const HASH_CHICO = 'f7efc290658b96cf48efcbf0c9720476d8fae0e9314a9da04f16aa0ccb4735ca';

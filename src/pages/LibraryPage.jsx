@@ -1,11 +1,14 @@
 import { useEffect, useRef, useCallback, useMemo } from 'react';
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import { db } from '../firebase.js';
 import { LibraryLayout } from '../library/LibraryLayout.jsx';
 import { Ticker } from '../library/Ticker.jsx';
 import {
-  LIB, LIB_BY_ID, SHELVES, PHOTOS, MONTHS, DAYS, PETSA_MAP,
+  LIB, LIB_BY_ID, SHELVES, PHOTOS, MONTHS, DAYS, PETSA_MAP, PETSA_DATES,
   HEART_SVG, ARROW_SVG, HEART_D,
   SERVER, MEMORY, PHOTO_API, CALAPI, DKEY, SKEY,
 } from './libraryData.js';
+import { DATES as PETSA_HARDCODED } from './petsaData.js';
 import './LibraryPage.css';
 
 const DAY_MS = 864e5;
@@ -801,7 +804,8 @@ export default function LibraryPage() {
       card.appendChild(cardTop('NAGKITA TAYO', fd.big, fd.sub, -1));
       const s = section(); s.appendChild(txt('p', 'dd-place', pd.blurb || 'DATE NATIN'));
       s.appendChild(txt('p', 'dd-stat', 'NANGYARI NA — MAY LITRATO AT ALAALA'));
-      const row = mk('div', 'dd-links'); row.appendChild(btnLink('TINGNAN ANG MGA LITRATO', '/menu/petsa?d=' + pd.d, 'red'));
+      const href = pd.d >= 0 ? '/menu/petsa?d=' + pd.d : '/menu/petsa';
+      const row = mk('div', 'dd-links'); row.appendChild(btnLink('TINGNAN ANG MGA LITRATO', href, 'red'));
       s.appendChild(row); card.appendChild(s); return card;
     }
 
@@ -987,6 +991,22 @@ export default function LibraryPage() {
     makeCal(calWrapRef.current, { list: 4, empty: false });
     makeCal(csBodyRef.current, { list: 12, empty: true });
     renderCalendars();
+
+    // Fetch Firestore entries and merge into PETSA_MAP for calendar camera icons
+    const existingDates = new Set(PETSA_HARDCODED.map(d => d.date));
+    getDocs(query(collection(db, 'entries'), orderBy('date', 'asc'))).then(snap => {
+      let added = false;
+      snap.forEach(doc => {
+        const d = doc.data();
+        if (!d.date || existingDates.has(d.date) || PETSA_MAP[d.date]) return;
+        PETSA_MAP[d.date] = {
+          iso: d.date, d: -1, label: (d.label || '').toUpperCase(),
+          blurb: d.desc || d.place || 'DATE NATIN', isFirebase: true,
+        };
+        added = true;
+      });
+      if (added) renderCalendars();
+    }).catch(() => {});
 
     function openCalSheet() {
       if (S.panel) return;
