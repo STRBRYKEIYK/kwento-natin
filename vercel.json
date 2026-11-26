@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/333",
+      "destination": "/aircon",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/date",

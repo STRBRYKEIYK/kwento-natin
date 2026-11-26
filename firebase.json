@@ -19,6 +19,13 @@
           ]
         }
       ],
+      "redirects": [
+        {
+          "source": "/333{,/}",
+          "destination": "/aircon",
+          "type": 302
+        }
+      ],
       "rewrites": [
         {
           "source": "/date/api/**",

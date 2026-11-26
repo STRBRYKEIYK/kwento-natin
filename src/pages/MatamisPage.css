@@ -1,0 +1,108 @@
+.matamis { min-height: 100svh; background: var(--paper); color: var(--ink); font-family: var(--sans); text-transform: uppercase; }
+.mt-shell { max-width: 1080px; margin: 0 auto; padding: 0 20px 28px; }
+.matamis button { text-transform: inherit; }
+.matamis h2:focus { outline: none; }
+
+.mt-topbar { display: flex; align-items: center; gap: 16px; min-height: 70px; border-bottom: 1px solid var(--line); }
+.mt-topbar .back-link { margin: 0; font-size: .875rem; letter-spacing: .14em; }
+.mt-topbar > span:not(.mt-small-clock) { margin-left: auto; color: var(--mute); font-size: .875rem; font-weight: 700; letter-spacing: .12em; }
+.mt-small-clock { color: var(--red); font: italic 900 1.8rem/1 var(--serif); }
+
+.mt-hero { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 36px; padding: 34px 0 30px; }
+.mt-eyebrow { color: var(--red); font-size: .875rem; font-weight: 700; letter-spacing: .15em; line-height: 1.8; }
+.mt-hero h1 { margin: 12px 0 20px; font: italic 900 clamp(2.6rem, 5.4vw, 4.6rem)/1.04 var(--serif); letter-spacing: -.03em; overflow-wrap: anywhere; }
+.mt-hero h1 em { display: block; color: var(--red); }
+.mt-intro { max-width: 40ch; font-size: 1rem; line-height: 1.9; color: var(--char); }
+.mt-clock { width: clamp(150px, 22vw, 230px); height: auto; }
+.mt-clock-face { fill: var(--card); stroke: var(--ink); stroke-width: 3; }
+.mt-clock-tick { stroke: var(--ink); stroke-width: 2; stroke-linecap: round; }
+.mt-clock-hand { stroke-linecap: round; }
+.mt-clock-hour { stroke: var(--ink); stroke-width: 7; }
+.mt-clock-minute { stroke: var(--red); stroke-width: 5; }
+.mt-clock-pin { fill: var(--ink); }
+
+.mt-room { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: start; }
+.mt-side { min-width: 0; padding: 16px; background: var(--ink); color: var(--paper); border-radius: 12px; }
+.mt-side-head, .mt-panel-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: .6875rem; font-weight: 700; letter-spacing: .24em; }
+.mt-side-head b { color: var(--red2); letter-spacing: .08em; font-size: .8125rem; }
+.mt-cake { display: block; width: min(100%, 300px); margin: 14px auto 6px; padding: 6px; background: var(--card); border-radius: 8px; }
+.mt-plate { fill: var(--paper); stroke: var(--ink); stroke-width: 2.5; }
+.mt-plate-in { fill: none; stroke: var(--line); stroke-width: 2; }
+.mt-layer { opacity: 0; transform: translateY(-16px); transition: opacity .35s ease, transform .35s ease; }
+.mt-layer.is-on { opacity: 1; transform: none; }
+.mt-crust { fill: var(--char); stroke: var(--ink); stroke-width: 2.5; }
+.mt-cream, .mt-top { fill: var(--card); stroke: var(--ink); stroke-width: 2.5; }
+.mt-drizzle { fill: none; stroke: var(--red); stroke-width: 5; stroke-linecap: round; }
+.mt-stem { fill: none; stroke: var(--ink); stroke-width: 2.5; stroke-linecap: round; }
+.mt-cherry { fill: var(--red); stroke: var(--ink); stroke-width: 2.5; }
+.mt-meter { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; margin: 10px 0 14px; }
+.mt-meter i { height: 8px; border-radius: 4px; background: rgba(243, 243, 240, .22); transition: background .25s; }
+.mt-meter i.is-on { background: var(--red2); }
+.mt-facts { display: grid; gap: 0; border-top: 1px solid rgba(243, 243, 240, .2); }
+.mt-facts div { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid rgba(243, 243, 240, .2); font-size: .75rem; letter-spacing: .12em; }
+.mt-facts dt { color: rgba(243, 243, 240, .6); font-weight: 700; }
+.mt-facts dd { text-align: right; font-weight: 700; }
+.mt-side-action { margin-top: 14px; }
+
+.mt-primary, .mt-secondary { display: inline-flex; align-items: center; justify-content: center; width: 100%; min-height: 48px; padding: 12px 20px; border-radius: 999px; font-size: .8125rem; font-weight: 700; letter-spacing: .16em; transition: background .18s, opacity .18s; }
+.mt-primary { background: var(--red); border: 1.5px solid var(--red); color: #fff; }
+.mt-primary:hover:not(:disabled) { background: #ad0d27; border-color: #ad0d27; }
+.mt-primary:disabled { opacity: .45; cursor: default; }
+.mt-secondary { background: transparent; border: 1.5px solid currentColor; }
+.mt-panel .mt-primary, .mt-panel .mt-secondary { width: auto; min-width: 220px; }
+
+.mt-panel { min-width: 0; padding: 18px 16px 20px; background: var(--card); border: 1.5px solid var(--ink); border-radius: 12px; }
+.mt-panel-head { padding-bottom: 12px; border-bottom: 1.5px solid var(--ink); }
+.mt-panel-head span:first-child { color: var(--red); }
+.mt-panel-head b { color: var(--mute); letter-spacing: .08em; }
+.mt-panel-hint { margin-top: 14px; font-size: .75rem; font-weight: 500; letter-spacing: .08em; line-height: 1.8; color: var(--mute); }
+.mt-grid { list-style: none; display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; margin-top: 16px; }
+.mt-card { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; width: 100%; min-height: 128px; padding: 14px 16px 14px; text-align: left; background: var(--card); border: 1.5px solid var(--ink); border-radius: 8px; transition: background .18s, color .18s, translate .12s; }
+.mt-card:hover { background: var(--paper); }
+.mt-card:active { translate: 0 1px; }
+.mt-card-no { position: absolute; top: 12px; right: 14px; color: var(--mute); font: italic 900 1rem/1 var(--serif); }
+.mt-card-amount { padding-right: 28px; color: var(--red); font-size: .6875rem; font-weight: 700; letter-spacing: .16em; }
+.mt-card-name { font: 900 1.3rem/1.2 var(--serif); letter-spacing: -.01em; }
+.mt-card-why { font-size: .75rem; font-weight: 500; letter-spacing: .06em; line-height: 1.7; color: var(--char); }
+.mt-card-state { margin-top: auto; padding-top: 8px; font-size: .6875rem; font-weight: 700; letter-spacing: .18em; }
+.mt-card.is-on { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.mt-card.is-on .mt-card-no, .mt-card.is-on .mt-card-why { color: rgba(243, 243, 240, .72); }
+.mt-card.is-on .mt-card-amount, .mt-card.is-on .mt-card-state { color: var(--red2); }
+.mt-panel-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-top: 18px; padding-top: 16px; border-top: 1.5px solid var(--ink); }
+.mt-panel-foot p { font: italic 900 1.3rem/1.3 var(--serif); text-transform: uppercase; }
+
+.mt-oven-box { margin: 20px 0 6px; padding: 28px 16px; text-align: center; background: var(--ink); color: var(--paper); border-radius: 8px; }
+.mt-timer { font: 700 clamp(3.4rem, 14vw, 5.6rem)/1 ui-monospace, "SFMono-Regular", Menlo, monospace; letter-spacing: -.04em; color: var(--red2); }
+.mt-oven-bar { height: 8px; margin-top: 22px; border-radius: 4px; background: rgba(243, 243, 240, .2); overflow: hidden; }
+.mt-oven-bar i { display: block; height: 100%; background: var(--red2); transition: width 1s linear; }
+.mt-oven-line { margin-top: 16px; font: italic 900 1.5rem/1.3 var(--serif); }
+
+.mt-done h2, .mt-letter h2 { margin: 20px 0 8px; font: italic 900 clamp(1.9rem, 5vw, 2.8rem)/1.1 var(--serif); letter-spacing: -.02em; }
+.mt-done-score { margin: 6px 0 4px; color: var(--red); font: italic 900 clamp(4.4rem, 18vw, 7rem)/1 var(--serif); letter-spacing: -.05em; }
+.mt-done-score span { margin: 0 .04em; color: var(--ink); }
+.mt-done-copy { max-width: 46ch; margin-bottom: 22px; font-size: 1rem; line-height: 1.9; color: var(--char); }
+.mt-letter > p:not(.mt-handwriting):not(.mt-signature) { margin-top: 18px; font-size: 1rem; line-height: 1.95; color: var(--char); }
+.mt-letter .mt-handwriting { margin: 26px 0 0; color: var(--red); font: italic 900 1.5rem/1.5 var(--serif); }
+.mt-letter .mt-signature { margin: 22px 0 24px; font-size: .9375rem; font-weight: 700; line-height: 1.9; letter-spacing: .06em; }
+
+.mt-footer { display: flex; justify-content: space-between; gap: 16px; margin-top: 30px; padding: 20px 0 0; border-top: 1px solid var(--line); color: var(--mute); font-size: .75rem; font-weight: 700; letter-spacing: .1em; }
+
+@media (min-width: 900px) {
+  .mt-shell { padding-bottom: 44px; }
+  .mt-room { grid-template-columns: 320px minmax(0, 1fr); gap: 26px; }
+  .mt-side { position: sticky; top: 20px; padding: 20px; }
+  .mt-panel { padding: 22px 24px 26px; }
+  .mt-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .mt-shell { padding-inline: 16px; }
+  .mt-topbar > span:not(.mt-small-clock) { display: none; }
+  .mt-small-clock { margin-left: auto; }
+  .mt-hero { grid-template-columns: minmax(0, 1fr); gap: 22px; padding: 26px 0 22px; }
+  .mt-clock { width: 140px; }
+  .mt-panel .mt-primary, .mt-panel .mt-secondary { width: 100%; }
+  .mt-eyebrow { letter-spacing: .1em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mt-layer, .mt-meter i, .mt-card, .mt-oven-bar i { transition: none; }
+}

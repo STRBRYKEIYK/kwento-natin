@@ -27,7 +27,8 @@ export const LIB = [
     { title: "Chicaaaa's Little Garden", blurb: 'Isang munting hardin sa loob ng globe — para sa asawa kong mahal ko.', href: '/regalo/garden', made: '2026-11-25', stamp: 'NOV 25', img: '/menu/img/garden.png', iw: 600, ih: 600 },
     { title: 'Beautiful Moments', blurb: 'The woman who turned little moments into beautiful memories.', href: '/regalo/moments', made: '2026-11-25', stamp: 'NOV 25', img: '/menu/img/moments.png', iw: 600, ih: 600 },
     { title: 'Para Kay Chicaaa', blurb: 'Isang card at isang voucher — unlimited love mula kay Chicooo mo.', href: '/regalo/chicaaa', made: '2026-11-25', stamp: 'NOV 25', img: '/menu/img/chicaaa-card.png', iw: 600, ih: 600 },
-    { title: 'AIRCON', blurb: 'Isang code natin, tatlong lambing, at sulat na tinabi ko para sa ’yo. Alam mo na, asawa.', href: '/aircon', made: '2026-11-26', stamp: 'NOV 26', img: '/menu/img/oras.jpg', iw: 600, ih: 450 },
+    { title: 'AIRCON', blurb: 'Isang code natin, tatlong lambing, at sulat na tinabi ko para sa ’yo. Alam mo na, asawa.', href: '/aircon', made: '2026-11-26', stamp: 'NOV 26', img: '/menu/img/aircon.jpg', iw: 600, ih: 450 },
+    { title: '10:10 · Matamis', blurb: 'Isang resipi para sa pinakamatamis na 10:10. Timplahin mo, ihurno mo, tapos tikman mo, asawa ko.', href: '/matamis', made: '2026-11-26', stamp: 'NOV 26', img: '/menu/img/matamis.jpg', iw: 600, ih: 450 },
   ] },
 ];
 

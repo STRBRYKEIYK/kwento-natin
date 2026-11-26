@@ -12,7 +12,13 @@ const invitations = [
     path: 'aircon',
     title: 'AIRCON · TAYO MUNA',
     description: 'ISANG MUNTING SECRET NATIN. PARA SA CHICAAA KO, WITH LOVE, YOUR CHICOOO.',
-    image: 'https://chica.keicodes.dev/menu/img/oras.jpg',
+    image: 'https://chica.keicodes.dev/menu/img/aircon.jpg',
+  },
+  {
+    path: 'matamis',
+    title: '10:10 · MATAMIS',
+    description: 'ISANG RESIPI PARA SA PINAKAMATAMIS NA 10:10. PARA SA CHICAAA KO, WITH LOVE, YOUR CHICOOO.',
+    image: 'https://chica.keicodes.dev/menu/img/matamis.jpg',
   },
 ];
 

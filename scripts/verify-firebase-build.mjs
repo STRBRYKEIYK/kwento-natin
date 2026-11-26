@@ -9,6 +9,11 @@ const required = ['index.html', 'one-minute-eleven-memories/index.html', 'date/i
 for (const file of required) await access(resolve(root, 'main', file));
 const aircon = await readFile(resolve(root, 'main/aircon/index.html'), 'utf8');
 assert.ok(aircon.includes('<title>AIRCON · TAYO MUNA</title>'), 'The AIRCON invitation is missing from the Firebase build');
+const mainSite = config.hosting.find(site => site.site === 'chica-keicodes-dev');
+assert.ok(mainSite.redirects?.some(r => r.source.startsWith('/333') && r.destination === '/aircon'), '/333 must redirect to /aircon');
+await assert.rejects(access(resolve(root, 'main/333/index.html')), 'The old /333 page must not be published beside /aircon');
+const matamis = await readFile(resolve(root, 'main/matamis/index.html'), 'utf8');
+assert.ok(matamis.includes('<title>10:10 · MATAMIS</title>'), 'The MATAMIS invitation is missing from the Firebase build');
 for (const source of manifest.sources) await access(resolve(root, source.name, source.mount, 'index.html'));
 assert.equal(config.hosting.length, 6);
 for (const site of config.hosting) {
