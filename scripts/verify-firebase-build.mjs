@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict';
 import { access, readFile, readdir, stat } from 'node:fs/promises';
 import { resolve, relative } from 'node:path';
+import { catalog, mediaUrl } from '../functions/src/shared/media.js';
 
 const root = resolve('.firebase-hosting');
 const manifest = JSON.parse(await readFile('firebase.sources.json', 'utf8'));
 const config = JSON.parse(await readFile('firebase.json', 'utf8'));
-const required = ['index.html', 'one-minute-eleven-memories/index.html', 'date/index.html', 'date/places.json', 'date/five/index.html', '555/index.html', 'vouchers/index.html', 'vouchers/img/p1.jpg', 'second/index.html', 'second/assets/long-drive.mp3', 'ilychicaaa/index.html', 'ilychicaaa/media/para-sa-chica.mp4', 'ilychicaaa-original/index.html', 'ilychicaaa-original/media/para-sa-chica.mp4', 'oras/messages.json'];
+const required = ['index.html', 'one-minute-eleven-memories/index.html', 'date/index.html', 'date/places.json', 'date/five/index.html', '555/index.html', 'vouchers/index.html', 'second/index.html', 'ilychicaaa/index.html', 'ilychicaaa-original/index.html', 'oras/messages.json'];
 for (const file of required) await access(resolve(root, 'main', file));
 const aircon = await readFile(resolve(root, 'main/aircon/index.html'), 'utf8');
 assert.ok(aircon.includes('<title>AIRCON · TAYO MUNA</title>'), 'The AIRCON invitation is missing from the Firebase build');
@@ -28,7 +29,8 @@ for (const source of manifest.sources.filter(item => item.kind === 'song')) {
   const main = await readFile(resolve(root, 'main', source.mainMount || source.mount, 'index.html'), 'utf8');
   assert.ok(!main.includes('.vercel.app'), 'A main-site recording still depends on Vercel');
   const mediaPath = `/${source.mainMount || source.mount}/media/para-sa-chica.mp4`;
-  assert.ok(main.includes(mediaPath), 'The recording points to the wrong local video');
+  assert.ok(main.includes(mediaUrl(mediaPath)), 'The recording must load its verified Storage video');
+  assert.ok(html.includes(mediaUrl(mediaPath)), 'The compatibility recording must load its verified Storage video');
 }
 let count = 0;
 let total = 0;
@@ -39,6 +41,7 @@ async function walk(directory) {
     else {
       assert.ok(!/^chat(?: \(\d+\))?\.txt$/i.test(entry.name), 'Raw chat export was included');
       assert.ok(!entry.name.startsWith('.env'), 'Environment file was included');
+      assert.ok(!/\.(?:jpe?g|png|webp|gif|avif|heic|mp4|mov|webm|mp3|m4a|ogg|wav)$/i.test(entry.name), 'Personal media must be external to Hosting: '+relative(root,path));
       const info = await stat(path);
       assert.ok(info.size < 2 * 1024 ** 3, 'Firebase Hosting individual file limit exceeded: ' + relative(root, path));
       count++;
@@ -47,4 +50,7 @@ async function walk(directory) {
   }
 }
 await walk(root);
+assert.ok(Object.keys(catalog.objects).length>1000,'The complete media catalog is missing');
+assert.ok(Object.values(catalog.objects).every(o=>o.verified && o.bytes>0 && o.md5),'An unverified cloud object was published');
+assert.ok(total < 25 * 1024**2,'The six hosting bundles unexpectedly exceed 25 MB');
 console.log(`Verified six sites, API routing, recordings, albums, and shared messages (${count} files, ${Math.round(total / 1024 ** 2)} MB).`);

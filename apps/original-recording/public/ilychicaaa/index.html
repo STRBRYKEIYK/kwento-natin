@@ -44,19 +44,17 @@
 (function () {
   const video = document.getElementById('love-video');
   const source = video.querySelector('source');
-  const origin = location.origin;
   const candidates = [
-    origin + '/ilychicaaa/media/para-sa-chica.mp4',
-    origin + '/media/para-sa-chica.mp4'
+    '/ilychicaaa/media/para-sa-chica.mp4'
   ];
   let attempt = 0;
-  video.poster = origin + '/ilychicaaa/media/poster.jpg';
+  video.poster = '/ilychicaaa/media/poster.jpg';
   source.src = candidates[attempt];
   video.addEventListener('error', tryAlternate, true);
   source.addEventListener('error', tryAlternate);
   function tryAlternate() {
     if (++attempt >= candidates.length) return;
-    video.poster = origin + '/ilychicaaa/media/poster.jpg';
+    video.poster = '/ilychicaaa/media/poster.jpg';
     source.src = candidates[attempt];
     video.load();
   }

@@ -5,6 +5,7 @@ import { LazyMotion, domAnimation, MotionConfig } from 'framer-motion';
 import { describe, expect, it } from 'vitest';
 import App from '../App';
 import { photos } from '../data/content';
+import { mediaUrl } from '../../media.js';
 import { audioInstances, currentAudio as activeAudio } from './setup';
 
 function mount() {
@@ -56,7 +57,7 @@ describe('love letter experience', () => {
     await user.click(screen.getByRole('button', { name: 'Ituloy sa Oktubre →' }));
     await waitFor(() => expect(document.activeElement.id).toBe('sec-10'));
     expect(activeAudio().paused).toBe(true);
-    expect(activeAudio().src).toMatch(/paru-paro\.mp3$/);
+    expect(activeAudio().src).toBe(mediaUrl('/assets/audio/paru-paro.mp3'));
   });
 
   it('pauses the soundtrack when the November 5 video starts and leaves it paused afterward', async () => {
@@ -84,7 +85,7 @@ describe('love letter experience', () => {
     await waitFor(() => expect(localStorage.getItem('kwento-reading')).toBe('"sec-10"'));
     expect(screen.getByRole('button', { name: 'Oktubre' })).toHaveAttribute('aria-current', 'location');
     expect(activeAudio().paused).toBe(true);
-    expect(activeAudio().src).toMatch(/paru-paro\.mp3$/);
+    expect(activeAudio().src).toBe(mediaUrl('/assets/audio/paru-paro.mp3'));
   });
 
   it('persists photo colors and supports reversible bulk color changes', async () => {
@@ -139,10 +140,10 @@ describe('love letter experience', () => {
     expect(playlist).toHaveAttribute('inert');
     act(() => window.scrollTo({ top: 8900 }));
     await waitFor(() => expect(localStorage.getItem('kwento-reading')).toBe('"sec-10"'));
-    expect(activeAudio().src).toMatch(/forevermore\.mp3$/);
+    expect(activeAudio().src).toBe(mediaUrl('/assets/audio/forevermore.mp3'));
     await user.click(screen.getByRole('button', { name: 'Listahan ng kanta' }));
     await user.click(screen.getByRole('button', { name: 'Sabay sa kwento: Off' }));
-    expect(activeAudio().src).toMatch(/paru-paro\.mp3$/);
+    expect(activeAudio().src).toBe(mediaUrl('/assets/audio/paru-paro.mp3'));
     await user.keyboard('{Escape}');
     expect(screen.getByRole('button', { name: 'Listahan ng kanta' })).toHaveAttribute('aria-expanded', 'false');
   });

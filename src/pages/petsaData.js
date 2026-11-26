@@ -1,3 +1,4 @@
+import { mediaUrl } from '../media.js';
 const B = '/assets/';
 
 export const DATES = [
@@ -14,18 +15,20 @@ export const DATES = [
   {date:"2026-11-17",label:"Nobyembre 17",place:"Binondo",desc:"Binondo date natin",folder:"photos/BINONDO DATE NOV 17/",files:["photo_425@18-11-2026_00-34-28.jpg","photo_412@18-11-2026_00-33-43.jpg","photo_413@18-11-2026_00-33-43.jpg","photo_414@18-11-2026_00-33-43.jpg","photo_415@18-11-2026_00-33-43.jpg","photo_416@18-11-2026_00-33-43.jpg","photo_417@18-11-2026_00-33-43.jpg","photo_418@18-11-2026_00-33-43.jpg","photo_419@18-11-2026_00-33-43.jpg","photo_420@18-11-2026_00-33-43.jpg","photo_421@18-11-2026_00-33-43.jpg","photo_422@18-11-2026_00-33-44.jpg","photo_423@18-11-2026_00-33-44.jpg","photo_424@18-11-2026_00-34-28.jpg","photo_426@18-11-2026_00-34-28.jpg","photo_427@18-11-2026_00-34-28.jpg","photo_428@18-11-2026_00-34-28.jpg","photo_429@18-11-2026_00-34-28.jpg","photo_430@18-11-2026_00-34-28.jpg","photo_431@18-11-2026_00-34-28.jpg","photo_432@18-11-2026_00-34-28.jpg","photo_433@18-11-2026_00-34-28.jpg","photo_434@18-11-2026_00-34-29.jpg","photo_435@18-11-2026_00-34-29.jpg","photo_436@18-11-2026_00-35-10.jpg","photo_437@18-11-2026_00-35-10.jpg","photo_438@18-11-2026_00-35-10.jpg","photo_439@18-11-2026_00-35-10.jpg","photo_440@18-11-2026_00-35-10.jpg","photo_441@18-11-2026_00-35-10.jpg","photo_442@18-11-2026_00-35-10.jpg","photo_443@18-11-2026_00-35-10.jpg","photo_444@18-11-2026_00-35-10.jpg"]}
 ];
 
-export function imgSrc(d, file) { return B + d.folder + encodeURIComponent(file); }
+export function imgSrc(d, file) { return mediaUrl(B + d.folder + encodeURIComponent(file)); }
 export function thumbSrc(d, file) {
-  if (d.folder.startsWith('photos/')) return B + d.folder + encodeURIComponent(file.replace('.jpg', '_thumb.jpg'));
+  if (d.folder.startsWith('photos/')) return mediaUrl(B + d.folder + encodeURIComponent(file.replace('.jpg', '_thumb.jpg')));
   return imgSrc(d, file);
 }
-export function videoSrc(d, vfile) { return B + (d.vfolder || 'video_files/') + encodeURIComponent(vfile); }
+export function videoSrc(d, vfile) { return mediaUrl(B + (d.vfolder || 'video_files/') + encodeURIComponent(vfile)); }
 export function videoThumbSrc(d, vfile) {
-  if (d.vthumb) return B + d.vfolder + encodeURIComponent(d.vthumb);
-  return B + (d.vfolder || 'video_files/') + encodeURIComponent(vfile + '_thumb.jpg');
+  if (d.vthumb) return mediaUrl(B + d.vfolder + encodeURIComponent(d.vthumb));
+  return mediaUrl(B + (d.vfolder || 'video_files/') + encodeURIComponent(vfile + '_thumb.jpg'));
 }
 
 export function getMedia(d) {
+  if (Array.isArray(d.media)) return d.media;
+  if (d.isFirebase) return d.firebaseUrls.map(url => ({ type:'photo',url,thumbnailUrl:url }));
   const m = d.files.map(f => ({ type: 'photo', file: f }));
   if (d.videos) d.videos.forEach(v => m.push({ type: 'video', file: v }));
   return m;

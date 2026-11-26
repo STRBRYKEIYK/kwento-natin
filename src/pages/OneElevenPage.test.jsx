@@ -1,5 +1,4 @@
-import { existsSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { mediaObject } from '../media.js';
 import { afterEach, describe, expect, it } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -14,7 +13,7 @@ describe('the new 1:11 surprise', () => {
     expect(oneElevenMemories).toHaveLength(11);
     expect(new Set(oneElevenMemories.map(photo => photo.src)).size).toBe(11);
     for (const photo of oneElevenMemories) {
-      expect(existsSync(resolve('public', decodeURIComponent(photo.src.slice(1))))).toBe(true);
+      expect(mediaObject(photo.src)?.verified).toBe(true);
       expect(photo.alt).toBeTruthy();
     }
   });
@@ -25,7 +24,7 @@ describe('the new 1:11 surprise', () => {
       expect(DATES[index].files).toContain(memory.file);
       expect(memory.file).not.toBe(DATES[index].files[0]);
       expect(memory.albumHref).toBe(`/menu/petsa?d=${index}`);
-      expect(existsSync(resolve('public', decodeURIComponent(memory.thumb.slice(1))))).toBe(true);
+      expect(mediaObject(memory.thumb)?.verified).toBe(true);
     });
   });
 

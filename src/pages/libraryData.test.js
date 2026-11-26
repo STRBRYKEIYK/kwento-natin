@@ -2,6 +2,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { LIB, LIB_BY_ID } from './libraryData.js';
+import { mediaObject } from '../media.js';
 
 const root = process.cwd();
 const read = file => readFileSync(resolve(root, file), 'utf8');
@@ -41,7 +42,7 @@ describe('REGALO book index', () => {
     const linked = new Set(JSON.parse(read('firebase.sources.json')).sources.map(app => '/' + (app.mainMount || app.mount)));
     for (const page of regalo.pages) {
       expect(routes.has(page.href) || linked.has(page.href), `${page.href} has no route`).toBe(true);
-      expect(existsSync(resolve(root, 'public', page.img.replace(/^\//, ''))), `${page.img} is missing`).toBe(true);
+      expect(mediaObject(page.img)?.verified || existsSync(resolve(root, 'public', page.img.replace(/^\//, ''))), `${page.img} is missing`).toBe(true);
     }
   });
 

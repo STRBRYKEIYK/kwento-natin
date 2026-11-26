@@ -3,6 +3,7 @@ import { upsert, dedupe, isCancelled } from './shared/dates-core.js';
 import { googleCalendarUrl, icsFile } from './shared/calendar.js';
 import { messages } from './shared/date-messages.js';
 import { clean, validDate, sanitizePlan, manilaToday, jpegBuffer, PLAN_ID, PHOTO_KEY } from './validation.js';
+import { mediaPath, mediaUrl } from './shared/media.js';
 
 class HttpError extends Error { constructor(status, reason) { super(reason || 'Request failed'); this.status = status; this.reason = reason; } }
 const VOUCHERS = { 1: 'ISANG KANTA PARA SAYO', 2: 'ISANG TAWAG MULA SA AKIN', 3: 'ISANG MAHIGPIT NA YAKAP', 4: 'TAKOYAKI O CHEESECAKE', 5: 'ISANG DATE, IKAW ANG BAHALA', 6: 'ISANG SURPRISE', 7: 'UNLIMITED NA I LOVE YOU', 8: 'SURPRISE: AKO. HABAMBUHAY. (NAKUSKOS NA)' };
@@ -12,13 +13,22 @@ export function createApi({ store, notifyDate, notifyVoucher, channels, now = Da
     res.setHeader('Cache-Control', 'no-store');
     const url = new URL(req.originalUrl || req.url || '/', 'https://chica.keicodes.dev');
     const path = url.pathname;
-    const action = ({ '/api/dates': 'dates', '/api/memory': 'memory', '/api/photo': 'photo', '/api/cal': 'cal', '/api/date': 'send', '/api/redeem': 'redeem' })[path] || (/^\/date\/api\/(dates|memory|photo|cal|send)$/.exec(path)?.[1]) || (path === '/vouchers/api/redeem' ? 'redeem' : '');
-    const methods = { dates: ['GET', 'POST'], memory: ['POST'], photo: ['GET'], cal: ['GET'], send: ['GET', 'POST'], redeem: ['POST'] };
+    const host = String(req.headers?.host || '').split(':')[0];
+    const legacyPath = /^chica-keicodes-dev-original\.(?:web\.app|firebaseapp\.com)$/.test(host) ? path.replace(/^\/ilychicaaa\//, '/ilychicaaa-original/') : path;
+    if (mediaPath(legacyPath)) {
+      if (!['GET','HEAD'].includes(req.method)) { res.setHeader('Allow','GET, HEAD'); return res.status(405).end(); }
+      res.setHeader('Location',mediaUrl(legacyPath));
+      res.setHeader('Cache-Control','public, max-age=3600');
+      return res.status(302).end();
+    }
+    const action = ({ '/api/dates': 'dates', '/api/memory': 'memory', '/api/photo': 'photo', '/api/cal': 'cal', '/api/date': 'send', '/api/redeem': 'redeem' })[path] || (/^\/date\/api\/(dates|memory|photo|cal|send|albums)$/.exec(path)?.[1]) || (path === '/vouchers/api/redeem' ? 'redeem' : '');
+    const methods = { albums:['GET'], dates: ['GET', 'POST'], memory: ['POST'], photo: ['GET'], cal: ['GET'], send: ['GET', 'POST'], redeem: ['POST'] };
     if (!methods[action]) return res.status(404).json({ ok: false });
     if (!methods[action].includes(req.method)) { res.setHeader('Allow', methods[action].join(', ')); return res.status(405).json({ ok: false }); }
     if (req.rawBody?.length > 2_150_000) return res.status(413).json({ ok: false });
     const body = req.body && typeof req.body === 'object' && !Array.isArray(req.body) ? req.body : {};
     try {
+      if (action === 'albums') return res.status(200).json({ok:true,albums:await store.readAlbums()});
       if (action === 'dates') {
         if (req.method === 'GET') return res.status(200).json({ ok: true, enabled: true, dates: dedupe(await store.readDates()) });
         const entry = sanitizePlan(body, now());

@@ -1,4 +1,4 @@
-name: Encode a recording for mobile browsers
+name: Encode a Storage recording for mobile browsers
 
 on:
   workflow_dispatch:
@@ -7,45 +7,44 @@ on:
         description: Recording to encode
         required: true
         type: choice
-        options:
-          - recording-letter
-          - original-recording
+        options: [recording-letter, original-recording]
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   encode:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          lfs: true
-      - name: Install FFmpeg
-        run: sudo apt-get update && sudo apt-get install -y ffmpeg
-      - name: Encode H.264 Baseline and AAC
+      - name: Resolve the verified Storage download
         env:
           RECORDING: ${{ inputs.recording }}
         run: |
-          set -euo pipefail
-          case "$RECORDING" in recording-letter|original-recording) ;; *) exit 1 ;; esac
-          file="apps/$RECORDING/public/ilychicaaa/media/para-sa-chica.mp4"
-          output="apps/$RECORDING/public/ilychicaaa/media/para-sa-chica.mobile.mp4"
-          test -s "$file"
-          ffmpeg -hide_banner -loglevel warning -y -i "$file" \
+          node --input-type=module <<'NODE'
+          import { readFileSync, appendFileSync } from 'node:fs';
+          const recording=process.env.RECORDING;
+          if(!['recording-letter','original-recording'].includes(recording))throw new Error('Invalid recording');
+          const catalog=JSON.parse(readFileSync('functions/src/media-catalog.json','utf8'));
+          const sha=catalog.sources[`apps/${recording}/public/ilychicaaa/media/para-sa-chica.mp4`];
+          const object=catalog.objects[sha];
+          if(!object?.verified)throw new Error('Recording is not verified');
+          const url=`https://firebasestorage.googleapis.com/v0/b/${catalog.bucket}/o/${encodeURIComponent(object.object)}?alt=media&token=${object.token}`;
+          appendFileSync(process.env.GITHUB_ENV,`MEDIA_URL=${url}\n`);
+          NODE
+      - name: Install FFmpeg and download the source
+        run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+          curl --fail --location --retry 3 "$MEDIA_URL" --output "$RUNNER_TEMP/source.mp4"
+      - name: Encode H.264 Baseline and AAC
+        run: |
+          ffmpeg -hide_banner -loglevel warning -y -i "$RUNNER_TEMP/source.mp4" \
             -vf "fps=30,scale=854:-2:flags=lanczos,format=yuv420p" \
             -c:v libx264 -preset medium -crf 23 -profile:v baseline -level 3.0 \
             -maxrate 1800k -bufsize 3600k \
-            -c:a aac -b:a 112k -ar 44100 -ac 2 -movflags +faststart "$output"
-          mv "$output" "$file"
-      - name: Commit the encoded recording
-        env:
-          RECORDING: ${{ inputs.recording }}
-        run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "apps/$RECORDING/public/ilychicaaa/media/para-sa-chica.mp4"
-          git diff --cached --quiet && exit 0
-          git commit -m "Encode $RECORDING for mobile browsers"
-          git push
+            -c:a aac -b:a 112k -ar 44100 -ac 2 -movflags +faststart "$RUNNER_TEMP/recording.mobile.mp4"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.recording }}-mobile
+          path: ${{ runner.temp }}/recording.mobile.mp4
+          retention-days: 7

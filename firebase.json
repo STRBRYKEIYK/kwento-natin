@@ -28,6 +28,62 @@
       ],
       "rewrites": [
         {
+          "source": "/assets/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/menu/img/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/date/five/img/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/date/assets/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/vouchers/img/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/second/assets/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/ilychicaaa/media/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/ilychicaaa-original/media/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
           "source": "/date/api/**",
           "function": {
             "functionId": "chicaApi",
@@ -83,6 +139,62 @@
       ],
       "rewrites": [
         {
+          "source": "/assets/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/menu/img/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/date/five/img/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/date/assets/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/vouchers/img/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/second/assets/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/ilychicaaa/media/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/ilychicaaa-original/media/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
           "source": "/date/api/**",
           "function": {
             "functionId": "chicaApi",
@@ -134,6 +246,62 @@
       ],
       "rewrites": [
         {
+          "source": "/assets/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/menu/img/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/date/five/img/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/date/assets/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/vouchers/img/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/second/assets/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/ilychicaaa/media/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/ilychicaaa-original/media/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
           "source": "/vouchers/api/**",
           "function": {
             "functionId": "chicaApi",
@@ -181,6 +349,62 @@
       ],
       "rewrites": [
         {
+          "source": "/assets/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/menu/img/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/date/five/img/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/date/assets/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/vouchers/img/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/second/assets/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/ilychicaaa/media/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/ilychicaaa-original/media/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
           "source": "**",
           "destination": "/second/index.html"
         }
@@ -214,6 +438,62 @@
       ],
       "rewrites": [
         {
+          "source": "/assets/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/menu/img/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/date/five/img/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/date/assets/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/vouchers/img/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/second/assets/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/ilychicaaa/media/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/ilychicaaa-original/media/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
           "source": "**",
           "destination": "/ilychicaaa/index.html"
         }
@@ -246,6 +526,62 @@
         }
       ],
       "rewrites": [
+        {
+          "source": "/assets/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/menu/img/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/date/five/img/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/date/assets/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/vouchers/img/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/second/assets/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/ilychicaaa/media/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/ilychicaaa-original/media/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
         {
           "source": "**",
           "destination": "/ilychicaaa/index.html"

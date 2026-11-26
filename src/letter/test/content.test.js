@@ -1,5 +1,4 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import { mediaObject, mediaUrl } from '../../media.js';
 import { describe, expect, it, vi } from 'vitest';
 import { photos, tracks, chapters, letter, formatTime } from '../data/content';
 import { readPreference } from '../hooks/usePersistentState';
@@ -13,12 +12,12 @@ describe('content and saved preferences', () => {
     const files = [...photos.map(photo => photo.src), ...tracks.map(track => `assets/audio/${track.key}.mp3`),
       ...videos.flatMap(video => [video.src, video.poster])];
     for (const file of files) {
-      const full = path.resolve('public', file);
-      expect(fs.readdirSync(path.dirname(full)), file).toContain(path.basename(full));
+      expect(mediaObject(file)?.verified, file).toBe(true);
+      expect(mediaUrl(file), file).toMatch(/^https:\/\/firebasestorage\.googleapis\.com\//);
     }
     expect(chapters).toHaveLength(6);
     expect(letter.paragraphs).toHaveLength(9);
-    const bytes = photos.reduce((sum, photo) => sum + fs.statSync(path.resolve('public', photo.src)).size, 0);
+    const bytes = photos.reduce((sum, photo) => sum + mediaObject(photo.src).bytes, 0);
     console.info(`Displayed source photos: ${(bytes / 1024 / 1024).toFixed(2)} MB; loaded lazily after the cover.`);
   });
 

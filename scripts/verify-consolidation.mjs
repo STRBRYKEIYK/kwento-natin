@@ -5,6 +5,7 @@ import { resolve } from 'node:path';
 import { manifest, appDirectory } from './linked-apps.mjs';
 import * as serverDates from '../functions/src/shared/dates-core.js';
 import * as schedulerDates from '../apps/date-scheduler/src/dates-core.js';
+import { catalog } from '../functions/src/shared/media.js';
 
 assert.equal(manifest.version, 2);
 assert.equal(manifest.projectId, 'chica-keicodes-dev');
@@ -16,6 +17,7 @@ assert.equal(serverDates.upsert, schedulerDates.upsert);
 
 const adapted = new Set([
   'chica-date-scheduler/package.json',
+  'chica-date-scheduler/vite.config.js',
   'chica-date-scheduler/src/calendar.js',
   'chica-date-scheduler/src/data.js',
   'chica-date-scheduler/src/dates-core.js',
@@ -28,6 +30,13 @@ for (const source of manifest.sources) {
   const provenance = JSON.parse(await readFile(`docs/imports/${source.name}.json`, 'utf8'));
   assert.equal(provenance.commit, source.commit);
   for (const file of provenance.files) {
+    const migrated=catalog.sources[`${source.path}/${file.path}`];
+    if(migrated) {
+      assert.equal(migrated,file.sha256,'Migrated import must preserve its original checksum');
+      assert.ok(catalog.objects[migrated]?.verified,'Migrated import is not verified in Storage');
+      preserved++;
+      continue;
+    }
     const bytes = await readFile(resolve(appDirectory(source), file.path));
     if (verifyOriginalHashes && !adapted.has(`${source.name}/${file.path}`)) {
       assert.equal(createHash('sha256').update(bytes).digest('hex'), file.sha256, 'Imported file changed: ' + file.path);

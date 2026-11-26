@@ -5,7 +5,7 @@ import { firebaseRequest } from './firebase-auth.mjs';
 const { projectId } = JSON.parse(await readFile(new URL('../firebase.sources.json', import.meta.url), 'utf8'));
 const documents = `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents`;
 const collections = {};
-for (const collection of ['entries', '_chica']) {
+for (const collection of ['entries', '_chica', 'media', 'albums']) {
   const all = [];
   let pageToken;
   do {
@@ -32,6 +32,8 @@ const summary = {
   database: '(default)',
   savedDates: (scheduler.fields.entries.arrayValue.values || []).length,
   uploadedPetsaEntries: collections.entries.length,
+  curatedAlbums: collections.albums.length,
+  mediaMetadata: collections.media.length,
   storedMediaObjects: objects.length,
   storedMediaBytes: objects.reduce((sum, object) => sum + Number(object.size || 0), 0),
 };

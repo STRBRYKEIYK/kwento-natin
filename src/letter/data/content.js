@@ -1,4 +1,5 @@
 import story from './story.json';
+import { mediaUrl } from '../../media.js';
 
 export const { chapters, photos, directory, intro, letter, dreams } = story;
 export const photoById = Object.fromEntries(photos.map(photo => [photo.id, photo]));
@@ -27,7 +28,7 @@ export const sections = [
   { id: 'sec-11', label: 'Bukas', track: 'forevermore' },
   { id: 'sec-finale', label: 'Sa bawat 6', track: 'forevermore' },
 ];
-export const assetUrl = relative => `${import.meta.env.BASE_URL}${relative}`;
+export const assetUrl = relative => mediaUrl(`${import.meta.env.BASE_URL}${relative}`);
 export const formatTime = seconds => {
   const value = Number.isFinite(seconds) ? Math.max(0, Math.floor(seconds)) : 0;
   return `${Math.floor(value / 60)}:${String(value % 60).padStart(2, '0')}`;

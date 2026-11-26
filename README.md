@@ -20,7 +20,9 @@ All five former repositories have been imported. `firebase.sources.json` records
 
 ## Firebase database and hosting
 
-The single Firebase project is **`chica-keicodes-dev`**. Its existing ID is retained to preserve data, app configuration, domains, and notification secrets. Cloud Firestore's `(default)` database stores saved dates in `_chica/dateScheduler` and uploaded PETSA entries in `entries`. Cloud Storage uses `chica-keicodes-dev.firebasestorage.app`, with `memories/` for scheduler photos and `entries/` for PETSA uploads. Existing static photos and recordings remain in the repository and are published through Firebase Hosting.
+The single Firebase project is **`chica-keicodes-dev`**. Its existing ID is retained to preserve data, app configuration, domains, and notification secrets. Cloud Firestore's `(default)` database stores saved dates in `_chica/dateScheduler`, uploaded PETSA entries in `entries`, curated albums in `albums`, and file metadata in `media`. Images, music and videos live in Cloud Storage bucket `chica-keicodes-dev.firebasestorage.app`: `library/sha256/` holds the migrated library, `memories/` holds scheduler photos, and `entries/` holds PETSA uploads. Firebase Hosting serves code, HTML, fonts and SVG artwork.
+
+The media migration verified 1,107 original files against 1,013 unique cloud objects (1,576,141,071 bytes). Identical files share a Storage object. `functions/src/media-catalog.json` records original paths, hashes and immutable Storage download URLs; it contains public media download tokens, never account credentials. The frontend loads Storage URLs directly. Legacy media links redirect through `chicaApi`. PETSA reads its 11 curated albums from Firestore, with the local album list as a fallback. Saved dates and existing upload locations are preserved.
 
 `chicaApi` runs in `asia-southeast1` and uses the existing database, bucket, and `CHICA_NOTIFICATIONS` Secret Manager secret. Date merging, cancellation marks, private memory photo URLs, and browser storage keys are preserved. Voucher scratch/redeem progress continues to use its existing local storage key; the voucher API sends notifications. The consolidation does not silently upload or reset browser-only progress.
 
@@ -68,7 +70,7 @@ npm run firebase:deploy
 node scripts/verify-firebase-live.mjs --api
 ```
 
-The backup writes the existing Firestore documents and Storage object metadata under ignored `.firebase-migration-data/firestore-backups/`. It does not copy object bytes; source media remains in this repository, and a deployment does not change existing uploaded objects. Keep backups private. The status command prints counts, not saved messages or credentials.
+The backup writes Firestore documents and Storage object metadata under ignored `.firebase-migration-data/firestore-backups/`. It does not copy object bytes. The original media files were retained locally under ignored `.firebase-migration-data/media-originals/`; old Git commits and old repositories also retain their history. Keep those backups private and maintain a separate backup of Storage. Normal deployments do not change existing Storage objects. The status command prints counts, not saved messages or credentials.
 
 `firebase:deploy` builds and verifies the site, checks the existing notification secret, then deploys Hosting and `chicaApi` to the single Firebase project. It does not deploy or overwrite Firestore/Storage security rules. Never run Firebase initialization with an instruction to replace `index.html` or the existing access rules.
 
@@ -81,7 +83,10 @@ If notification credentials ever need restoring, use `npm run firebase:telegram-
 ## Editing content
 
 - The Library book entries live in `src/pages/libraryData.js`. Add a page, thumbnail, and route together.
-- Original photos and recordings live in `public/assets/` and the relevant `apps/*` directory. MP4s use Git LFS; a fresh checkout must download the LFS content before building.
+- Personal media is excluded from Git and Hosting bundles. A fresh checkout builds without downloading Git LFS or the old repositories. `src/media.js` resolves existing media references; the Vite plugin also resolves scheduler image imports and static page references from the catalog.
+- Add new photos through PETSA's existing add-entry form: it uploads to Storage and saves metadata in Firestore. For new videos or music, upload the file to Storage and use its download URL in an album's `media` list or the relevant content entry. Store album labels, dates, descriptions, media URLs and thumbnail URLs in Firestore; never put binary file contents in a database document. Keep a video thumbnail as an image and set `type: "video"`.
+- Update curated albums in Firestore's `albums` collection, keeping their `date` values and order stable because shared PETSA links use album indexes. Existing story text and curated fallback filenames remain in source control.
+- The manual recording-encoding workflow downloads from Storage and returns an encoded artifact. It does not commit video files or overwrite cloud media. Upload a chosen replacement to Storage and update its URL deliberately.
 - Letter memories and playlist data live in `src/letter/data/`; its UI, audio hooks, and tests live under `src/letter/`.
 - ORAS renders `menu/oras/messages.json`. `scripts/build-oras.mjs` imports timed messages without publishing raw chat exports.
 - AIRCON is `/aircon`; the old `/333` link remains a Firebase and client-side redirect. Content lives in `src/pages/ThreeThirtyThreePage.jsx`.
@@ -90,3 +95,5 @@ If notification credentials ever need restoring, use `npm run firebase:telegram-
 - `scripts/build-one-eleven.mjs` generates link previews for 1:11, AIRCON, MATAMIS, and HILING.
 
 The React tests cover interactions, saved preferences, playlist behavior, and Library links. The API tests cover date merging, cancellations, memory photos, calendars, and notification routing without sending real notifications. The consolidation checks verify imported file/media hashes, shared date logic, local build sources, and Firebase output. Real-device video/audio playback remains useful after changing recordings or player behavior.
+
+`node scripts/verify-cloud-media.mjs` checks every migrated object's server checksum, size, generation, public download, CORS and range playback against its local original or migration backup. It requires Firebase CLI sign-in. `scripts/migrate-media.mjs --apply` is the initial migration tool and refuses to discard an existing catalog; do not use it as a general uploader after migration. `scripts/seed-media-database.mjs --apply` creates missing metadata documents only and preserves edited albums and existing dates. These scripts never replace Firestore or Storage security rules.

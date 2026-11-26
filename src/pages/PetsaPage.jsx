@@ -29,10 +29,8 @@ function tickerItems() {
 function DateCard({ d, index, onClick }) {
   const media = getMedia(d);
   const first = media[0];
-  const src = d.isFirebase
-    ? (d.firebaseUrls[0] || '')
-    : first.type === 'photo' ? thumbSrc(d, first.file) : videoThumbSrc(d, first.file);
-  const countLabel = d.files.length + ' litrato' + (d.videos?.length ? ', ' + d.videos.length + ' video' : '');
+  const src = first?.thumbnailUrl || (first?.type === 'video' ? videoThumbSrc(d, first.file) : first?.url || (first ? thumbSrc(d, first.file) : ''));
+  const countLabel = media.filter(m=>m.type==='photo').length + ' litrato, ' + media.filter(m=>m.type==='video').length + ' video';
 
   return (
     <button className="card" type="button" onClick={onClick}
@@ -53,8 +51,8 @@ function DateCard({ d, index, onClick }) {
 
 function GalleryPanel({ dateEntry, media, onClose, onOpenLb }) {
   if (!dateEntry) return null;
-  const photoCount = media.filter(m => m.type === 'photo' || m.url).length;
-  const videoCount = media.filter(m => m.type === 'video' && !m.url).length;
+  const photoCount = media.filter(m => m.type === 'photo').length;
+  const videoCount = media.filter(m => m.type === 'video').length;
   const parts = [];
   if (photoCount) parts.push(photoCount + ' LITRATO');
   if (videoCount) parts.push(videoCount + ' VIDEO');
@@ -81,9 +79,9 @@ function GalleryPanel({ dateEntry, media, onClose, onOpenLb }) {
             aria-label={`${item.type === 'video' ? 'Video' : 'Litrato'} ${j + 1}`}>
             <div className="img-wrap">
               <img
-                src={item.url || (item.type === 'photo' ? thumbSrc(dateEntry, item.file) : videoThumbSrc(dateEntry, item.file))}
+                src={item.thumbnailUrl || (item.type === 'photo' ? item.url || thumbSrc(dateEntry, item.file) : videoThumbSrc(dateEntry, item.file))}
                 alt="" loading={j < 12 ? 'eager' : 'lazy'} width={200} height={267} />
-              {item.type === 'video' && !item.url && <span className="vid-badge" />}
+              {item.type === 'video' && <span className="vid-badge" />}
             </div>
           </button>
         ))}
@@ -116,7 +114,7 @@ function Lightbox({ media, dateEntry, index, onClose, onStep }) {
 
   if (index === null || !dateEntry) return null;
   const item = media[index];
-  const isVideo = item.type === 'video' && !item.url;
+  const isVideo = item.type === 'video';
 
   return (
     <div className="lb">
@@ -128,7 +126,7 @@ function Lightbox({ media, dateEntry, index, onClose, onStep }) {
       </div>
       {isVideo ? (
         <video className="lb-vid" ref={vidRef} controls playsInline preload="metadata"
-          src={videoSrc(dateEntry, item.file)} poster={videoThumbSrc(dateEntry, item.file)}
+          src={item.url || videoSrc(dateEntry, item.file)} poster={item.thumbnailUrl || videoThumbSrc(dateEntry, item.file)}
           onPointerDown={onPointerDown} onPointerUp={onPointerUp} />
       ) : (
         <img className="lb-img" ref={imgRef} alt="" draggable={false}
@@ -279,6 +277,7 @@ function EntryForm({ user, onClose, onSaved }) {
 export default function PetsaPage() {
   const [searchParams] = useSearchParams();
   const [fbEntries, setFbEntries] = useState([]);
+  const [albums, setAlbums] = useState(DATES);
   const [user, setUser] = useState(() => {
     try { const s = localStorage.getItem('petsa.user'); return s === 'chica' || s === 'chico' ? s : null; } catch { return null; }
   });
@@ -288,13 +287,13 @@ export default function PetsaPage() {
   const [lbIdx, setLbIdx] = useState(null);
 
   const allDates = useMemo(() => {
-    const existing = new Set(DATES.map(d => d.date));
+    const existing = new Set(albums.map(d => d.date));
     const newOnes = fbEntries.filter(e => !existing.has(e.date));
-    return [...DATES, ...newOnes];
-  }, [fbEntries]);
+    return [...albums, ...newOnes];
+  }, [albums, fbEntries]);
 
-  const totalPhotos = useMemo(() => allDates.reduce((n, d) => n + (d.isFirebase ? d.firebaseUrls.length : d.files.length), 0), [allDates]);
-  const totalVideos = useMemo(() => allDates.reduce((n, d) => n + (d.videos?.length || 0), 0), [allDates]);
+  const totalPhotos = useMemo(() => allDates.reduce((n, d) => n + getMedia(d).filter(m=>m.type==='photo').length, 0), [allDates]);
+  const totalVideos = useMemo(() => allDates.reduce((n, d) => n + getMedia(d).filter(m=>m.type==='video').length, 0), [allDates]);
 
   const curDate = galleryIdx !== null ? allDates[galleryIdx] : null;
   const curMedia = useMemo(() => {
@@ -304,6 +303,16 @@ export default function PetsaPage() {
   }, [curDate]);
 
   useEffect(() => { document.title = 'PETSA · MGA DATE NATIN'; }, []);
+  useEffect(() => {
+    const controller=new AbortController();
+    fetch('/date/api/albums',{signal:controller.signal}).then(r=>{
+      if(!r.ok) throw new Error('Albums unavailable');
+      return r.json();
+    }).then(data=>{
+      if(data.ok && Array.isArray(data.albums) && data.albums.length && data.albums.every(d=>typeof d.date==='string' && Array.isArray(d.media))) setAlbums(data.albums);
+    }).catch(()=>{});
+    return ()=>controller.abort();
+  }, []);
 
   useEffect(() => {
     (async () => {

@@ -2,12 +2,14 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createApi } from '../src/api.js';
 import { sanitizePlan, jpegBuffer } from '../src/validation.js';
+import { catalog, mediaUrl } from '../src/shared/media.js';
 
 function fixture(initial = []) {
   let entries = structuredClone(initial);
   const photos = new Map();
   const sent = [];
   const store = {
+    readAlbums: async () => [{date:'2026-08-06',label:'Agosto 6',media:[{type:'video',url:'https://example.test/video.mp4'}]}],
     readDates: async () => structuredClone(entries),
     updateDates: async transform => { entries = transform(structuredClone(entries)); },
     putPhoto: async (key, value) => photos.set(key, value),
@@ -33,6 +35,31 @@ test('date writes preserve existing memories, cancellations and distinct plans',
   const response = await f.request('/date/api/dates');
   assert.equal(response.body.dates.length, 2);
   assert.equal(response.body.dates.find(x => x.id === plan.id).status, 'cancelled');
+});
+
+test('legacy media links redirect only known paths for GET and HEAD', async () => {
+  const f=fixture();
+  const path=Object.keys(catalog.paths).find(p=>p.includes(' '));
+  for(const method of ['GET','HEAD']) {
+    const response=await f.request(encodeURI(path),method);
+    assert.equal(response.statusCode,302);
+    assert.equal(response.headers.Location,mediaUrl(path));
+    assert.match(response.headers['Cache-Control'],/^public/);
+  }
+  assert.equal((await f.request(encodeURI(path),'POST')).statusCode,405);
+  assert.equal((await f.request('/assets/missing.mp4')).statusCode,404);
+  assert.equal((await f.request('/assets/%ZZ.mp4')).statusCode,404);
+  assert.equal((await f.request('/assets/__proto__')).statusCode,404);
+});
+
+test('curated albums are loaded from the database and cannot be modified by the public endpoint', async () => {
+  const f=fixture();
+  const result=await f.request('/date/api/albums');
+  assert.equal(result.statusCode,200);
+  assert.equal(result.body.albums[0].media[0].type,'video');
+  assert.equal((await f.request('/date/api/albums','POST',{})).statusCode,405);
+  f.store.readAlbums=async()=>{throw new Error('Database offline');};
+  assert.equal((await f.request('/date/api/albums')).statusCode,500);
 });
 
 test('bad dates, paths, unsupported methods and future memories are rejected', async () => {

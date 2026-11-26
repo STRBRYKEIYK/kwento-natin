@@ -1,4 +1,5 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mediaUrl } from '../functions/src/shared/media.js';
 
 const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
 const invitations = [
@@ -34,7 +35,7 @@ for (const { path, title, description, image } of invitations) {
   .replace(/(<meta name="description" content=")[^"]*/, `$1${description}`)
   .replace(/(<meta property="og:title" content=")[^"]*/, `$1${title}`)
   .replace(/(<meta property="og:description" content=")[^"]*/, `$1${description}`)
-  .replace(/(<meta property="og:image" content=")[^"]*/, `$1${image}`);
+  .replace(/(<meta property="og:image" content=")[^"]*/, `$1${mediaUrl(image).replaceAll('&','&amp;')}`);
   const directory = new URL(`../dist/${path}/`, import.meta.url);
   await mkdir(directory, { recursive: true });
   await writeFile(new URL('index.html', directory), page);

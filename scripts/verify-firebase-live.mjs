@@ -49,6 +49,17 @@ for (const host of [main, 'https://chica.keicodes.dev']) {
   if (!redirected) { console.error({ status: old.status, location: target }); process.exitCode = 1; }
 }
 if (process.argv.includes('--api')) {
+  const albumsResponse=await fetch(main+'/date/api/albums');
+  const albums=albumsResponse.headers.get('content-type')?.includes('json') ? await albumsResponse.json() : null;
+  if(!albumsResponse.ok || !albums?.ok || albums.albums?.length!==11 || !albums.albums.every(a=>Array.isArray(a.media) && a.media.every(m=>m.url?.startsWith('https://firebasestorage.googleapis.com/')))) {console.error('Curated Firestore albums are not ready');process.exitCode=1;}
+  else console.log(`Firestore gallery verified: ${albums.albums.length} albums, ${albums.albums.flatMap(a=>a.media).length} photos/videos.`);
+  for(const host of [main,'https://chica.keicodes.dev']) {
+    for(const path of ['/ilychicaaa/media/para-sa-chica.mp4','/second/assets/long-drive.mp3','/vouchers/img/p1.jpg']) {
+      const response=await fetch(host+path,{method:'HEAD',redirect:'manual',signal:AbortSignal.timeout(30000)});
+      const ok=response.status===302 && response.headers.get('location')===mediaUrl(path);
+      if(!ok){console.error(`Legacy Storage redirect failed: ${host}${path}`);process.exitCode=1;}
+    }
+  }
   const response = await fetch(main + '/date/api/dates');
   const data = response.headers.get('content-type')?.includes('json') ? await response.json() : null;
   if (!response.ok || !data?.enabled || !Array.isArray(data.dates)) { console.error('Date API is not ready. Keep the current custom-domain DNS unchanged.'); process.exitCode = 1; }
@@ -58,3 +69,4 @@ if (process.argv.includes('--api')) {
   if (!state?.channels?.telegram || state?.channels?.ntfyFingerprint !== '6752fc00') { console.error('Existing notification channels are not restored yet.'); process.exitCode = 1; }
   else console.log('Existing Telegram and push configuration verified without sending messages.');
 }
+import { catalog, mediaUrl } from '../functions/src/shared/media.js';

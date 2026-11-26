@@ -3,6 +3,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { useSoundtrack } from '../hooks/useSoundtrack';
 import { audioInstances, currentAudio } from './setup';
 import { CROSSFADE_MS, PAUSE_FADE_MS } from '../audio/createAudioMixer';
+import { mediaUrl } from '../../media.js';
 
 const setup = () => {
   const hook = renderHook(useSoundtrack);
@@ -15,7 +16,7 @@ describe('soundtrack behavior', () => {
   it('loads a track in quiet mode without playing', () => {
     const { result, audio } = setup();
     act(() => result.current.select(0, { shouldPlay: false }));
-    expect(audio.src).toMatch(/palagi\.mp3$/);
+    expect(audio.src).toBe(mediaUrl('/assets/audio/palagi.mp3'));
     expect(audio.playCalls).toBe(0);
     expect(result.current.follow).toBe(true);
     act(() => result.current.followChapter('forevermore'));
@@ -29,7 +30,7 @@ describe('soundtrack behavior', () => {
     await act(async () => result.current.select(0));
     act(() => result.current.pause());
     act(() => result.current.followChapter('tangerine-boulevard'));
-    expect(currentAudio().src).toMatch(/tangerine-boulevard\.mp3$/);
+    expect(currentAudio().src).toBe(mediaUrl('/assets/audio/tangerine-boulevard.mp3'));
     expect(currentAudio().paused).toBe(true);
     expect(audio.playCalls).toBe(1);
   });
@@ -38,10 +39,10 @@ describe('soundtrack behavior', () => {
     const { result, audio } = setup();
     await act(async () => result.current.select(1, { manual: true }));
     act(() => result.current.followChapter('forevermore'));
-    expect(currentAudio().src).toMatch(/rollercoaster\.mp3$/);
+    expect(currentAudio().src).toBe(mediaUrl('/assets/audio/rollercoaster.mp3'));
     expect(result.current.follow).toBe(false);
     await act(async () => result.current.toggleFollow());
-    expect(currentAudio().src).toMatch(/forevermore\.mp3$/);
+    expect(currentAudio().src).toBe(mediaUrl('/assets/audio/forevermore.mp3'));
   });
 
   it('wraps at both ends of the playlist', async () => {

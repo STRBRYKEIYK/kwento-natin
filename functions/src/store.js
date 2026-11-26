@@ -8,6 +8,7 @@ export function createStore(db, bucket) {
     return bucket.file(`memories/${key}`);
   };
   return {
+    async readAlbums() { const snapshot=await db.collection('albums').orderBy('date','asc').get(); return snapshot.docs.map(doc=>({id:doc.id,...doc.data()})); },
     async readDates() { const snapshot = await state.get(); const entries = snapshot.data()?.entries; return Array.isArray(entries) ? entries : []; },
     async updateDates(transform) {
       return db.runTransaction(async transaction => {
