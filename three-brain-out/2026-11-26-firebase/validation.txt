@@ -1,0 +1,22 @@
+Firebase migration validation, November 26, 2026 (Asia/Manila)
+
+Scope: Kwento Natin and five related Chica repositories. Aether and portfolio excluded by the user.
+Six Firebase Hosting sites published; main bundle includes 1,150 files. Combined site outputs: 1,555 MB.
+37 frontend tests and 5 API tests passed. The 18 live page/media/site checks passed.
+Large MP4 range requests return 206 with the correct content range.
+One saved scheduler date backed up and imported into _chica/dateScheduler; existing PETSA entries untouched.
+Date API GET verified on Firebase. Calendar ICS returns 200; Google Calendar link returns 302 to the expected service.
+Existing Telegram and ntfy configuration verified through GET only. No notification messages sent during validation.
+Secrets stored in Firebase Secret Manager. Local credentials, source checkouts, generated bundles, and backups are gitignored.
+Cloud Function deployed in asia-southeast1, matching the verified existing Firestore database and storage bucket region.
+Function artifact repository has a seven-day cleanup policy for generated container images.
+
+Claude review disposition:
+- Added explicit cloud-secret preflight before deploying the function.
+- mergeLists was inspected: it does not truncate to 200. upsert retains the existing 200-plan policy. Migration merges without that limit.
+- Both song HTML sources were inspected and use the same old media origin. Build now also handles either known Vercel origin.
+- Bucket identity and location were verified using the Google Storage API.
+- Concurrent photo import now verifies matching object bytes if an upload races.
+- OAuth credentials stay in the Firebase CLI's own credential store and in memory for requests; no credentials included in this report or source.
+
+Remaining cutover work: finish custom-domain certificate verification in Cloudflare; resync old dates immediately before switching DNS; verify custom-domain pages/APIs after propagation. Old Vercel projects/data have not been deleted.

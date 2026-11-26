@@ -1,0 +1,45 @@
+{
+  "projectId": "chica-keicodes-dev",
+  "sources": [
+    {
+      "name": "chica-date-scheduler",
+      "commit": "3592be09588c03ea11640a5213647ec19af8b762",
+      "site": "chica-keicodes-dev-dates",
+      "kind": "vite",
+      "mount": "date",
+      "main": true
+    },
+    {
+      "name": "love-voucher-book",
+      "commit": "ed4bbca74fbdced34d3f0e21eaf19ca5bba9244b",
+      "site": "chica-keicodes-dev-vouchers",
+      "kind": "vouchers",
+      "mount": "vouchers",
+      "main": true
+    },
+    {
+      "name": "para-sa-chica",
+      "commit": "cdf8d95e4125088c3385efb0b2166e590c664186",
+      "site": "chica-keicodes-dev-second",
+      "kind": "second",
+      "mount": "second",
+      "main": true
+    },
+    {
+      "name": "chica-ilychicaaa",
+      "commit": "c90842167158e62559166f328cfe848d5bbf8d23",
+      "site": "chica-keicodes-dev-song",
+      "kind": "song",
+      "mount": "ilychicaaa",
+      "main": true
+    },
+    {
+      "name": "ilychicaaa",
+      "commit": "0bb8a693cea3a3f5b656f26c7fb3f4b3c0fa2605",
+      "site": "chica-keicodes-dev-original",
+      "kind": "song",
+      "mount": "ilychicaaa",
+      "main": false
+    }
+  ]
+}

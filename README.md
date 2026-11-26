@@ -1,5 +1,43 @@
 # Kwento Natin 💌
 
+## Firebase migration
+
+Firebase project: `chica-keicodes-dev`. The main site and five related sites are assembled from the commits pinned in `firebase.sources.json`. The main site retains `/date`, `/555`, `/vouchers`, `/second`, `/ilychicaaa`, `/third`, `/oras`, PETSA and the 1:11 surprise. The older `ilychicaaa` variant has its own Firebase Hosting site.
+
+```powershell
+npm ci
+npm --prefix functions ci
+npm run build:firebase
+npm run test:firebase
+```
+
+The build clones missing linked repositories into ignored `.firebase-sources/` and creates `.firebase-hosting/`. It leaves originals intact and excludes raw chat exports from publication. The shared timed messages are included at `/oras/messages.json`. Never run Firebase initialization with an instruction to overwrite `index.html` or replace the existing Firestore/Storage rules.
+
+Dates, private memory photos, calendar exports and notifications use the `chicaApi` Cloud Function in `asia-southeast1`, colocated with the existing database and bucket. Date changes use Firestore transactions and the original merge/cancellation rules. Notification settings are stored in the `CHICA_NOTIFICATIONS` Secret Manager secret.
+
+Before switching DNS:
+
+1. Complete `npm run firebase:login` if required.
+2. Restore masked Telegram credentials with `npm run firebase:telegram-setup` in your own terminal. Values are saved only under ignored `.firebase-migration-data/private/`; never paste or commit them.
+3. Run `npm run firebase:notifications` to store the validated configuration in Secret Manager.
+4. Run `npm run firebase:migrate-data` immediately before cutover. This backs up the old scheduler again and merges it into Firebase without replacing newer Firebase data. The old Vercel data is not deleted.
+5. Run `npm run firebase:deploy`, then `node scripts/verify-firebase-live.mjs --api`. All checks must pass before moving the custom domains.
+6. Run `node scripts/firebase-domain-status.mjs` for Firebase's current certificate/DNS requirements. DNS is managed in Cloudflare. The `chica` CNAME points to `chica-keicodes-dev.web.app`; `voucher` points to `chica-keicodes-dev-vouchers.web.app`, both DNS-only. Keep existing DNS until the APIs, secrets and certificate are ready.
+
+Published Firebase sites:
+
+| Site | Firebase URL |
+| --- | --- |
+| Library and all linked paths | https://chica-keicodes-dev.web.app |
+| Scheduler | https://chica-keicodes-dev-dates.web.app |
+| Vouchers | https://chica-keicodes-dev-vouchers.web.app |
+| Second letter | https://chica-keicodes-dev-second.web.app |
+| Current recording letter | https://chica-keicodes-dev-song.web.app |
+| Original recording letter | https://chica-keicodes-dev-original.web.app |
+
+Vercel projects and stored data remain available during migration. This setup does not delete them, upgrade a billing plan, change database access rules, or automatically alter Cloudflare records. Future changes to a linked repository require updating its pinned commit before rebuilding.
+
+
 A personal love letter built with React, Vite, and Framer Motion, with photos, dated memories, a personal letter, and eleven songs in the playlist.
 
 ## Run locally

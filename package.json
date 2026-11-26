@@ -8,7 +8,17 @@
     "build": "vite build",
     "postbuild": "node scripts/build-one-eleven.mjs",
     "preview": "vite preview --host 127.0.0.1 --outDir dist",
-    "test": "vitest run"
+    "test": "vitest run",
+    "firebase:vendor": "node scripts/prepare-firebase-vendor.mjs",
+    "build:firebase": "node scripts/build-firebase.mjs && npm run firebase:vendor",
+    "test:firebase": "npm --prefix functions test && node scripts/verify-firebase-build.mjs",
+    "firebase:backup": "node scripts/migrate-firebase-data.mjs",
+    "firebase:migrate-data": "node scripts/migrate-firebase-data.mjs --apply",
+    "firebase:notifications": "node scripts/firebase-notifications.mjs --apply",
+    "firebase:login": "firebase login",
+    "firebase:deploy": "npm run build:firebase && npm run test:firebase && npm run firebase:check-secrets && firebase deploy --only hosting,functions:chicaApi --project chica-keicodes-dev",
+    "firebase:telegram-setup": "node scripts/firebase-telegram-setup.mjs",
+    "firebase:check-secrets": "node scripts/firebase-check-secrets.mjs"
   },
   "dependencies": {
     "firebase": "^13.4.0",
@@ -22,6 +32,7 @@
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^14.6.8",
     "@vitejs/plugin-react": "^6.1.2",
+    "firebase-tools": "15.37.0",
     "jsdom": "^30.1.3",
     "vite": "^8.3.4",
     "vitest": "^5.0.5"

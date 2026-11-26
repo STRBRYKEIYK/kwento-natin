@@ -3,3 +3,10 @@ dist/
 coverage/
 *.log
 .DS_Store
+.firebase/
+.firebase-sources/
+.firebase-hosting/
+.firebase-migration-data/
+functions/.env*
+firebase-debug.log
+firebase-debug.*.log

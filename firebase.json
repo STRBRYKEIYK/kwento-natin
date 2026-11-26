@@ -1,0 +1,282 @@
+{
+  "hosting": [
+    {
+      "site": "chica-keicodes-dev",
+      "public": ".firebase-hosting/main",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "headers": [
+        {
+          "source": "**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public,max-age=0,must-revalidate"
+            }
+          ]
+        }
+      ],
+      "rewrites": [
+        {
+          "source": "/date/api/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/vouchers/api/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/555{,/**}",
+          "destination": "/date/five/index.html"
+        },
+        {
+          "source": "/date{,/**}",
+          "destination": "/date/index.html"
+        },
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    },
+    {
+      "site": "chica-keicodes-dev-dates",
+      "public": ".firebase-hosting/chica-date-scheduler",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "headers": [
+        {
+          "source": "**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public,max-age=0,must-revalidate"
+            }
+          ]
+        }
+      ],
+      "redirects": [
+        {
+          "source": "/",
+          "destination": "/date/",
+          "type": 302
+        }
+      ],
+      "rewrites": [
+        {
+          "source": "/date/api/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/api/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/555{,/**}",
+          "destination": "/date/five/index.html"
+        },
+        {
+          "source": "**",
+          "destination": "/date/index.html"
+        }
+      ]
+    },
+    {
+      "site": "chica-keicodes-dev-vouchers",
+      "public": ".firebase-hosting/love-voucher-book",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "headers": [
+        {
+          "source": "**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public,max-age=0,must-revalidate"
+            }
+          ]
+        }
+      ],
+      "redirects": [
+        {
+          "source": "/",
+          "destination": "/vouchers/",
+          "type": 302
+        }
+      ],
+      "rewrites": [
+        {
+          "source": "/vouchers/api/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "/api/**",
+          "function": {
+            "functionId": "chicaApi",
+            "region": "asia-southeast1"
+          }
+        },
+        {
+          "source": "**",
+          "destination": "/vouchers/index.html"
+        }
+      ]
+    },
+    {
+      "site": "chica-keicodes-dev-second",
+      "public": ".firebase-hosting/para-sa-chica",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "headers": [
+        {
+          "source": "**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public,max-age=0,must-revalidate"
+            }
+          ]
+        }
+      ],
+      "redirects": [
+        {
+          "source": "/",
+          "destination": "/second/",
+          "type": 302
+        }
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/second/index.html"
+        }
+      ]
+    },
+    {
+      "site": "chica-keicodes-dev-song",
+      "public": ".firebase-hosting/chica-ilychicaaa",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "headers": [
+        {
+          "source": "**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public,max-age=0,must-revalidate"
+            }
+          ]
+        }
+      ],
+      "redirects": [
+        {
+          "source": "/",
+          "destination": "/ilychicaaa/",
+          "type": 302
+        }
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/ilychicaaa/index.html"
+        }
+      ]
+    },
+    {
+      "site": "chica-keicodes-dev-original",
+      "public": ".firebase-hosting/ilychicaaa",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "headers": [
+        {
+          "source": "**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public,max-age=0,must-revalidate"
+            }
+          ]
+        }
+      ],
+      "redirects": [
+        {
+          "source": "/",
+          "destination": "/ilychicaaa/",
+          "type": 302
+        }
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/ilychicaaa/index.html"
+        }
+      ]
+    }
+  ],
+  "functions": {
+    "source": "functions",
+    "runtime": "nodejs22",
+    "ignore": [
+      "node_modules",
+      ".git",
+      "test",
+      "*.log",
+      ".env*"
+    ],
+    "predeploy": [
+      "node scripts/firebase-check-secrets.mjs",
+      "npm run firebase:vendor",
+      "npm --prefix functions test"
+    ]
+  },
+  "emulators": {
+    "hosting": {
+      "port": 5050
+    },
+    "functions": {
+      "port": 5001
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "storage": {
+      "port": 9199
+    },
+    "ui": {
+      "enabled": false
+    }
+  }
+}

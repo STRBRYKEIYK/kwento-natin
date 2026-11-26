@@ -1,0 +1,15 @@
+import { mkdir, readFile, writeFile, cp } from 'node:fs/promises';
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const source = resolve(root, '.firebase-sources/chica-date-scheduler');
+const vendor = resolve(root, 'functions/vendor');
+await mkdir(vendor, { recursive: true });
+for (const file of ['dates-core.js', 'calendar.js', 'data.js']) await cp(resolve(source, 'src', file), resolve(vendor, file));
+const dateSource = await readFile(resolve(source, 'api/date.js'), 'utf8');
+await writeFile(resolve(vendor, 'date-messages.js'), dateSource.split('export default async function handler')[0].replace(/^import .*;\r?\n/gm, ''));
+const notifications = await readFile(resolve(source, 'api/_notify.js'), 'utf8');
+await writeFile(resolve(vendor, 'notifications.js'), notifications.replace('to = "keith" }) {', 'to = "keith" }, env = process.env) {').replace('  const env = process.env;', ''));
+const vouchers = await readFile(resolve(root, '.firebase-sources/love-voucher-book/api/_notify.js'), 'utf8');
+await writeFile(resolve(vendor, 'voucher-notifications.cjs'), vouchers.replace('function notify(text, subject) {', 'function notify(text, subject, env = process.env) {').replace('  const env = process.env;', ''));
+console.log('Prepared shared calendar, merge rules, and notification handlers from pinned source commits.');
