@@ -68,7 +68,7 @@ export default function HilingPage() {
     const previous = document.title;
     const background = document.body.style.background;
     document.body.style.background = '#171e32';
-    document.title = '11:11 · Hiling — Sa lahat ng hiling, ikaw.';
+    document.title = '11:11 · HILING — SA LAHAT NG HILING, IKAW.';
     return () => { document.title = previous; document.body.style.background = background; };
   }, []);
 

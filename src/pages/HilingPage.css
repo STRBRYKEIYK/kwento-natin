@@ -1,6 +1,6 @@
-.hiling { --hl-ink: #f8eddd; --hl-muted: #c5bdc9; --hl-peach: #f4bea4; --hl-night: #171e32; min-height: 100svh; color: var(--hl-ink); background: radial-gradient(ellipse at 78% 42%, #343349 0, #20273d 35%, var(--hl-night) 76%); font-family: 'DM Sans', system-ui, sans-serif; text-transform: none; overflow: hidden; position: relative; isolation: isolate; }
+.hiling { --hl-ink: #f8eddd; --hl-muted: #c5bdc9; --hl-peach: #f4bea4; --hl-night: #171e32; min-height: 100svh; color: var(--hl-ink); background: radial-gradient(ellipse at 78% 42%, #343349 0, #20273d 35%, var(--hl-night) 76%); font-family: 'DM Sans', system-ui, sans-serif; text-transform: uppercase; overflow: hidden; position: relative; isolation: isolate; }
 .hiling *, .hiling *::before, .hiling *::after { box-sizing: border-box; }
-.hiling button, .hiling a, .hiling textarea { -webkit-tap-highlight-color: transparent; }
+.hiling button, .hiling a, .hiling textarea { -webkit-tap-highlight-color: transparent; text-transform: uppercase; }
 .hiling button { font: inherit; cursor: pointer; }
 .hiling button:disabled { opacity: .45; cursor: not-allowed; }
 .hiling :focus-visible { outline: 2px solid var(--hl-peach); outline-offset: 5px; }
@@ -17,7 +17,7 @@
 .hl-content { position: relative; z-index: 2; max-width: 490px; padding-left: 22px; }
 .hl-eyebrow { display: flex; align-items: center; gap: 13px; color: var(--hl-peach); font-size: 12px; line-height: 1.5; letter-spacing: .23em; margin: 0 0 26px; }
 .hl-eyebrow span { width: 29px; height: 1px; background: currentColor; }
-.hiling h1 { position: relative; width: fit-content; font: 400 clamp(74px, 7.9vw, 112px)/.94 'Instrument Serif', Georgia, serif; letter-spacing: -.035em; margin: 0 0 35px; }
+.hiling h1 { position: relative; width: fit-content; max-width: 100%; font: 400 clamp(62px, 6.2vw, 86px)/1 'Instrument Serif', Georgia, serif; letter-spacing: -.035em; margin: 0 0 35px; }
 .hiling h1 em { font-weight: 400; color: var(--hl-peach); }
 .hiling h1 > svg { position: absolute; width: 74%; height: 14px; left: 0; bottom: -14px; stroke: var(--hl-peach); fill: none; stroke-width: 1.2; opacity: .7; }
 .hl-intro > p { color: var(--hl-muted); font-size: 16px; line-height: 1.8; margin: 0; }
@@ -122,8 +122,8 @@
   .hl-main { grid-template-columns: 1fr; gap: 0; padding: 38px 0 23px; min-height: auto; }
   .hl-content { max-width: 490px; width: 100%; margin: auto; }
   .hl-eyebrow { font-size: 10px; margin-bottom: 20px; }
-  .hiling h1 { font-size: clamp(69px, 15vw, 100px); line-height: .94; margin-bottom: 29px; }
-  .hiling h1 br:first-of-type { display: none; }
+  .hiling h1 { font-size: clamp(52px, 13vw, 72px); line-height: 1; margin-bottom: 29px; }
+  .hiling h1 br:first-of-type { display: block; }
   .hl-intro > p { font-size: 16px; line-height: 1.8; } .hl-intro > p.hl-intro-whisper { font-size: 23px; margin-bottom: 22px; }
   .hl-visual { grid-row: 2; margin-top: 24px; }
   .hl-scene { max-width: 390px; height: 460px; }
@@ -145,6 +145,6 @@
   .hl-folded h2, .hl-sending h2 { font-size: 26px; }
   .is-flying .hl-flying-plane { animation-name: hl-flight-mobile; }
 }
-@media (max-width: 360px) { .hl-shell { padding: 0 20px; } .hiling h1 { font-size: 64px; } .hl-main:not(.hl-stage-closed) h1 { font-size: 48px; } .hl-scene { height: 410px; } .hl-window { left: 9%; right: 9%; } .hl-sill { left: 5%; right: 5%; } .hl-scene-note { right: 6%; font-size: 18px; } .hl-scene-caption { letter-spacing: .04em; font-size: 6px; } .hl-footer ol { gap: 15px; } .hl-footer li { font-size: 10px; } .hl-clock { right: 12%; } }
+@media (max-width: 360px) { .hl-shell { padding: 0 20px; } .hiling h1 { font-size: 50px; } .hl-main:not(.hl-stage-closed) h1 { font-size: 44px; } .hl-scene { height: 410px; } .hl-window { left: 9%; right: 9%; } .hl-sill { left: 5%; right: 5%; } .hl-scene-note { right: 6%; font-size: 18px; } .hl-scene-caption { letter-spacing: .04em; font-size: 6px; } .hl-footer ol { gap: 15px; } .hl-footer li { font-size: 10px; } .hl-clock { right: 12%; } }
 @keyframes hl-flight-mobile { 0% { opacity: 1; transform: translate(0,0) rotate(-12deg) scale(1); } 40% { opacity: 1; transform: translate(65px,-100px) rotate(-35deg) scale(.7); } 70% { opacity: 1; transform: translate(10px,-170px) rotate(-15deg) scale(.45); } 100% { opacity: 0; transform: translate(110px,-230px) rotate(-30deg) scale(.1); } }
 @media (prefers-reduced-motion: reduce) { .hiling *, .hiling *::before, .hiling *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } .is-flying .hl-flying-plane { opacity: 0; } }

@@ -22,8 +22,8 @@ const invitations = [
   },
   {
     path: 'hiling',
-    title: '11:11 · Hiling — Sa lahat ng hiling, ikaw.',
-    description: 'Buksan ang bintana. Itupi ang isang hiling at paliparin sa gabi. Para sa mga bukas nina Chico at Chica.',
+    title: '11:11 · HILING — SA LAHAT NG HILING, IKAW.',
+    description: 'BUKSAN ANG BINTANA. ITUPI ANG ISANG HILING AT PALIPARIN SA GABI. PARA SA MGA BUKAS NINA CHICO AT CHICA.',
     image: 'https://chica.keicodes.dev/menu/img/hiling.png',
   },
 ];

@@ -3,7 +3,7 @@
 <path fill="url(#night)" d="M0 0h600v450H0z"/>
 <ellipse cx="410" cy="220" rx="151" ry="197" fill="none" stroke="#f4bea4" stroke-opacity=".12" transform="rotate(18 410 220)"/>
 <text x="50" y="105" fill="#f4bea4" font-family="Georgia,serif" font-size="17" letter-spacing="5">11:11 · HILING</text>
-<g fill="#f8eddd" font-family="Georgia,serif" font-size="48"><text x="48" y="181">Sa lahat</text><text x="48" y="235">ng hiling,</text><text x="48" y="295" font-style="italic" fill="#f4bea4">ikaw.</text></g>
+<g fill="#f8eddd" font-family="Georgia,serif" font-size="40"><text x="48" y="181">SA LAHAT</text><text x="48" y="235">NG HILING,</text><text x="48" y="295" font-style="italic" fill="#f4bea4">IKAW.</text></g>
 <path d="M52 308q85-13 151-3" fill="none" stroke="#f4bea4"/>
 <path d="M306 355V163a107 107 0 0 1 214 0v192Z" fill="#d7bfa6"/>
 <g clip-path="url(#arch)"><path d="M315 55h200v305H315Z" fill="url(#sky)"/><path d="M450 115a23 23 0 1 0 25 25 25 25 0 0 1-25-25" fill="#f9e1bd"/><g fill="#f9e1bd"><circle cx="352" cy="154" r="1.4"/><circle cx="417" cy="98" r="1"/><circle cx="471" cy="187" r="1.5"/></g><path d="M315 300q60-45 116-6t90-18v90H315Z" fill="#656780"/><path d="M315 326h23v-36l20-15 20 15v36h29v-50l26-16 26 16v50h62v40H315Z" fill="#2e344d"/><g fill="#f5cfa0"><path d="M350 297h9v13h-9zM420 286h8v14h-8zM438 286h8v14h-8z"/></g><path d="M405 60h7v300h-7zM310 221h210v7H310Z" fill="#d7bfa6"/><path d="M315 60h18l-5 290h-16zM496 60h18v290h-14z" fill="#c9c1cf"/></g>

@@ -18,7 +18,7 @@ function renderPage() {
 describe('11:11 Hiling', () => {
   it('opens at any hour, lets her choose, edit, fold and send a wish, then revisit it', async () => {
     const user = renderPage();
-    expect(document.title).toContain('11:11 · Hiling');
+    expect(document.title).toContain('11:11 · HILING');
     await user.click(screen.getByRole('button', { name: /Buksan ang bintana/ }));
     const input = screen.getByRole('textbox', { name: /O isulat/ });
     expect(input).toHaveFocus();
