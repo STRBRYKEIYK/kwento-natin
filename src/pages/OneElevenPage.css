@@ -157,7 +157,7 @@ body:has(.one-eleven) { background: #101210; }
   .oe-print-1 { right: 1%; top: 65px; }
   .oe-print-2 { top: 125px; }
   .oe-cover-copy { text-align: left; }
-  .oe-cover-clock { font-size: 4.7rem; margin-bottom: 23px; padding-bottom: 22px; justify-content: space-between; }
+  .oe-cover-clock { font-size: clamp(3rem, 12vw, 4.7rem); margin-bottom: 23px; padding-bottom: 22px; justify-content: space-between; }
   .oe-cover-clock span { max-width: 120px; font-size: .8125rem; }
   .oe-cover h1 { font-size: clamp(2.2rem, 8.5vw, 3.6rem); }
   .oe-cover-copy > button { width: 100%; }
