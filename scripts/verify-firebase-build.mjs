@@ -7,6 +7,8 @@ const manifest = JSON.parse(await readFile('firebase.sources.json', 'utf8'));
 const config = JSON.parse(await readFile('firebase.json', 'utf8'));
 const required = ['index.html', 'one-minute-eleven-memories/index.html', 'date/index.html', 'date/places.json', 'date/five/index.html', 'vouchers/index.html', 'vouchers/img/p1.jpg', 'second/index.html', 'second/assets/long-drive.mp3', 'ilychicaaa/index.html', 'ilychicaaa/media/para-sa-chica.mp4', 'oras/messages.json'];
 for (const file of required) await access(resolve(root, 'main', file));
+const threeThirtyThree = await readFile(resolve(root, 'main/333/index.html'), 'utf8');
+assert.ok(threeThirtyThree.includes('<title>3:33 · TAYO MUNA</title>'), 'The 3:33 invitation is missing from the Firebase build');
 for (const source of manifest.sources) await access(resolve(root, source.name, source.mount, 'index.html'));
 assert.equal(config.hosting.length, 6);
 for (const site of config.hosting) {
