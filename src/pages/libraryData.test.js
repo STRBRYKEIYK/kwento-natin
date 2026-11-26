@@ -14,7 +14,8 @@ describe('REGALO book index', () => {
     expect(hrefs.filter(href => href === '/aircon')).toHaveLength(1);
     expect(hrefs).not.toContain('/333');
     expect(hrefs.indexOf('/matamis')).toBe(hrefs.indexOf('/aircon') + 1);
-    expect(regalo.pages.at(-1).href).toBe('/matamis');
+    expect(hrefs.indexOf('/hiling')).toBe(hrefs.indexOf('/matamis') + 1);
+    expect(regalo.pages.at(-1).href).toBe('/hiling');
   });
 
   it('has no repeated link, title or picture inside the book', () => {
@@ -45,7 +46,7 @@ describe('REGALO book index', () => {
   });
 
   it('has the page count the spine and footers read from', () => {
-    expect(regalo.pages).toHaveLength(6);
+    expect(regalo.pages).toHaveLength(7);
     expect(regalo.pages.map(page => page.title)).toEqual([
       'Love Voucher Book',
       "Chicaaaa's Little Garden",
@@ -53,6 +54,7 @@ describe('REGALO book index', () => {
       'Para Kay Chicaaa',
       'AIRCON',
       '10:10 · Matamis',
+      '11:11 · Hiling',
     ]);
   });
 });

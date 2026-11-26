@@ -20,6 +20,12 @@ const invitations = [
     description: 'ISANG RESIPI PARA SA PINAKAMATAMIS NA 10:10. PARA SA CHICAAA KO, WITH LOVE, YOUR CHICOOO.',
     image: 'https://chica.keicodes.dev/menu/img/matamis.jpg',
   },
+  {
+    path: 'hiling',
+    title: '11:11 · Hiling — Sa lahat ng hiling, ikaw.',
+    description: 'Buksan ang bintana. Itupi ang isang hiling at paliparin sa gabi. Para sa mga bukas nina Chico at Chica.',
+    image: 'https://chica.keicodes.dev/menu/img/hiling.png',
+  },
 ];
 
 for (const { path, title, description, image } of invitations) {

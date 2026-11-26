@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="450" viewBox="0 0 600 450">
+<defs><linearGradient id="night" x2="1" y2="1"><stop stop-color="#171e32"/><stop offset="1" stop-color="#39384f"/></linearGradient><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#48547d"/><stop offset=".6" stop-color="#a38ca4"/><stop offset="1" stop-color="#efb6a1"/></linearGradient><clipPath id="arch"><path d="M317 350V163a96 96 0 0 1 192 0v187Z"/></clipPath></defs>
+<path fill="url(#night)" d="M0 0h600v450H0z"/>
+<ellipse cx="410" cy="220" rx="151" ry="197" fill="none" stroke="#f4bea4" stroke-opacity=".12" transform="rotate(18 410 220)"/>
+<text x="50" y="105" fill="#f4bea4" font-family="Georgia,serif" font-size="17" letter-spacing="5">11:11 · HILING</text>
+<g fill="#f8eddd" font-family="Georgia,serif" font-size="48"><text x="48" y="181">Sa lahat</text><text x="48" y="235">ng hiling,</text><text x="48" y="295" font-style="italic" fill="#f4bea4">ikaw.</text></g>
+<path d="M52 308q85-13 151-3" fill="none" stroke="#f4bea4"/>
+<path d="M306 355V163a107 107 0 0 1 214 0v192Z" fill="#d7bfa6"/>
+<g clip-path="url(#arch)"><path d="M315 55h200v305H315Z" fill="url(#sky)"/><path d="M450 115a23 23 0 1 0 25 25 25 25 0 0 1-25-25" fill="#f9e1bd"/><g fill="#f9e1bd"><circle cx="352" cy="154" r="1.4"/><circle cx="417" cy="98" r="1"/><circle cx="471" cy="187" r="1.5"/></g><path d="M315 300q60-45 116-6t90-18v90H315Z" fill="#656780"/><path d="M315 326h23v-36l20-15 20 15v36h29v-50l26-16 26 16v50h62v40H315Z" fill="#2e344d"/><g fill="#f5cfa0"><path d="M350 297h9v13h-9zM420 286h8v14h-8zM438 286h8v14h-8z"/></g><path d="M405 60h7v300h-7zM310 221h210v7H310Z" fill="#d7bfa6"/><path d="M315 60h18l-5 290h-16zM496 60h18v290h-14z" fill="#c9c1cf"/></g>
+<path d="M295 353h237v9H295Z" fill="#e2ccb2"/><path d="M306 362h215v6H306Z" fill="#aa9180"/>
+<g transform="translate(400 233) rotate(-17)"><path d="m0 13 62-13-21 44-13-18Z" fill="#fff4df"/><path d="m28 26 34-26-24 32 3 12-8-13Z" fill="#d5baa6"/></g>
+<text x="50" y="383" fill="#c5bdc9" font-family="Arial,sans-serif" font-size="10" letter-spacing="2">PARA SA MGA BUKAS NATIN.</text>
+</svg>

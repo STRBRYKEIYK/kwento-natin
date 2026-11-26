@@ -102,3 +102,9 @@ A static page (`menu/oras/index.html`) that reads `menu/oras/messages.json`. A l
 - Layouts cover narrow phones, larger phones, tablets, desktop, and landscape photo viewing. Photos load lazily and all primary touch controls are at least 44px.
 
 Tests exercise React interactions, audio behavior, saved preferences, and content/asset preservation using JSDOM and a mock audio element. They do not verify real browser layout, native dialog focus trapping, or actual audio playback. Visual checks at 320, 375, 390, and 430px widths, plus landscape and a real iOS/Android browser, remain useful before publication.
+
+## 11:11 HILING (`/hiling`)
+
+Open an illustrated blue-hour window, choose or write a wish, fold it into a paper plane, and reveal a matching note from Chico. Entry 7 in REGALO works at any hour, supports keyboard navigation and reduced motion, and saves only the most recent sent wish in this browser. Nothing is sent to Chico or a server.
+
+Source, styles, and interaction tests: `src/pages/HilingPage.*`. Library cover: `public/menu/img/hiling.svg`; share image: `public/menu/img/hiling.png`. `scripts/build-one-eleven.mjs` creates the `/hiling/index.html` invitation.
