@@ -1,0 +1,802 @@
+<!doctype html>
+<html lang="tl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>12:12 · PARA KAY CHICAAA · LIBRARY NI CHICO</title>
+<meta name="description" content="Isang munting pahina mula sa puso ng Chico mo, para kay Chicaaa.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#121111">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@1,900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#121111;
+  --char:#3a3836;
+  --paper:#f3f3f0;
+  --card:#fdfdfb;
+  --red:#c8102e;
+  --red2:#ff4b63;
+  --mute:#67635d;
+  --line:#d6d3cb;
+  --serif:"Playfair Display",Georgia,serif;
+  --sans:"DM Sans",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  line-height:1.55;
+  min-height:100svh;
+  overflow-x:hidden;
+  text-transform:uppercase;
+}
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.09;
+  mix-blend-mode:multiply;
+  z-index:300;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .8 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+button{font:inherit;text-transform:inherit;color:inherit;background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+
+/* ---------- ticker ---------- */
+.ticker{
+  background:var(--ink);
+  color:var(--paper);
+  overflow:hidden;
+  white-space:nowrap;
+  font-size:11px;
+  letter-spacing:.22em;
+  font-weight:700;
+}
+.ticker .track{display:inline-flex;animation:slide 32s linear infinite;padding:9px 0}
+.ticker span{padding:0 18px}
+.ticker b{color:var(--red2);font-weight:700}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---------- layout ---------- */
+.wrap{max-width:520px;margin:0 auto;padding:0 16px 56px}
+
+/* top bar */
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding-top:10px;
+}
+.back{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  min-height:44px;
+  margin-left:-4px;
+  padding:0 12px 0 4px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.22em;
+}
+.back svg{
+  width:18px;height:18px;stroke:currentColor;fill:none;
+  stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+  transition:transform .2s;
+}
+.back:hover svg{transform:translateX(-3px)}
+.crumb{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.22em;
+  color:var(--mute);
+  text-align:right;
+}
+
+/* ---------- hero ---------- */
+.hero{padding:18px 0 10px;animation:drop .65s cubic-bezier(.2,.8,.2,1) both}
+.eyebrow{font-size:11px;letter-spacing:.26em;font-weight:700;color:var(--red)}
+.clock{
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:900;
+  font-size:clamp(88px,28vw,148px);
+  line-height:.84;
+  letter-spacing:-.035em;
+  margin:14px 0 10px;
+}
+.clock i{color:var(--red);font-style:italic;padding:0 .02em}
+.hero h1{
+  margin-top:8px;
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:900;
+  font-size:clamp(34px,9.5vw,52px);
+  line-height:.94;
+  letter-spacing:-.02em;
+  text-wrap:balance;
+}
+.hero h1 em{color:var(--red)}
+.lede{
+  margin-top:14px;
+  max-width:42ch;
+  font-size:14.5px;
+  line-height:1.65;
+  color:var(--char);
+  font-weight:500;
+}
+.hero-acts{
+  margin-top:20px;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:10px;
+}
+.jump{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  min-height:44px;
+  padding:0 16px;
+  border:1.5px solid var(--ink);
+  background:var(--card);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.18em;
+  box-shadow:4px 4px 0 var(--ink);
+  transition:transform .18s,box-shadow .18s,background-color .18s,color .18s;
+}
+.jump:hover{background:var(--ink);color:var(--paper)}
+.jump:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.jump.primary{
+  background:var(--ink);
+  color:var(--paper);
+  box-shadow:4px 4px 0 var(--red);
+}
+.jump.primary:hover{background:var(--red);border-color:var(--red)}
+.jump.primary:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--red)}
+.jump svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+.rule-hint{
+  margin:28px 0 22px;
+  font-size:10px;
+  letter-spacing:.24em;
+  font-weight:700;
+  color:var(--mute);
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.rule-hint::before,.rule-hint::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* ---------- editorial cards ---------- */
+.card{
+  position:relative;
+  background:var(--card);
+  border:2px solid var(--ink);
+  box-shadow:7px 7px 0 var(--ink);
+  animation:drop .7s cubic-bezier(.2,.8,.2,1) .1s both;
+}
+.card + .card{margin-top:28px}
+
+/* dark ink header bar (matches wall calendar & day sheet) */
+.card-head{
+  background:var(--ink);
+  color:var(--paper);
+  padding:18px 18px 16px;
+  border-bottom:2px solid var(--ink);
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+.ch-k{
+  display:block;
+  font-size:10px;
+  letter-spacing:.26em;
+  font-weight:700;
+  color:var(--red2);
+}
+.ch-title{
+  margin-top:6px;
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:900;
+  font-size:clamp(26px,7vw,36px);
+  line-height:1.02;
+  letter-spacing:-.015em;
+}
+.ch-title em{color:var(--red2)}
+.chip{
+  flex:none;
+  padding:6px 10px;
+  background:var(--red);
+  color:#fff;
+  font-size:10px;
+  letter-spacing:.18em;
+  font-weight:700;
+  line-height:1.25;
+  text-align:center;
+}
+.card-body{padding:20px 18px 22px}
+.card-intro{
+  font-size:13.5px;
+  line-height:1.68;
+  color:var(--char);
+  font-weight:500;
+  margin-bottom:18px;
+}
+
+/* ---------- framed video (matches library picture frame .pframe/.pv) ---------- */
+.vframe{
+  position:relative;
+  padding:8px;
+  background:linear-gradient(145deg,#33302e,#0d0c0c);
+  box-shadow:
+    0 14px 28px rgba(0,0,0,.26),
+    inset 0 0 0 1px rgba(255,255,255,.14),
+    inset 0 2px 0 rgba(255,255,255,.1);
+}
+.vframe .mat{
+  display:block;
+  background:#f7f5ee;
+  padding:10px;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.14),inset 2px 3px 8px rgba(0,0,0,.2);
+}
+.vframe .well{
+  position:relative;
+  background:#121111;
+  line-height:0;
+  overflow:hidden;
+}
+.vframe video{
+  display:block;
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:contain;
+  background:#121111;
+}
+.vcap{
+  margin-top:16px;
+  padding-top:14px;
+  border-top:1px solid var(--line);
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:8px 14px;
+}
+.vcap-quote{
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:900;
+  font-size:20px;
+  line-height:1.15;
+  color:var(--ink);
+}
+.vcap-meta{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  font-size:10px;
+  letter-spacing:.2em;
+  font-weight:700;
+  color:var(--mute);
+}
+.vcap-meta .dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--mute);
+  flex:none;
+  transition:background-color .2s;
+}
+.vcap-meta.playing{color:var(--red)}
+.vcap-meta.playing .dot{background:var(--red);animation:pulse 1.4s ease-in-out infinite}
+.video-tools{display:flex;align-items:center;flex-wrap:wrap;gap:10px 18px;margin-top:14px;font-size:11px;font-weight:700;letter-spacing:.1em}
+.video-tools a{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline;text-underline-offset:4px}
+.video-retry{min-height:44px;border:1.5px solid var(--ink);padding:8px 12px;background:var(--card)}
+.video-retry[hidden],.video-error[hidden]{display:none}
+.video-error{margin-top:12px;font-size:12px;line-height:1.6;color:var(--red)}
+@keyframes pulse{50%{opacity:.35}}
+
+/* ---------- letter book page (matches library reader .page) ---------- */
+.letter-card{
+  position:relative;
+  overflow:hidden;
+  background:
+    repeating-linear-gradient(0deg,transparent 0 33px,rgba(18,17,17,.045) 33px 34px),
+    var(--card);
+}
+.letter-card::before{
+  content:"";
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:22px;
+  background:linear-gradient(90deg,rgba(0,0,0,.12),rgba(0,0,0,.03) 55%,transparent);
+  pointer-events:none;
+}
+.letter-inner{
+  position:relative;
+  padding:22px 20px 20px 28px;
+}
+.pg-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding-bottom:16px;
+  border-bottom:1.5px solid var(--ink);
+  font-size:10px;
+  letter-spacing:.22em;
+  font-weight:700;
+  color:var(--mute);
+}
+.pg-call{color:var(--ink)}
+.pg-new{
+  display:inline-block;
+  background:var(--red);
+  color:#fff;
+  padding:2px 7px;
+  margin-left:8px;
+  font-size:9.5px;
+  letter-spacing:.2em;
+}
+.pg-stamp{
+  flex:none;
+  border:2px solid var(--red);
+  color:var(--red);
+  padding:4px 9px;
+  font-size:10px;
+  letter-spacing:.18em;
+  font-weight:700;
+  transform:rotate(4deg);
+  position:relative;
+  line-height:1.15;
+}
+.pg-stamp::before{
+  content:"";
+  position:absolute;
+  inset:2px;
+  border:1px solid var(--red);
+  pointer-events:none;
+}
+.letterhead{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:22px 0 18px;
+  font-size:10px;
+  letter-spacing:.26em;
+  font-weight:700;
+  color:var(--red);
+}
+.letterhead::after{content:"";flex:1;height:1px;background:var(--line)}
+
+.salute{
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:900;
+  font-size:clamp(22px,5.8vw,30px);
+  line-height:1.14;
+  letter-spacing:-.01em;
+  color:var(--red);
+  margin:0 0 20px;
+}
+.letter-copy p{
+  font-size:clamp(14px,1.7vw,15.5px);
+  line-height:1.88;
+  letter-spacing:.025em;
+  font-weight:500;
+  color:var(--ink);
+  margin:0 0 18px;
+  overflow-wrap:anywhere;
+}
+.letter-copy p:last-of-type{margin-bottom:0}
+.letter-copy strong{
+  font-weight:700;
+  color:var(--ink);
+  background:linear-gradient(transparent 62%,rgba(200,16,46,.18) 62%);
+  padding:0 2px;
+}
+.letter-copy .closing-line{
+  font-weight:700;
+  color:var(--red);
+  margin-top:22px;
+}
+.signature{
+  margin-top:30px;
+  padding-top:18px;
+  border-top:1px dashed var(--line);
+  text-align:right;
+}
+.signature span{
+  display:block;
+  font-size:10px;
+  letter-spacing:.24em;
+  font-weight:700;
+  color:var(--mute);
+}
+.signature b{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:8px;
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:900;
+  font-size:clamp(26px,6.5vw,32px);
+  line-height:1.1;
+  color:var(--red);
+}
+.signature b svg{width:20px;height:20px;fill:var(--red);flex:none}
+.pg-foot{
+  margin-top:22px;
+  padding-top:12px;
+  border-top:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  font-size:10px;
+  letter-spacing:.22em;
+  font-weight:700;
+  color:var(--mute);
+}
+.pg-foot svg{width:14px;height:14px;fill:var(--red);flex:none}
+
+/* ---------- crimson reminder endcard (matches /555 .heart.on) ---------- */
+.reminder{
+  margin-top:28px;
+  background:var(--red);
+  color:#fff;
+  border:2px solid var(--ink);
+  box-shadow:7px 7px 0 var(--ink);
+  padding:28px 20px 26px;
+  text-align:center;
+  position:relative;
+  animation:drop .7s cubic-bezier(.2,.8,.2,1) .18s both;
+}
+.rem-mini{
+  display:inline-block;
+  font-size:10px;
+  letter-spacing:.26em;
+  font-weight:700;
+  opacity:.88;
+  border:1.5px solid rgba(255,255,255,.55);
+  padding:4px 10px;
+}
+.reminder h3{
+  margin-top:14px;
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:900;
+  font-size:clamp(28px,7.5vw,40px);
+  line-height:1.05;
+  text-wrap:balance;
+}
+.reminder p{
+  margin:14px auto 0;
+  max-width:44ch;
+  font-size:13.5px;
+  line-height:1.72;
+  font-weight:500;
+  letter-spacing:.03em;
+  color:rgba(255,255,255,.94);
+}
+.heart-btn{
+  margin-top:18px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:44px;
+  padding:0 18px;
+  border:1.5px solid rgba(255,255,255,.72);
+  color:#fff;
+  font-size:10.5px;
+  font-weight:700;
+  letter-spacing:.2em;
+  transition:background-color .2s,color .2s,transform .15s;
+}
+.heart-btn:hover{background:#fff;color:var(--red)}
+.heart-btn:active{transform:scale(.96)}
+.heart-btn svg{width:16px;height:16px;fill:currentColor;flex:none}
+
+/* ---------- footer & return cta ---------- */
+.return-wrap{
+  margin-top:34px;
+  text-align:center;
+}
+.go-home{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:11px;
+  min-height:50px;
+  padding:0 24px;
+  background:var(--ink);
+  color:var(--paper);
+  font-weight:700;
+  letter-spacing:.18em;
+  font-size:12px;
+  box-shadow:5px 5px 0 var(--red);
+  transition:transform .16s,box-shadow .16s;
+}
+.go-home svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.go-home:hover{background:#1e1c1c}
+.go-home:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--red)}
+
+footer{margin:38px 0 12px;text-align:center}
+footer .final{
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:900;
+  font-size:24px;
+  line-height:1.2;
+  text-wrap:balance;
+}
+footer .sign{
+  margin-top:10px;
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:900;
+  font-size:24px;
+  color:var(--red);
+}
+footer .fine{
+  margin-top:18px;
+  font-size:10.5px;
+  letter-spacing:.22em;
+  font-weight:700;
+  opacity:.55;
+}
+
+/* floating hearts (matches /555) */
+.fly{
+  position:fixed;
+  bottom:-30px;
+  pointer-events:none;
+  z-index:250;
+  animation:fly var(--d) var(--w) ease-out forwards;
+  opacity:0;
+}
+.fly svg{width:var(--s);height:var(--s);fill:var(--c)}
+@keyframes fly{
+  0%{transform:translateY(0) translateX(0) rotate(0);opacity:0}
+  12%{opacity:1}
+  100%{transform:translateY(-110vh) translateX(var(--x)) rotate(var(--rot));opacity:0}
+}
+@keyframes drop{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* ---------- desktop layout ---------- */
+@media (min-width:860px){
+  .wrap{max-width:860px;padding:0 28px 72px}
+  .hero{
+    padding:26px 0 12px;
+    display:grid;
+    grid-template-columns:auto minmax(0,1fr);
+    column-gap:40px;
+    align-items:end;
+  }
+  .hero .eyebrow{grid-column:1/-1}
+  .clock{
+    font-size:clamp(124px,13vw,160px);
+    margin:14px 0 0;
+  }
+  .hero-right{padding-bottom:6px}
+  .hero h1{margin-top:0;font-size:clamp(36px,4vw,48px)}
+  .card-head{padding:22px 26px 20px}
+  .card-body{padding:24px 26px 26px}
+  .vframe{padding:10px}
+  .vframe .mat{padding:14px}
+  .letter-inner{padding:28px 36px 26px 46px}
+  .reminder{padding:36px 34px 32px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .ticker .track,.hero,.card,.reminder,.vcap-meta.playing .dot{animation:none}
+  .back svg,.jump,.go-home,.heart-btn{transition:none}
+  .fly{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="ticker" aria-hidden="true"><div class="track">
+  <span>LIBRARY NI CHICO</span><span><b>●</b></span><span>12:12</span><span><b>●</b></span><span>PARA KAY CHICAAA</span><span><b>●</b></span><span>ISANG KANTA AT SULAT</span><span><b>●</b></span><span>SPECIAL EDITION</span><span><b>●</b></span>
+  <span>LIBRARY NI CHICO</span><span><b>●</b></span><span>12:12</span><span><b>●</b></span><span>PARA KAY CHICAAA</span><span><b>●</b></span><span>ISANG KANTA AT SULAT</span><span><b>●</b></span><span>SPECIAL EDITION</span><span><b>●</b></span>
+</div></div>
+
+<div class="wrap">
+  <nav class="topbar" aria-label="Navigation">
+    <a class="back" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>LIBRARY</a>
+    <span class="crumb">12:12 · PARA SA'YO LANG</span>
+  </nav>
+
+  <header class="hero">
+    <p class="eyebrow">LIBRARY NI CHICO · A SPECIAL LITTLE MOMENT</p>
+    <div class="clock" aria-label="12:12">12<i>:</i>12</div>
+    <div class="hero-right">
+      <h1>Para sa'yo, <em>Chicaaa ko.</em></h1>
+      <p class="lede">Isang munting pahina mula sa puso ng Chico mo. Walang kailangang madaliin. Gusto ko lang iparamdam kung gaano kita kamahal.</p>
+      <div class="hero-acts">
+        <a class="jump primary" href="#recording">PAKINGGAN ANG KANTA <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/></svg></a>
+        <a class="jump" href="#letter">BASAHIN ANG SULAT <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+      </div>
+    </div>
+  </header>
+
+  <p class="rule-hint" aria-hidden="true">SPECIAL EDITION · WITH LOVE, ALWAYS</p>
+
+  <main>
+    <section class="card" id="recording" aria-label="Personal recording">
+      <div class="card-head">
+        <div>
+          <span class="ch-k">A RECORDING FROM MY HEART</span>
+          <h2 class="ch-title">For the <em>woman I love.</em></h2>
+        </div>
+        <span class="chip">12:12<br>KANTA</span>
+      </div>
+      <div class="card-body">
+        <p class="card-intro">Bago mo basahin ang munting sulat ko, may inihanda po akong kanta para sa'yo. Pindutin mo lang ang play kapag gusto mo na, asawa ko.</p>
+        <div class="vframe">
+          <span class="mat">
+            <div class="well">
+              <video id="love-video" controls playsinline preload="metadata" poster="/ilychicaaa/media/poster.jpg?v=20261124-2" src="/ilychicaaa/media/para-sa-chica.mp4?v=20261124-2" controlsList="nodownload">
+                Your browser does not support video playback.
+              </video>
+            </div>
+          </span>
+        </div>
+        <div class="vcap">
+          <span class="vcap-quote">“A little song from your Chico.”</span>
+          <span class="vcap-meta" id="vStatus"><span class="dot" aria-hidden="true"></span><span id="vStatusTxt">RECORDED WITH LOVE · TAP PLAY</span></span>
+        </div>
+        <p class="video-error" id="videoError" role="status" hidden>Hindi nag-load ang video. Subukan muli o buksan ito nang direkta.</p>
+        <div class="video-tools">
+          <button class="video-retry" id="videoRetry" type="button" hidden>SUBUKAN MULI ANG VIDEO</button>
+          <a href="/ilychicaaa/media/para-sa-chica.mp4?v=20261124-2" target="_blank" rel="noopener">BUKSAN ANG VIDEO NANG DIREKTA ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="card letter-card" id="letter" aria-label="A letter for you">
+      <div class="letter-inner">
+        <div class="pg-top">
+          <span><span class="pg-call">SULAT · 12:12</span><span class="pg-new">SPECIAL</span></span>
+          <span class="pg-stamp">12:12</span>
+        </div>
+
+        <div class="letterhead">A LETTER FOR YOU</div>
+
+        <p class="salute">ASAWAAAA KOOOO, CHICAAAA KOOOO,</p>
+
+        <div class="letter-copy">
+          <p>12:12 POOOO. MAY MUNTING MENSAHE LANG PO AKO PARA SA'YOOOO. ♡</p>
+          <p>SA DAMI NG MGA BAGAY NA GUSTO KONG SABIHIN, ISA PO SA MGA PINAKAMAHALAGA AY ITO: <strong>SALAMAT KASI IKAW YUNG BABAENG MINAMAHAL KO.</strong> SALAMAT SA MGA KWENTO MO, SA MGA TAWA NATIN, SA MGA SIMPLENG ORAS NA MAGKASAMA TAYO, AT SA LAHAT NG MUNTING BAGAY NA NAGPAPASAYA SA ARAW KOOOO.</p>
+          <p>CHICAAAA, HINDI PO AKO PERFECT, AT MAY MGA PAGKAKATAONG HINDI KO NAGAGAWA ANG MGA BAGAY NANG TAMA. PASENSYA NA PO SA MGA ORAS NA NAKADAGDAG AKO SA BIGAT NG NARARAMDAMAN MO. GUSTO KO PONG MATUTO, MAGING MAS MAINGAT, AT MAS IPAKITA SA MGA GINAGAWA KO YUNG PAGMAMAHAL AT PAGGALANG NA DESERVE MOOOO.</p>
+          <p>AT HABANG MAS NAKIKILALA KITA, MAS NAIINTINDIHAN KO NA ANG PAGMAMAHAL AY HINDI LANG YUNG MALALAKING SALITA O MAGAGANDANG PLANO. NASA PAKIKINIG DIN PO ITO, SA PASENSYA, SA PAG-ALAGA SA MALILIIT NA BAGAY, AT SA PAGPILI NA MAS MAGING MABUTI ARAW-ARAW.</p>
+          <p>ALAM MO POOO, KAHIT SA MGA KARANIWANG ARAW LANG, IKAW PA RIN YUNG GUSTO KONG PAGKWENTUHAN NG MGA NAKAKATUWANG BAGAY, KASABAY KUMAIN, KASAMA SA MGA SIMPLENG LAKAD, AT KATULONG SA MGA PANGARAP NA UNTI-UNTI NATING BINUBUO. <strong>YUNG PAGMAMAHAL KO SA'YO, HINDI LANG PARA SA ISANG MAGANDANG SANDALI. GUSTO KO ITONG ALAGAAN SA MALILIIT AT TOTOONG PARAAN.</strong></p>
+          <p>HINDI KO PO KAILANGANG MADALIIN ANG KAHIT ANO, ASAWAAAA. TAKE YOUR TIME LANG POOOO. WALA PO AKONG INAASAHANG SAGOT DAHIL SA PAHINANG ITO. GUSTO KO LANG PONG MAG-IWAN NG MUNTING PAGMAMAHAL NA PWEDENG BALIKAN KAPAG GUSTO MOOOO.</p>
+          <p class="closing-line">MAHAL NA MAHAL KITAAAA, CHICAAAA KOOOO. I LOVEEEE YOUUUU SOOO MUCHHHH. ♡</p>
+        </div>
+
+        <div class="signature">
+          <span>ALWAYS MADE WITH LOVE</span>
+          <b>— Your Chico <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></b>
+        </div>
+
+        <div class="pg-foot">
+          <span>PAHINA 01 / 01 · WITH LOVE, ALWAYS</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="reminder" aria-label="One little reminder">
+      <span class="rem-mini">ONE LITTLE REMINDER</span>
+      <h3>You're loved, Chicaaa ko.</h3>
+      <p>TAKE YOUR TIME LANG POOOO, ASAWAAAA. NANDITO LANG AKOOO, MAY PAGMAMAHAL AT PAGGALANG SA ORAS MOOOO.</p>
+      <button class="heart-btn" id="heartBtn" type="button" aria-label="Send floating hearts">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        MAHAL KITA
+      </button>
+    </section>
+  </main>
+
+  <div class="return-wrap">
+    <a class="go-home" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>BALIK SA LIBRARY NI CHICO</a>
+  </div>
+
+  <footer>
+    <p class="final">12:12 · Made just for Chicaaa.</p>
+    <p class="sign">— Chico</p>
+    <p class="fine">LIBRARY NI CHICO · PARA KAY CHICAAA</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var video = document.getElementById("love-video");
+  var vStatus = document.getElementById("vStatus");
+  var vStatusTxt = document.getElementById("vStatusTxt");
+  var videoError = document.getElementById("videoError");
+  var videoRetry = document.getElementById("videoRetry");
+  if (video && vStatus && vStatusTxt) {
+    function showVideoError() {
+      vStatus.classList.remove("playing");
+      vStatusTxt.textContent = "SUBUKAN MULI ANG VIDEO";
+      videoError.hidden = false;
+      videoRetry.hidden = false;
+    }
+    function clearVideoError() {
+      videoError.hidden = true;
+      videoRetry.hidden = true;
+    }
+    video.addEventListener("error", showVideoError);
+    video.addEventListener("loadedmetadata", clearVideoError);
+    if (video.error) showVideoError();
+    videoRetry.addEventListener("click", function () {
+      var retryUrl = new URL(video.getAttribute("src"));
+      retryUrl.searchParams.set("retry", Date.now().toString());
+      video.src = retryUrl.toString();
+      video.load();
+      var playback = video.play();
+      if (playback && playback.catch) playback.catch(function () {
+        if (video.error) showVideoError();
+        else vStatusTxt.textContent = "TAP PLAY TO LISTEN";
+      });
+    });
+    video.addEventListener("play", function () {
+      clearVideoError();
+      vStatus.classList.add("playing");
+      vStatusTxt.textContent = "NOW PLAYING · PARA SA'YO";
+    });
+    video.addEventListener("pause", function () {
+      vStatus.classList.remove("playing");
+      vStatusTxt.textContent = video.ended ? "TAP PLAY TO LISTEN AGAIN" : "PAUSED · TAKE YOUR TIME";
+    });
+    video.addEventListener("ended", function () {
+      vStatus.classList.remove("playing");
+      vStatusTxt.textContent = "TAP PLAY TO LISTEN AGAIN";
+    });
+  }
+
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var heartBtn = document.getElementById("heartBtn");
+  var HEART_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>';
+  function burstHearts() {
+    if (reduce) return;
+    var colors = ["#c8102e", "#ff4b63", "#121111"];
+    for (var i = 0; i < 14; i++) {
+      var el = document.createElement("span");
+      el.className = "fly";
+      el.innerHTML = HEART_SVG;
+      el.style.left = (8 + Math.random() * 84).toFixed(1) + "vw";
+      el.style.setProperty("--s", (16 + Math.random() * 18).toFixed(0) + "px");
+      el.style.setProperty("--c", colors[i % colors.length]);
+      el.style.setProperty("--d", (2.6 + Math.random() * 1.8).toFixed(2) + "s");
+      el.style.setProperty("--w", (Math.random() * 0.45).toFixed(2) + "s");
+      el.style.setProperty("--x", ((Math.random() - 0.5) * 90).toFixed(0) + "px");
+      el.style.setProperty("--rot", ((Math.random() - 0.5) * 50).toFixed(0) + "deg");
+      document.body.appendChild(el);
+      (function (node) { setTimeout(function () { node.remove(); }, 5200); })(el);
+    }
+  }
+  if (heartBtn) {
+    heartBtn.addEventListener("click", burstHearts);
+  }
+})();
+</script>
+</body>
+</html>

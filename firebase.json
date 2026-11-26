@@ -265,7 +265,6 @@
     ],
     "predeploy": [
       "node scripts/firebase-check-secrets.mjs",
-      "npm run firebase:vendor",
       "npm --prefix functions test"
     ]
   },

@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="tl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>5:55 — LIMANG PANDAMA</title>
+<meta name="description" content="Limang bagay na gusto kong iparamdam sa'yo, Chica.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#121111">
+<meta property="og:title" content="5:55 — LIMANG PANDAMA">
+<meta property="og:description" content="PARA KAY CHICA.">
+<meta property="og:image" content="https://chica.keicodes.dev/date/five/img/b3.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@1,900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#121111; --paper:#f3f3f0; --card:#fdfdfb; --red:#c8102e; --red2:#ff4b63;
+  --serif:"Playfair Display",Georgia,serif; --sans:"DM Sans",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;
+  min-height:100svh;overflow-x:hidden;text-transform:uppercase;
+}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.09;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .8 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+button{font:inherit;text-transform:inherit;color:inherit;background:none;border:0;cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent}
+a{color:inherit}
+.wrap{max-width:460px;margin:0 auto;padding:0 16px}
+
+/* ticker */
+.ticker{background:var(--ink);color:var(--paper);overflow:hidden;white-space:nowrap;font-size:11px;letter-spacing:.22em;font-weight:700}
+.ticker .track{display:inline-flex;animation:slide 30s linear infinite;padding:9px 0}
+.ticker span{padding:0 18px}
+.ticker b{color:var(--red2);font-weight:700}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* hero */
+.hero{padding:30px 0 6px;text-align:center}
+.eyebrow{font-size:11px;letter-spacing:.24em;font-weight:700;text-transform:uppercase}
+.clock{font-family:var(--serif);font-style:italic;font-weight:900;line-height:.86;font-size:clamp(104px,38vw,170px);letter-spacing:-.03em;margin:14px 0 4px}
+.clock i{color:var(--red);font-style:italic;padding:0 .02em}
+.lede{max-width:340px;margin:14px auto 0;font-size:16px}
+.lede strong{font-weight:700}
+.prints{position:relative;height:210px;margin:30px auto 0;max-width:330px}
+.print{position:absolute;width:62%;background:#fff;padding:7px 7px 22px;box-shadow:0 10px 24px rgba(0,0,0,.2);transform:rotate(var(--r))}
+.print img{display:block;width:100%;height:auto;aspect-ratio:720/512;object-fit:cover;filter:grayscale(1) contrast(1.06)}
+.print figcaption{position:absolute;left:0;right:0;bottom:3px;font-family:var(--serif);font-style:italic;font-weight:900;font-size:12px;text-align:center;color:var(--ink)}
+.prints .p1{left:0;top:14px;--r:-5deg}
+.prints .p2{right:0;top:0;--r:4deg}
+.hint{margin-top:22px;font-size:11px;letter-spacing:.24em;font-weight:700;text-transform:uppercase;display:flex;gap:10px;align-items:center;justify-content:center}
+.hint::before,.hint::after{content:"";height:1px;width:34px;background:var(--ink)}
+
+/* senses */
+.senses{margin-top:22px}
+.sense{border:1.5px solid var(--ink);background:var(--card);margin-top:-1.5px;transition:background .35s,color .35s}
+.sense .head{display:grid;grid-template-columns:46px 1fr auto;align-items:center;gap:10px;width:100%;padding:16px 16px 16px 14px}
+.sense .num{font-family:var(--serif);font-style:italic;font-weight:900;font-size:38px;line-height:1;color:var(--red)}
+.sense .name{font-weight:700;letter-spacing:.2em;font-size:15px}
+.sense .name small{display:block;font-weight:500;letter-spacing:.08em;font-size:11px;opacity:.6;margin-top:3px;text-transform:uppercase}
+.sense .ico{width:30px;height:30px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.sense .panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.2,.7,.2,1)}
+.sense .panel > div{overflow:hidden}
+.sense .body{padding:2px 18px 22px 14px}
+.sense .body p{font-size:17px;line-height:1.62}
+.sense.open{background:var(--ink);color:var(--paper)}
+.sense.open .num{color:var(--red2)}
+.sense.open .panel{grid-template-rows:1fr}
+.sense .print.inline{position:relative;width:70%;margin:18px 0 6px;--r:-2.5deg}
+.sense .print.inline.right{margin-left:auto;--r:2.5deg}
+.sense.open .print.inline{animation:pop .6s .15s both cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{opacity:0;transform:translateY(14px) rotate(var(--r))}to{opacity:1;transform:translateY(0) rotate(var(--r))}}
+
+.meter{margin-top:26px;display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.2em;font-weight:700}
+.meter .bar{flex:1;height:5px;background:rgba(18,17,17,.15);position:relative;overflow:hidden}
+.meter .bar i{position:absolute;inset:0;background:var(--red);transform-origin:left;transform:scaleX(0);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+
+/* heart */
+.heart{margin-top:14px;border:1.5px dashed var(--ink);padding:30px 20px;text-align:center;position:relative;transition:background .6s,color .6s,border-color .6s}
+.heart .lock-copy{font-size:13px;letter-spacing:.14em;font-weight:700;text-transform:uppercase}
+.heart .lock-copy svg{width:26px;height:26px;display:block;margin:0 auto 10px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.heart .open-copy{display:none}
+.heart.on{background:var(--red);color:#fff;border:1.5px solid var(--red)}
+.heart.on .lock-copy{display:none}
+.heart.on .open-copy{display:block;animation:fade .9s both}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.open-copy .big{font-family:var(--serif);font-style:italic;font-weight:900;font-size:38px;line-height:1;margin-bottom:6px}
+.open-copy .tag{font-size:11px;letter-spacing:.24em;font-weight:700;opacity:.85}
+.open-copy p{font-size:17px;line-height:1.62;margin-top:16px;text-align:left}
+.open-copy .final{font-family:var(--serif);font-style:italic;font-weight:900;font-size:22px;line-height:1.3;text-align:center;margin-top:22px}
+.open-copy .print{position:relative;width:64%;margin:22px auto 0;--r:-3deg}
+.open-copy .sign{font-family:var(--serif);font-style:italic;font-weight:900;font-size:26px;margin-top:18px;text-align:right}
+
+.reply{display:none;margin:26px 0 0;text-align:center}
+.reply.on{display:block;animation:fade .8s .5s both}
+.reply a{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:var(--paper);text-decoration:none;padding:17px 24px;font-weight:700;letter-spacing:.18em;font-size:13px;box-shadow:5px 5px 0 var(--red)}
+.reply a:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--red)}
+.reply p{margin-top:16px;font-size:12px;opacity:.65}
+
+footer{margin:44px 0 40px;text-align:center;font-size:11px;letter-spacing:.22em;font-weight:700;opacity:.55}
+
+/* floating hearts */
+.fly{position:fixed;bottom:-30px;pointer-events:none;z-index:50;animation:fly var(--d) var(--w) ease-out forwards;opacity:0}
+.fly svg{width:var(--s);height:var(--s);fill:var(--c)}
+@keyframes fly{0%{transform:translateY(0) translateX(0) rotate(0);opacity:0}12%{opacity:1}100%{transform:translateY(-110vh) translateX(var(--x)) rotate(var(--rot));opacity:0}}
+
+@media (prefers-reduced-motion:reduce){
+  .ticker .track{animation:none}
+  .sense .panel,.heart,.meter .bar i{transition:none}
+  .sense.open .print.inline,.heart.on .open-copy,.reply.on{animation:none}
+}
+</style>
+</head>
+<body>
+
+<div class="ticker" aria-hidden="true"><div class="track">
+  <span>5:55 PM</span><span><b>●</b></span><span>LIMANG PANDAMA</span><span><b>●</b></span><span>PARA KAY CHICA</span><span><b>●</b></span><span>5:55 PM</span><span><b>●</b></span><span>LIMANG PANDAMA</span><span><b>●</b></span><span>PARA KAY CHICA</span><span><b>●</b></span>
+  <span>5:55 PM</span><span><b>●</b></span><span>LIMANG PANDAMA</span><span><b>●</b></span><span>PARA KAY CHICA</span><span><b>●</b></span><span>5:55 PM</span><span><b>●</b></span><span>LIMANG PANDAMA</span><span><b>●</b></span><span>PARA KAY CHICA</span><span><b>●</b></span>
+</div></div>
+
+<main class="wrap">
+
+  <section class="hero">
+    <p class="eyebrow">Lunes · Para kay Chica</p>
+    <h1 class="clock" aria-label="5:55"><span>5</span><i>:</i><span>55</span></h1>
+    <p class="lede">Mi Chica, binasa ko lahat ng sagot mo kanina, at ang saya-saya ng puso ko. Kaya ngayong 5:55, lima ang bilang at lima rin ang pandama ng tao. <strong>Tap mo isa-isa</strong> kung paano ka nararamdaman ng buong katawan ko.</p>
+    <div class="prints" aria-hidden="true">
+      <figure class="print p1"><img src="/date/five/img/b1.jpg" alt="" width="720" height="512"><figcaption>5:55 PM</figcaption></figure>
+      <figure class="print p2"><img src="/date/five/img/b2.jpg" alt="" width="720" height="512"><figcaption>Chico &amp; Chica</figcaption></figure>
+    </div>
+    <p class="hint">Simulan sa 1</p>
+  </section>
+
+  <section class="senses" id="senses">
+
+    <article class="sense" data-i="1">
+      <button class="head" aria-expanded="false" aria-controls="p1">
+        <span class="num">1</span>
+        <span class="name">PANINGIN<small>Sight</small></span>
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.8-7 10-7 10 7 10 7-3.8 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+      </button>
+      <div class="panel" id="p1"><div><div class="body">
+        <p>KAHIT PUMIKIT AKO, IKAW ANG NAKIKITA KO. YUNG NGITI MO NA PARANG MAY SARILING LIWANAG, YUNG MGA MATA MONG PARANG ALAM NA ANG LAHAT NG SAGOT NG PUSO KO. MARAMING TAONG DUMADAAN SA PALIGID KO ARAW-ARAW, PERO IKAW LANG ANG HINDI NAWAWALA SA PANINGIN KO.</p>
+        <figure class="print inline"><img src="/date/five/img/b3.jpg" alt="" loading="lazy" width="720" height="512"><figcaption>ang ngiti mo</figcaption></figure>
+      </div></div></div>
+    </article>
+
+    <article class="sense" data-i="2">
+      <button class="head" aria-expanded="false" aria-controls="p2">
+        <span class="num">2</span>
+        <span class="name">PANDINIG<small>Hearing</small></span>
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10v4M7 6v12M11 9v6M15 4v16M19 8v8M22 11v2"/></svg>
+      </button>
+      <div class="panel" id="p2"><div><div class="body">
+        <p>ANG TAWA MO, CHICAAAA. YUNG TAWANG PUMAPASOK SA TENGA KO TAPOS DERETSO SA PUSO KO. PARANG KANTA NA HINDI KO NA KAILANGANG I-REPEAT, KASI KAHIT TAPOS NA, TUMUTUGTOG PA RIN SA ISIP KO.</p>
+      </div></div></div>
+    </article>
+
+    <article class="sense" data-i="3">
+      <button class="head" aria-expanded="false" aria-controls="p3">
+        <span class="num">3</span>
+        <span class="name">PANG-AMOY<small>Smell</small></span>
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h10a3 3 0 1 0-3-3"/><path d="M3 12.5h15a3 3 0 1 1-3 3"/><path d="M3 17h7"/></svg>
+      </button>
+      <div class="panel" id="p3"><div><div class="body">
+        <p>KAPAG NAAAMOY KO ANG MALAMIG NA HANGIN SA UMAGA O ANG LUPANG BASA NG ULAN, ISA LANG ANG NAIISIP KO: SANA KASAMA KITA. PARANG BAWAT MABANGONG BAGAY SA MUNDO, GUSTO KONG IPAAMOY SA'YO BAGO KO PA MAAMOY NANG MAG-ISA.</p>
+      </div></div></div>
+    </article>
+
+    <article class="sense" data-i="4">
+      <button class="head" aria-expanded="false" aria-controls="p4">
+        <span class="num">4</span>
+        <span class="name">PANLASA<small>Taste</small></span>
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18.5V10l18 3.5v5z"/><path d="M3 10 14 6l7 7.5"/><path d="M3 15l18 3.5"/></svg>
+      </button>
+      <div class="panel" id="p4"><div><div class="body">
+        <p>MAY TAKOYAKI, MAY PIZZA, MAY CHEESECAKE, PERO WALANG LASA SA MUNDO ANG KAYANG TALUNIN YUNG TAMIS NG KILIG KO TUWING NAKIKITA KO ANG PANGALAN MO SA SCREEN NG PHONE KO.</p>
+        <figure class="print inline right"><img src="/date/five/img/b4.jpg" alt="" loading="lazy" width="720" height="512"><figcaption>mas matamis pa</figcaption></figure>
+      </div></div></div>
+    </article>
+
+    <article class="sense" data-i="5">
+      <button class="head" aria-expanded="false" aria-controls="p5">
+        <span class="num">5</span>
+        <span class="name">PAGHAWAK<small>Touch</small></span>
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg>
+      </button>
+      <div class="panel" id="p5"><div><div class="body">
+        <p>KAPAG HAWAK ANG KAMAY MO, PARANG TAMANG-TAMA ANG SUKAT. PARANG GINAWA TALAGA ANG KAMAY KO PARA SA KAMAY MO LANG. AT KAPAG YAKAP KITA, NAGIGING ISANG YAKAP LANG ANG BUONG MUNDO.</p>
+        <figure class="print inline"><img src="/date/five/img/b5.jpg" alt="" loading="lazy" width="720" height="512"><figcaption>isang yakap lang</figcaption></figure>
+      </div></div></div>
+    </article>
+
+  </section>
+
+  <div class="meter" aria-live="polite"><span id="count">0 / 5</span><div class="bar"><i id="fill"></i></div><span>NARAMDAMAN</span></div>
+
+  <section class="heart" id="heart" aria-live="polite">
+    <div class="lock-copy">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+      May pang-anim pa<br>Buksan mo muna ang lima
+    </div>
+    <div class="open-copy">
+      <div class="big">Pang-anim</div>
+      <div class="tag">ANG PUSO KO</div>
+      <p>AT MAY PANG-ANIM PA, ASAWA KO, YUNG HINDI NASA LISTAHAN SA ESKWELA: ANG PUSO KO. ITO ANG PINAKAMALAKAS SA LAHAT, KASI KAHIT WALA NA ANG LIMA, KAHIT TAHIMIK, KAHIT WALANG HAWAK, IKAW ANG NARARAMDAMAN NITO NG PINAKAMALINAW.</p>
+      <p>AT SA SINABI MO KANINA, NA IKAW ANG UUNAHIN KO KAHIT MAY IBA PANG DAPAT UNAHIN: OO, ASAWA KO. HINDI 'TO TRABAHO NA KAILANGANG PILITIN. GUSTO KO 'TO, KASI IKAW ANG PINAKAMASAYANG BAGAY NA GINAGAWA KO.</p>
+      <p>AT HINDI KA MAGIGING HULI SA AKIN. NASA UNAHAN KA NG ORAS KO, NG ISIP KO, AT NG PUSO KO.</p>
+      <figure class="print"><img src="/date/five/img/b6.jpg" alt="" loading="lazy" width="720" height="512"><figcaption>5:55 PM</figcaption></figure>
+      <div class="final">Lima ang pandama, isa ang puso, at ikaw lang ang laman ng lahat ng 'yan, mi amor.</div>
+      <div class="sign">— Chico</div>
+    </div>
+  </section>
+
+  <div class="reply" id="reply">
+    <a id="replyLink" href="#" target="_blank" rel="noopener">SAGUTIN SI CHICO <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <p>Bubukas ang WhatsApp. Ikaw na ang pipili ng chat niya.</p>
+  </div>
+
+  <footer>LUNES · 5:55 PM · PARA KAY CHICA</footer>
+</main>
+
+<script>
+(function () {
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var KEY = "five555.opened";
+  var senses = Array.prototype.slice.call(document.querySelectorAll(".sense"));
+  var heart = document.getElementById("heart");
+  var reply = document.getElementById("reply");
+  var count = document.getElementById("count");
+  var fill = document.getElementById("fill");
+  var opened = {};
+
+  try { opened = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { opened = {}; }
+
+  // reply link (no phone number stored in the page)
+  var msg = "5:55 NA, CHICO! NARAMDAMAN KO LAHAT NG LIMA, PATI YUNG PANG-ANIM. I LOVE YOUUUU, ASAWAAA KOOOO! \u{1F970}";
+  document.getElementById("replyLink").href = "https://wa.me/?text=" + encodeURIComponent(msg);
+
+  // sound: soft chimes, only after a tap
+  var ac;
+  var notes = { 1: [523.25], 2: [587.33], 3: [659.25], 4: [783.99], 5: [880], 6: [523.25, 659.25, 783.99, 1046.5] };
+  function chime(k) {
+    try {
+      ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+      if (ac.state === "suspended") ac.resume();
+      var t0 = ac.currentTime, list = notes[k] || notes[1];
+      list.forEach(function (f, i) {
+        var o = ac.createOscillator(), g = ac.createGain();
+        o.type = "sine"; o.frequency.value = f;
+        var s = t0 + i * 0.09;
+        g.gain.setValueAtTime(0.0001, s);
+        g.gain.exponentialRampToValueAtTime(k === 6 ? 0.07 : 0.1, s + 0.03);
+        g.gain.exponentialRampToValueAtTime(0.0001, s + (k === 6 ? 2.2 : 1.3));
+        o.connect(g); g.connect(ac.destination);
+        o.start(s); o.stop(s + 2.4);
+      });
+    } catch (e) {}
+  }
+  function buzz(ms) { try { navigator.vibrate && navigator.vibrate(ms); } catch (e) {} }
+
+  function paint(el, on) {
+    el.classList.toggle("open", on);
+    var b = el.querySelector(".head");
+    b.setAttribute("aria-expanded", on ? "true" : "false");
+  }
+  function total() { return Object.keys(opened).length; }
+
+  function renderProgress() {
+    var n = total();
+    count.textContent = n + " / 5";
+    fill.style.transform = "scaleX(" + n / 5 + ")";
+  }
+
+  function hearts() {
+    if (reduce) return;
+    var colors = ["#ff4b63", "#c8102e", "#ffffff", "#121111"];
+    for (var i = 0; i < 18; i++) {
+      var d = document.createElement("div");
+      d.className = "fly";
+      d.style.left = (Math.random() * 92 + 2) + "vw";
+      d.style.setProperty("--s", (14 + Math.random() * 20) + "px");
+      d.style.setProperty("--c", colors[i % colors.length]);
+      d.style.setProperty("--d", (2.6 + Math.random() * 1.6) + "s");
+      d.style.setProperty("--w", (Math.random() * 0.7) + "s");
+      d.style.setProperty("--x", (Math.random() * 90 - 45) + "px");
+      d.style.setProperty("--rot", (Math.random() * 80 - 40) + "deg");
+      d.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 21s-8.5-5.4-8.5-11.2A4.8 4.8 0 0 1 12 7a4.8 4.8 0 0 1 8.5 2.8C20.5 15.6 12 21 12 21z"/></svg>';
+      document.body.appendChild(d);
+      (function (n) { setTimeout(function () { n.remove(); }, 4800); })(d);
+    }
+  }
+
+  function unlock(first) {
+    heart.classList.add("on");
+    reply.classList.add("on");
+    if (first) {
+      chime(6); buzz([40, 60, 40]); hearts();
+      setTimeout(function () {
+        heart.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+      }, 650);
+    }
+  }
+
+  senses.forEach(function (el) {
+    var i = el.getAttribute("data-i");
+    if (opened[i]) paint(el, true);
+    el.querySelector(".head").addEventListener("click", function () {
+      var on = !el.classList.contains("open");
+      paint(el, on);
+      if (on) {
+        chime(Number(i)); buzz(15);
+        var fresh = !opened[i];
+        opened[i] = 1;
+        try { localStorage.setItem(KEY, JSON.stringify(opened)); } catch (e) {}
+        renderProgress();
+        if (fresh && total() === 5) unlock(true);
+        else if (!fresh) { /* reopened, nothing to do */ }
+      }
+    });
+  });
+
+  renderProgress();
+  if (total() === 5) unlock(false);
+})();
+</script>
+</body>
+</html>

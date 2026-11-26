@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PARA SA CHICA KO 💌</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=Kalam:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --sky-a:#f7d4dc;
+  --sky-b:#fbe3d3;
+  --sky-c:#f0c2cf;
+  --glow:rgba(255,255,255,.55);
+  --star:transparent;
+  --paper:#fffbf5;
+  --paper-edge:#f1e2d6;
+  --line:rgba(176,120,130,.18);
+  --ink:#4b1838;
+  --ink-soft:#8a4a6a;
+  --rose:#c8304f;
+  --rose-deep:#8e1631;
+  --gold:#c49a45;
+  --gold-hi:#f3dd9c;
+  --env:#f1bcc6;
+  --env-dark:#e09dac;
+  --env-flap:#e8a8b6;
+  --title:#7a1f45;
+  --hint:#8a3d61;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --sky-a:#1a1435;
+    --sky-b:#3d1a3f;
+    --sky-c:#5a2148;
+    --glow:rgba(255,170,200,.18);
+    --star:#fff4e6;
+    --env:#e7a9b6;
+    --env-dark:#c9838f;
+    --env-flap:#d9919f;
+    --title:#fbe2ea;
+    --hint:#f2c8d6;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --sky-a:#1a1435;--sky-b:#3d1a3f;--sky-c:#5a2148;
+  --glow:rgba(255,170,200,.18);--star:#fff4e6;
+  --env:#e7a9b6;--env-dark:#c9838f;--env-flap:#d9919f;
+  --title:#fbe2ea;--hint:#f2c8d6;color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  margin:0;min-height:100%;
+  background:
+    radial-gradient(60vmax 50vmax at 15% 10%,var(--glow),transparent 60%),
+    radial-gradient(50vmax 40vmax at 90% 85%,var(--glow),transparent 60%),
+    linear-gradient(160deg,var(--sky-a),var(--sky-b) 55%,var(--sky-c)) fixed;
+  background-color:var(--sky-a);
+  background-attachment:fixed;
+  font-family:"Kalam","Segoe Print","Comic Sans MS",cursive;
+  color:var(--ink);
+  overflow-x:hidden;
+}
+.stars{position:fixed;inset:0;pointer-events:none;
+  background-image:
+   radial-gradient(1.6px 1.6px at 12% 18%,var(--star),transparent),
+   radial-gradient(1px 1px at 22% 48%,var(--star),transparent),
+   radial-gradient(1.4px 1.4px at 38% 12%,var(--star),transparent),
+   radial-gradient(1px 1px at 52% 30%,var(--star),transparent),
+   radial-gradient(2px 2px at 71% 9%,var(--star),transparent),
+   radial-gradient(1px 1px at 84% 36%,var(--star),transparent),
+   radial-gradient(1.4px 1.4px at 6% 74%,var(--star),transparent),
+   radial-gradient(1px 1px at 30% 86%,var(--star),transparent),
+   radial-gradient(1.6px 1.6px at 61% 70%,var(--star),transparent),
+   radial-gradient(1px 1px at 94% 64%,var(--star),transparent),
+   radial-gradient(1.2px 1.2px at 47% 94%,var(--star),transparent);
+  animation:twinkle 6s ease-in-out infinite alternate;
+}
+@keyframes twinkle{from{opacity:.55}to{opacity:1}}
+main{position:relative;min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:2.5rem 1rem 3rem}
+
+/* ---------- Cover ---------- */
+.stage{display:flex;flex-direction:column;align-items:center;gap:1.6rem;transition:opacity .55s ease,transform .55s ease;text-align:center}
+.cover-title{
+  font-family:"Playfair Display",Georgia,serif;font-weight:700;
+  font-size:clamp(1.9rem,7vw,3rem);letter-spacing:.06em;line-height:1.1;
+  color:var(--title);margin:0;
+}
+.cover-sub{font-family:"Great Vibes",cursive;font-size:clamp(1.6rem,6vw,2.2rem);color:var(--rose);margin:-.6rem 0 0}
+:root:not([data-theme="light"]) .cover-sub{color:var(--rose)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cover-sub{color:#ff9db4}}
+:root[data-theme="dark"] .cover-sub{color:#ff9db4}
+
+.envelope{
+  position:relative;width:min(360px,86vw);aspect-ratio:7/5;
+  background:var(--env);border-radius:10px;border:none;padding:0;cursor:pointer;
+  box-shadow:0 30px 60px -20px rgba(70,10,40,.55),0 0 0 1px rgba(255,255,255,.25) inset;
+  perspective:900px;animation:float 4s ease-in-out infinite;
+}
+@keyframes float{50%{transform:translateY(-8px)}}
+.envelope .peek{ /* letter peeking */
+  position:absolute;left:8%;right:8%;top:8%;height:70%;
+  background:var(--paper);border-radius:4px;
+  transition:transform .8s cubic-bezier(.2,.8,.2,1) .35s;
+}
+.envelope .peek::after{
+  content:"";position:absolute;left:14%;right:14%;top:22%;height:40%;
+  background:repeating-linear-gradient(to bottom,var(--line) 0 2px,transparent 2px 14px);
+}
+.envelope .pocket{
+  position:absolute;inset:0;border-radius:10px;
+  background:
+    linear-gradient(to top right,var(--env-dark) 49.6%,transparent 50%) left bottom/50.5% 100% no-repeat,
+    linear-gradient(to top left,var(--env-dark) 49.6%,transparent 50%) right bottom/50.5% 100% no-repeat,
+    linear-gradient(to top,var(--env) 0,var(--env) 52%,transparent 52%);
+  clip-path:polygon(0 30%,50% 72%,100% 30%,100% 100%,0 100%);
+}
+.envelope .flap{
+  position:absolute;top:0;left:0;right:0;height:70%;
+  background:linear-gradient(180deg,var(--env-flap),var(--env-dark));
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:top;transition:transform .7s ease;z-index:2;
+}
+.envelope .gold-edge{
+  position:absolute;inset:7px;border-radius:7px;border:1.5px solid var(--gold);opacity:.55;pointer-events:none;z-index:3
+}
+.seal{
+  position:absolute;left:50%;top:70%;transform:translate(-50%,-50%);z-index:4;
+  width:82px;height:82px;border-radius:50%;
+  background:radial-gradient(circle at 32% 28%,#ec6680,var(--rose) 50%,var(--rose-deep));
+  display:grid;place-items:center;
+  box-shadow:0 6px 14px rgba(80,0,20,.4), inset 0 -4px 8px rgba(0,0,0,.25), inset 0 3px 6px rgba(255,255,255,.25);
+  transition:transform .4s ease,opacity .4s ease;
+}
+.seal::before{content:"";position:absolute;inset:7px;border-radius:50%;border:1.5px dashed rgba(255,225,232,.6)}
+.seal svg{width:44px;height:44px}
+.envelope:hover .seal{transform:translate(-50%,-50%) scale(1.07) rotate(-4deg)}
+.envelope:focus-visible{outline:3px solid var(--hint);outline-offset:8px}
+.opening{animation:none}
+.opening .flap{transform:rotateX(180deg);z-index:0}
+.opening .seal{opacity:0;transform:translate(-50%,-50%) scale(.5)}
+.opening .peek{transform:translateY(-55%)}
+.hint{font-size:1.05rem;color:var(--hint);margin:0;letter-spacing:.04em;text-transform:uppercase;animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.55}}
+
+/* ---------- Letter ---------- */
+.letter{
+  display:none;position:relative;width:min(680px,100%);
+  background:
+    radial-gradient(120% 80% at 50% 0%,#fff 0,transparent 60%),
+    repeating-linear-gradient(to bottom,transparent 0 2.25rem,var(--line) 2.25rem calc(2.25rem + 1px)),
+    var(--paper);
+  background-position:0 0,0 9.2rem,0 0;
+  padding:clamp(2.4rem,7vw,4rem) clamp(1.5rem,7vw,4rem) clamp(2.4rem,7vw,3.5rem);
+  border-radius:3px;
+  box-shadow:0 40px 80px -25px rgba(60,10,40,.6),0 0 0 1px var(--paper-edge);
+  transform:translateY(50px) scale(.97);opacity:0;
+  transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity 1s ease;
+}
+.letter.show{transform:none;opacity:1}
+.letter::before{ /* gold inner frame */
+  content:"";position:absolute;inset:12px;border:1px solid var(--gold);opacity:.45;pointer-events:none;border-radius:2px
+}
+.sprig{position:absolute;width:clamp(110px,24vw,170px);pointer-events:none}
+.sprig.tl{top:-18px;left:-22px}
+.sprig.br{bottom:-18px;right:-22px;transform:rotate(180deg)}
+.date{font-size:1rem;color:var(--ink-soft);text-align:right;margin:0 0 1rem;letter-spacing:.05em;text-transform:uppercase}
+.letter h1{
+  font-family:"Playfair Display",Georgia,serif;font-weight:700;font-style:italic;
+  font-size:clamp(1.8rem,6.5vw,2.7rem);letter-spacing:.04em;line-height:1.15;margin:0 0 .4rem;color:var(--rose-deep);text-transform:uppercase;
+}
+.divider{display:flex;align-items:center;gap:.8rem;margin:0 0 1.8rem;color:var(--gold)}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.divider svg{width:18px;height:18px}
+.letter p{
+  font-size:clamp(1rem,3.5vw,1.15rem);line-height:2.25rem;margin:0 0 2.25rem;
+  text-transform:uppercase;letter-spacing:.03em;font-weight:400;
+}
+.letter p.big{font-weight:700;color:var(--rose-deep)}
+.sign{text-align:right;margin-top:2.8rem;position:relative}
+.sign .closing{display:block;font-size:1.15rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em}
+.sign .name{
+  display:inline-block;font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:700;
+  font-size:clamp(1.8rem,6vw,2.4rem);color:var(--rose);line-height:1.3;letter-spacing:.05em;text-transform:uppercase;position:relative
+}
+.sign .name svg{position:absolute;left:-4%;bottom:-10px;width:108%;height:16px;overflow:visible}
+.sign .name path{stroke:var(--gold);stroke-width:2;fill:none;stroke-linecap:round;stroke-dasharray:400;stroke-dashoffset:400;transition:stroke-dashoffset 1.6s ease 1.2s}
+.letter.show .sign .name path{stroke-dashoffset:0}
+.monogram{
+  margin:3rem auto 0;text-align:center;font-family:"Playfair Display",Georgia,serif;
+  font-size:1rem;letter-spacing:.3em;color:var(--gold);
+}
+.again{
+  display:block;margin:1.8rem auto 0;background:none;border:1.5px solid var(--ink-soft);
+  color:var(--ink-soft);font:inherit;font-size:.95rem;letter-spacing:.06em;text-transform:uppercase;
+  padding:.5rem 1.3rem;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;
+}
+.again:hover{background:var(--ink-soft);color:var(--paper)}
+.again:focus-visible{outline:3px solid var(--rose);outline-offset:3px}
+
+/* ---------- Petals ---------- */
+.petal{
+  position:fixed;top:-40px;pointer-events:none;z-index:6;
+  width:var(--s);height:calc(var(--s) * .8);
+  background:radial-gradient(circle at 30% 30%,#ff9fb2,var(--rose) 70%);
+  border-radius:80% 0 80% 0;opacity:.9;
+  animation:fall var(--d) linear var(--delay) forwards, sway 2.4s ease-in-out var(--delay) infinite alternate;
+}
+.petal.h{background:none;border-radius:0;width:auto;height:auto;color:var(--rose);font-size:var(--s)}
+@keyframes fall{to{top:110vh;opacity:.3;rotate:var(--r)}}
+@keyframes sway{to{translate:40px 0}}
+
+@media (prefers-reduced-motion:reduce){
+  .envelope,.hint,.stars{animation:none}
+  .flap,.seal,.peek,.letter,.stage,.sign .name path{transition:none}
+  .petal{display:none}
+}
+
+/* ---------- Polaroids ---------- */
+.memories{margin:3.2rem 0 0;text-align:center}
+.memories h2{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:700;font-size:clamp(1.3rem,4.6vw,1.7rem);letter-spacing:.05em;color:var(--rose-deep);margin:0 0 .3rem}
+.memories .when{font-size:.95rem;color:var(--ink-soft);letter-spacing:.06em;margin:0 0 1.6rem;line-height:1.4}
+.polaroids{display:flex;justify-content:center;flex-wrap:wrap;gap:1.2rem .4rem;padding:.5rem 0}
+.polaroid{
+  background:#fff;padding:10px 10px 0;width:clamp(150px,30%,190px);
+  box-shadow:0 14px 28px -10px rgba(60,10,40,.45),0 0 0 1px rgba(0,0,0,.04);
+  transform:rotate(var(--tilt));transition:transform .35s ease;position:relative;margin:0 -.4rem;
+}
+.polaroid:hover,.polaroid:focus-within{transform:rotate(0) scale(1.06);z-index:2}
+.polaroid::before{ /* tape */
+  content:"";position:absolute;top:-10px;left:50%;width:58px;height:20px;transform:translateX(-50%) rotate(-3deg);
+  background:rgba(243,221,156,.7);box-shadow:0 1px 2px rgba(0,0,0,.08)
+}
+.polaroid img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;background:#eee}
+.polaroid figcaption{font-size:1rem;color:var(--ink);padding:.55rem 0 .75rem;letter-spacing:.03em;line-height:1.3}
+@media (max-width:480px){.polaroid{width:44%}.polaroid:nth-child(3){width:60%}}
+
+/* ---------- Music ---------- */
+.music{
+  position:fixed;left:50%;bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:10;
+  transform:translate(-50%,140%);opacity:0;transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .6s;
+  display:flex;align-items:center;gap:.75rem;width:min(420px,calc(100vw - 2rem));
+  background:var(--paper);color:var(--ink);border:1px solid var(--gold);
+  padding:.55rem .6rem .55rem .9rem;border-radius:999px;
+  box-shadow:0 14px 30px -10px rgba(60,10,40,.55);
+}
+.music.on{transform:translate(-50%,0);opacity:1}
+.music .info{flex:1;min-width:0;line-height:1.25}
+.music .from{display:block;font-size:.72rem;letter-spacing:.06em;color:var(--rose);text-transform:uppercase}
+.music .track{display:block;font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:700;font-size:1rem;letter-spacing:.03em;color:var(--rose-deep);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.music .prog{display:block;height:3px;background:var(--line);border-radius:2px;margin-top:.35rem;overflow:hidden}
+.music .prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--rose))}
+.music button{
+  flex:none;width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;display:grid;place-items:center;
+  background:var(--rose);color:#fff;font-size:1rem;
+}
+.music button.ghost{background:none;color:var(--rose-deep);border:1px solid var(--gold);width:34px;height:34px;font-size:.85rem}
+.music button:focus-visible{outline:3px solid var(--rose);outline-offset:2px}
+.bars{display:inline-flex;gap:2px;align-items:flex-end;height:12px;flex:none}
+.bars i{width:3px;background:var(--rose);height:4px;border-radius:1px}
+.music.playing .bars i{animation:eq .9s ease-in-out infinite}
+.music.playing .bars i:nth-child(2){animation-delay:.2s}
+.music.playing .bars i:nth-child(3){animation-delay:.4s}
+@keyframes eq{50%{height:12px}}
+.letter{margin-bottom:5rem}
+@media (prefers-reduced-motion:reduce){.polaroid{transition:none}.music.playing .bars i{animation:none;height:9px}}
+</style>
+</head>
+<body>
+<div class="stars" aria-hidden="true"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="flower" viewBox="-10 -10 20 20">
+      <g fill="#fffdf8" stroke="#ead9c6" stroke-width=".5">
+        <ellipse cx="0" cy="-5" rx="2.6" ry="4.6"/>
+        <ellipse cx="0" cy="-5" rx="2.6" ry="4.6" transform="rotate(72)"/>
+        <ellipse cx="0" cy="-5" rx="2.6" ry="4.6" transform="rotate(144)"/>
+        <ellipse cx="0" cy="-5" rx="2.6" ry="4.6" transform="rotate(216)"/>
+        <ellipse cx="0" cy="-5" rx="2.6" ry="4.6" transform="rotate(288)"/>
+      </g>
+      <circle r="1.7" fill="#f2d27a"/>
+    </symbol>
+    <symbol id="sprig" viewBox="0 0 160 160">
+      <path d="M10 150 C 50 110, 80 80, 150 20" stroke="#7a9a6a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <g fill="#8fb07d">
+        <ellipse cx="45" cy="115" rx="14" ry="5.5" transform="rotate(-50 45 115)"/>
+        <ellipse cx="62" cy="108" rx="13" ry="5" transform="rotate(20 62 108)"/>
+        <ellipse cx="85" cy="78" rx="14" ry="5.5" transform="rotate(-60 85 78)"/>
+        <ellipse cx="104" cy="70" rx="13" ry="5" transform="rotate(15 104 70)"/>
+        <ellipse cx="122" cy="44" rx="12" ry="4.8" transform="rotate(-55 122 44)"/>
+      </g>
+      <use href="#flower" x="18" y="118" width="34" height="34"/>
+      <use href="#flower" x="62" y="82" width="28" height="28"/>
+      <use href="#flower" x="96" y="40" width="30" height="30"/>
+      <use href="#flower" x="128" y="6" width="26" height="26"/>
+      <circle cx="40" cy="96" r="5" fill="#fffdf8" stroke="#ead9c6" stroke-width=".6"/>
+      <circle cx="118" cy="22" r="4" fill="#fffdf8" stroke="#ead9c6" stroke-width=".6"/>
+    </symbol>
+    <symbol id="heart" viewBox="0 0 24 24">
+      <path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 5.3 3.2 1.7-2 3.1-3.2 5.3-3.2 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="music" id="music" role="region" aria-label="Kanta">
+  <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+  <span class="info"><span class="from">🎤 KINANTA KO ’TO PARA SAYO</span><span class="track" id="track">LONG DRIVE</span><span class="prog"><i id="prog"></i></span></span>
+  <button class="ghost" id="next" aria-label="Susunod na kanta">⏭</button>
+  <button id="play" aria-label="I-pause">❚❚</button>
+</div>
+<main>
+  <div class="stage" id="stage">
+    <h1 class="cover-title">PARA SA CHICA KO</h1>
+    <p class="cover-sub">galing sa Chico mo</p>
+    <button class="envelope" id="envelope" aria-label="Buksan ang letter">
+      <span class="peek" aria-hidden="true"></span>
+      <span class="flap" aria-hidden="true"></span>
+      <span class="pocket" aria-hidden="true"></span>
+      <span class="gold-edge" aria-hidden="true"></span>
+      <span class="seal" aria-hidden="true"><svg fill="#ffe3ea"><use href="#heart"/></svg></span>
+    </button>
+    <p class="hint">TAP MO ’TO PARA MABUKSAN 💌</p>
+  </div>
+
+  <article class="letter" id="letter">
+    <svg class="sprig tl" viewBox="0 0 160 160" aria-hidden="true"><use href="#sprig"/></svg>
+    <svg class="sprig br" viewBox="0 0 160 160" aria-hidden="true"><use href="#sprig"/></svg>
+
+    <p class="date" id="date"></p>
+    <h1>CHICAAA KOOO,</h1>
+    <div class="divider" aria-hidden="true"><svg fill="currentColor"><use href="#heart"/></svg></div>
+
+    <p>WALA LANG. WALANG OCCASION, HINDI ANNIVERSARY, HINDI BIRTHDAY. GUSTO KO LANG SABIHIN ULIT KUNG GAANO KITA KAMAHAL, KASI PARANG KULANG PA RIN KAHIT ARAW-ARAW KO NAMANG SINASABI HAHAHA.</p>
+
+    <p>OO LDR TAYO NGAYON, PERO GRABE, SULIT NAMAN LAHAT. YUNG MGA CALLS NATIN, YUNG VMs MO, YUNG CHATS NATIN BUONG ARAW, YUN YUNG NAGPAPASAYA SAKIN. TAPOS PAG NAGKITA NA TAYO, PARANG AYOKO NANG UMUWI HAHAHA. LAGI KO TULOY BINIBILANG YUNG ARAW HANGGANG SA SUNOD NATING KITA.</p>
+
+    <p>ALAM MO KUNG SAAN AKO SUPER EXCITED? YUNG TIME NA HINDI NA NATIN KAILANGANG MAG-BYE PAGKATAPOS NG BAWAT DATE. YUNG ARAW-ARAW NA TAYONG MAGKASAMA. PAGGISING KO, IKAW AGAD YUNG MAKIKITA KO. SABAY TAYONG MAG-BREAKFAST KAHIT KAPE AT PANDESAL LANG. SAMAHAN MO AKO SA PALENGKE KAHIT WALA NAMAN TAYONG BIBILHIN, BASTA MAGKASAMA LANG. TAPOS KWENTUHAN BAGO MATULOG. KAHIT GANUN LANG KASIMPLE, BASTA IKAW KASAMA KO, SPECIAL NA SAKIN.</p>
+
+    <p>THANK YOU SA PAGMAMAHAL MO, SA PASENSYA MO SAKIN, AT SA PAGTAWA MO SA MGA CORNY KONG JOKES (ALAM KONG CORNY TALAGA HAHAHA). THANK YOU DIN SA LAHAT NG EFFORT MO PARA SA ATIN. AT ALAM MO BA ISA SA PINAKA-INAABANGAN KO? YUNG ARAW NA MAGKASAMA NA TAYONG SUMAMBA. SABAY KUMANTA, SABAY MAG-PRAY. HINDI PA NGAYON, PERO SOON. 🙏 KAYA KAHIT ANO PANG DUMATING, ALAM KONG HINDI LANG TAYONG DALAWA, KASAMA NATIN SI LORD.</p>
+
+    <p>HINDI AKO PERFECT, CHICA, PERO PROMISE KO, IKAW ANG PIPILIIN KO ARAW-ARAW. MASAYA MAN O MAHIRAP, MAY ENERGY MAN TAYO O PAGOD NA PAGOD. AT KAHIT MATANDA NA TAYO AT UUGOD-UGOD NA, KIKILIGIN PA RIN AKO SAYO NA PARANG BINATA SHSHSHSH.</p>
+
+    <p class="big">IKAW YUNG GUSTO KONG MAKASAMA HANGGANG DULO NG HININGA KO. HABANG BUHAY, MAG-AALAB ANG PUSO KO PARA SAYO.</p>
+
+    <div class="sign">
+      <span class="closing">I LOVE YOU SOOO MUCH, ASAWA KO.</span>
+      <span class="name">YOUR CHICO ❤️
+        <svg viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true"><path d="M2 10 C 50 2, 90 15, 140 7 S 190 6, 198 9"/></svg>
+      </span>
+    </div>
+
+    <section class="memories" aria-label="Mga litrato natin">
+      <h2>TAYONG DALAWA 📸</h2>
+      <p class="when">OKTUBRE 17, 2026</p>
+      <div class="polaroids">
+        <figure class="polaroid" style="--tilt:-5deg"><img src="/second/assets/photo1.jpg" alt="Selfie nina Chico at Chica, magkadikit ang pisngi" style="object-position:50% 30%"><figcaption>AKING CHICA 🥰</figcaption></figure>
+        <figure class="polaroid" style="--tilt:3deg"><img src="/second/assets/photo2.jpg" alt="Nag-kiss sina Chico at Chica" style="object-position:50% 40%"><figcaption>MWUAAAA 💋</figcaption></figure>
+        <figure class="polaroid" style="--tilt:-2deg"><img src="/second/assets/photo3.jpg" alt="Mirror selfie nina Chico at Chica habang nag-kiss" style="object-position:42% 55%"><figcaption>TAYO SA SALAMIN 🪞</figcaption></figure>
+      </div>
+    </section>
+
+    <p class="monogram" aria-hidden="true">CHICO ♥ CHICA</p>
+    <button class="again" id="again">Isara ang letter</button>
+  </article>
+</main>
+
+<script>
+(function(){
+  const stage=document.getElementById('stage');
+  const env=document.getElementById('envelope');
+  const letter=document.getElementById('letter');
+  const again=document.getElementById('again');
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  try{
+    document.getElementById('date').textContent=new Date().toLocaleDateString('fil-PH',{month:'long',day:'numeric',year:'numeric'}).toUpperCase();
+  }catch(e){}
+
+  function petals(){
+    if(reduce) return;
+    for(let i=0;i<40;i++){
+      const p=document.createElement('span');
+      const isHeart=i%5===0;
+      p.className='petal'+(isHeart?' h':'');
+      if(isHeart) p.textContent='♥';
+      p.style.left=(Math.random()*100)+'vw';
+      p.style.setProperty('--s',(isHeart?16+Math.random()*16:10+Math.random()*12)+'px');
+      p.style.setProperty('--d',(5+Math.random()*4)+'s');
+      p.style.setProperty('--delay',(Math.random()*2.5)+'s');
+      p.style.setProperty('--r',(Math.random()*540-270)+'deg');
+      document.body.appendChild(p);
+      setTimeout(()=>p.remove(),12000);
+    }
+  }
+
+  env.addEventListener('click',()=>{
+    env.classList.add('opening');
+    setTimeout(()=>{
+      stage.style.opacity='0';stage.style.transform='scale(.95)';
+      setTimeout(()=>{
+        stage.style.display='none';
+        letter.style.display='block';
+        window.scrollTo(0,0);
+        requestAnimationFrame(()=>requestAnimationFrame(()=>letter.classList.add('show')));
+        petals();
+      },reduce?0:500);
+    },reduce?0:1100);
+  });
+
+  again.addEventListener('click',()=>{
+    letter.classList.remove('show');
+    letter.style.display='none';
+    env.classList.remove('opening');
+    stage.style.display='flex';
+    requestAnimationFrame(()=>{stage.style.opacity='1';stage.style.transform='none'});
+    window.scrollTo(0,0);
+    env.focus();
+  });
+
+  /* Chico’s covers */
+  const tracks=[{t:'LONG DRIVE',v:'ld'},{t:'LOVE SOMEONE',v:'ls'}];
+  const audio=new Audio();audio.preload='none';
+  let i=0,ready=false;
+  const box=document.getElementById('music'),play=document.getElementById('play'),
+        next=document.getElementById('next'),track=document.getElementById('track'),prog=document.getElementById('prog');
+  function load(n){i=n%tracks.length;audio.src=window.SONGS[tracks[i].v];track.textContent=tracks[i].t;prog.style.width='0';}
+  function ui(){const p=!audio.paused;box.classList.toggle('playing',p);play.textContent=p?'❚❚':'▶';play.setAttribute('aria-label',p?'I-pause':'I-play');}
+  function start(){if(!ready){load(0);ready=true;}audio.play().catch(()=>{});}
+  audio.addEventListener('play',ui);audio.addEventListener('pause',ui);
+  audio.addEventListener('ended',()=>{load(i+1);audio.play().catch(()=>{});});
+  audio.addEventListener('timeupdate',()=>{if(audio.duration)prog.style.width=(audio.currentTime/audio.duration*100)+'%';});
+  play.addEventListener('click',()=>{if(!ready)start();else audio.paused?audio.play():audio.pause();});
+  next.addEventListener('click',()=>{load(i+1);audio.play().catch(()=>{});});
+  env.addEventListener('click',()=>{box.classList.add('on');start();});
+})();
+</script>
+<script>window.SONGS={ld:"/second/assets/long-drive.mp3",ls:"/second/assets/love-someone.mp3"};</script>
+</body>
+</html>

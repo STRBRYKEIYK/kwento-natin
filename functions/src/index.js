@@ -3,8 +3,8 @@ import { getFirestore } from 'firebase-admin/firestore';
 import { getStorage } from 'firebase-admin/storage';
 import { onRequest } from 'firebase-functions/v2/https';
 import { defineJsonSecret } from 'firebase-functions/params';
-import notifyDate, { channels } from '../vendor/notifications.js';
-import notifyVoucher from '../vendor/voucher-notifications.cjs';
+import notifyDate, { channels } from './shared/notifications.js';
+import notifyVoucher from './shared/voucher-notifications.cjs';
 import { createApi } from './api.js';
 import { createStore } from './store.js';
 

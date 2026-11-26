@@ -1,0 +1,26 @@
+{
+  "repository": "https://github.com/STRBRYKEIYK/love-voucher-book",
+  "commit": "ed4bbca74fbdced34d3f0e21eaf19ca5bba9244b",
+  "files": [
+    {
+      "path": "img/p1.jpg",
+      "bytes": 16478,
+      "sha256": "72dc524b53b9c8591f7720c9bec82f247ccbeeb7d2a6832c721acf9543c0e241"
+    },
+    {
+      "path": "img/p2.jpg",
+      "bytes": 15907,
+      "sha256": "8deba2658977f8dae92ec4e5b7cace7d1211dbb8482e35c94df600adebb81158"
+    },
+    {
+      "path": "img/p3.jpg",
+      "bytes": 12162,
+      "sha256": "3c243b05e1c9fd4d4d62ed595628844240500dee7dc76617834df51f0eb7b174"
+    },
+    {
+      "path": "index.html",
+      "bytes": 27427,
+      "sha256": "5f95a79543f17166b82a4ae885260e36e325eed80b5b705dc9a3932f2e0e123b"
+    }
+  ]
+}

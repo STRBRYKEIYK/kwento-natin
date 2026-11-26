@@ -1,1 +1,2 @@
 public/assets/video_files/*.mp4 filter=lfs diff=lfs merge=lfs -text
+apps/**/*.mp4 filter=lfs diff=lfs merge=lfs -text

@@ -5,7 +5,7 @@ import { resolve, relative } from 'node:path';
 const root = resolve('.firebase-hosting');
 const manifest = JSON.parse(await readFile('firebase.sources.json', 'utf8'));
 const config = JSON.parse(await readFile('firebase.json', 'utf8'));
-const required = ['index.html', 'one-minute-eleven-memories/index.html', 'date/index.html', 'date/places.json', 'date/five/index.html', 'vouchers/index.html', 'vouchers/img/p1.jpg', 'second/index.html', 'second/assets/long-drive.mp3', 'ilychicaaa/index.html', 'ilychicaaa/media/para-sa-chica.mp4', 'oras/messages.json'];
+const required = ['index.html', 'one-minute-eleven-memories/index.html', 'date/index.html', 'date/places.json', 'date/five/index.html', '555/index.html', 'vouchers/index.html', 'vouchers/img/p1.jpg', 'second/index.html', 'second/assets/long-drive.mp3', 'ilychicaaa/index.html', 'ilychicaaa/media/para-sa-chica.mp4', 'ilychicaaa-original/index.html', 'ilychicaaa-original/media/para-sa-chica.mp4', 'oras/messages.json'];
 for (const file of required) await access(resolve(root, 'main', file));
 const aircon = await readFile(resolve(root, 'main/aircon/index.html'), 'utf8');
 assert.ok(aircon.includes('<title>AIRCON · TAYO MUNA</title>'), 'The AIRCON invitation is missing from the Firebase build');
@@ -14,6 +14,8 @@ assert.ok(mainSite.redirects?.some(r => r.source.startsWith('/333') && r.destina
 await assert.rejects(access(resolve(root, 'main/333/index.html')), 'The old /333 page must not be published beside /aircon');
 const matamis = await readFile(resolve(root, 'main/matamis/index.html'), 'utf8');
 assert.ok(matamis.includes('<title>10:10 · MATAMIS</title>'), 'The MATAMIS invitation is missing from the Firebase build');
+const hiling = await readFile(resolve(root, 'main/hiling/index.html'), 'utf8');
+assert.ok(hiling.includes('<title>11:11 · HILING — SA LAHAT NG HILING, IKAW.</title>'), 'The HILING invitation must survive consolidation');
 for (const source of manifest.sources) await access(resolve(root, source.name, source.mount, 'index.html'));
 assert.equal(config.hosting.length, 6);
 for (const site of config.hosting) {
@@ -22,7 +24,11 @@ for (const site of config.hosting) {
 }
 for (const source of manifest.sources.filter(item => item.kind === 'song')) {
   const html = await readFile(resolve(root, source.name, source.mount, 'index.html'), 'utf8');
-  assert.ok(!html.includes('https://chica-ilychicaaa.vercel.app/'), 'A recording still depends on Vercel');
+  assert.ok(!html.includes('.vercel.app'), 'A recording still depends on Vercel');
+  const main = await readFile(resolve(root, 'main', source.mainMount || source.mount, 'index.html'), 'utf8');
+  assert.ok(!main.includes('.vercel.app'), 'A main-site recording still depends on Vercel');
+  const mediaPath = `/${source.mainMount || source.mount}/media/para-sa-chica.mp4`;
+  assert.ok(main.includes(mediaPath), 'The recording points to the wrong local video');
 }
 let count = 0;
 let total = 0;

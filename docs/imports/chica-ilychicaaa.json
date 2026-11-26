@@ -1,0 +1,21 @@
+{
+  "repository": "https://github.com/STRBRYKEIYK/chica-ilychicaaa",
+  "commit": "c90842167158e62559166f328cfe848d5bbf8d23",
+  "files": [
+    {
+      "path": "public/ilychicaaa/index.html",
+      "bytes": 26749,
+      "sha256": "76d9e166e1f57ead1f76b7e221a9e57fea5ff13c32fa2e30011ec0c0755c1584"
+    },
+    {
+      "path": "public/ilychicaaa/media/para-sa-chica.mp4",
+      "bytes": 18196622,
+      "sha256": "f3b9d8166793496cebd7e7ff3b6fe9190cec9cd25629dbe308e3fcd1538f6cb1"
+    },
+    {
+      "path": "public/ilychicaaa/media/poster.jpg",
+      "bytes": 33744,
+      "sha256": "ba224fb1736d6d5cf435ed147fa16463ea209baafcc1eed6502c56392ce1df89"
+    }
+  ]
+}

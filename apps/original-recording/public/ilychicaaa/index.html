@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#251c24" />
+<meta name="description" content="A little page from Chico, made with love for Chicaaa." />
+<title>12:12 · Para Kay Chicaaa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet" />
+<style>
+:root{--ink:#352830;--muted:#806d73;--paper:#fff7ed;--cream:#f8ecd9;--rose:#a8506a;--line:rgba(82,48,53,.15)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#241d25;color:var(--ink);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit}.background{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 15% 12%,#594354 0%,transparent 40%),radial-gradient(ellipse at 88% 78%,#57333c 0%,transparent 43%),#241d25;z-index:-2}.grain{position:fixed;inset:0;pointer-events:none;opacity:.11;z-index:10;background-image:url('data:image/svg+xml,%3Csvg viewBox=%220 0 180 180%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%22.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%22.35%22/%3E%3C/svg%3E')}
+.layout{max-width:1160px;margin:auto;padding:25px clamp(17px,4vw,48px) 70px}.top{display:flex;align-items:center;justify-content:space-between;gap:15px;color:#f4e7de}.brand{text-decoration:none;display:flex;align-items:center;gap:10px;letter-spacing:.21em;font-size:10px;font-weight:700;text-transform:uppercase}.brandmark{height:29px;width:29px;border:1px solid #c49aa4;border-radius:50%;display:grid;place-items:center;color:#ffbec8;font-size:16px}.crumb{font-size:10px;letter-spacing:.19em;text-transform:uppercase;color:#d7b7bb}.hero{text-align:center;padding:67px 0 44px;color:#fcf1e6}.eyebrow{display:flex;align-items:center;justify-content:center;gap:12px;text-transform:uppercase;letter-spacing:.29em;font-size:10px;font-weight:700;color:#d7abb8}.eyebrow:before,.eyebrow:after{content:'';width:29px;height:1px;background:#ae7a8a}.time{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(91px,14vw,151px);line-height:1;letter-spacing:-.08em;margin:14px 0 12px;text-shadow:0 12px 40px #160d1880}.time span{color:#e5a9b5}.hero h1{font-family:'Playfair Display',serif;font-size:clamp(23px,4vw,35px);font-style:italic;font-weight:500;margin:18px 0 14px}.hero p{font-size:13px;color:#dfc8c7;line-height:1.9;max-width:490px;margin:auto}.star{font-size:19px;color:#deb4bf;opacity:.8}
+.book{position:relative;background:var(--paper);border-radius:7px 18px 18px 7px;border:1px solid #d8bda9;box-shadow:0 25px 90px #0d060b99, inset 6px 0 0 #d4b7a7, inset 11px 0 0 #eddcc9;overflow:hidden}.book:before{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,transparent,transparent 31px,rgba(133,100,74,.025) 32px);z-index:0}.page{position:relative;z-index:1;padding:clamp(24px,5vw,70px) clamp(20px,7vw,88px) 58px}.topline{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:32px;text-transform:uppercase;font-size:10px;letter-spacing:.19em;color:#856b71;font-weight:700}.seal{font-family:'Playfair Display',serif;font-style:italic;font-size:17px;color:#ab6876;letter-spacing:0;text-transform:none}.intro{text-align:center;margin:0 auto 38px}.intro .small{font-size:10px;letter-spacing:.26em;font-weight:700;color:var(--rose);text-transform:uppercase}.intro h2{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,61px);font-weight:500;line-height:1.17;margin:15px auto 14px;letter-spacing:-.035em;max-width:680px}.intro h2 em{color:#a7556e;font-weight:500}.intro p{font-size:13px;line-height:1.9;color:#77636c;margin:auto;max-width:500px}.line-icon{display:flex;gap:12px;align-items:center;justify-content:center;margin:24px 0;color:#ad6777}.line-icon:before,.line-icon:after{content:'';height:1px;width:68px;background:#d7b9b0}
+.film{max-width:795px;margin:auto;background:#241d25;border:7px solid #35242b;border-radius:12px;box-shadow:0 15px 40px #4e2d3347;overflow:hidden;position:relative}.film video{width:100%;display:block;aspect-ratio:16/9;object-fit:contain;background:#16141a}.film:after{content:'✦   ✦   ✦';color:#dcb0bc;position:absolute;top:10px;right:12px;font-size:9px;letter-spacing:.25em;pointer-events:none;text-shadow:0 1px 4px #111}.filmcap{text-align:center;margin:15px auto 38px;color:#8c6b75;font-size:11px;letter-spacing:.07em;line-height:1.7}.movie-note{font-style:italic;font-family:'Playfair Display',serif;font-size:15px}.letter{max-width:685px;margin:30px auto 0}.letterhead{display:flex;align-items:center;gap:15px;color:#99596d;text-transform:uppercase;font-size:10px;letter-spacing:.24em;font-weight:700;margin-bottom:24px}.letterhead:after{content:'';flex:1;height:1px;background:#d8bcb4}.letter p{font-size:clamp(14px,1.65vw,16px);line-height:2.05;margin:0 0 22px;color:#57474e}.letter .salute{font-family:'Playfair Display',serif;font-size:25px;color:#8d4b61;line-height:1.5}.letter strong{font-weight:700;color:#643f50}.letter .signature{text-align:right;margin-top:40px}.signature span{display:block;font-size:10px;letter-spacing:.2em;color:#88747a;text-transform:uppercase}.signature b{display:block;font-family:'Playfair Display',serif;font-weight:500;font-style:italic;font-size:28px;color:#93526a;margin-top:8px}.endcard{margin:50px auto 0;max-width:710px;background:#f4e5dc;border:1px solid #e3cec2;border-radius:9px;text-align:center;padding:32px 22px 30px}.endcard .mini{color:#a26174;font-weight:700;letter-spacing:.24em;font-size:10px;text-transform:uppercase}.endcard h3{font-family:'Playfair Display',serif;font-size:clamp(23px,3vw,31px);font-weight:500;margin:14px 0 12px;color:#794457}.endcard p{font-size:13px;line-height:1.9;color:#78656d;margin:0}.endcard .heart{color:#b16b83;font-size:20px;display:block;margin-top:18px}.footer{text-align:center;color:#d9bfc1;padding:30px 0;font-size:10px;letter-spacing:.19em;text-transform:uppercase}.footer a{text-decoration:none;border-bottom:1px solid #b7979c;padding-bottom:5px}.video-help{font-size:12px;text-align:center;color:#856a73;margin-bottom:8px}.skip{border:1px solid #d0aaad;border-radius:30px;background:transparent;color:#f2dcd9;padding:10px 14px;text-decoration:none;font-size:11px;letter-spacing:.09em}.skip:hover{background:#4a323e}@media(max-width:640px){.layout{padding:16px 14px 35px}.hero{padding:43px 0 30px}.top .crumb{font-size:9px}.book{border-radius:5px 12px 12px 5px}.page{padding:25px 19px 40px}.topline{font-size:9px;margin-bottom:25px}.intro{margin-bottom:25px}.film{border-width:4px}.filmcap{margin-bottom:28px}.letter p{line-height:1.86}.endcard{padding:27px 18px}.brand{font-size:9px;letter-spacing:.12em}.hero p{max-width:320px}}@media(prefers-reduced-motion:no-preference){.book{animation:arrive 1s both}.hero{animation:fade .9s both}@keyframes arrive{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}@keyframes fade{from{opacity:0}to{opacity:1}}}
+</style>
+</head>
+<body>
+<div class="background" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+<div class="layout">
+  <nav class="top" aria-label="Navigation"><a class="brand" href="/" aria-label="Back to Library ni Chico"><span class="brandmark">♡</span> Library ni Chico</a><span class="crumb">A little page, just for you</span></nav>
+  <header class="hero"><div class="eyebrow">A special little moment</div><div class="time">12<span>:</span>12</div><div class="star" aria-hidden="true">✧</div><h1>Para sa'yo, Chicaaa ko.</h1><p>Isang munting pahina mula sa puso ng Chico mo. Walang kailangang madaliin. Gusto ko lang iparamdam kung gaano kita kamahal.</p></header>
+  <main class="book"><div class="page">
+    <div class="topline"><span>Library ni Chico · Special Edition</span><span class="seal">With love, always ♡</span></div>
+    <section class="intro" aria-label="Introduction"><span class="small">A recording from my heart</span><h2>For the <em>woman I love.</em></h2><p>Bago mo basahin ang munting sulat ko, may inihanda po akong kanta para sa'yo. Pindutin mo lang ang play kapag gusto mo na, asawa ko.</p><div class="line-icon" aria-hidden="true">♡</div></section>
+    <section aria-label="Personal recording"><div class="film"><video id="love-video" controls playsinline preload="metadata" poster="/ilychicaaa/media/poster.jpg" controlsList="nodownload"><source src="/ilychicaaa/media/para-sa-chica.mp4" type="video/mp4" />Your browser does not support video playback.</video></div><div class="filmcap"><span class="movie-note">“A little song from your Chico.”</span><div>Recorded with love · Tap play to listen</div></div></section>
+    <section class="letter" id="letter"><div class="letterhead">A letter for you</div><p class="salute">ASAWAAAA KOOOO, CHICAAAA KOOOO,</p>
+      <p>12:12 POOOO. MAY MUNTING MENSAHE LANG PO AKO PARA SA'YOOOO. ♡</p>
+      <p>SA DAMI NG MGA BAGAY NA GUSTO KONG SABIHIN, ISA PO SA MGA PINAKAMAHALAGA AY ITO: <strong>SALAMAT KASI IKAW YUNG BABAENG MINAMAHAL KO.</strong> SALAMAT SA MGA KWENTO MO, SA MGA TAWA NATIN, SA MGA SIMPLENG ORAS NA MAGKASAMA TAYO, AT SA LAHAT NG MUNTING BAGAY NA NAGPAPASAYA SA ARAW KOOOO.</p>
+      <p>CHICAAAA, HINDI PO AKO PERFECT, AT MAY MGA PAGKAKATAONG HINDI KO NAGAGAWA ANG MGA BAGAY NANG TAMA. PASENSYA NA PO SA MGA ORAS NA NAKADAGDAG AKO SA BIGAT NG NARARAMDAMAN MO. GUSTO KO PONG MATUTO, MAGING MAS MAINGAT, AT MAS IPAKITA SA MGA GINAGAWA KO YUNG PAGMAMAHAL AT PAGGALANG NA DESERVE MOOOO.</p>
+      <p>AT HABANG MAS NAKIKILALA KITA, MAS NAIINTINDIHAN KO NA ANG PAGMAMAHAL AY HINDI LANG YUNG MALALAKING SALITA O MAGAGANDANG PLANO. NASA PAKIKINIG DIN PO ITO, SA PASENSYA, SA PAG-ALAGA SA MALILIIT NA BAGAY, AT SA PAGPILI NA MAS MAGING MABUTI ARAW-ARAW.</p>
+      <p>ALAM MO POOO, KAHIT SA MGA KARANIWANG ARAW LANG, IKAW PA RIN YUNG GUSTO KONG PAGKWENTUHAN NG MGA NAKAKATUWANG BAGAY, KASABAY KUMAIN, KASAMA SA MGA SIMPLENG LAKAD, AT KATULONG SA MGA PANGARAP NA UNTI-UNTI NATING BINUBUO. <strong>YUNG PAGMAMAHAL KO SA'YO, HINDI LANG PARA SA ISANG MAGANDANG SANDALI. GUSTO KO ITONG ALAGAAN SA MALILIIT AT TOTOONG PARAAN.</strong></p>
+      <p>HINDI KO PO KAILANGANG MADALIIN ANG KAHIT ANO, ASAWAAAA. TAKE YOUR TIME LANG POOOO. WALA PO AKONG INAASAHANG SAGOT DAHIL SA PAHINANG ITO. GUSTO KO LANG PONG MAG-IWAN NG MUNTING PAGMAMAHAL NA PWEDENG BALIKAN KAPAG GUSTO MOOOO.</p>
+      <p>MAHAL NA MAHAL KITAAAA, CHICAAAA KOOOO. I LOVEEEE YOUUUU SOOO MUCHHHH. ♡</p>
+      <div class="signature"><span>Always made with love</span><b>Your Chico ♡</b></div>
+    </section>
+    <section class="endcard"><span class="mini">One little reminder</span><h3>You're loved, Chicaaa ko.</h3><p>TAKE YOUR TIME LANG POOOO, ASAWAAAA. NANDITO LANG AKOOO, MAY PAGMAMAHAL AT PAGGALANG SA ORAS MOOOO.</p><span class="heart" aria-hidden="true">♡</span></section>
+  </div></main>
+  <footer class="footer"><a href="/">← Balik sa Library ni Chico</a><p>12:12 · Made just for Chicaaa</p></footer>
+</div>
+<script>
+(function () {
+  const video = document.getElementById('love-video');
+  const source = video.querySelector('source');
+  const origin = location.origin;
+  const candidates = [
+    origin + '/ilychicaaa/media/para-sa-chica.mp4',
+    origin + '/media/para-sa-chica.mp4'
+  ];
+  let attempt = 0;
+  video.poster = origin + '/ilychicaaa/media/poster.jpg';
+  source.src = candidates[attempt];
+  video.addEventListener('error', tryAlternate, true);
+  source.addEventListener('error', tryAlternate);
+  function tryAlternate() {
+    if (++attempt >= candidates.length) return;
+    video.poster = origin + '/ilychicaaa/media/poster.jpg';
+    source.src = candidates[attempt];
+    video.load();
+  }
+  video.load();
+})();
+</script>
+</body></html>

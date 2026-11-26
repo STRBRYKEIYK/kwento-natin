@@ -2,9 +2,11 @@ const main = 'https://chica-keicodes-dev.web.app';
 const checks = [
   ['/', 'text/html'], ['/one-minute-eleven-memories', 'text/html'], ['/third', 'text/html'],
   ['/aircon', 'text/html'], ['/matamis', 'text/html'],
+  ['/hiling', 'text/html'],
   ['/date/', 'text/html'], ['/date/places.json', 'application/json'], ['/555', 'text/html'],
   ['/vouchers/', 'text/html'], ['/vouchers/img/p1.jpg', 'image/'], ['/second/', 'text/html'],
   ['/second/assets/long-drive.mp3', 'audio/'], ['/ilychicaaa/', 'text/html'], ['/ilychicaaa/media/para-sa-chica.mp4', 'video/'],
+  ['/ilychicaaa-original/', 'text/html'], ['/ilychicaaa-original/media/para-sa-chica.mp4', 'video/'],
   ['/oras/messages.json', 'application/json'],
 ];
 const results = await Promise.all(checks.map(async ([path, type]) => {
@@ -21,6 +23,7 @@ if (results.some(result => !result.ok)) process.exitCode = 1;
 const pages = [
   { path: '/aircon', title: 'AIRCON · TAYO MUNA', chunk: 'ThreeThirtyThreePage' },
   { path: '/matamis', title: '10:10 · MATAMIS', chunk: 'MatamisPage' },
+  { path: '/hiling', title: '11:11 · HILING — SA LAHAT NG HILING, IKAW.', chunk: 'HilingPage' },
 ];
 for (const host of [main, 'https://chica.keicodes.dev']) {
   for (const { path, title, chunk: chunkName } of pages) {

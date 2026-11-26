@@ -1,110 +1,92 @@
 # Kwento Natin 💌
 
-## Firebase migration
+Kwento Natin is the definitive repository for the Library, letters, date scheduler, vouchers, recordings, albums, timed messages, and surprises at **https://chica.keicodes.dev**.
 
-Firebase project: `chica-keicodes-dev`. The main site and five related sites are assembled from the commits pinned in `firebase.sources.json`. The main site retains `/date`, `/555`, `/vouchers`, `/second`, `/ilychicaaa`, `/third`, `/oras`, PETSA and the 1:11 surprise. The older `ilychicaaa` variant has its own Firebase Hosting site.
+## Repository layout
+
+| Feature | Source in this repository | Main URL |
+| --- | --- | --- |
+| Library and React surprises | `src/pages/`, `src/library/` | `/` |
+| Kwento Natin letter and playlist | `src/letter/` | `/third` |
+| Date scheduler and Limang Pandama | `apps/date-scheduler/` | `/date/`, `/555` |
+| Love Voucher Book | `apps/vouchers/` | `/vouchers/` |
+| Para sa Chica ko | `apps/second-letter/` | `/second/` |
+| Current recording letter | `apps/recording-letter/` | `/ilychicaaa/` |
+| Original recording letter | `apps/original-recording/` | `/ilychicaaa-original/` |
+| Shared Firebase API | `functions/src/` | `/date/api/*`, `/vouchers/api/*` |
+| Shared dates, places, calendar, notifications | `functions/src/shared/` | Used by both scheduler and API |
+
+All five former repositories have been imported. `firebase.sources.json` records their local directories and original commits; `docs/imports/` records original file checksums. Builds use local source files and do not clone or download the old repositories. Make future changes here.
+
+## Firebase database and hosting
+
+The single Firebase project is **`chica-keicodes-dev`**. Its existing ID is retained to preserve data, app configuration, domains, and notification secrets. Cloud Firestore's `(default)` database stores saved dates in `_chica/dateScheduler` and uploaded PETSA entries in `entries`. Cloud Storage uses `chica-keicodes-dev.firebasestorage.app`, with `memories/` for scheduler photos and `entries/` for PETSA uploads. Existing static photos and recordings remain in the repository and are published through Firebase Hosting.
+
+`chicaApi` runs in `asia-southeast1` and uses the existing database, bucket, and `CHICA_NOTIFICATIONS` Secret Manager secret. Date merging, cancellation marks, private memory photo URLs, and browser storage keys are preserved. Voucher scratch/redeem progress continues to use its existing local storage key; the voucher API sends notifications. The consolidation does not silently upload or reset browser-only progress.
+
+The six Hosting site IDs below are compatibility addresses within this same Firebase project. They use the same API and database, and are all built and deployed from this repository:
+
+| Site | Firebase URL |
+| --- | --- |
+| Library and all apps | https://chica-keicodes-dev.web.app |
+| Scheduler | https://chica-keicodes-dev-dates.web.app |
+| Vouchers | https://chica-keicodes-dev-vouchers.web.app |
+| Second letter | https://chica-keicodes-dev-second.web.app |
+| Current recording | https://chica-keicodes-dev-song.web.app |
+| Original recording | https://chica-keicodes-dev-original.web.app |
+
+The public domain already points to Firebase. `voucher.keicodes.dev` transfers its existing voucher progress to the main `/vouchers` page. No DNS change is needed for normal releases.
+
+## Install, build, and verify
+
+Use Node.js 22.12+; the deployed Cloud Function runtime is Node.js 22.
 
 ```powershell
 npm ci
 npm --prefix functions ci
+npm test
 npm run build:firebase
 npm run test:firebase
 ```
 
-The build clones missing linked repositories into ignored `.firebase-sources/` and creates `.firebase-hosting/`. It leaves originals intact and excludes raw chat exports from publication. The shared timed messages are included at `/oras/messages.json`. Never run Firebase initialization with an instruction to overwrite `index.html` or replace the existing Firestore/Storage rules.
+The root npm workspace installs the scheduler's dependencies with the rest of the frontend dependencies. `npm run build` produces the entire website in `dist/`, including the five imported apps. `npm run build:firebase` also assembles `.firebase-hosting/` for the main site and compatibility addresses.
 
-Dates, private memory photos, calendar exports and notifications use the `chicaApi` Cloud Function in `asia-southeast1`, colocated with the existing database and bucket. Date changes use Firestore transactions and the original merge/cancellation rules. Notification settings are stored in the `CHICA_NOTIFICATIONS` Secret Manager secret.
-
-Before switching DNS:
-
-1. Complete `npm run firebase:login` if required.
-2. Restore masked Telegram credentials with `npm run firebase:telegram-setup` in your own terminal. Values are saved only under ignored `.firebase-migration-data/private/`; never paste or commit them.
-3. Run `npm run firebase:notifications` to store the validated configuration in Secret Manager.
-4. Run `npm run firebase:migrate-data` immediately before cutover. This backs up the old scheduler again and merges it into Firebase without replacing newer Firebase data. The old Vercel data is not deleted.
-5. Run `npm run firebase:deploy`, then `node scripts/verify-firebase-live.mjs --api`. All checks must pass before moving the custom domains.
-6. Run `node scripts/firebase-domain-status.mjs` for Firebase's current certificate/DNS requirements. DNS is managed in Cloudflare. The `chica` CNAME points to `chica-keicodes-dev.web.app`; `voucher` points to `chica-keicodes-dev-vouchers.web.app`, both DNS-only. Keep existing DNS until the APIs, secrets and certificate are ready.
-
-Published Firebase sites:
-
-| Site | Firebase URL |
-| --- | --- |
-| Library and all linked paths | https://chica-keicodes-dev.web.app |
-| Scheduler | https://chica-keicodes-dev-dates.web.app |
-| Vouchers | https://chica-keicodes-dev-vouchers.web.app |
-| Second letter | https://chica-keicodes-dev-second.web.app |
-| Current recording letter | https://chica-keicodes-dev-song.web.app |
-| Original recording letter | https://chica-keicodes-dev-original.web.app |
-
-Vercel projects and stored data remain available during migration. This setup does not delete them, upgrade a billing plan, change database access rules, or automatically alter Cloudflare records. Future changes to a linked repository require updating its pinned commit before rebuilding.
-
-
-A personal love letter built with React, Vite, and Framer Motion, with photos, dated memories, a personal letter, and eleven songs in the playlist.
-
-## Run locally
-
-Use Node.js 22.12+ (or a newer supported Node version).
-
-```sh
-npm ci
+```powershell
 npm run dev
-```
-
-Open the local URL printed by Vite and add `/third/` (the letter is served under that path). React source needs the dev server; opening `index.html` directly does not run the app.
-
-```sh
-npm test
-npm run build
+npm run dev --workspace=@kwento-natin/date-scheduler
 npm run preview
 ```
 
-The production website is in `dist/`. `npm run build` builds the letter into `dist/third/` and copies the library menu from `menu/` to the root of `dist/`.
+The first dev command runs the main React app; the workspace command runs the scheduler. `npm run preview` serves the complete built frontend. API endpoints require Firebase Hosting/Functions or the Emulator Suite; preview alone does not run a database API.
 
-## chica.keicodes.dev layout
+## Database status, backup, and deployment
 
-| Path | What | Where it comes from |
-| --- | --- | --- |
-| `/` | Library bookshelf: books are categories, pages are entries | `menu/index.html` (this repo) |
-| `/second` | Para sa Chica ko | proxied to the `para-sa-chica` project |
-| `/third` | Kwento Natin (this letter) | this repo, built by Vite with `base: '/third/'` |
-| `/oras` | Mga Oras Natin: the timed messages (10:10, 11:11 ... 5:55) | `menu/oras/`, copied to `dist/oras/` by `scripts/build-menu.mjs` |
-| `/555` | 5:55 Limang Pandama | proxied to `chica-date-scheduler` |
-| `/date` | Date scheduler | proxied to `chica-date-scheduler` |
-| `/vouchers` | Love Voucher Book | proxied to `love-voucher-book` |
+```powershell
+npm run firebase:database
+npm run firebase:backup
+npm run firebase:deploy
+node scripts/verify-firebase-live.mjs --api
+```
 
-The proxies are the `rewrites` in `vercel.json`. To add something to the library, edit the `LIB` list at the top of the script in `menu/index.html`: a book is a category, and each item in its `pages` is one entry (title, blurb, `href`, `stamp`, a thumbnail in `menu/img/`; set `frame: true` for a colour photo in a picture frame, and `photo: "key"` to make the frame open large when tapped; the big versions live in `PHOTOS`, with a 900px copy in `menu/img/`). A new book also needs its id in `SHELVES`. The BAGO tag and counts are filled in by the page. Add a rewrite here if the entry lives in another project. The wall calendar beside the shelf (wide screens) and the small one hung inside the shelf (phones, tap to open the full calendar) read the dates Date Tayo saves in `localStorage` under `chica.dates.v1`: each set date gets a pentel-pen heart. Dates are also kept by the scheduler's `/date/api/dates` (needs its Blob store connected, see that repo) so any device sees them; whatever a phone has that the server lacks is sent up automatically. To pin a date on every device whatever happens, add it to `SEEDED` in the calendar script. The local save only works because `/date` and the menu share the `chica.keicodes.dev` origin.
+The backup writes the existing Firestore documents and Storage object metadata under ignored `.firebase-migration-data/firestore-backups/`. It does not copy object bytes; source media remains in this repository, and a deployment does not change existing uploaded objects. Keep backups private. The status command prints counts, not saved messages or credentials.
 
-## AIRCON (`/aircon`)
-AIRCON is page 5 of 6 in the REGALO book, with its own picture (`public/menu/img/aircon.jpg`). The `aircon` keyword opens three notes and a longer letter in all caps; it is a playful reveal, not authentication. The remote's Lamig Check controls change a fictional cuddling forecast from 24°C to 16°C. Content and styles live in `src/pages/ThreeThirtyThreePage.jsx` and its CSS. `npm run build` generates a discreet link preview at `dist/aircon/index.html`.
+`firebase:deploy` builds and verifies the site, checks the existing notification secret, then deploys Hosting and `chicaApi` to the single Firebase project. It does not deploy or overwrite Firestore/Storage security rules. Never run Firebase initialization with an instruction to replace `index.html` or the existing access rules.
 
-There is one endpoint: `/aircon`. The earlier shared `/333` link is only a redirect to it (a 302 in `firebase.json` for the main Firebase site and in `vercel.json`, plus a client-side fallback in `src/main.jsx`); no `/333` page is published. Older 3:33 timed messages remain in ORAS.
+The legacy `npm run firebase:migrate-data` command backs up the old Vercel scheduler and merges it into Firestore without replacing newer Firebase changes. Run it only for a deliberate legacy data import. Old repositories are retained as migration backups; they are not build dependencies.
 
-## 10:10 MATAMIS (`/matamis`)
-MATAMIS is page 6 of 6 in the REGALO book (`public/menu/img/matamis.jpg`). A recipe for the sweetest 10:10: pick the ten sangkap, which builds a cheesecake one layer at a time, bake it for ten seconds, then taste it to open a letter in all caps. Everything is on the page (no network), keyboard and screen-reader friendly, and motion respects `prefers-reduced-motion`. Content and styles live in `src/pages/MatamisPage.jsx` and `MatamisPage.css`; tests are in `MatamisPage.test.jsx`. `npm run build` generates its link preview at `dist/matamis/index.html`.
+Automatic Vercel Git deployments are disabled by `vercel.json` so future changes here do not keep publishing large duplicate builds to Vercel. Existing Vercel projects, data, and the latest fallback deployment have not been removed by this consolidation.
 
-## REGALO book order
-Pages are listed in `src/pages/libraryData.js` in the order they were made, so the page numbers (`PAHINA 5 / 6`) and the shelf's page count follow the list. `src/pages/libraryData.test.js` checks that no link, title or picture repeats in the book, that every page has a real route and picture, and that `/333` stays a redirect. After changing the book, run `npm test`, and for the Firebase site run `npm run build:firebase`, `npm run test:firebase`, `npm run firebase:deploy` and then `node scripts/verify-firebase-live.mjs`.
+If notification credentials ever need restoring, use `npm run firebase:telegram-setup`, then `npm run firebase:notifications`, in your own terminal. Never paste or commit credentials. Domain/certificate status is available through `node scripts/firebase-domain-status.mjs`.
 
-## Mga Oras Natin (`/oras`)
-A static page (`menu/oras/index.html`) that reads `menu/oras/messages.json`. A little panel holds the toggles (the hour, long or short, AM or PM, order, a search box, Surprise me) and a big panel lists the messages by day. `/oras#1010` opens on one hour; at one of the times of day the page opens on that hour by itself.
+## Editing content
 
-`messages.json` is made from the WhatsApp export with `node scripts/build-oras.mjs path/to/timed-messages.json` (the export itself is not kept here, this repo is public). The script leaves out drafts (unless their id is in `SENT`, with the text that was really sent, for a draft sent after the export), messages that name other people (`mentionsOthers`) and the ids in its `HOLD` list; pass `--include-others` to put the others back.
+- The Library book entries live in `src/pages/libraryData.js`. Add a page, thumbnail, and route together.
+- Original photos and recordings live in `public/assets/` and the relevant `apps/*` directory. MP4s use Git LFS; a fresh checkout must download the LFS content before building.
+- Letter memories and playlist data live in `src/letter/data/`; its UI, audio hooks, and tests live under `src/letter/`.
+- ORAS renders `menu/oras/messages.json`. `scripts/build-oras.mjs` imports timed messages without publishing raw chat exports.
+- AIRCON is `/aircon`; the old `/333` link remains a Firebase and client-side redirect. Content lives in `src/pages/ThreeThirtyThreePage.jsx`.
+- MATAMIS is `/matamis`; its recipe, timer, and letter live in `src/pages/MatamisPage.jsx`.
+- HILING is `/hiling`, entry 7 in REGALO: open an illustrated blue-hour window, choose or write a wish, fold it into a paper plane, and reveal a matching note. It works at any hour, supports keyboards and reduced motion, and saves only the last sent wish in this browser. Nothing is sent to Chico or a server. Source, styles, and interaction tests are `src/pages/HilingPage.*`; the cover is `public/menu/img/hiling.svg`.
+- `scripts/build-one-eleven.mjs` generates link previews for 1:11, AIRCON, MATAMIS, and HILING.
 
-## Content and behavior
-
-- Edit memories, captions, and letter text in `src/data/story.json`.
-- Playlist and chapter order live in `src/data/content.js`.
-- Photos and recordings live in `public/assets/`; the originals remain available in the build.
-- React components live in `src/components/`; audio, reading, theme, and persistence logic live in `src/hooks/`.
-- Reading position, photo colors, and theme stay in browser local storage. Existing saved values are accepted.
-- Music starts from an explicit user action. Quiet mode, pause intent, manual song choice, and optional chapter following are supported.
-- Songs crossfade over 1.2 seconds, including chapter changes and automatic advancement. Play fades in; pause fades out briefly. Web Audio gain nodes handle fades on mobile, with media-volume fades as a fallback.
-- Framer Motion animates the envelope, section entrances, progress, photo changes, and player. Reduced-motion preferences are respected.
-- Layouts cover narrow phones, larger phones, tablets, desktop, and landscape photo viewing. Photos load lazily and all primary touch controls are at least 44px.
-
-Tests exercise React interactions, audio behavior, saved preferences, and content/asset preservation using JSDOM and a mock audio element. They do not verify real browser layout, native dialog focus trapping, or actual audio playback. Visual checks at 320, 375, 390, and 430px widths, plus landscape and a real iOS/Android browser, remain useful before publication.
-
-## 11:11 HILING (`/hiling`)
-
-Open an illustrated blue-hour window, choose or write a wish, fold it into a paper plane, and reveal a matching note from Chico. Entry 7 in REGALO works at any hour, supports keyboard navigation and reduced motion, and saves only the most recent sent wish in this browser. Nothing is sent to Chico or a server.
-
-Source, styles, and interaction tests: `src/pages/HilingPage.*`. Library cover: `public/menu/img/hiling.svg`; share image: `public/menu/img/hiling.png`. `scripts/build-one-eleven.mjs` creates the `/hiling/index.html` invitation.
+The React tests cover interactions, saved preferences, playlist behavior, and Library links. The API tests cover date merging, cancellations, memory photos, calendars, and notification routing without sending real notifications. The consolidation checks verify imported file/media hashes, shared date logic, local build sources, and Firebase output. Real-device video/audio playback remains useful after changing recordings or player behavior.

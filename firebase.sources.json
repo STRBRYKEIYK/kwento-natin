@@ -7,7 +7,10 @@
       "site": "chica-keicodes-dev-dates",
       "kind": "vite",
       "mount": "date",
-      "main": true
+      "main": true,
+      "path": "apps/date-scheduler",
+      "repository": "https://github.com/STRBRYKEIYK/chica-date-scheduler",
+      "importedFiles": 27
     },
     {
       "name": "love-voucher-book",
@@ -15,7 +18,10 @@
       "site": "chica-keicodes-dev-vouchers",
       "kind": "vouchers",
       "mount": "vouchers",
-      "main": true
+      "main": true,
+      "path": "apps/vouchers",
+      "repository": "https://github.com/STRBRYKEIYK/love-voucher-book",
+      "importedFiles": 4
     },
     {
       "name": "para-sa-chica",
@@ -23,7 +29,10 @@
       "site": "chica-keicodes-dev-second",
       "kind": "second",
       "mount": "second",
-      "main": true
+      "main": true,
+      "path": "apps/second-letter",
+      "repository": "https://github.com/STRBRYKEIYK/para-sa-chica",
+      "importedFiles": 6
     },
     {
       "name": "chica-ilychicaaa",
@@ -31,7 +40,10 @@
       "site": "chica-keicodes-dev-song",
       "kind": "song",
       "mount": "ilychicaaa",
-      "main": true
+      "main": true,
+      "path": "apps/recording-letter",
+      "repository": "https://github.com/STRBRYKEIYK/chica-ilychicaaa",
+      "importedFiles": 3
     },
     {
       "name": "ilychicaaa",
@@ -39,7 +51,13 @@
       "site": "chica-keicodes-dev-original",
       "kind": "song",
       "mount": "ilychicaaa",
-      "main": false
+      "main": true,
+      "path": "apps/original-recording",
+      "repository": "https://github.com/STRBRYKEIYK/ilychicaaa",
+      "importedFiles": 3,
+      "mainMount": "ilychicaaa-original"
     }
-  ]
+  ],
+  "version": 2,
+  "name": "Kwento Natin"
 }

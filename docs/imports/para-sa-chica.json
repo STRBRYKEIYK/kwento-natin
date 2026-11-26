@@ -1,0 +1,36 @@
+{
+  "repository": "https://github.com/STRBRYKEIYK/para-sa-chica",
+  "commit": "cdf8d95e4125088c3385efb0b2166e590c664186",
+  "files": [
+    {
+      "path": "assets/long-drive.mp3",
+      "bytes": 3186333,
+      "sha256": "cb02a92486691ca3980d2864056bcc68ad27b064a068af115df640e0dc1dcf29"
+    },
+    {
+      "path": "assets/love-someone.mp3",
+      "bytes": 3598941,
+      "sha256": "2614d24bbe50c218d4bc804b5091cd74e38be26113356058a6fd86dd99c85ae2"
+    },
+    {
+      "path": "assets/photo1.jpg",
+      "bytes": 68174,
+      "sha256": "58d2898e5e9167d521b0094603a03d9ffe8a07a80024462dfd3b5fcb274504c4"
+    },
+    {
+      "path": "assets/photo2.jpg",
+      "bytes": 52497,
+      "sha256": "a95853e833d0bd72dce50701712da2bb7ec2c97f907a92b3fa1349388b7f9d2a"
+    },
+    {
+      "path": "assets/photo3.jpg",
+      "bytes": 78128,
+      "sha256": "324821c2a7cff7a45ac925a81fdef006803234d1030ff3023b77387c0d8bd0e9"
+    },
+    {
+      "path": "index.html",
+      "bytes": 23991,
+      "sha256": "6be6fd9c52ee0a7c1fd4a8ec65c3a76d7626aa7fd06fd878f6e6f3256c4a49dd"
+    }
+  ]
+}

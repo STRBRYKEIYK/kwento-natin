@@ -4,7 +4,7 @@ import { firebaseRequest } from './firebase-auth.mjs';
 
 const domains = [
   { site: 'chica-keicodes-dev', domain: 'chica.keicodes.dev', existingPublic: 'public' },
-  { site: 'chica-keicodes-dev-vouchers', domain: 'voucher.keicodes.dev', existingPublic: '.firebase-sources/love-voucher-book' },
+  { site: 'chica-keicodes-dev-vouchers', domain: 'voucher.keicodes.dev', existingPublic: 'apps/vouchers' },
 ];
 const result = [];
 for (const item of domains) {

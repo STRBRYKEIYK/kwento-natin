@@ -38,9 +38,9 @@ describe('REGALO book index', () => {
   it('points every page at a real route and a picture that exists', () => {
     const main = read('src/main.jsx');
     const routes = new Set([...main.matchAll(/<Route path="([^"]+)"/g)].map(match => match[1]));
-    const proxied = new Set(JSON.parse(read('vercel.json')).rewrites.map(rewrite => rewrite.source));
+    const linked = new Set(JSON.parse(read('firebase.sources.json')).sources.map(app => '/' + (app.mainMount || app.mount)));
     for (const page of regalo.pages) {
-      expect(routes.has(page.href) || proxied.has(page.href), `${page.href} has no route`).toBe(true);
+      expect(routes.has(page.href) || linked.has(page.href), `${page.href} has no route`).toBe(true);
       expect(existsSync(resolve(root, 'public', page.img.replace(/^\//, ''))), `${page.img} is missing`).toBe(true);
     }
   });
@@ -69,7 +69,7 @@ describe('the old /333 link', () => {
     expect(firebase.redirects.some(r => r.source.startsWith('/333') && r.destination === '/aircon')).toBe(true);
 
     const vercel = JSON.parse(read('vercel.json'));
-    expect(vercel.redirects.some(r => r.source === '/333' && r.destination === '/aircon')).toBe(true);
+    expect(vercel.git.deploymentEnabled).toBe(false);
 
     const previews = read('scripts/build-one-eleven.mjs');
     expect(previews).toContain("path: 'aircon'");

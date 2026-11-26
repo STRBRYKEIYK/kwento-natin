@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { firebaseAccessToken, firebaseRequest } from './firebase-auth.mjs';
-import { mergeLists } from '../functions/vendor/dates-core.js';
+import { mergeLists } from '../functions/src/shared/dates-core.js';
 import { PHOTO_KEY } from '../functions/src/validation.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');

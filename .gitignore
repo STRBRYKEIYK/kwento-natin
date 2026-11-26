@@ -8,5 +8,8 @@ coverage/
 .firebase-hosting/
 .firebase-migration-data/
 functions/.env*
+.env*
+.worktrees/
+/apps/date-scheduler/public/places.json
 firebase-debug.log
 firebase-debug.*.log

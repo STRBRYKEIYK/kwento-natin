@@ -1,0 +1,51 @@
+name: Encode a recording for mobile browsers
+
+on:
+  workflow_dispatch:
+    inputs:
+      recording:
+        description: Recording to encode
+        required: true
+        type: choice
+        options:
+          - recording-letter
+          - original-recording
+
+permissions:
+  contents: write
+
+jobs:
+  encode:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Install FFmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Encode H.264 Baseline and AAC
+        env:
+          RECORDING: ${{ inputs.recording }}
+        run: |
+          set -euo pipefail
+          case "$RECORDING" in recording-letter|original-recording) ;; *) exit 1 ;; esac
+          file="apps/$RECORDING/public/ilychicaaa/media/para-sa-chica.mp4"
+          output="apps/$RECORDING/public/ilychicaaa/media/para-sa-chica.mobile.mp4"
+          test -s "$file"
+          ffmpeg -hide_banner -loglevel warning -y -i "$file" \
+            -vf "fps=30,scale=854:-2:flags=lanczos,format=yuv420p" \
+            -c:v libx264 -preset medium -crf 23 -profile:v baseline -level 3.0 \
+            -maxrate 1800k -bufsize 3600k \
+            -c:a aac -b:a 112k -ar 44100 -ac 2 -movflags +faststart "$output"
+          mv "$output" "$file"
+      - name: Commit the encoded recording
+        env:
+          RECORDING: ${{ inputs.recording }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "apps/$RECORDING/public/ilychicaaa/media/para-sa-chica.mp4"
+          git diff --cached --quiet && exit 0
+          git commit -m "Encode $RECORDING for mobile browsers"
+          git push

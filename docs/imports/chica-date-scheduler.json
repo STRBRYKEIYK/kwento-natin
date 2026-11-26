@@ -1,0 +1,141 @@
+{
+  "repository": "https://github.com/STRBRYKEIYK/chica-date-scheduler",
+  "commit": "3592be09588c03ea11640a5213647ec19af8b762",
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 802,
+      "sha256": "5c00843a02578d21203b057b49c22f77f36fb00d687e1d169e0b261cd0245256"
+    },
+    {
+      "path": "package.json",
+      "bytes": 669,
+      "sha256": "badf99a33a956ecbb6b90762e07c66d2096ec5560dd6070f535e6fef804b6000"
+    },
+    {
+      "path": "postcss.config.js",
+      "bytes": 68,
+      "sha256": "66b7f2e4108d42359ecc183c1efb8cead02ea91817024011d11b3c8216382223"
+    },
+    {
+      "path": "public/five/img/b1.jpg",
+      "bytes": 24319,
+      "sha256": "bc38ecbcf22ee471a7d158eb5898e0fd88383d6b0477528b37c485a442d03e96"
+    },
+    {
+      "path": "public/five/img/b2.jpg",
+      "bytes": 24692,
+      "sha256": "166532c617b8289d6b8a66a145696727a5d1e8fefbc9fb8a8d352bf42fb74b01"
+    },
+    {
+      "path": "public/five/img/b3.jpg",
+      "bytes": 24408,
+      "sha256": "a866ba9c6d4493efe47a53d3bc31206bc7fc635b05e65ef3a0688e714da526ce"
+    },
+    {
+      "path": "public/five/img/b4.jpg",
+      "bytes": 21133,
+      "sha256": "52f840675ab17db26c857567314913de97e32bdb3ab53ddd1d0e2fa09d1d045b"
+    },
+    {
+      "path": "public/five/img/b5.jpg",
+      "bytes": 23607,
+      "sha256": "168fa70d5b3ca257b9138078b8cb327c5884485c819b37bb7ff05ae8fe48a940"
+    },
+    {
+      "path": "public/five/img/b6.jpg",
+      "bytes": 17900,
+      "sha256": "f4930a6aa50f840c6b9e3bca8b1dfb5b51a023c428a5a06c9acf6193bd404e87"
+    },
+    {
+      "path": "public/five/index.html",
+      "bytes": 19677,
+      "sha256": "a64ee66d4e016025a29e812ab2662f08055b7c85bd07f29b4eff99a769bea7a1"
+    },
+    {
+      "path": "scripts/build-places.mjs",
+      "bytes": 1053,
+      "sha256": "85cf1a7bddbb29fabc028b342ba092320545d13714ba30c333c7c53c61c7303c"
+    },
+    {
+      "path": "src/App.jsx",
+      "bytes": 64141,
+      "sha256": "a3a691169e7b462101c3c42de4268a8fd6c2303eac3fabf242b0a8fd57539b40"
+    },
+    {
+      "path": "src/calendar.js",
+      "bytes": 5013,
+      "sha256": "9f80b0f4c978a0693a11dd963d57791e2f265e845725816d6209d5b7ac78c82f"
+    },
+    {
+      "path": "src/data.js",
+      "bytes": 8667,
+      "sha256": "4f7df38f2f2699ce16d3c6eb261da7ef9fa47d3fd1e9a293581e41f390bffd7e"
+    },
+    {
+      "path": "src/dates-core.js",
+      "bytes": 3857,
+      "sha256": "933c2a2c0392c172babe28db79ed1f46bd1c368ab505795fc0fa50d73b370d43"
+    },
+    {
+      "path": "src/img/b1.jpg",
+      "bytes": 24319,
+      "sha256": "bc38ecbcf22ee471a7d158eb5898e0fd88383d6b0477528b37c485a442d03e96"
+    },
+    {
+      "path": "src/img/b2.jpg",
+      "bytes": 24692,
+      "sha256": "166532c617b8289d6b8a66a145696727a5d1e8fefbc9fb8a8d352bf42fb74b01"
+    },
+    {
+      "path": "src/img/b3.jpg",
+      "bytes": 24408,
+      "sha256": "a866ba9c6d4493efe47a53d3bc31206bc7fc635b05e65ef3a0688e714da526ce"
+    },
+    {
+      "path": "src/img/b4.jpg",
+      "bytes": 21133,
+      "sha256": "52f840675ab17db26c857567314913de97e32bdb3ab53ddd1d0e2fa09d1d045b"
+    },
+    {
+      "path": "src/img/b5.jpg",
+      "bytes": 23607,
+      "sha256": "168fa70d5b3ca257b9138078b8cb327c5884485c819b37bb7ff05ae8fe48a940"
+    },
+    {
+      "path": "src/img/b6.jpg",
+      "bytes": 17900,
+      "sha256": "f4930a6aa50f840c6b9e3bca8b1dfb5b51a023c428a5a06c9acf6193bd404e87"
+    },
+    {
+      "path": "src/index.css",
+      "bytes": 2197,
+      "sha256": "3ff5df88153b9034c436a32a456e7ca2bbd90eaa94887b874675b4ec37015545"
+    },
+    {
+      "path": "src/main.jsx",
+      "bytes": 558,
+      "sha256": "2da92d38196e07c35f173ac92c63d22e70ff25e00de07babb0d80a3b817269fd"
+    },
+    {
+      "path": "src/photos.js",
+      "bytes": 245,
+      "sha256": "be3bdec80eec71ae0deb1b783e8b4c5350b3dd6c5c917372439b4a9348a4dbd9"
+    },
+    {
+      "path": "src/saved.js",
+      "bytes": 5767,
+      "sha256": "deb78d429865a136afecf960b82da22554e3f736a0d74718bf76fb2a85d060a3"
+    },
+    {
+      "path": "tailwind.config.js",
+      "bytes": 767,
+      "sha256": "7abcdaa5acd387c401b6f1b226a3c990f9b18720de95d552d11b67f137f9a3dd"
+    },
+    {
+      "path": "vite.config.js",
+      "bytes": 299,
+      "sha256": "1da3b34f4cabe5f3d7a53e231fd676412f32b2b4078ca7127dc5a7c8ccd56b0c"
+    }
+  ]
+}
