@@ -32,7 +32,7 @@ export default function OneElevenPage() {
 
   useEffect(() => {
     const previous = document.title;
-    document.title = '1:11 · Ang paborito kong balikan, ikaw';
+    document.title = '1:11 · ANG PABORITO KONG BALIKAN, IKAW';
     return () => { document.title = previous; };
   }, []);
 
@@ -65,6 +65,7 @@ export default function OneElevenPage() {
             </div>)}
           </div>
           <div className="oe-cover-copy">
+            <div className="oe-cover-clock" aria-hidden="true">1:11<span>SA BAWAT ORAS, IKAW.</span></div>
             <p className="oe-eyebrow">ISANG ORAS. LABING-ISANG ALAALA.</p>
             <h1>Ang paborito kong<br />balikan, <em>ikaw.</em></h1>
             <p className="oe-intro">Chicaaa, may tinabi akong ilang sandali natin.<br />Samahan mo ’kong balikan?</p>
@@ -85,8 +86,14 @@ export default function OneElevenPage() {
               <div className="oe-letter-mark" aria-hidden="true">1:11</div>
               <h2 ref={heading} tabIndex={-1}>Asawa kooo,</h2>
               <p>Ang sarap lang balikan, ’no? Yung sine, mga bulaklak, kakulitan, at mga yakap na ayaw ko pang bitawan.</p>
+              <p>Habang tinitingnan ko ulit itong mga litrato, naaalala ko yung maliliit na detalye natin. Yung red at black na jacket sa sinehan. Yung 24 na tulips at si Chicobara. Yung mga kwintas na may dala nating pangalan ng isa’t isa. Ang dami palang paraan para maalala kita kahit hindi kita katabi.</p>
               <p>Pinili ko itong mga litrato kasi gusto kong maalala mo kung gaano ako kasaya na kasama kita. Kahit sa mga araw na wala tayong bagong picture, ikaw pa rin ang gusto kong kausap, kakulitan, at katabi.</p>
-              <p>Ngayong 1:11, gusto lang kitang sabihan ulit: mahal na mahal kita. Salamat sa mga alaalang ’to, Chicaaa ko. Gusto ko pang gumawa ng marami, kasama ka.</p>
+              <p>Naaalala ko yung sinabi mong sobrang happy ka noong Oktubre 20. Ako rin, asawa. Yung yakap mo, yung mga selfie natin, pati yung pag-aalala hanggang makauwi tayo—ang sarap isipin na may araw tayong pareho nating inuwiang masaya.</p>
+              <p>Tapos yung photobooth natin. Iba-ibang sombrero, iba-ibang pose, pero ikaw lang yung gusto kong katabi sa bawat frame. Kahit yung mga makulit nating litrato, gusto kong itago. Kasi tayo ’yon. Masaya, malambing, at minsan hindi talaga kayang magseryoso.</p>
+              <p>Salamat sa oras mo, sa pakikinig sa mga kanta ko, sa mga tawag, at sa mga simpleng paalala na magpahinga at kumain. Napapansin ko ’yon, mahal. Gusto ko ring maiparamdam sa ’yo yung pag-aalagang palagi mong ibinibigay sa ’kin.</p>
+              <p>Hindi man magkalapit ang Pandacan at Angono, gusto kong maramdaman mong may kasama ka. May Chicooo kang gustong makinig sa kwento ng araw mo, gustong makita kang nakangiti, at gustong makasama ka ulit sa susunod nating date.</p>
+              <p>Para sa 1:11 na ’to, gusto lang kitang sabihan ulit: mahal na mahal kita. Salamat sa mga alaalang ’to, Chicaaa ko. Gusto ko pa ng maraming lakad, maraming tawa, maraming yakap, at maraming picture na hindi natin mapili kung alin ang pinaka-favorite.</p>
+              <p>At habang hinihintay natin yung susunod na pagkikita, nandito muna itong munting lugar para sa ’tin. Balikan mo kapag namimiss mo ’ko. Ako, sigurado akong babalikan ko rin ’to—kasi nasa bawat litrato yung taong gusto ko pang makasama sa maraming araw na darating.</p>
               <p className="oe-handwriting">Sa susunod nating picture,<br />tabi ulit tayo, ha?</p>
               <p className="oe-signature">Your Chicooo <span aria-hidden="true">♡</span></p>
               <button className="oe-secondary" type="button" onClick={() => select(0)}>Balikan ulit natin</button>

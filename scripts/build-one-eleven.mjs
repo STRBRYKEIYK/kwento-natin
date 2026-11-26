@@ -1,8 +1,8 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 
 const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
-const title = '1:11 · Ang paborito kong balikan, ikaw';
-const description = 'Labing-isang alaala at isang munting liham. Para sa Chicaaa ko, mula sa Chicooo mo.';
+const title = '1:11 · ANG PABORITO KONG BALIKAN, IKAW';
+const description = 'LABING-ISANG ALAALA AT ISANG LIHAM. PARA SA CHICAAA KO, MULA SA CHICOOO MO.';
 const page = html
   .replace(/<title>[^<]*<\/title>/, `<title>${title}</title>`)
   .replace(/(<meta name="description" content=")[^"]*/, `$1${description}`)

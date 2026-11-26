@@ -102,4 +102,74 @@ body:has(.one-eleven) { margin: 0; background: #151615; }
   .oe-letter { padding-top: 0; }
   .oe-letter-mark { margin-bottom: 24px; }
 }
+.one-eleven { --oe-ink: #f9faf8; --oe-muted: #b5bab5; --oe-paper: #fcfcfa; background: #101210; text-transform: uppercase; }
+body:has(.one-eleven) { background: #101210; }
+.one-eleven button, .one-eleven a { text-transform: inherit; }
+.one-eleven button:focus-visible, .one-eleven a:focus-visible { outline-color: #fff; }
+.oe-grain { opacity: 1; background-image: radial-gradient(ellipse at 20% 25%, #ffffff09, transparent 65%), repeating-linear-gradient(90deg, transparent 0, transparent 89px, #ffffff03 90px); }
+.oe-topbar { height: 84px; border-bottom-color: #ffffff36; font-family: 'Archivo', sans-serif; }
+.oe-topbar a { font: 500 1.4rem 'Archivo', sans-serif; letter-spacing: .05em; }
+.oe-time { font: 500 .875rem 'Archivo', sans-serif; border: 1px solid #ffffff52; padding: 8px 12px; letter-spacing: .1em; }
+.oe-cover { min-height: calc(100svh - 84px); grid-template-columns: 1.05fr 1fr; padding-top: 50px; }
+.oe-cover-photos { height: 570px; }
+.oe-cover-photos::before { content: 'THE LITTLE THINGS. THE BEST OF US.'; position: absolute; left: 0; top: 0; right: 0; border-top: 1px solid #ffffff30; padding-top: 12px; color: var(--oe-muted); font: .75rem 'Archivo', sans-serif; letter-spacing: .15em; }
+.oe-print { box-shadow: 0 18px 50px #0007; }
+.oe-print::before { content: ''; position: absolute; width: 74px; height: 24px; top: -13px; left: calc(50% - 37px); background: #d5d7d0bd; transform: rotate(-6deg); }
+.oe-print span { font: 500 .75rem/1.5 'Archivo', sans-serif; letter-spacing: .07em; padding: 14px 3px 7px; }
+.oe-print-0 { top: 72px; left: 0; transform: rotate(-8deg); }
+.oe-print-1 { top: 124px; transform: rotate(7deg); }
+.oe-print-2 { top: 265px; }
+.oe-cover-clock { font: 500 clamp(4.5rem, 7vw, 7.5rem)/.9 'Archivo', sans-serif; letter-spacing: -.07em; padding-bottom: 25px; margin-bottom: 25px; border-bottom: 1px solid #ffffff36; display: flex; gap: 24px; align-items: flex-end; }
+.oe-cover-clock span { max-width: 135px; font: 400 .875rem/1.7 'DM Sans', sans-serif; letter-spacing: .13em; }
+.oe-cover h1 { font: 700 clamp(2.6rem, 4.1vw, 4.6rem)/1.07 'Archivo', sans-serif; letter-spacing: -.045em; overflow-wrap: anywhere; }
+.oe-cover h1 em { font-style: normal; color: #aeb6ab; }
+.oe-eyebrow { font-family: 'Archivo', sans-serif; }
+.oe-intro, .oe-footnote { letter-spacing: .025em; }
+.oe-primary, .oe-secondary { min-height: 50px; border-radius: 0; font: 600 .875rem/1.5 'Archivo', sans-serif !important; letter-spacing: .07em; }
+.oe-cover-sign { font: 500 .875rem 'Archivo', sans-serif; letter-spacing: .14em; transform: none; }
+.oe-photo { transform: none; box-shadow: 12px 12px 0 #ffffff0d; border: 1px solid #fff; }
+.oe-photo-button { background: #e7e9e4; }
+.oe-photo figcaption { font: 500 .875rem/1.7 'Archivo', sans-serif; padding: 17px 5px 6px; letter-spacing: .05em; }
+.oe-memory-number { font: 500 4.7rem/.9 'Archivo', sans-serif; letter-spacing: -.06em; color: #858d81; }
+.oe-memory-copy h2 { font: 700 clamp(2.1rem, 3.2vw, 3.5rem)/1.13 'Archivo', sans-serif; margin: 21px 0; letter-spacing: -.035em; overflow-wrap: anywhere; }
+.oe-memory-copy > p { color: #cfd5cd; font-size: 1rem; line-height: 1.95; letter-spacing: .025em; }
+.oe-filmstrip { gap: 10px; justify-content: safe center; scroll-snap-type: x proximity; }
+.oe-filmstrip button { background: #ffffff07; border-color: #ffffff1c; border-radius: 0; scroll-snap-align: center; }
+.oe-filmstrip button[aria-current] { border-color: #fff; background: var(--oe-paper); color: #171a17; }
+.oe-bottom-note { font: .875rem/1.8 'DM Sans', sans-serif; letter-spacing: .08em; }
+.oe-letter { max-width: 780px; margin: 8px auto 20px; padding: clamp(25px, 5vw, 66px); background: var(--oe-paper); color: #171a17; box-shadow: 12px 12px 0 #ffffff12; }
+.oe-letter-mark { font: 700 5rem/1 'Archivo', sans-serif; letter-spacing: -.07em; text-align: left; margin-bottom: 36px; border-bottom: 2px solid #171a17; padding-bottom: 30px; color: #171a17; }
+.oe-letter h2 { font: 700 clamp(1.9rem, 4vw, 2.8rem)/1.2 'Archivo', sans-serif; margin-bottom: 28px; letter-spacing: -.03em; }
+.oe-letter > p { font-size: 1rem; line-height: 2; letter-spacing: .025em; margin-bottom: 24px; color: #30382f; }
+.oe-letter .oe-handwriting { font: 600 1.45rem/1.5 'Archivo', sans-serif; letter-spacing: -.02em; color: #171a17; margin: 35px 0; }
+.oe-letter .oe-signature { font: 600 1rem/1.6 'Archivo', sans-serif; color: #171a17; margin-bottom: 34px; }
+.oe-letter .oe-secondary { color: #171a17; border-color: #171a17; }
+.oe-letter .oe-secondary:focus-visible { outline-color: #171a17; }
+.oe-lightbox p { font-size: .875rem; line-height: 1.8; }
+@media (max-width: 760px) {
+  .oe-topbar { height: 70px; }
+  .oe-time { padding: 6px 8px; }
+  .oe-cover { min-height: calc(100svh - 70px); padding-top: 28px; }
+  .oe-cover-photos { height: 330px; }
+  .oe-cover-photos::before { font-size: .6875rem; letter-spacing: .08em; }
+  .oe-print span { font-size: .6875rem; padding: 10px 0 4px; letter-spacing: .02em; }
+  .oe-print-0 { left: 2%; top: 59px; }
+  .oe-print-1 { right: 1%; top: 65px; }
+  .oe-print-2 { top: 125px; }
+  .oe-cover-copy { text-align: left; }
+  .oe-cover-clock { font-size: 4.7rem; margin-bottom: 23px; padding-bottom: 22px; justify-content: space-between; }
+  .oe-cover-clock span { max-width: 120px; font-size: .8125rem; }
+  .oe-cover h1 { font-size: clamp(2.2rem, 8.5vw, 3.6rem); }
+  .oe-cover-copy > button { width: 100%; }
+  .oe-cover-sign { font-size: .8125rem; }
+  .oe-reading-header > span { font-size: .8125rem; white-space: normal; text-align: right; }
+  .oe-photo { box-shadow: 6px 6px 0 #ffffff0d; }
+  .oe-photo figcaption { font-size: .8125rem; padding: 14px 4px 6px; }
+  .oe-memory-number { font-size: 3.8rem; }
+  .oe-memory-copy h2 { font-size: clamp(1.9rem, 7.5vw, 2.65rem); margin: 18px 0; }
+  .oe-navigation .oe-primary { overflow-wrap: anywhere; }
+  .oe-bottom-note { font-size: .8125rem; }
+  .oe-letter { padding: 28px 20px; box-shadow: 6px 6px 0 #ffffff12; }
+  .oe-letter-mark { font-size: 4rem; padding-bottom: 22px; margin-bottom: 28px; }
+}
 @media (prefers-reduced-motion: reduce) { .one-eleven *, .one-eleven *::before, .one-eleven *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
