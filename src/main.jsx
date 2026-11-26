@@ -15,6 +15,7 @@ const OneElevenPage = lazy(() => import('./pages/OneElevenPage.jsx'));
 const ThreeThirtyThreePage = lazy(() => import('./pages/ThreeThirtyThreePage.jsx'));
 const MatamisPage = lazy(() => import('./pages/MatamisPage.jsx'));
 const HilingPage = lazy(() => import('./pages/HilingPage.jsx'));
+const YakapPage = lazy(() => import('./pages/YakapPage.jsx'));
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -32,6 +33,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/aircon" element={<ThreeThirtyThreePage />} />
           <Route path="/matamis" element={<MatamisPage />} />
           <Route path="/hiling" element={<HilingPage />} />
+          <Route path="/yakap" element={<YakapPage />} />
           <Route path="/333" element={<Navigate to="/aircon" replace />} />
           <Route path="/third" element={
             <MotionConfig reducedMotion="user">

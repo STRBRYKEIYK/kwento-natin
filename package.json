@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "workspaces": ["apps/date-scheduler"],
+  "workspaces": [
+    "apps/date-scheduler"
+  ],
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "vite build && npm run build:linked",
@@ -23,6 +25,7 @@
     "firebase:check-secrets": "node scripts/firebase-check-secrets.mjs"
   },
   "dependencies": {
+    "@google/model-viewer": "^4.4.0",
     "firebase": "^13.4.0",
     "framer-motion": "^14.4.0",
     "react": "^19.3.1",

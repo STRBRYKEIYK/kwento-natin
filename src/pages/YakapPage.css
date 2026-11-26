@@ -1,0 +1,88 @@
+.yakap { --yk-ink: #f8e9e2; --yk-muted: #c9b4bf; --yk-pink: #f1b8b5; min-height: 100svh; position: relative; isolation: isolate; overflow: hidden; color: var(--yk-ink); background: radial-gradient(ellipse at 76% 43%, #593447 0, #352231 39%, #281b29 73%); font-family: 'DM Sans', sans-serif; }
+.yakap *, .yakap *::before, .yakap *::after { box-sizing: border-box; }
+.yakap button { font: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.yakap button:disabled { opacity: .45; cursor: default; }
+.yakap :focus-visible { outline: 2px solid var(--yk-pink); outline-offset: 5px; }
+.yk-grain { position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .045; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' filter='url(%23n)' d='M0 0h180v180H0z'/%3E%3C/svg%3E"); }
+.yk-shell { max-width: 1480px; padding: 0 64px; margin: auto; }
+.yk-nav { min-height: 104px; display: flex; justify-content: space-between; align-items: center; gap: 24px; border-bottom: 1px solid #f8e9e222; }
+.yk-library { display: grid; gap: 4px; color: var(--yk-ink); font-size: 14px; letter-spacing: .13em; text-decoration: none; min-height: 44px; align-content: center; }
+.yk-library span { font-size: 12px; color: var(--yk-muted); letter-spacing: .18em; }
+.yk-nav-note { font: 24px/1.4 'Caveat', cursive; color: var(--yk-muted); }
+.yk-time { display: flex; align-items: center; gap: 18px; font: 30px 'Instrument Serif', Georgia, serif; }
+.yk-time svg { width: 23px; height: 23px; color: var(--yk-pink); }
+.yk-main { display: grid; grid-template-columns: .95fr 1.05fr; gap: 20px; align-items: center; min-height: min(800px, calc(100svh - 182px)); padding: 54px 0 50px; }
+.yk-copy { position: relative; z-index: 2; padding: 0 0 0 22px; max-width: 565px; }
+.yk-eyebrow { display: flex; align-items: center; gap: 13px; font-size: 12px; letter-spacing: .2em; color: var(--yk-pink); margin: 0 0 28px; }
+.yk-eyebrow > span { width: 28px; height: 1px; background: currentColor; }
+.yakap h1 { font: 400 clamp(58px, 5.8vw, 88px)/1.02 'Instrument Serif', Georgia, serif; letter-spacing: -.035em; margin: 0 0 29px; }
+.yakap h1 em { color: var(--yk-pink); font-weight: 400; }
+.yk-intro { font-size: 16px; line-height: 1.9; color: var(--yk-muted); max-width: 37ch; margin: 0; }
+.yk-handwritten { font: 28px/1.5 'Caveat', cursive; color: var(--yk-pink); margin: 20px 0 29px; transform: rotate(-3deg); }
+.yakap .yk-primary { display: inline-flex; justify-content: center; align-items: center; gap: 13px; min-height: 52px; padding: 14px 24px; background: var(--yk-pink); border: 1px solid var(--yk-pink); border-radius: 4px; color: #362231; font-size: 15px; font-weight: 500; transition: background .2s, transform .2s; }
+.yk-primary svg { width: 22px; height: 22px; }
+.yk-under-button { font-size: 12px; color: var(--yk-muted); letter-spacing: .13em; margin: 18px 0 0; }
+.yk-visual { min-width: 0; }
+.yk-scene { height: 560px; width: 100%; max-width: 650px; position: relative; margin: auto; }
+.yk-halo { position: absolute; inset: 42px 5% 37px; border-radius: 50%; background: radial-gradient(ellipse at 45% 35%, #f5bb9866, #cb7e7d26 51%, #d68c8700 72%); filter: blur(10px); }
+.yk-orbit { position: absolute; pointer-events: none; border: 1px solid #e7b1b022; border-radius: 50%; }
+.yk-orbit-one { inset: 26px 1% 38px; transform: rotate(-20deg); }
+.yk-orbit-two { inset: 63px -3% 78px; transform: rotate(25deg); }
+.yk-scene-whisper { position: absolute; top: -7px; right: 8%; font: 24px 'Caveat', cursive; transform: rotate(8deg); color: #ebc5bb; z-index: 2; }
+.yk-doodle { position: absolute; width: 37px; height: 37px; color: var(--yk-pink); opacity: .7; }
+.yk-doodle-one { top: 104px; left: 7%; transform: rotate(-20deg); }
+.yk-doodle-two { top: 153px; right: 2%; width: 23px; transform: rotate(18deg); }
+.yk-podium { position: absolute; left: 9%; right: 9%; height: 86px; bottom: 33px; border-radius: 50%; background: linear-gradient(#9d6571 0%, #704252 41%, #492b40 44%, #392136 90%); box-shadow: 0 24px 35px #160f2080; }
+.yk-podium::before { content: ''; position: absolute; inset: 0 0 22px; border-radius: 50%; background: radial-gradient(ellipse at 50% 30%, #c1878a, #875466 70%); border: 1px solid #efb4ac55; box-shadow: inset 0 -5px 12px #4a2c4433; }
+.yk-podium span { position: absolute; inset: 10px 10% 32px; border: 1px solid #f9ccbc33; border-radius: 50%; }
+.yk-scene model-viewer { display: block; position: absolute; inset: 0 0 48px; height: calc(100% - 48px); width: 100%; z-index: 1; background: transparent; --progress-bar-color: transparent; --poster-color: transparent; touch-action: pan-y; }
+.yk-delivery-tag { position: absolute; z-index: 2; bottom: 20px; right: 0; width: 136px; height: 118px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; background: #f2ddd0; color: #6f4551; font-size: 10px; letter-spacing: .07em; transform: rotate(10deg); box-shadow: 3px 5px 12px #160f2033; clip-path: polygon(0 0, 89% 0, 100% 12%, 100% 100%, 0 100%); pointer-events: none; }
+.yk-delivery-tag svg { width: 31px; height: 31px; }
+.yk-delivery-tag small { font-size: 10px; letter-spacing: .12em; }
+.yk-model-controls { position: relative; z-index: 2; text-align: center; margin: 18px auto 0; }
+.yk-model-controls p { font-size: 11px; letter-spacing: .12em; color: var(--yk-muted); line-height: 1.7; margin: 0 0 5px; }
+.yk-model-controls > div { display: flex; justify-content: center; align-items: center; gap: 12px; color: #b794a3; }
+.yk-model-controls button { border: 0; background: transparent; color: var(--yk-pink); font-size: 14px; min-height: 44px; padding: 8px 4px; }
+.yk-loading { position: absolute; z-index: 3; inset: 26% 15% 25%; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 15px; text-align: center; color: var(--yk-ink); background: #352231dd; border-radius: 100px; font-size: 16px; padding: 25px; }
+.yk-loading > svg { color: var(--yk-pink); width: 40px; height: 40px; }
+.yk-loading progress { width: 115px; height: 3px; accent-color: var(--yk-pink); }
+.yk-error { inset: 15% 7% 15%; border-radius: 16px; }
+.yk-error p { margin: 0; line-height: 1.6; }
+.yk-error > span { color: var(--yk-muted); font-size: 14px; }
+.yk-letter { position: relative; padding: 28px 30px 23px; margin: 0 0 24px; color: #503a43; background: #f5e6dc; box-shadow: 0 10px 25px #160f2022; transform: rotate(-1deg); border-radius: 2px; animation: yk-arrive .7s both; }
+.yk-opened .yk-main { padding-top: 48px; padding-bottom: 48px; }
+.yk-opened .yk-visual { align-self: start; margin-top: 66px; }
+.yk-opened h1 { font-size: clamp(45px, 4.4vw, 66px); }
+.yk-letter-label { font-size: 10px; letter-spacing: .12em; color: #826370; margin: 0 30px 20px 0; line-height: 1.6; }
+.yk-letter h2 { font: 34px/1.2 'Caveat', cursive; margin: 0 0 14px; }
+.yk-letter h2:focus { outline: none; }
+.yk-letter > p:not(.yk-letter-label):not(.yk-signature) { font-size: 15px; line-height: 1.8; margin: 0 0 13px; }
+.yk-letter-stamp { position: absolute; top: 21px; right: 21px; color: #b26970; transform: rotate(15deg); }
+.yk-letter-stamp svg { width: 28px; height: 28px; }
+.yk-signature { font: 23px/1.2 'Caveat', cursive; margin: 18px 0 0; }
+.yk-signature span { font-size: 28px; color: #9b5262; }
+.yk-opened .yk-signature { font: 17px/1.6 'DM Sans', sans-serif; }
+.yk-opened .yk-signature span { font: 15px/1.6 'DM Sans', sans-serif; }
+.yk-hug-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; }
+.yk-text-button { min-height: 44px; padding: 8px 0; background: transparent; border: 0; color: var(--yk-muted); font-size: 14px !important; text-decoration: underline; text-underline-offset: 5px; }
+.yk-hug-message { min-height: 48px; color: var(--yk-pink); font: 24px/1.3 'Caveat', cursive; margin: 19px 0 0; }
+.yk-heart-burst { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+.yk-heart-burst svg { width: 30px; height: 30px; position: absolute; top: 56%; left: calc(14% + var(--i) * 8%); color: #ffbfbd; fill: #ffbfbd; animation: yk-heart 2.5s calc(var(--i) * .07s) both ease-out; }
+.yk-footer { display: flex; justify-content: space-between; align-items: center; gap: 20px; border-top: 1px solid #f8e9e222; padding: 25px 0; font-size: 11px; line-height: 1.7; letter-spacing: .1em; color: var(--yk-muted); }
+.yk-footer > span:last-child { display: flex; align-items: center; gap: 10px; }
+.yk-footer svg { width: 16px; height: 16px; color: var(--yk-pink); }
+@keyframes yk-arrive { from { opacity: 0; transform: translateY(12px) rotate(0); } to { opacity: 1; transform: translateY(0) rotate(-1deg); } }
+@keyframes yk-heart { 0% { opacity: 0; transform: translateY(10px) scale(.3) rotate(-15deg); } 20% { opacity: .9; } 100% { opacity: 0; transform: translateY(-240px) scale(.9) rotate(18deg); } }
+@media (hover: hover) { .yakap .yk-primary:hover { background: #ffd1c9; transform: translateY(-2px); } .yk-model-controls button:hover:not(:disabled), .yk-text-button:hover { color: #ffe2db; } }
+@media (min-width: 1500px) { .yk-scene { height: 620px; } }
+@media (max-width: 1050px) { .yk-shell { padding: 0 35px; } .yk-copy { padding-left: 0; } .yk-main { gap: 0; } .yk-scene { height: 480px; } .yk-scene-whisper { right: 0; font-size: 21px; } .yk-delivery-tag { width: 115px; height: 105px; right: -10px; } .yk-letter { padding: 25px; } }
+@media (max-width: 760px) {
+  .yk-shell { padding: 0 24px; } .yk-nav { min-height: 84px; } .yk-library { font-size: 12px; } .yk-library span { font-size: 10px; } .yk-nav-note { display: none; } .yk-time { font-size: 27px; gap: 12px; }
+  .yk-main, .yk-opened .yk-main { grid-template-columns: 1fr; padding: 37px 0 33px; gap: 0; } .yk-copy { max-width: none; } .yk-eyebrow { font-size: 10px; margin-bottom: 20px; letter-spacing: .15em; }
+  .yakap h1 { font-size: clamp(50px, 11vw, 76px); margin-bottom: 20px; } .yk-intro { max-width: 39ch; line-height: 1.8; } .yk-handwritten { margin: 12px 0 24px; font-size: 26px; } .yk-under-button { margin-top: 14px; font-size: 10px; }
+  .yk-visual { margin-top: 32px; } .yk-scene { height: 450px; max-width: 440px; } .yk-scene-whisper { top: 0; right: 6%; } .yk-model-controls { margin-top: 6px; } .yk-model-controls p { font-size: 10px; letter-spacing: .05em; } .yk-delivery-tag { right: 0; bottom: 14px; width: 110px; height: 100px; } .yk-podium { bottom: 28px; }
+  .yk-opened .yk-visual { grid-row: 1; margin: 0 0 35px; } .yk-opened .yk-scene { height: 390px; } .yk-opened .yk-eyebrow { margin-top: 8px; } .yk-opened h1 { font-size: clamp(43px, 10vw, 66px); }
+  .yk-letter { margin-top: 24px; padding: 25px 23px; } .yk-letter > p:not(.yk-letter-label):not(.yk-signature) { font-size: 16px; } .yk-letter-label { font-size: 10px; } .yk-footer { flex-direction: column; align-items: flex-start; gap: 8px; font-size: 10px; padding: 21px 0; }
+}
+@media (max-width: 380px) { .yk-shell { padding: 0 19px; } .yk-scene { height: 390px; } .yk-delivery-tag { right: -5px; width: 100px; height: 94px; font-size: 9px; } .yk-delivery-tag small { font-size: 9px; } .yk-scene-whisper { font-size: 20px; right: 0; } }
+@media (prefers-reduced-motion: reduce) { .yakap *, .yakap *::before, .yakap *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } .yk-heart-burst { display: none; } }

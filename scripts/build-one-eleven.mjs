@@ -27,6 +27,12 @@ const invitations = [
     description: 'BUKSAN ANG BINTANA. ITUPI ANG ISANG HILING AT PALIPARIN SA GABI. PARA SA MGA BUKAS NINA CHICO AT CHICA.',
     image: 'https://chica.keicodes.dev/menu/img/hiling.png',
   },
+  {
+    path: 'yakap',
+    title: '12:12 · YAKAP — PARA SA CHICAAA KO',
+    description: 'ISANG CAPYBARA, ISANG PUSO, MGA TULIPS, AT YAKAP NG CHICO MO. MAY SULAT NA PARA SA’YO LANG.',
+    image: 'https://chica.keicodes.dev/menu/img/yakap.png',
+  },
 ];
 
 for (const { path, title, description, image } of invitations) {

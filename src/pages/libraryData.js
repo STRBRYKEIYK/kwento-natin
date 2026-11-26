@@ -30,6 +30,7 @@ export const LIB = [
     { title: 'AIRCON', blurb: 'Isang code natin, tatlong lambing, at sulat na tinabi ko para sa ’yo. Alam mo na, asawa.', href: '/aircon', made: '2026-11-26', stamp: 'NOV 26', img: '/menu/img/aircon.jpg', iw: 600, ih: 450 },
     { title: '10:10 · Matamis', blurb: 'Isang resipi para sa pinakamatamis na 10:10. Timplahin mo, ihurno mo, tapos tikman mo, asawa ko.', href: '/matamis', made: '2026-11-26', stamp: 'NOV 26', img: '/menu/img/matamis.jpg', iw: 600, ih: 450 },
     { title: '11:11 · Hiling', blurb: 'Buksan ang bintana. Itupi ang isang hiling, paliparin sa gabi, at buksan ang sagot ni Chico. Para sa mga bukas natin.', href: '/hiling', made: '2026-11-26', stamp: 'NOV 26', img: '/menu/img/hiling.svg', iw: 600, ih: 450 },
+    { title: '12:12 · Yakap', blurb: 'Isang capybara, isang puso, mga tulips, at yakap ng Chico mo. May munting sulat na para sa’yo lang.', href: '/yakap', made: '2026-11-27', stamp: 'NOV 27', img: '/menu/img/yakap.png', iw: 1200, ih: 900 },
   ] },
 ];
 
