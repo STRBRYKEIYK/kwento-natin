@@ -38,7 +38,7 @@ export default function OneElevenPage() {
 
   useEffect(() => {
     if (opened) heading.current?.focus({ preventScroll: true });
-  }, [opened, letterOpen]);
+  }, [opened, letterOpen, active]);
 
   useEffect(() => { setImageFailed(false); }, [active]);
 
@@ -48,7 +48,7 @@ export default function OneElevenPage() {
   }
 
   return (
-    <main className="one-eleven">
+    <main className="one-eleven" lang="tl">
       <div className="oe-grain" aria-hidden="true" />
       <header className="oe-topbar">
         <a href="/" aria-label="Bumalik sa library">C <span aria-hidden="true">♡</span> C</a>
@@ -124,7 +124,7 @@ export default function OneElevenPage() {
       )}
 
       <dialog className="oe-lightbox" ref={dialog} aria-label="Pinalaking litrato">
-        <button className="oe-lightbox-close" type="button" onClick={() => dialog.current.close()} autoFocus>Isara ×</button>
+        <button className="oe-lightbox-close" type="button" onClick={() => dialog.current?.close()} autoFocus>Isara ×</button>
         <img src={memory.src} alt={memory.alt} />
         <p>{memory.date}</p>
       </dialog>

@@ -95,7 +95,7 @@ body:has(.one-eleven) { margin: 0; background: #151615; }
   .oe-memory-copy h2 { font-size: 2.65rem; margin: 8px 0 16px; }
   .oe-memory-copy > p { max-width: none; font-size: 1rem; line-height: 1.85; }
   .oe-navigation { margin-top: 25px; flex-wrap: nowrap; }
-  .oe-navigation .oe-primary { flex: 1; padding-inline: 10px; }
+  .oe-navigation .oe-primary { flex: 1; min-width: 0; padding-inline: 10px; }
   .oe-navigation .oe-secondary { padding-inline: 18px; }
   .oe-filmstrip { justify-content: flex-start; padding-top: 28px; }
   .oe-bottom-note { font-size: 1.25rem; }
