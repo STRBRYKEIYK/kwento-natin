@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { LazyMotion, domAnimation, MotionConfig } from 'framer-motion';
 
 const LetterApp = lazy(() => import('./letter/App.jsx'));
@@ -27,7 +27,8 @@ createRoot(document.getElementById('root')).render(
           <Route path="/regalo/moments" element={<RegaloMomentsPage />} />
           <Route path="/regalo/chicaaa" element={<RegaloChicaaaPage />} />
           <Route path="/one-minute-eleven-memories" element={<OneElevenPage />} />
-          <Route path="/333" element={<ThreeThirtyThreePage />} />
+          <Route path="/aircon" element={<ThreeThirtyThreePage />} />
+          <Route path="/333" element={<Navigate to="/aircon" replace />} />
           <Route path="/third" element={
             <MotionConfig reducedMotion="user">
               <LazyMotion features={domAnimation} strict>

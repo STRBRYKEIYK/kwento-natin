@@ -49,7 +49,7 @@ export default function ThreeThirtyThreePage() {
 
   useEffect(() => {
     const previous = document.title;
-    document.title = '3:33 · TAYO MUNA';
+    document.title = 'AIRCON · TAYO MUNA';
     return () => { document.title = previous; };
   }, []);
 
@@ -124,7 +124,7 @@ export default function ThreeThirtyThreePage() {
               </div>
             </section>
           ) : (
-            <section className="tt-room" aria-label="ANG 3:33 NATIN">
+            <section className="tt-room" aria-label="ANG AIRCON NATIN">
               <div className="tt-room-bar"><p className="tt-eyebrow">NAKUHA MO. SYEMPRE NAMAN. ♡</p><button className="tt-text-button" type="button" onClick={close}>ISARA MUNA</button></div>
               <div className="tt-room-grid">
                 <aside className="tt-remote" aria-label="TATLONG LAMBING">
@@ -177,7 +177,7 @@ export default function ThreeThirtyThreePage() {
               <p className="tt-room-footnote">WALANG HINAHABOL NA ORAS DITO. BALIKAN MO KAHIT KAILAN.</p>
             </section>
           )}
-          <footer className="tt-footer"><span>3:33 · TAYO MUNA</span><span>WITH LOVE, ALWAYS.</span></footer>
+          <footer className="tt-footer"><span>AIRCON · TAYO MUNA</span><span>WITH LOVE, ALWAYS.</span></footer>
         </main>
       </div>
     </LibraryLayout>

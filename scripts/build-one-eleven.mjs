@@ -9,8 +9,8 @@ const invitations = [
     image: 'https://chica.keicodes.dev/assets/photos/photo_3@08-08-2026_14-13-20.jpg',
   },
   {
-    path: '333',
-    title: '3:33 · TAYO MUNA',
+    path: 'aircon',
+    title: 'AIRCON · TAYO MUNA',
     description: 'ISANG MUNTING SECRET NATIN. PARA SA CHICAAA KO, WITH LOVE, YOUR CHICOOO.',
     image: 'https://chica.keicodes.dev/menu/img/oras.jpg',
   },
