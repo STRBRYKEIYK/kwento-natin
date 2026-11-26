@@ -5,6 +5,7 @@ import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import OneElevenPage, { oneElevenMemories } from './OneElevenPage.jsx';
 import { DATES } from './petsaData.js';
+import { MemoryRouter } from 'react-router-dom';
 
 afterEach(cleanup);
 
@@ -30,7 +31,7 @@ describe('the new 1:11 surprise', () => {
 
   it('opens without a time lock, lets her browse, reveals the letter and replays', async () => {
     const user = userEvent.setup();
-    render(<OneElevenPage />);
+    render(<MemoryRouter><OneElevenPage /></MemoryRouter>);
     expect(screen.queryByRole('navigation', { name: 'Pumili ng alaala' })).not.toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: /Buksan ang mga alaala/ }));
     expect(screen.getByRole('link', { name: /Buksan ang buong album/ })).toHaveAttribute('href', '/menu/petsa?d=0');

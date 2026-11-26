@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { DATES, imgSrc, thumbSrc } from './petsaData.js';
+import { LibraryLayout } from '../library/LibraryLayout.jsx';
+import { BackLink } from '../library/BackLink.jsx';
+import { Ticker } from '../library/Ticker.jsx';
 import './OneElevenPage.css';
 
 const dateNotes = {
@@ -52,10 +55,12 @@ export default function OneElevenPage() {
   }
 
   return (
-    <main className="one-eleven" lang="tl">
-      <div className="oe-grain" aria-hidden="true" />
+    <LibraryLayout>
+    <div className="one-eleven" lang="tl">
+      <Ticker items={['PARA SA CHICAAA KO <b>♥</b>', '1:11 · LABING-ISANG PAGKIKITA', 'MULA AGOSTO 6 HANGGANG NOBYEMBRE 17', 'IKAW SA BAWAT ISA <b>♥</b>']} />
+    <main className="oe-shell">
       <header className="oe-topbar">
-        <a href="/" aria-label="Bumalik sa library">C <span aria-hidden="true">♡</span> C</a>
+        <BackLink />
         <span>PARA SA CHICAAA KO</span>
         <span className="oe-time">1:11</span>
       </header>
@@ -71,7 +76,7 @@ export default function OneElevenPage() {
           <div className="oe-cover-copy">
             <div className="oe-cover-clock" aria-hidden="true">1:11<span>SA BAWAT ORAS, IKAW.</span></div>
             <p className="oe-eyebrow">1:11 · LABING-ISANG PAGKIKITA NATIN.</p>
-            <h1>Ang paborito kong<br />balikan, <em>ikaw.</em></h1>
+            <h1 className="lib-h1">Ang paborito kong<br />balikan, <em>ikaw.</em></h1>
             <p className="oe-intro">Mula Agosto 6 hanggang Nobyembre 17.<br />Labing-isang araw na nakasama kita.<br />Samahan mo ’kong balikan, asawa?</p>
             <button className="oe-primary" type="button" onClick={() => setOpened(true)}>Buksan ang mga alaala <span aria-hidden="true">♡</span></button>
             <p className="oe-footnote">Dahan-dahan lang, asawa. Sa ’yo ang oras na ’to.</p>
@@ -142,5 +147,7 @@ export default function OneElevenPage() {
         <p>{memory.date}</p>
       </dialog>
     </main>
+    </div>
+    </LibraryLayout>
   );
 }
