@@ -1,4 +1,4 @@
-.three-thirty-three { min-height: 100svh; background: #f3f3f0; color: #211b1c; text-transform: none; --tt-wine: #792e40; --tt-line: #d4cdcd; }
+.three-thirty-three { min-height: 100svh; background: #f3f3f0; color: #211b1c; text-transform: uppercase; --tt-wine: #792e40; --tt-line: #d4cdcd; }
 .tt-shell { max-width: 1080px; padding: 0 28px; margin: auto; }
 .tt-topbar { display: flex; align-items: center; gap: 20px; min-height: 80px; border-bottom: 1px solid var(--tt-line); }
 .tt-topbar .back-link { margin: 0; font-size: .875rem; letter-spacing: .1em; }
@@ -6,7 +6,7 @@
 .tt-small-clock { font: italic 900 1.75rem/1 var(--serif); color: var(--tt-wine); }
 .tt-eyebrow { font-size: .875rem; font-weight: 700; letter-spacing: .14em; line-height: 1.7; color: var(--tt-wine); }
 .tt-cover { display: grid; grid-template-columns: 1.1fr .9fr; gap: 65px; align-items: center; padding: 48px 0 54px; }
-.tt-cover h1 { margin: 22px 0; font: 900 clamp(2.7rem, 5.2vw, 4.6rem)/1.07 var(--serif); letter-spacing: -.045em; }
+.tt-cover h1 { margin: 22px 0; font: 900 clamp(2.7rem, 4.5vw, 3.8rem)/1.12 var(--serif); letter-spacing: -.045em; overflow-wrap: anywhere; }
 .tt-cover h1 em { color: var(--tt-wine); }
 .tt-intro { font-size: 1.125rem; line-height: 1.85; color: #57494e; }
 .tt-unlock { margin-top: 34px; max-width: 430px; }
@@ -55,10 +55,19 @@
 .tt-remote-buttons button span { font: 1.4rem/1 var(--serif); }
 .tt-remote-buttons button[aria-pressed="true"] { background: var(--tt-wine); color: #fff; border-color: var(--tt-wine); box-shadow: 0 3px 0 #4b1b27; }
 .tt-remote-bottom { margin-top: 30px; color: #66535a; font-size: .75rem; line-height: 1.9; letter-spacing: .08em; }
+.tt-weather { margin-top: 26px; padding-top: 22px; border-top: 1px solid #bdb4ad; }
+.tt-weather h2 { font-size: .875rem; letter-spacing: .1em; color: #614b54; }
+.tt-temperature { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; }
+.tt-temperature button { width: 44px; min-height: 44px; border: 1px solid #b0a29a; border-radius: 50%; background: #f6f2ec; font-size: 1.5rem; color: #614b54; }
+.tt-temperature button:disabled { opacity: .4; cursor: default; }
+.tt-temperature output { font: 500 1.75rem/1.4 ui-monospace, monospace; color: #2c3c32; }
+.tt-forecast { margin-top: 18px; font-size: .875rem; line-height: 1.85; color: #614b54; }
+.tt-forecast strong { display: block; margin-bottom: 8px; color: var(--tt-wine); }
 .tt-note { min-height: 430px; background: #fdfdfb; border: 1px solid var(--tt-line); padding: 38px; box-shadow: 7px 7px 0 #e2dcda; }
 .tt-note h2 { font: 700 clamp(2rem, 3.4vw, 3rem)/1.15 var(--serif); letter-spacing: -.035em; margin: 20px 0 24px; }
 .tt-note h2:focus { outline: none; }
-.tt-note-copy, .tt-letter-copy > p { font-size: 1.0625rem; line-height: 1.95; color: #57494e; }
+.tt-note-copy, .tt-letter-copy > p { font-size: 1rem; line-height: 2; color: #57494e; }
+.tt-note-copy p + p { margin-top: 22px; }
 .tt-note-footer { border-top: 1px solid var(--tt-line); margin-top: 32px; padding-top: 24px; display: flex; gap: 20px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
 .tt-note-footer > span { font-size: .75rem; line-height: 1.8; font-weight: 700; letter-spacing: .08em; color: #66535a; }
 .tt-letter-copy > p { margin-bottom: 22px; }
