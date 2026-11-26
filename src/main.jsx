@@ -12,6 +12,7 @@ const RegaloGardenPage = lazy(() => import('./pages/RegaloGardenPage.jsx'));
 const RegaloMomentsPage = lazy(() => import('./pages/RegaloMomentsPage.jsx'));
 const RegaloChicaaaPage = lazy(() => import('./pages/RegaloChicaaaPage.jsx'));
 const OneElevenPage = lazy(() => import('./pages/OneElevenPage.jsx'));
+const ThreeThirtyThreePage = lazy(() => import('./pages/ThreeThirtyThreePage.jsx'));
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -26,6 +27,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/regalo/moments" element={<RegaloMomentsPage />} />
           <Route path="/regalo/chicaaa" element={<RegaloChicaaaPage />} />
           <Route path="/one-minute-eleven-memories" element={<OneElevenPage />} />
+          <Route path="/333" element={<ThreeThirtyThreePage />} />
           <Route path="/third" element={
             <MotionConfig reducedMotion="user">
               <LazyMotion features={domAnimation} strict>

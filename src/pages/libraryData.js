@@ -5,6 +5,7 @@ export const LIB = [
   ] },
   { id: 'oras', no: '02', title: 'ORAS-ORAS', lines: ['ORAS-', 'ORAS'], ts: 0.17, sub: 'PARA SA 1:11, 2:22 AT IBA PA', theme: 'red', w: 62, h: 214, fs: 16, pages: [
     { title: 'Mga Oras Natin', blurb: "Lahat ng 10:10, 11:11 at 5:55 na pinadala ko sa'yo, nandito na. Pumili ka ng oras, buksan mo isa-isa.", href: '/oras', made: '2026-11-16', stamp: 'NOV 16', img: '/menu/img/oras-lib.jpg', iw: 600, ih: 450 },
+    { title: '3:33 · Tayo Muna', blurb: 'Isang code natin, tatlong lambing, at sulat na tinabi ko para sa ’yo. Alam mo na, asawa.', href: '/333', made: '2026-11-26', stamp: 'NOV 26', img: '/menu/img/oras.jpg', iw: 600, ih: 450 },
     { title: '5:55 · Limang Pandama', blurb: 'Limang pandama, isang puso. Buksan mo isa-isa hanggang sa pang-anim.', href: '/555', made: '2026-11-16', stamp: 'NOV 16', img: '/menu/img/oras.jpg', iw: 600, ih: 450 },
     { title: '12:12 · Para Kay Chicaaa', blurb: "Isang kanta mula sa puso at munting sulat para sa babaeng mahal ko. Para sa'yo, Chicaaa ko.", href: '/ilychicaaa', made: '2026-11-24', stamp: 'NOV 24', img: '/menu/img/oras-1212.png', iw: 679, ih: 416 },
     { title: '12:12 · Labindalawang Bituin', blurb: '12 munting bituin, 12 sorpresa. Buksan mo bawat isa para sa nakatagong lambing ni Chico.', href: '/1212-stars', made: '2026-11-24', stamp: 'NOV 24', img: '/menu/img/oras-1212.png', iw: 679, ih: 416 },
