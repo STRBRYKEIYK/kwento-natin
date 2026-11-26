@@ -9,4 +9,8 @@
 - Canonical Firebase database backup: 2 saved dates, 0 uploaded PETSA documents, 0 Storage objects. Backup is private and ignored by Git.
 - Legacy import backed up 1 legacy saved date and 0 private photos, merged without replacing newer data, and a fresh Firebase database check still reports 2 saved dates.
 - Independent review attempted via the three-brain skill: Claude was blocked by its session limit; Gemini CLI authentication reports the installed client is no longer supported. No independent model review was completed.
-- Live deployment and post-deployment verification are recorded below when completed.
+- Published migration commit `224c6e9` to GitHub `main` after incorporating the separate Hiling commits.
+- Firebase deploy completed successfully for `chicaApi` and all six existing Hosting site IDs.
+- Live verification passed for every checked page, media endpoint, compatibility host, AIRCON/MATAMIS/HILING route bundle and invitation, and the `/333` redirect at both Firebase and the custom domain.
+- Date API and authenticated database status both still report 2 saved dates after deployment. Existing Telegram/push configuration passed read-only verification; no test notifications were sent.
+- Shared working checkout was advanced to the published commit without replacing working files or discarding staged changes; it was clean after synchronization.
