@@ -8,6 +8,7 @@ export const LIB = [
     { title: '5:55 · Limang Pandama', blurb: 'Limang pandama, isang puso. Buksan mo isa-isa hanggang sa pang-anim.', href: '/555', made: '2026-11-16', stamp: 'NOV 16', img: '/menu/img/oras.jpg', iw: 600, ih: 450 },
     { title: '12:12 · Para Kay Chicaaa', blurb: "Isang kanta mula sa puso at munting sulat para sa babaeng mahal ko. Para sa'yo, Chicaaa ko.", href: '/ilychicaaa', made: '2026-11-24', stamp: 'NOV 24', img: '/menu/img/oras-1212.png', iw: 679, ih: 416 },
     { title: '12:12 · Labindalawang Bituin', blurb: '12 munting bituin, 12 sorpresa. Buksan mo bawat isa para sa nakatagong lambing ni Chico.', href: '/1212-stars', made: '2026-11-24', stamp: 'NOV 24', img: '/menu/img/oras-1212.png', iw: 679, ih: 416 },
+    { title: '1:11 · Tabi Muna Tayo', blurb: 'Isang tahimik na sandali, magkatabi, at isang malumanay na liham mula sa Chicooo mo. Para sa Chicaaa ko.', href: '/tabi', made: '2026-11-27', stamp: 'NOV 27', img: '/menu/img/tabi.svg', iw: 1200, ih: 900 },
     { title: '12:12 · Hapon Natin', blurb: 'Isang picnic para sa dalawa, isang bulaklak, at liham ni Chico sa gitna ng araw. Tabi muna tayo, asawa ko.', href: '/hapon', made: '2026-11-27', stamp: 'NOV 27', img: '/menu/img/hapon.svg', iw: 1200, ih: 900 },
   ] },
   { id: 'petsa', no: '03', title: 'PETSA', lines: ['PETSA'], ts: 0.2, sub: 'MGA ALAALA NG MGA DATE NATIN', theme: 'char', w: 58, h: 188, pages: [

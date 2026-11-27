@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+<defs><radialGradient id="studio"><stop stop-color="#253d68"/><stop offset=".6" stop-color="#142544"/><stop offset="1" stop-color="#0b172b"/></radialGradient></defs>
+<rect width="1200" height="900" fill="#081121"/><rect x="65" y="55" width="1070" height="790" rx="32" fill="url(#studio)" stroke="#344a68" stroke-width="2"/>
+<circle cx="600" cy="420" r="265" fill="none" stroke="#405c82" stroke-width="2"/><circle cx="600" cy="420" r="235" fill="#142544"/>
+<text x="600" y="175" text-anchor="middle" font-family="sans-serif" font-size="18" letter-spacing="7" fill="#9fb2ce">PARA SA CHICAAA KO</text>
+<text x="600" y="420" text-anchor="middle" font-family="Georgia,serif" font-size="180" fill="#f4f7fc" letter-spacing="-12">1:11</text>
+<g fill="none" stroke="#bad6ff" stroke-width="3"><path d="M560 525s-80-44-80-90c0-40 57-54 80-13 25-41 80-27 80 13 0 46-80 90-80 90Z"/><path d="M646 542s-60-34-60-69c0-30 43-40 60-9 19-31 60-21 60 9 0 35-60 69-60 69Z"/></g>
+<text x="600" y="687" text-anchor="middle" font-family="Georgia,serif" font-size="54" letter-spacing="4" fill="#f4f7fc">TABI MUNA TAYO.</text>
+<text x="600" y="754" text-anchor="middle" font-family="Georgia,serif" font-size="24" letter-spacing="3" fill="#9fb2ce">WITH LOVE, YOUR CHICOOO</text></svg>

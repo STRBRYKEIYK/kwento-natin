@@ -82,6 +82,8 @@ If notification credentials ever need restoring, use `npm run firebase:telegram-
 
 ## Editing content
 
+- TABI MUNA TAYO is the special gentle 1:11 page for Chicaaa at `/tabi`, in ORAS-ORAS. Antigravity supplied its editorial moss and ivory UI/UX direction; source is `src/pages/TabiPage.jsx` and `src/pages/TabiPage.css`. The supplied `CHICA Y CHICOO.glb` was optimized from 144.46 MB to 11.52 MB without mesh simplification, using Draco and 2048px WebP textures; the web copy is `public/models/chica-y-chico.glb`. The original Downloads file is untouched. Local Draco decoders are reused. The viewer has drag controls, loading progress, retry, and camera reset; the letter works independently of the model. The cover is `public/menu/img/tabi.svg`. The original 1:11 memories page remains at `/one-minute-eleven-memories`.
+
 - The Library book entries live in `src/pages/libraryData.js`. Add a page, thumbnail, and route together.
 - Personal media is excluded from Git and Hosting bundles. A fresh checkout builds without downloading Git LFS or the old repositories. `src/media.js` resolves existing media references; the Vite plugin also resolves scheduler image imports and static page references from the catalog.
 - Add new photos through PETSA's existing add-entry form: it uploads to Storage and saves metadata in Firestore. For new videos or music, upload the file to Storage and use its download URL in an album's `media` list or the relevant content entry. Store album labels, dates, descriptions, media URLs and thumbnail URLs in Firestore; never put binary file contents in a database document. Keep a video thumbnail as an image and set `type: "video"`.
