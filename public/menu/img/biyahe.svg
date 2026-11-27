@@ -1,0 +1,258 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-label="11:11 PM BIYAHE NATIN — DARK BRONZE HONDA ADV 160 RS SA ISANG PANGARAP NA ROAD TRIP NINA CHICO AT CHICA.">
+  <defs>
+    <linearGradient id="bhCoverBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0d0b0a" />
+      <stop offset="56%" stop-color="#191412" />
+      <stop offset="100%" stop-color="#120e0d" />
+    </linearGradient>
+    <radialGradient id="bhTwilightSky" cx="50%" cy="46%" r="54%">
+      <stop offset="0%" stop-color="#3c2a1e" stop-opacity="0.9" />
+      <stop offset="48%" stop-color="#221915" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#100d0c" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="bhHorizonGlow" cx="50%" cy="62%" r="42%">
+      <stop offset="0%" stop-color="#f2be72" stop-opacity="0.4" />
+      <stop offset="46%" stop-color="#b57a44" stop-opacity="0.16" />
+      <stop offset="100%" stop-color="#b57a44" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="bhHeadlightBeam" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#ffe7b6" stop-opacity="0.62" />
+      <stop offset="38%" stop-color="#eab362" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#eab362" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="bhBronzeBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b6649" />
+      <stop offset="38%" stop-color="#5d412e" />
+      <stop offset="78%" stop-color="#3e2b1f" />
+      <stop offset="100%" stop-color="#281c14" />
+    </linearGradient>
+    <linearGradient id="bhBronzeHighlight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c4996d" />
+      <stop offset="55%" stop-color="#855f42" />
+      <stop offset="100%" stop-color="#4e3626" />
+    </linearGradient>
+    <linearGradient id="bhBronzeWheel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d4a977" />
+      <stop offset="50%" stop-color="#9b724b" />
+      <stop offset="100%" stop-color="#61442c" />
+    </linearGradient>
+    <linearGradient id="bhSeatBlack" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#35312f" />
+      <stop offset="45%" stop-color="#1d1a19" />
+      <stop offset="100%" stop-color="#100e0e" />
+    </linearGradient>
+    <linearGradient id="bhWindscreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5f8fc" stop-opacity="0.46" />
+      <stop offset="45%" stop-color="#d6e2ef" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#9cb0c4" stop-opacity="0.08" />
+    </linearGradient>
+    <linearGradient id="bhExhaust" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2a2725" />
+      <stop offset="65%" stop-color="#45403d" />
+      <stop offset="100%" stop-color="#8f877f" />
+    </linearGradient>
+    <linearGradient id="bhRoadFade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d4a977" stop-opacity="0" />
+      <stop offset="22%" stop-color="#d4a977" stop-opacity="0.55" />
+      <stop offset="78%" stop-color="#f2be72" stop-opacity="0.65" />
+      <stop offset="100%" stop-color="#f2be72" stop-opacity="0" />
+    </linearGradient>
+    <radialGradient id="bhBikeShadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#050403" stop-opacity="0.82" />
+      <stop offset="70%" stop-color="#050403" stop-opacity="0.32" />
+      <stop offset="100%" stop-color="#050403" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Outer Dark Espresso Canvas -->
+  <rect width="1200" height="900" fill="url(#bhCoverBg)" />
+
+  <!-- Editorial Card Border & Inner Hairline -->
+  <rect x="44" y="42" width="1112" height="816" rx="28" fill="#141110" stroke="#7d5c43" stroke-opacity="0.42" stroke-width="1.5" />
+  <rect x="64" y="62" width="1072" height="776" rx="20" fill="none" stroke="#c89d6c" stroke-opacity="0.16" stroke-width="1" />
+
+  <!-- Corner Touring Ticks -->
+  <g stroke="#c89d6c" stroke-opacity="0.32" stroke-width="1.2">
+    <line x1="108" y1="106" x2="142" y2="106" />
+    <line x1="108" y1="106" x2="108" y2="140" />
+    <line x1="1092" y1="106" x2="1058" y2="106" />
+    <line x1="1092" y1="106" x2="1092" y2="140" />
+    <line x1="108" y1="794" x2="142" y2="794" />
+    <line x1="108" y1="794" x2="108" y2="760" />
+    <line x1="1092" y1="794" x2="1058" y2="794" />
+    <line x1="1092" y1="794" x2="1092" y2="760" />
+  </g>
+
+  <!-- Twilight Scenic Portal Arch -->
+  <path d="M188 626 V374 C188 188 360 112 600 112 C840 112 1012 188 1012 374 V626 Z" fill="url(#bhTwilightSky)" stroke="#9b734e" stroke-opacity="0.28" stroke-width="1.5" />
+  <path d="M210 626 V378 C210 206 372 134 600 134 C828 134 990 206 990 378 V626" fill="none" stroke="#d4a977" stroke-opacity="0.14" stroke-width="1" stroke-dasharray="5 9" />
+
+  <!-- Horizon Twilight Glow & Subtle Stars -->
+  <ellipse cx="600" cy="542" rx="390" ry="135" fill="url(#bhHorizonGlow)" />
+  <g fill="#f6e4c8" fill-opacity="0.65">
+    <circle cx="332" cy="242" r="1.8" />
+    <circle cx="428" cy="196" r="1.3" />
+    <circle cx="776" cy="204" r="1.9" />
+    <circle cx="854" cy="256" r="1.4" />
+    <circle cx="912" cy="316" r="1.6" />
+    <circle cx="274" cy="318" r="1.4" />
+  </g>
+  <!-- Subtle Crescent Moon -->
+  <path d="M846 218 A22 22 0 1 0 874 246 A18 18 0 1 1 846 218 Z" fill="#f3d6a4" fill-opacity="0.68" />
+
+  <!-- Top Eyebrow -->
+  <text x="600" y="178" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" letter-spacing="8" fill="#c9ab8c">ORAS-ORAS · PARA SA CHICAAA KO</text>
+
+  <!-- Soft 11:11 PM Watermark -->
+  <text x="600" y="340" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="168" letter-spacing="-4" fill="#d4a977" fill-opacity="0.11">11:11</text>
+
+  <!-- Layered Distant Mountain Ridge Silhouette -->
+  <path d="M188 574 L286 512 L374 544 L488 476 L594 522 L712 468 L832 520 L924 486 L1012 544 V626 H188 Z" fill="#1c1613" fill-opacity="0.86" />
+  <path d="M188 594 L318 548 L452 574 L608 532 L764 568 L904 538 L1012 576 V626 H188 Z" fill="#15110f" />
+
+  <!-- Highway Horizon Line & Warm Road Dashes -->
+  <line x1="176" y1="626" x2="1024" y2="626" stroke="url(#bhRoadFade)" stroke-width="2" />
+  <g stroke="#eab362" stroke-opacity="0.42" stroke-width="3" stroke-linecap="round">
+    <line x1="258" y1="642" x2="314" y2="642" />
+    <line x1="376" y1="642" x2="438" y2="642" />
+    <line x1="762" y1="642" x2="824" y2="642" />
+    <line x1="886" y1="642" x2="942" y2="642" />
+  </g>
+
+  <!-- Warm Headlight Beam Projecting Forward (Right) -->
+  <path d="M776 462 L1038 412 L1038 566 L776 492 Z" fill="url(#bhHeadlightBeam)" />
+
+  <!-- Ground Contact Shadow -->
+  <ellipse cx="598" cy="624" rx="236" ry="20" fill="url(#bhBikeShadow)" />
+
+  <!-- DARK BRONZE HONDA ADV 160 RS ILLUSTRATION (Facing Right) -->
+  <g transform="translate(596 514)">
+    <!-- Rear Swingarm & Engine Casing -->
+    <path d="M-148 34 L-44 26 L-34 52 L-144 54 Z" fill="#23201e" stroke="#3c3632" stroke-width="1.5" />
+    <ellipse cx="-66" cy="40" rx="28" ry="15" fill="#2e2a27" stroke="#534a43" stroke-width="1.4" />
+    <!-- Rear Gold-Bronze Reservoir Twin Shock -->
+    <g transform="rotate(-18 -110 24)">
+      <rect x="-116" y="-26" width="12" height="58" rx="4" fill="#24201e" stroke="#c99b63" stroke-width="1.6" />
+      <rect x="-126" y="-22" width="10" height="24" rx="4" fill="#d4a568" stroke="#7d5a34" stroke-width="1.2" />
+      <line x1="-116" y1="-10" x2="-104" y2="-10" stroke="#e4bc82" stroke-width="2" />
+      <line x1="-116" y1="-1" x2="-104" y2="-1" stroke="#e4bc82" stroke-width="2" />
+      <line x1="-116" y1="8" x2="-104" y2="8" stroke="#e4bc82" stroke-width="2" />
+      <line x1="-116" y1="17" x2="-104" y2="17" stroke="#e4bc82" stroke-width="2" />
+    </g>
+
+    <!-- Rear Wheel (Bronze Multi-Spoke Alloy + Dual-Sport Tire) -->
+    <g transform="translate(-142 48)">
+      <circle r="60" fill="#171514" stroke="#302b28" stroke-width="4" />
+      <circle r="54" fill="none" stroke="#262220" stroke-width="3" stroke-dasharray="10 6" />
+      <circle r="39" fill="#110f0e" stroke="url(#bhBronzeWheel)" stroke-width="6.5" />
+      <circle r="34" fill="none" stroke="#e3bc8d" stroke-opacity="0.38" stroke-width="1.2" />
+      <g stroke="url(#bhBronzeWheel)" stroke-width="3.4" stroke-linecap="round">
+        <line x1="0" y1="-34" x2="0" y2="34" />
+        <line x1="-34" y1="0" x2="34" y2="0" />
+        <line x1="-24" y1="-24" x2="24" y2="24" />
+        <line x1="-24" y1="24" x2="24" y2="-24" />
+        <line x1="-13" y1="-31" x2="13" y2="31" />
+        <line x1="-31" y1="-13" x2="31" y2="13" />
+      </g>
+      <circle r="16" fill="#2d2621" stroke="#c89e6e" stroke-width="2" />
+      <circle r="7" fill="#161311" stroke="#8f6c4a" stroke-width="1.4" />
+    </g>
+
+    <!-- Front Wheel (Slightly Larger Bronze Multi-Spoke Alloy + Wave Disc) -->
+    <g transform="translate(154 44)">
+      <circle r="64" fill="#171514" stroke="#302b28" stroke-width="4" />
+      <circle r="58" fill="none" stroke="#262220" stroke-width="3" stroke-dasharray="11 6" />
+      <circle r="43" fill="#110f0e" stroke="url(#bhBronzeWheel)" stroke-width="6.5" />
+      <circle r="37" fill="none" stroke="#e3bc8d" stroke-opacity="0.38" stroke-width="1.2" />
+      <!-- Wave Disc Rotor -->
+      <circle r="24" fill="none" stroke="#968d85" stroke-opacity="0.6" stroke-width="2.4" stroke-dasharray="7 3" />
+      <g stroke="url(#bhBronzeWheel)" stroke-width="3.4" stroke-linecap="round">
+        <line x1="0" y1="-37" x2="0" y2="37" />
+        <line x1="-37" y1="0" x2="37" y2="0" />
+        <line x1="-26" y1="-26" x2="26" y2="26" />
+        <line x1="-26" y1="26" x2="26" y2="-26" />
+        <line x1="-14" y1="-34" x2="14" y2="34" />
+        <line x1="-34" y1="-14" x2="34" y2="14" />
+      </g>
+      <circle r="14" fill="#2d2621" stroke="#c89e6e" stroke-width="2" />
+      <circle r="6" fill="#161311" stroke="#8f6c4a" stroke-width="1.4" />
+    </g>
+
+    <!-- Front Telescopic Fork & High Adventure Fender -->
+    <line x1="112" y1="-62" x2="154" y2="44" stroke="#534942" stroke-width="13" stroke-linecap="round" />
+    <line x1="112" y1="-62" x2="136" y2="-2" stroke="#8b7d72" stroke-width="7" stroke-linecap="round" />
+    <line x1="136" y1="-2" x2="154" y2="44" stroke="#292422" stroke-width="11" stroke-linecap="round" />
+    <!-- Front Mudguard -->
+    <path d="M106 -10 C134 -26 176 -26 204 -6 L192 4 C166 -10 136 -10 112 2 Z" fill="url(#bhBronzeBody)" stroke="#9e7652" stroke-width="1.3" />
+
+    <!-- Underbelly Skid Plate & Center Spine Tunnel (Matte Charcoal) -->
+    <path d="M-84 62 L58 62 L112 18 L94 -12 L18 16 L-56 12 Z" fill="#1a1716" stroke="#3e3530" stroke-width="1.6" />
+    <!-- Floorboard & Forward Cruiser Footpeg Trim -->
+    <path d="M-42 46 L52 46 L90 12 L80 4 L46 36 L-36 36 Z" fill="#2d2724" stroke="#7c5d43" stroke-opacity="0.55" stroke-width="1.3" />
+
+    <!-- Dark Bronze Side Body Fairing & Angular Rear Tail -->
+    <path d="M-182 -52 L-72 -42 L22 -16 L54 16 L-48 28 L-148 -10 L-190 -36 Z" fill="url(#bhBronzeBody)" stroke="#a87e57" stroke-opacity="0.72" stroke-width="1.6" />
+    <!-- Sculpted Metallic Bronze Upper Highlight Facet -->
+    <path d="M-176 -46 L-68 -36 L14 -14 L-12 -4 L-138 -20 Z" fill="url(#bhBronzeHighlight)" fill-opacity="0.72" />
+    <!-- Crimson Honda RS Accent Stripe & Badge -->
+    <path d="M-142 -26 L-56 -16 L-44 -10 L-132 -19 Z" fill="#d1483b" />
+    <text x="-82" y="-22" font-family="sans-serif" font-size="11" font-weight="800" letter-spacing="2" fill="#f6e7d4">ADV 160</text>
+    <text x="-20" y="-22" font-family="sans-serif" font-size="11" font-weight="900" letter-spacing="1.5" fill="#e65345">RS</text>
+
+    <!-- Angular Front Cowl / Nose Fairing (Dark Bronze) -->
+    <path d="M46 14 L88 -76 L154 -72 L188 -42 L176 -20 L118 -4 L74 20 Z" fill="url(#bhBronzeBody)" stroke="#b38860" stroke-opacity="0.78" stroke-width="1.7" />
+    <path d="M90 -70 L148 -66 L176 -42 L134 -34 L82 -44 Z" fill="url(#bhBronzeHighlight)" fill-opacity="0.65" />
+    <!-- Dark Vent Cutout on Side Fairing -->
+    <path d="M84 -32 L138 -26 L124 -12 L74 -16 Z" fill="#171412" stroke="#5b4331" stroke-width="1.1" />
+
+    <!-- Twin Slanted LED Headlight Assembly -->
+    <path d="M150 -62 L186 -42 L178 -32 L144 -48 Z" fill="#fff1d0" stroke="#f0be74" stroke-width="1.4" />
+    <path d="M156 -56 L180 -42" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" />
+
+    <!-- Taillight Crimson Glow -->
+    <path d="M-188 -46 L-176 -50 L-174 -36 L-188 -34 Z" fill="#e04f41" />
+
+    <!-- Sculpted Two-Level Black Seat (Driver + Backride) -->
+    <path d="M-162 -56 C-134 -68 -90 -68 -52 -56 C-28 -48 -14 -32 22 -30 C44 -28 54 -18 46 -8 L-58 -16 L-156 -40 Z" fill="url(#bhSeatBlack)" stroke="#4c4541" stroke-width="1.5" />
+    <path d="M-148 -52 C-118 -60 -86 -60 -52 -48 C-26 -38 -6 -26 32 -24" fill="none" stroke="#5c534d" stroke-opacity="0.65" stroke-width="1.2" stroke-dasharray="4 3" />
+
+    <!-- Rear Passenger Grab Rail -->
+    <path d="M-196 -58 L-150 -60 L-144 -52 L-190 -48 Z" fill="#322d2a" stroke="#7d6e63" stroke-width="1.3" />
+
+    <!-- Tapered Handlebar, Dashboard & Mirror -->
+    <path d="M82 -74 L94 -102 L116 -104" fill="none" stroke="#36302d" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="88" cy="-102" r="8" fill="#1b1817" stroke="#8b7b6e" stroke-width="1.8" />
+    <!-- Tall Rearview Mirror -->
+    <path d="M102 -104 L112 -136 L138 -140" fill="none" stroke="#453e3a" stroke-width="3.2" stroke-linecap="round" />
+    <path d="M126 -146 L152 -144 C156 -144 156 -132 146 -132 L124 -134 Z" fill="#231f1d" stroke="#857568" stroke-width="1.3" />
+
+    <!-- Signature Tall Clear Windscreen -->
+    <path d="M120 -74 L144 -162 C148 -174 162 -174 168 -160 L166 -70 Z" fill="url(#bhWindscreen)" stroke="#e4eef8" stroke-opacity="0.68" stroke-width="1.8" />
+    <!-- Windscreen Clear Glass Glare Lines & Bracket -->
+    <line x1="138" y1="-150" x2="152" y2="-86" stroke="#ffffff" stroke-opacity="0.46" stroke-width="2.4" stroke-linecap="round" />
+    <line x1="149" y1="-142" x2="158" y2="-98" stroke="#ffffff" stroke-opacity="0.24" stroke-width="1.4" stroke-linecap="round" />
+    <line x1="132" y1="-72" x2="144" y2="-112" stroke="#2c2725" stroke-width="4" stroke-linecap="round" />
+
+    <!-- Upswept Adventure Exhaust Muffler -->
+    <g transform="rotate(-22 -118 46)">
+      <path d="M-164 36 L-56 32 L-48 54 L-160 58 Z" fill="url(#bhExhaust)" stroke="#7b7168" stroke-width="1.5" />
+      <path d="M-150 41 L-76 38 L-72 48 L-148 51 Z" fill="#221f1d" stroke="#5b524b" stroke-width="1" />
+      <path d="M-174 39 L-162 36 L-159 57 L-172 54 Z" fill="#b3a99f" stroke="#5e564f" stroke-width="1.2" />
+    </g>
+  </g>
+
+  <!-- Two Small Helmet Emblem Icons Flanking Bottom Rule -->
+  <g transform="translate(414 714)" fill="none" stroke="#c89d6c" stroke-width="1.6">
+    <path d="M-12 6 C-12 -5 -4 -11 5 -10 C12 -9 16 -2 15 6 Z" />
+    <path d="M2 -4 H13 V2 H3 Z" fill="#c89d6c" fill-opacity="0.26" />
+  </g>
+  <g transform="translate(786 714)" fill="none" stroke="#c89d6c" stroke-width="1.6">
+    <path d="M-12 6 C-12 -5 -4 -11 5 -10 C12 -9 16 -2 15 6 Z" />
+    <path d="M2 -4 H13 V2 H3 Z" fill="#c89d6c" fill-opacity="0.26" />
+  </g>
+
+  <!-- Editorial Title & Dedication -->
+  <text x="600" y="704" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-weight="700" font-size="62" letter-spacing="8" fill="#f6eee3">BIYAHE NATIN</text>
+  <line x1="452" y1="726" x2="748" y2="726" stroke="#c89d6c" stroke-opacity="0.52" stroke-width="1.3" />
+  <text x="600" y="766" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" letter-spacing="6" fill="#caa886">11:11 PM · TWO HELMETS · ONE ADV 160 RS</text>
+</svg>

@@ -9,6 +9,7 @@ const config = JSON.parse(await readFile('firebase.json', 'utf8'));
 const required = ['index.html', 'one-minute-eleven-memories/index.html', 'date/index.html', 'date/places.json', 'date/five/index.html', '555/index.html', 'vouchers/index.html', 'second/index.html', 'ilychicaaa/index.html', 'ilychicaaa-original/index.html', 'oras/messages.json'];
 required.push('tabi/index.html', 'models/chica-y-chico.glb');
 required.push('pangako/index.html', 'models/pangako-ring.glb', 'menu/img/pangako.svg');
+required.push('biyahe/index.html', 'models/biyahe-scooter.glb', 'menu/img/biyahe.svg');
 for (const file of required) await access(resolve(root, 'main', file));
 const tabi = await readFile(resolve(root, 'main/tabi/index.html'), 'utf8');
 assert.ok(tabi.includes('<title>1:11 · TABI MUNA TAYO — PARA SA CHICAAA KO</title>'), 'The TABI invitation is missing');
@@ -21,6 +22,8 @@ const matamis = await readFile(resolve(root, 'main/matamis/index.html'), 'utf8')
 assert.ok(matamis.includes('<title>10:10 · MATAMIS</title>'), 'The MATAMIS invitation is missing from the Firebase build');
 const hiling = await readFile(resolve(root, 'main/hiling/index.html'), 'utf8');
 assert.ok(hiling.includes('<title>11:11 · HILING — SA LAHAT NG HILING, IKAW.</title>'), 'The HILING invitation must survive consolidation');
+const biyahe = await readFile(resolve(root, 'main/biyahe/index.html'), 'utf8');
+assert.ok(biyahe.includes('<title>11:11 PM · BIYAHE NATIN — PARA SA ASAWAAAA KO</title>'), 'The 11:11 BIYAHE invitation is missing');
 for (const source of manifest.sources) await access(resolve(root, source.name, source.mount, 'index.html'));
 assert.equal(config.hosting.length, 6);
 for (const site of config.hosting) {
@@ -56,11 +59,13 @@ async function walk(directory) {
 await walk(root);
 assert.ok(Object.keys(catalog.objects).length>1000,'The complete media catalog is missing');
 assert.ok(Object.values(catalog.objects).every(o=>o.verified && o.bytes>0 && o.md5),'An unverified cloud object was published');
-// The supplied couple model has its own budget; preserve the existing limit
+// The supplied models have individual budgets; preserve the existing limit
 // for the rest of the six sites so unrelated bundle growth still fails.
 const coupleModel = await stat(resolve(root, 'main/models/chica-y-chico.glb'));
 assert.ok(coupleModel.size < 12 * 1024**2, 'The optimized couple model exceeds 12 MB');
 const ringModel = await stat(resolve(root, 'main/models/pangako-ring.glb'));
 assert.ok(ringModel.size < 10 * 1024**2, 'The optimized ring model exceeds 10 MB');
-assert.ok(total - coupleModel.size - ringModel.size < 25 * 1024**2,'The six hosting bundles excluding the couple and ring models unexpectedly exceed 25 MB');
+const scooterModel = await stat(resolve(root, 'main/models/biyahe-scooter.glb'));
+assert.ok(scooterModel.size < 13 * 1024**2, 'The optimized scooter model exceeds 13 MB');
+assert.ok(total - coupleModel.size - ringModel.size - scooterModel.size < 25 * 1024**2,'The six hosting bundles excluding the couple, ring, and scooter models unexpectedly exceed 25 MB');
 console.log(`Verified six sites, API routing, recordings, albums, and shared messages (${count} files, ${Math.round(total / 1024 ** 2)} MB).`);

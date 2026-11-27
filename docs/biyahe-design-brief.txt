@@ -1,0 +1,39 @@
+ANTIGRAVITY DESIGN TASK
+
+Create the UI/UX for 11:11 PM · BIYAHE NATIN at /biyahe. User explicitly requests Antigravity for all page UI and UX; Codex integrates routing, library, build preview metadata and verifies. Own ONLY src/pages/BiyahePage.jsx, src/pages/BiyahePage.css, public/menu/img/biyahe.svg. You are not alone in the codebase: preserve others' edits and do not edit other files. Do not deploy. Implement these files directly now.
+
+Read AGENTS.md, TabiPage and LegoHousePage for conventions. Make a distinctive, polished romantic road-trip experience for Chico and Chica, inspired by a dark bronze Honda ADV 160 RS with black seat, tall clear windscreen and bronze wheels (the user's reference). The user WILL ADD the actual 3D motorcycle later. Do not source, invent, or generate a 3D model. Accept optional motorcycleStage React prop for future integration; provide a beautiful intentional fallback illustration/stage now using inline SVG or the owned SVG cover. No broken requests for missing GLB, no technical model-upload instructions in the romantic page. Design the cover too (1200x900 SVG). All visuals, layout, typography, styling, copy accents and interactions are your responsibility. Scope CSS to biyahe-page. Use local fonts, no new dependencies. Strong desktop/mobile design, accessible controls/focus, reduced-motion support, Link back to / (LIBRARY NI CHICO), 11:11 PM identity. A small meaningful ride/pause interaction is welcome; it must be fully functional, accessible and consistent with the letter (these are FUTURE dreams, do not imply completed memories). Include open/close letter with focus management and Escape close, using an accessible region or dialog. Preserve EVERY paragraph verbatim, all stretched spellings, emoji, and indicated emphasis. No time lock. No fake mileage, progress or ride history.
+
+EXACT LETTER (asterisks indicate emphasis, do not display asterisks):
+
+*11:11 PM POOOO, ASAWAAAA KOOOO!* 🥹❤️
+
+CHICAAAA KOOOO, MAY ISA PO AKONG MATAGAL NANG GUSTONG MARANASAN KASAMA KAAAA, AT PARANG MAS LALO AKONG NAEEXCITE HABANG INIISIP KOOOO HSHSHSHSHS!
+
+*IMAGINE MO POOOO, ISANG MAHABANG RIDE NATIN SA HONDA ADV 160 RS, IKAW ANG BACKRIDE KO, AT AKO NAMAN ANG CHICOOO MONG DRIVER NA MAY NAPAKAHALAGANG RESPONSIBILIDAD... ANG MAIHATID ANG ASAWAAAA NIYA NANG LIGTAS SA BAWAT DESTINATIONNNN!* ❤️
+
+YUNG TIPONG MAAGA TAYONG AALIS, MAY MGA LUGAR TAYONG GUSTONG PUNTAHAN, PERO MAY MGA DAAN DIN TAYONG UNANG BESES PA LANG MADADAANANNNN. HABANG TUMATAKBO TAYO NANG DAHAN-DAHAN SA MGA MAGAGANDANG TANAWIN, NAKAYAKAP KA SA AKIN, AT PAMINSAN-MINSAN TATAPOS TAYO SA ISANG MUNTING KAINAN PARA MAGPAHINGA AT KUMAINNNN.
+
+*PERO MAY ISA PO AKONG FAVORITE PART SA GANITONG RIDE, ASAWAAAA...*
+
+YUNG MGA SANDALING HUMIHINTO TAYO SA ISANG MAGANDANG VIEW, TATANGGALIN NATIN YUNG HELMETS NATIN, TAPOS MAGKATABI LANG TAYONG TITINGIN SA MALAYO. HINDI KAILANGANG MAY MARAMING SABIHIN. GUSTO KO LANG HAWAKAN YUNG KAMAY MO, HALIKAN KA SA NOO, AT MA-ENJOY YUNG PAGKAKATAONG NASA ISANG BAGONG LUGAR TAYO NANG MAGKASAMAAAA. 🥹
+
+AT SYEMPREEEE, MAY ISA PONG NON-NEGOTIABLE RULE ANG CHICOOO MONG RIDER!
+
+*BAWAT MAHABANG BIYAHE, MAY TAMANG PAHINGA, MAY TUBIG, MAY PAGKAIN, AT MAY EXTRA YAKAP PAGKATAPOS NATIN MAGPARK!* HSHSHSHSHS!
+
+PERO ALAM MO POOOO, CHICAAAA KOOOO, HINDI LANG YUNG MGA DESTINATION ANG INAABANGAN KO. GUSTO KO RIN YUNG BAWAT KILOMETRONG MAGKASAMA TAYO, YUNG MGA LUGAR NA MATUTUKLASAN NATIN, AT YUNG MGA KWENTONG MAIUUWING NATIN PAGKATAPOS NG BAWAT RIDE.
+
+*11:11 PM — TWO HELMETS, ONE ADV 160 RS, COUNTLESS ROADS TO EXPLORE, AT ISANG CHICOOO NA MATAGAL NANG GUSTONG ISAMA ANG ASAWAAAA NIYA SA MGA BIYAHENG ITOOOO.*
+
+AT KAPAG NAKAUWI NA TAYO, MAY ISA PA PO AKONG GUSTONG MARINIG...
+
+*“CHICOOO, SAAN NAMAN TAYO NEXT TIME?”*
+
+TAPOS AKO POOOO, NAKANGITI NANG SOBRA, KASI ALAM KONG MAY ISA NA NAMAN TAYONG ADVENTURE NA SABAY PAGPAPLANUHANNNN! 🥹❤️
+
+MAHAL NA MAHAL KITAAAA, ASAWAAAA KOOOO! MWUAAAAAAAAAA! ❤️
+
+END EXACT LETTER
+
+Implement your three owned files now. Return concise rationale and integration notes. Avoid changing library/routing/build files; Codex owns these.

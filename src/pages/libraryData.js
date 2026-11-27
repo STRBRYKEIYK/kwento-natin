@@ -12,6 +12,7 @@ export const LIB = [
     { title: '12:12 · Hapon Natin', blurb: 'Isang picnic para sa dalawa, isang bulaklak, at liham ni Chico sa gitna ng araw. Tabi muna tayo, asawa ko.', href: '/hapon', made: '2026-11-27', stamp: 'NOV 27', img: '/menu/img/hapon.svg', iw: 1200, ih: 900 },
     { title: '2:22 · PANGAKO', blurb: 'KUNG MANLAMIG, PAPAINITIN. KUNG MAWALAN NG SPARK, PA-WELDING TAYO. MGA PANGAKO NATIN, SA TAMANG PANAHON NI LORD.', href: '/pangako', made: '2026-11-27', stamp: 'NOV 27', img: '/menu/img/pangako.svg', iw: 1200, ih: 900 },
     { title: '3:33 · A LEGO HOUSE', blurb: 'ONE LITTLE PIECE AT A TIME. MAY TAHANAN TAYONG BINUBUO, MAY MGA PANGARAP TAYONG TUTUPARIN, AT PAGMAMAHAL NA AALAGAAN.', href: '/lego-house', made: '2026-11-27', stamp: 'NOV 27', img: '/menu/img/lego-house.svg', iw: 1200, ih: 900 },
+    { title: '11:11 · Biyahe Natin', blurb: 'TWO HELMETS, ONE ADV 160 RS, COUNTLESS ROADS TO EXPLORE. BAWAT KILOMETRO, MAGKASAMA. MAY PAHINGA, MAY PAGKAIN, AT MAY EXTRA YAKAP.', href: '/biyahe', made: '2026-11-27', stamp: 'NOV 27', img: '/menu/img/biyahe.svg', iw: 1200, ih: 900 },
   ] },
   { id: 'petsa', no: '03', title: 'PETSA', lines: ['PETSA'], ts: 0.2, sub: 'MGA ALAALA NG MGA DATE NATIN', theme: 'char', w: 58, h: 188, pages: [
     { title: 'Agosto 6', blurb: 'Ang unang date natin — anniversary natin. 15 litrato.', href: '/menu/petsa?d=0', made: '2026-08-06', stamp: 'AGO 6', img: '/assets/photos/photo_1@08-08-2026_14-13-20_thumb.jpg', iw: 400, ih: 533 },

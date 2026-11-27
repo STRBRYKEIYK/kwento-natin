@@ -21,6 +21,8 @@ const TabiPage = lazy(() => import('./pages/TabiPage.jsx'));
 const PangakoPage = lazy(() => import('./pages/PangakoPage.jsx'));
 const LegoHousePage = lazy(() => import('./pages/LegoHousePage.jsx'));
 const LegoHouseModel = lazy(() => import('./pages/LegoHouseModel.jsx'));
+const BiyahePage = lazy(() => import('./pages/BiyahePage.jsx'));
+const BiyaheMotorcycle = lazy(() => import('./pages/BiyaheMotorcycle.jsx'));
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -43,6 +45,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/tabi" element={<TabiPage />} />
           <Route path="/pangako" element={<PangakoPage />} />
           <Route path="/lego-house" element={<LegoHousePage houseStage={<LegoHouseModel />} />} />
+          <Route path="/biyahe" element={<BiyahePage motorcycleStage={({ mode, moment }) => <BiyaheMotorcycle mode={mode} moment={moment} />} />} />
           <Route path="/333" element={<Navigate to="/aircon" replace />} />
           <Route path="/third" element={
             <MotionConfig reducedMotion="user">
