@@ -1,0 +1,238 @@
+/* 2:22 · PANGAKO — 3D RING VIEWER INSIDE THE GOLD SANCTUARY STAGE */
+
+.pkr-viewer {
+  width: 100%;
+  height: 100%;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.pkr-canvas-wrap {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 290px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pkr-fallback {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.pkr-model {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  --poster-color: transparent;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s ease;
+}
+
+.pkr-viewer.pkr-loaded .pkr-model {
+  opacity: 1;
+  pointer-events: auto;
+  cursor: grab;
+}
+
+.pkr-viewer.pkr-loaded .pkr-model:active {
+  cursor: grabbing;
+}
+
+/* SHARED GOLD OBSIDIAN CONTROL BAR */
+.pkr-bar {
+  width: 100%;
+  max-width: 420px;
+  padding: 10px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(230, 191, 105, 0.28);
+  background: rgba(13, 10, 8, 0.84);
+  backdrop-filter: blur(10px);
+  color: var(--pk-ink-soft, #e2d6c3);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  position: relative;
+  z-index: 3;
+}
+
+/* LOADING PROGRESS BAR */
+.pkr-bar-loading {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pkr-loading-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pkr-pct {
+  color: var(--pk-gold-bright, #f7e3a8);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.pkr-progress {
+  width: 100%;
+  height: 4px;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(230, 191, 105, 0.16);
+  accent-color: var(--pk-gold, #e6bf69);
+}
+
+.pkr-progress::-webkit-progress-bar {
+  background: rgba(230, 191, 105, 0.16);
+  border-radius: 999px;
+}
+
+.pkr-progress::-webkit-progress-value {
+  background: linear-gradient(90deg, #c9983a 0%, #f7e3a8 100%);
+  border-radius: 999px;
+}
+
+.pkr-progress::-moz-progress-bar {
+  background: linear-gradient(90deg, #c9983a 0%, #f7e3a8 100%);
+  border-radius: 999px;
+}
+
+/* ERROR BAR WITH RETRY */
+.pkr-bar-error {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 14px;
+  border-color: rgba(247, 227, 168, 0.42);
+}
+
+.pkr-error-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.pkr-error-copy span {
+  color: var(--pk-ink, #f6efe4);
+}
+
+.pkr-error-copy small {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: var(--pk-muted, #b9a78d);
+}
+
+.pkr-retry-btn {
+  min-height: 44px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--pk-gold-bright, #f7e3a8);
+  background: rgba(230, 191, 105, 0.14);
+  color: var(--pk-gold-bright, #f7e3a8);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.pkr-retry-btn:hover {
+  background: linear-gradient(135deg, #f7e3a8 0%, #e6bf69 100%);
+  color: #16110c;
+}
+
+/* LOADED CONTROLS BAR */
+.pkr-bar-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-radius: 999px;
+  padding: 2px 16px;
+}
+
+.pkr-hint {
+  color: var(--pk-muted, #b9a78d);
+}
+
+.pkr-reset-btn {
+  min-height: 44px;
+  padding: 6px 4px;
+  color: var(--pk-gold-bright, #f7e3a8);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+
+.pkr-reset-btn:hover {
+  opacity: 0.85;
+}
+
+.pkr-viewer :focus-visible {
+  outline: 3px solid var(--pk-gold-bright, #f7e3a8);
+  outline-offset: 3px;
+}
+
+/* MOBILE STAGE TUNING */
+@media (max-width: 820px) {
+  .pkr-viewer {
+    min-height: 270px;
+    gap: 8px;
+  }
+
+  .pkr-canvas-wrap {
+    min-height: 215px;
+  }
+
+  .pkr-bar {
+    padding: 8px 12px;
+    font-size: 9px;
+    letter-spacing: 0.13em;
+  }
+
+  .pkr-bar-controls {
+    padding: 0 12px;
+  }
+
+  .pkr-retry-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pkr-fallback,
+  .pkr-model,
+  .pkr-retry-btn,
+  .pkr-reset-btn {
+    transition: none !important;
+    animation: none !important;
+  }
+}

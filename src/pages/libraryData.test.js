@@ -63,8 +63,16 @@ describe('REGALO book index', () => {
 });
 
 describe('ORAS-ORAS book index', () => {
+  it('lists 2:22 PANGAKO once in ORAS-ORAS with a real cover, route, and preview', () => {
+    const entries = LIB.flatMap(book => book.pages).filter(page => page.href === '/pangako');
+    expect(entries).toHaveLength(1);
+    expect(LIB_BY_ID.oras.pages.at(-1)).toMatchObject({ title: '2:22 · PANGAKO', href: '/pangako' });
+    expect(read('src/main.jsx')).toContain('path="/pangako"');
+    expect(read('scripts/build-one-eleven.mjs')).toContain("path: 'pangako'");
+    expect(existsSync(resolve(root, 'public/menu/img/pangako.svg'))).toBe(true);
+  });
   it('places the new afternoon 12:12 in ORAS-ORAS and keeps Yakap in REGALO', () => {
-    expect(LIB_BY_ID.oras.pages.at(-1)).toMatchObject({
+    expect(LIB_BY_ID.oras.pages.find(page => page.href === '/hapon')).toMatchObject({
       title: '12:12 · Hapon Natin', href: '/hapon',
     });
     expect(LIB_BY_ID.oras.pages.some(page => page.href === '/yakap')).toBe(false);

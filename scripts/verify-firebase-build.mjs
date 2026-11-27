@@ -8,6 +8,7 @@ const manifest = JSON.parse(await readFile('firebase.sources.json', 'utf8'));
 const config = JSON.parse(await readFile('firebase.json', 'utf8'));
 const required = ['index.html', 'one-minute-eleven-memories/index.html', 'date/index.html', 'date/places.json', 'date/five/index.html', '555/index.html', 'vouchers/index.html', 'second/index.html', 'ilychicaaa/index.html', 'ilychicaaa-original/index.html', 'oras/messages.json'];
 required.push('tabi/index.html', 'models/chica-y-chico.glb');
+required.push('pangako/index.html', 'models/pangako-ring.glb', 'menu/img/pangako.svg');
 for (const file of required) await access(resolve(root, 'main', file));
 const tabi = await readFile(resolve(root, 'main/tabi/index.html'), 'utf8');
 assert.ok(tabi.includes('<title>1:11 · TABI MUNA TAYO — PARA SA CHICAAA KO</title>'), 'The TABI invitation is missing');
@@ -59,5 +60,7 @@ assert.ok(Object.values(catalog.objects).every(o=>o.verified && o.bytes>0 && o.m
 // for the rest of the six sites so unrelated bundle growth still fails.
 const coupleModel = await stat(resolve(root, 'main/models/chica-y-chico.glb'));
 assert.ok(coupleModel.size < 12 * 1024**2, 'The optimized couple model exceeds 12 MB');
-assert.ok(total - coupleModel.size < 25 * 1024**2,'The six hosting bundles excluding the couple model unexpectedly exceed 25 MB');
+const ringModel = await stat(resolve(root, 'main/models/pangako-ring.glb'));
+assert.ok(ringModel.size < 10 * 1024**2, 'The optimized ring model exceeds 10 MB');
+assert.ok(total - coupleModel.size - ringModel.size < 25 * 1024**2,'The six hosting bundles excluding the couple and ring models unexpectedly exceed 25 MB');
 console.log(`Verified six sites, API routing, recordings, albums, and shared messages (${count} files, ${Math.round(total / 1024 ** 2)} MB).`);

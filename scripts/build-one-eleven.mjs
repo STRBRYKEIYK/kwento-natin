@@ -4,6 +4,12 @@ import { mediaUrl } from '../functions/src/shared/media.js';
 const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
 const invitations = [
   {
+    path: 'pangako',
+    title: '2:22 · PANGAKO — PARA SA CHICAAA KO',
+    description: 'MGA PANGAKO NATIN. BALANSE, PAGKAKAISA, TIYAGA, AT TIWALA SA TAMANG PANAHON NI LORD. IKAW AT AKO, MAGKASAMA.',
+    image: 'https://chica.keicodes.dev/menu/img/pangako.svg',
+  },
+  {
     path: 'tabi',
     title: '1:11 · TABI MUNA TAYO — PARA SA CHICAAA KO',
     description: 'ISANG TAHIMIK NA SANDALI AT ISANG MALUMANAY NA LIHAM MULA SA CHICOOO MO. PARA SA CHICAAA KO.',

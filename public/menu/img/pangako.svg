@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="44%" r="58%">
+      <stop offset="0%" stop-color="#2c2217" />
+      <stop offset="52%" stop-color="#191410" />
+      <stop offset="100%" stop-color="#0f0c0a" />
+    </radialGradient>
+    <radialGradient id="haloGlow" cx="50%" cy="46%" r="50%">
+      <stop offset="0%" stop-color="#f7df9d" stop-opacity="0.28" />
+      <stop offset="48%" stop-color="#d4a64a" stop-opacity="0.11" />
+      <stop offset="100%" stop-color="#d4a64a" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="goldOuter" x1="12%" y1="15%" x2="88%" y2="85%">
+      <stop offset="0%" stop-color="#fff4cf" />
+      <stop offset="22%" stop-color="#e8c064" />
+      <stop offset="50%" stop-color="#b48027" />
+      <stop offset="76%" stop-color="#f5d98a" />
+      <stop offset="100%" stop-color="#9e6d1d" />
+    </linearGradient>
+    <linearGradient id="goldInner" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c5316" />
+      <stop offset="45%" stop-color="#c9983a" />
+      <stop offset="72%" stop-color="#f8e5ac" />
+      <stop offset="100%" stop-color="#6d4711" />
+    </linearGradient>
+    <linearGradient id="goldEdge" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#fff8e1" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#e7be62" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#fff4cf" stop-opacity="0.9" />
+    </linearGradient>
+    <radialGradient id="diamondFill" cx="42%" cy="36%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="38%" stop-color="#f5f8ff" />
+      <stop offset="72%" stop-color="#dce6f5" />
+      <stop offset="100%" stop-color="#fff1cf" />
+    </radialGradient>
+    <radialGradient id="ringShadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#060403" stop-opacity="0.72" />
+      <stop offset="65%" stop-color="#060403" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#060403" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Velvet Obsidian Backdrop -->
+  <rect width="1200" height="900" fill="#0d0a08" />
+  <rect x="52" y="46" width="1096" height="808" rx="34" fill="url(#bgGlow)" stroke="#4c3c27" stroke-width="1.5" />
+  <rect x="70" y="64" width="1060" height="772" rx="26" fill="none" stroke="#c89e4b" stroke-opacity="0.22" stroke-width="1" />
+
+  <!-- Subtle Sanctuary Arch -->
+  <path d="M290 792 V370 C290 202 428 112 600 112 C772 112 910 202 910 370 V792" fill="none" stroke="#e4bc67" stroke-opacity="0.18" stroke-width="1.5" />
+  <path d="M312 792 V374 C312 220 440 134 600 134 C760 134 888 220 888 374 V792" fill="none" stroke="#e4bc67" stroke-opacity="0.09" stroke-width="1" />
+
+  <!-- Ambient Golden Halo -->
+  <circle cx="600" cy="436" r="280" fill="url(#haloGlow)" />
+  <circle cx="600" cy="436" r="228" fill="none" stroke="#e5bf6a" stroke-opacity="0.16" stroke-width="1" stroke-dasharray="3 9" />
+
+  <!-- Top Eyebrow -->
+  <text x="600" y="176" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" letter-spacing="7" fill="#c7b292">ORAS-ORAS · PARA SA CHICAAA KO</text>
+
+  <!-- Large 2:22 Timepiece Watermark -->
+  <text x="600" y="340" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="164" letter-spacing="-6" fill="#e8c36c" fill-opacity="0.16">2:22</text>
+
+  <!-- Delicate Cross-Star Emblem above Ring -->
+  <g transform="translate(600 226)" stroke="#e9c46e" stroke-opacity="0.65" stroke-width="1.4" stroke-linecap="round">
+    <line x1="0" y1="-12" x2="0" y2="12" />
+    <line x1="-8" y1="-2" x2="8" y2="-2" />
+  </g>
+
+  <!-- Ground Shadow -->
+  <ellipse cx="600" cy="566" rx="134" ry="20" fill="url(#ringShadow)" />
+
+  <!-- Slim Polished Yellow Gold OPEN Ring with Small Round Solitaire Diamond Bridging the Opening -->
+  <g transform="translate(600 442)">
+    <!-- Inner depth rim of the open hoop -->
+    <path d="M -38 -96 A 126 104 0 1 0 38 -96" fill="none" stroke="url(#goldInner)" stroke-width="15" stroke-linecap="round" transform="translate(0 7) scale(0.955 0.965)" />
+
+    <!-- Primary slim polished yellow gold open band -->
+    <path d="M -33 -101 A 128 106 0 1 0 33 -101" fill="none" stroke="url(#goldOuter)" stroke-width="12.5" stroke-linecap="round" />
+
+    <!-- Specular bright highlight along outer rim -->
+    <path d="M -35 -101 A 128 106 0 1 0 35 -101" fill="none" stroke="url(#goldEdge)" stroke-width="2.4" stroke-linecap="round" opacity="0.85" />
+
+    <!-- Subtle warm reflection glint on lower left and right shoulder -->
+    <path d="M -118 22 A 128 106 0 0 0 -58 94" fill="none" stroke="#fff7df" stroke-width="2.2" stroke-linecap="round" opacity="0.68" />
+    <path d="M 78 82 A 128 106 0 0 0 123 -6" fill="none" stroke="#fff7df" stroke-width="1.8" stroke-linecap="round" opacity="0.55" />
+
+    <!-- Tapered gold open-tip settings cradling the solitaire diamond -->
+    <path d="M -35 -101 C -27 -103 -22 -102 -19 -100" fill="none" stroke="#f7df9d" stroke-width="7.5" stroke-linecap="round" />
+    <path d="M 35 -101 C 27 -103 22 -102 19 -100" fill="none" stroke="#f7df9d" stroke-width="7.5" stroke-linecap="round" />
+
+    <!-- Delicate gold tension prongs bridging the open gap -->
+    <circle cx="-17" cy="-108" r="3.4" fill="#f7e2a6" stroke="#99691c" stroke-width="0.9" />
+    <circle cx="-17" cy="-91" r="3.4" fill="#e5bc61" stroke="#855915" stroke-width="0.9" />
+    <circle cx="17" cy="-108" r="3.4" fill="#f7e2a6" stroke="#99691c" stroke-width="0.9" />
+    <circle cx="17" cy="-91" r="3.4" fill="#e5bc61" stroke="#855915" stroke-width="0.9" />
+
+    <!-- Small Round Solitaire Diamond Bridging the Opening -->
+    <g transform="translate(0 -100)">
+      <circle cx="0" cy="0" r="22" fill="#fff7df" fill-opacity="0.22" />
+      <circle cx="0" cy="0" r="18.5" fill="url(#diamondFill)" stroke="#ffffff" stroke-width="1.2" />
+      <!-- Facet Crown Lines -->
+      <polygon points="0,-10 7,-7 10,0 7,7 0,10 -7,7 -10,0 -7,-7" fill="#ffffff" fill-opacity="0.72" stroke="#b9cae6" stroke-width="0.9" />
+      <g stroke="#a9bddc" stroke-width="0.85" opacity="0.85">
+        <line x1="0" y1="-10" x2="0" y2="-18.5" />
+        <line x1="7" y1="-7" x2="13" y2="-13" />
+        <line x1="10" y1="0" x2="18.5" y2="0" />
+        <line x1="7" y1="7" x2="13" y2="13" />
+        <line x1="0" y1="10" x2="0" y2="18.5" />
+        <line x1="-7" y1="7" x2="-13" y2="13" />
+        <line x1="-10" y1="0" x2="-18.5" y2="0" />
+        <line x1="-7" y1="-7" x2="-13" y2="-13" />
+      </g>
+      <!-- Brilliant Star Sparkle -->
+      <g transform="translate(10 -12)">
+        <path d="M0 -13 L2 -2 L13 0 L2 2 L0 13 L-2 2 L-13 0 L-2 -2 Z" fill="#ffffff" />
+      </g>
+    </g>
+  </g>
+
+  <!-- Title & Dedication -->
+  <text x="600" y="676" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-weight="700" font-size="64" letter-spacing="10" fill="#f5ede0">PANGAKO</text>
+  <line x1="472" y1="704" x2="728" y2="704" stroke="#e4bc67" stroke-opacity="0.4" stroke-width="1" />
+  <text x="600" y="746" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="600" letter-spacing="6" fill="#d7be8e">2:22 · WITH LOVE, YOUR CHICOOO</text>
+</svg>
