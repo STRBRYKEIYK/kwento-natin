@@ -6,3 +6,4 @@
 [2026-11-26 Asia/Manila] route=111-brand-alignment reused=LibraryLayout,Ticker,BackLink palette=shared-paper-ink-red type=shared-Playfair-DM-Sans tests=3-pass build=pass Claude=no-blocking-findings productionCSS=verified visualQA=desktop-locked
 [2026-11-26 22:00 Asia/Manila] route=matamis-and-aircon-index target=/matamis,/aircon matamis=new-regalo-page-6 aircon=own-picture 333=redirect-only(firebase,vercel,spa) regaloIndex=unique-link-title-picture tests=49-pass
 [2026-11-26] route=consolidation-review Claude=session-limit Gemini=unsupported-client; independent review unavailable, automated migration checks used.
+[2026-11-27 22:32] route=camera-rescue target=biyahe result=lock-correct; static-preview-title warning rejected because verifier checks build-time invitation HTML, not client document.title.

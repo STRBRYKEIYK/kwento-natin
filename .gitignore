@@ -42,3 +42,7 @@ firebase-debug.*.log
 /apps/**/*.m4a
 /apps/**/*.ogg
 /apps/**/*.wav
+
+# Generated ride scenery is a project asset, not personal media.
+!/public/scenes/biyahe-ride-realistic.png
+!/public/scenes/biyahe-stop-realistic.png

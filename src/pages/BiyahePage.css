@@ -278,6 +278,7 @@
   position: absolute;
   inset: 0;
   z-index: 1;
+  overflow: hidden;
   pointer-events: none;
   user-select: none;
 }
@@ -290,8 +291,168 @@
 }
 
 .biyahe-page .bh-scene-ride-layer,
+.biyahe-page .bh-scene-pause-photo-layer,
 .biyahe-page .bh-scene-pause-layer {
-  transition: opacity 0.48s ease;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.56s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.56s ease;
+}
+
+.biyahe-page .bh-ride-photo-stage {
+  background: linear-gradient(
+    180deg,
+    #1c232b 0%,
+    #3b3532 34%,
+    #624d3b 58%,
+    #231f1d 64%,
+    #141211 100%
+  );
+}
+
+.biyahe-page .bh-ride-photo-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.biyahe-page .bh-ride-photo-atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 68% 34% at 72% 48%, rgba(244, 198, 138, 0.08) 0%, transparent 72%),
+    linear-gradient(
+      180deg,
+      rgba(14, 11, 10, 0.22) 0%,
+      rgba(14, 11, 10, 0) 16%,
+      rgba(14, 11, 10, 0) 80%,
+      rgba(10, 9, 9, 0.26) 100%
+    );
+}
+
+.biyahe-page .bh-ride-road-deck {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 32%;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.72) 10%, #000 22%, #000 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.72) 10%, #000 22%, #000 100%);
+}
+
+.biyahe-page .bh-ride-road-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.biyahe-page .bh-road-near-track {
+  filter: blur(0.45px);
+}
+
+.biyahe-page .bh-ride-contact-shadow {
+  position: absolute;
+  left: 50%;
+  top: 82.5%;
+  z-index: 3;
+  width: 39%;
+  max-width: 248px;
+  min-width: 142px;
+  height: 22px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 35% 44% at 32% 54%, rgba(7, 7, 8, 0.74) 0%, transparent 74%),
+    radial-gradient(ellipse 35% 44% at 68% 54%, rgba(7, 7, 8, 0.74) 0%, transparent 74%),
+    radial-gradient(ellipse 50% 48% at 50% 52%, rgba(9, 9, 10, 0.56) 0%, rgba(9, 9, 10, 0.18) 64%, transparent 100%);
+  filter: blur(1.4px);
+}
+
+.biyahe-page .bh-ride-headlight-graze {
+  position: absolute;
+  left: 65%;
+  top: 81.5%;
+  z-index: 2;
+  width: 30%;
+  max-width: 196px;
+  height: 26px;
+  transform: translate(-18%, -50%);
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 64% 48% at 22% 50%,
+    rgba(246, 214, 158, 0.15) 0%,
+    rgba(232, 184, 114, 0.05) 52%,
+    transparent 100%
+  );
+  mix-blend-mode: screen;
+}
+
+.biyahe-page .bh-pause-photo-stage {
+  background: linear-gradient(
+    180deg,
+    #17202b 0%,
+    #2d333d 30%,
+    #594a3f 56%,
+    #24201d 65%,
+    #131110 100%
+  );
+}
+
+.biyahe-page .bh-pause-photo-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 60%;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.biyahe-page .bh-pause-photo-atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 68% 34% at 72% 48%, rgba(244, 198, 138, 0.08) 0%, transparent 72%),
+    linear-gradient(
+      180deg,
+      rgba(14, 11, 10, 0.22) 0%,
+      rgba(14, 11, 10, 0) 16%,
+      rgba(14, 11, 10, 0) 78%,
+      rgba(10, 9, 9, 0.28) 100%
+    );
+}
+
+.biyahe-page .bh-pause-contact-shadow {
+  position: absolute;
+  left: 50%;
+  top: 84%;
+  z-index: 2;
+  width: 52%;
+  max-width: 332px;
+  min-width: 196px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 36% 42% at 50% 52%, rgba(6, 6, 7, 0.72) 0%, transparent 76%),
+    radial-gradient(ellipse 50% 48% at 50% 52%, rgba(8, 8, 9, 0.54) 0%, rgba(8, 8, 9, 0.2) 62%, transparent 100%);
+  filter: blur(2px);
 }
 
 .biyahe-page .bh-ride-scene.is-riding .bh-scene-ride-layer {
@@ -299,41 +460,31 @@
   visibility: visible;
 }
 
-.biyahe-page .bh-ride-scene.is-riding .bh-scene-pause-layer {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.biyahe-page .bh-ride-scene.is-paused .bh-scene-ride-layer {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.biyahe-page .bh-ride-scene.is-paused .bh-scene-pause-layer {
+.biyahe-page .bh-ride-scene.is-paused.is-view-stop .bh-scene-pause-photo-layer {
   opacity: 1;
   visibility: visible;
 }
 
-.biyahe-page .bh-ride-scene.is-riding .bh-scene-ridge-track {
-  animation: bh-scene-scroll-640 28s linear infinite;
+.biyahe-page .bh-ride-scene.is-paused.is-illustrated-stop .bh-scene-pause-layer {
+  opacity: 1;
+  visibility: visible;
 }
 
-.biyahe-page .bh-ride-scene.is-riding .bh-scene-mid-track {
-  animation: bh-scene-scroll-640 11s linear infinite;
+.biyahe-page .bh-ride-scene.is-riding .bh-road-far-track {
+  animation: bh-scene-scroll-640 6.4s linear infinite;
 }
 
-.biyahe-page .bh-ride-scene.is-riding .bh-scene-breeze-track {
-  animation: bh-scene-scroll-640 6.5s linear infinite;
+.biyahe-page .bh-ride-scene.is-riding .bh-road-mid-track {
+  animation: bh-scene-scroll-640 4.6s linear infinite;
 }
 
-.biyahe-page .bh-ride-scene.is-riding .bh-scene-road-track {
-  animation: bh-scene-scroll-640 2.2s linear infinite;
+.biyahe-page .bh-ride-scene.is-riding .bh-road-near-track {
+  animation: bh-scene-scroll-640 3s linear infinite;
 }
 
-.biyahe-page .bh-ride-scene.is-paused .bh-scene-ridge-track,
-.biyahe-page .bh-ride-scene.is-paused .bh-scene-mid-track,
-.biyahe-page .bh-ride-scene.is-paused .bh-scene-breeze-track,
-.biyahe-page .bh-ride-scene.is-paused .bh-scene-road-track {
+.biyahe-page .bh-ride-scene.is-paused .bh-road-far-track,
+.biyahe-page .bh-ride-scene.is-paused .bh-road-mid-track,
+.biyahe-page .bh-ride-scene.is-paused .bh-road-near-track {
   animation: none;
 }
 
@@ -342,6 +493,18 @@
   z-index: 3;
   width: 100%;
   height: 100%;
+  transform-origin: 50% 80%;
+  transform: translate3d(0, 0, 0) scale(1);
+  transition: transform 0.62s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.biyahe-page .bh-ride-scene.is-riding .bh-scene-model {
+  transform: translate3d(0, 6px, 0) scale(0.72);
+}
+
+.biyahe-page .bh-ride-scene.is-paused .bh-scene-model {
+  transform: translate3d(0, 0, 0) scale(1);
 }
 
 .biyahe-page .bh-ride-scene model-viewer {
@@ -361,8 +524,21 @@
   z-index: 4;
   pointer-events: none;
   background:
+    radial-gradient(ellipse 92% 86% at 50% 48%, transparent 62%, rgba(10, 8, 7, 0.28) 100%),
+    linear-gradient(180deg, rgba(12, 10, 9, 0.18) 0%, transparent 20%, transparent 84%, rgba(10, 8, 7, 0.26) 100%);
+  transition: opacity 0.45s ease;
+}
+
+.biyahe-page .bh-ride-scene.is-paused .bh-scene-vignette {
+  background:
     radial-gradient(ellipse 88% 82% at 50% 48%, transparent 56%, rgba(10, 8, 7, 0.42) 100%),
     linear-gradient(180deg, rgba(12, 10, 9, 0.24) 0%, transparent 22%, transparent 82%, rgba(10, 8, 7, 0.34) 100%);
+}
+
+.biyahe-page .bh-ride-scene.is-paused.is-view-stop .bh-scene-vignette {
+  background:
+    radial-gradient(ellipse 92% 86% at 50% 48%, transparent 62%, rgba(10, 8, 7, 0.28) 100%),
+    linear-gradient(180deg, rgba(12, 10, 9, 0.18) 0%, transparent 20%, transparent 84%, rgba(10, 8, 7, 0.26) 100%);
 }
 
 .biyahe-page .bh-scene-hud {
@@ -1493,6 +1669,10 @@
     gap: 36px;
   }
 
+  .biyahe-page .bh-pause-photo-img {
+    object-position: 50% 62%;
+  }
+
   .biyahe-page .bh-moments-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1542,6 +1722,32 @@
     height: 260px;
     min-height: 260px;
     border-radius: 16px;
+  }
+
+  .biyahe-page .bh-ride-scene.is-riding .bh-scene-model {
+    transform: translate3d(0, 4px, 0) scale(0.72);
+  }
+
+  .biyahe-page .bh-ride-contact-shadow {
+    width: 48%;
+    min-width: 120px;
+    height: 17px;
+  }
+
+  .biyahe-page .bh-ride-headlight-graze {
+    width: 34%;
+    height: 20px;
+  }
+
+  .biyahe-page .bh-pause-photo-img {
+    object-position: 50% 64%;
+  }
+
+  .biyahe-page .bh-pause-contact-shadow {
+    top: 84.5%;
+    width: 60%;
+    min-width: 164px;
+    height: 22px;
   }
 
   .biyahe-page .bh-stage-slot model-viewer,

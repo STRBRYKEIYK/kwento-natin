@@ -10,6 +10,8 @@ const required = ['index.html', 'one-minute-eleven-memories/index.html', 'date/i
 required.push('tabi/index.html', 'models/chica-y-chico.glb');
 required.push('pangako/index.html', 'models/pangako-ring.glb', 'menu/img/pangako.svg');
 required.push('biyahe/index.html', 'models/biyahe-scooter.glb', 'menu/img/biyahe.svg');
+required.push('scenes/biyahe-ride-realistic.png');
+required.push('scenes/biyahe-stop-realistic.png');
 for (const file of required) await access(resolve(root, 'main', file));
 const tabi = await readFile(resolve(root, 'main/tabi/index.html'), 'utf8');
 assert.ok(tabi.includes('<title>1:11 · TABI MUNA TAYO — PARA SA CHICAAA KO</title>'), 'The TABI invitation is missing');
@@ -48,8 +50,10 @@ async function walk(directory) {
     else {
       assert.ok(!/^chat(?: \(\d+\))?\.txt$/i.test(entry.name), 'Raw chat export was included');
       assert.ok(!entry.name.startsWith('.env'), 'Environment file was included');
-      assert.ok(!/\.(?:jpe?g|png|webp|gif|avif|heic|mp4|mov|webm|mp3|m4a|ogg|wav)$/i.test(entry.name), 'Personal media must be external to Hosting: '+relative(root,path));
+      const generatedScenery = ['main/scenes/biyahe-ride-realistic.png', 'main/scenes/biyahe-stop-realistic.png'].includes(relative(root, path).replaceAll('\\', '/'));
+      assert.ok(generatedScenery || !/\.(?:jpe?g|png|webp|gif|avif|heic|mp4|mov|webm|mp3|m4a|ogg|wav)$/i.test(entry.name), 'Personal media must be external to Hosting: '+relative(root,path));
       const info = await stat(path);
+      if (generatedScenery) assert.ok(info.size < 3 * 1024**2, 'Generated scenery exceeds 3 MB');
       assert.ok(info.size < 2 * 1024 ** 3, 'Firebase Hosting individual file limit exceeded: ' + relative(root, path));
       count++;
       total += info.size;
@@ -59,7 +63,7 @@ async function walk(directory) {
 await walk(root);
 assert.ok(Object.keys(catalog.objects).length>1000,'The complete media catalog is missing');
 assert.ok(Object.values(catalog.objects).every(o=>o.verified && o.bytes>0 && o.md5),'An unverified cloud object was published');
-// The supplied models have individual budgets; preserve the existing limit
+// Supplied models and generated scenery have individual budgets; preserve the existing limit
 // for the rest of the six sites so unrelated bundle growth still fails.
 const coupleModel = await stat(resolve(root, 'main/models/chica-y-chico.glb'));
 assert.ok(coupleModel.size < 12 * 1024**2, 'The optimized couple model exceeds 12 MB');
@@ -67,5 +71,7 @@ const ringModel = await stat(resolve(root, 'main/models/pangako-ring.glb'));
 assert.ok(ringModel.size < 10 * 1024**2, 'The optimized ring model exceeds 10 MB');
 const scooterModel = await stat(resolve(root, 'main/models/biyahe-scooter.glb'));
 assert.ok(scooterModel.size < 13 * 1024**2, 'The optimized scooter model exceeds 13 MB');
-assert.ok(total - coupleModel.size - ringModel.size - scooterModel.size < 25 * 1024**2,'The six hosting bundles excluding the couple, ring, and scooter models unexpectedly exceed 25 MB');
+const rideScenery = await stat(resolve(root, 'main/scenes/biyahe-ride-realistic.png'));
+const stopScenery = await stat(resolve(root, 'main/scenes/biyahe-stop-realistic.png'));
+assert.ok(total - coupleModel.size - ringModel.size - scooterModel.size - rideScenery.size - stopScenery.size < 25 * 1024**2,'The six hosting bundles excluding the supplied models and generated scenery unexpectedly exceed 25 MB');
 console.log(`Verified six sites, API routing, recordings, albums, and shared messages (${count} files, ${Math.round(total / 1024 ** 2)} MB).`);

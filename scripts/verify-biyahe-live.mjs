@@ -28,6 +28,16 @@ for (const host of ['https://chica.keicodes.dev', 'https://chica-keicodes-dev.we
   assert.ok(modelChunk.text.includes('180deg 75deg 105%'), 'The right-facing side camera angle is missing');
   assert.ok(modelChunk.text.includes('NAKAPIRME HABANG BUMIBIYAHE'), 'The ride camera lock is missing');
   assert.ok(modelChunk.text.includes('bh-ride-scene') && modelChunk.text.includes('data-mode') && modelChunk.text.includes('data-moment'), 'Connected ride scenery is missing');
+  assert.ok(modelChunk.text.includes('/scenes/biyahe-ride-realistic.png'), 'Photographic ride scenery is not connected');
+  const scenery = await fetch(`${host}/scenes/biyahe-ride-realistic.png`, { signal: AbortSignal.timeout(30000) });
+  assert.equal(scenery.status, 200, 'Ride scenery request failed');
+  assert.ok(scenery.headers.get('content-type')?.startsWith('image/png'), 'Ride scenery is not a PNG');
+  assert.equal((await scenery.arrayBuffer()).byteLength, 2806928, 'Ride scenery file is incomplete');
+  assert.ok(modelChunk.text.includes('/scenes/biyahe-stop-realistic.png'), 'Photographic overlook is not connected');
+  const overlook = await fetch(`${host}/scenes/biyahe-stop-realistic.png`, { signal: AbortSignal.timeout(30000) });
+  assert.equal(overlook.status, 200, 'Overlook scenery request failed');
+  assert.ok(overlook.headers.get('content-type')?.startsWith('image/png'), 'Overlook scenery is not a PNG');
+  assert.equal((await overlook.arrayBuffer()).byteLength, 2811792, 'Overlook scenery file is incomplete');
   const model = await fetch(`${host}/models/biyahe-scooter.glb`, { signal: AbortSignal.timeout(30000) });
   assert.equal(model.status, 200, 'Motorcycle model request failed');
   const modelData = Buffer.from(await model.arrayBuffer());
