@@ -4,6 +4,12 @@ import { mediaUrl } from '../functions/src/shared/media.js';
 const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
 const invitations = [
   {
+    path: 'hapon',
+    title: '12:12 · HAPON NATIN — PARA SA CHICAAA KO',
+    description: 'ISANG PICNIC PARA SA DALAWA, ISANG BULAKLAK, AT LIHAM NI CHICO SA GITNA NG ARAW. TABI MUNA TAYO, ASAWA KO.',
+    image: 'https://chica.keicodes.dev/menu/img/hapon.svg',
+  },
+  {
     path: 'one-minute-eleven-memories',
     title: '1:11 · ANG PABORITO KONG BALIKAN, IKAW',
     description: 'LABING-ISANG PAGKIKITA. MULA AGOSTO 6 HANGGANG NOBYEMBRE 17. PARA SA CHICAAA KO.',

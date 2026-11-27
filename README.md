@@ -93,6 +93,7 @@ If notification credentials ever need restoring, use `npm run firebase:telegram-
 - MATAMIS is `/matamis`; its recipe, timer, and letter live in `src/pages/MatamisPage.jsx`.
 - HILING is `/hiling`, entry 7 in REGALO: open an illustrated blue-hour window, choose or write a wish, fold it into a paper plane, and reveal a matching note. It works at any hour, supports keyboards and reduced motion, and saves only the last sent wish in this browser. Nothing is sent to Chico or a server. Source, styles, and interaction tests are `src/pages/HilingPage.*`; the cover is `public/menu/img/hiling.svg`.
 - `scripts/build-one-eleven.mjs` generates link previews for 1:11, AIRCON, MATAMIS, and HILING.
+- HAPON NATIN is the afternoon 12:12 surprise in ORAS-ORAS, at `/hapon`: a sunny picnic illustration with three notes to open, including a letter for Chicaaa. Source and styles are `src/pages/HaponPage.*`; the cover is `public/menu/img/hapon.svg`. YAKAP stays in REGALO at `/yakap`.
 
 The React tests cover interactions, saved preferences, playlist behavior, and Library links. The API tests cover date merging, cancellations, memory photos, calendars, and notification routing without sending real notifications. The consolidation checks verify imported file/media hashes, shared date logic, local build sources, and Firebase output. Real-device video/audio playback remains useful after changing recordings or player behavior.
 

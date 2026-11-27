@@ -62,6 +62,18 @@ describe('REGALO book index', () => {
   });
 });
 
+describe('ORAS-ORAS book index', () => {
+  it('places the new afternoon 12:12 in ORAS-ORAS and keeps Yakap in REGALO', () => {
+    expect(LIB_BY_ID.oras.pages.at(-1)).toMatchObject({
+      title: '12:12 · Hapon Natin', href: '/hapon',
+    });
+    expect(LIB_BY_ID.oras.pages.some(page => page.href === '/yakap')).toBe(false);
+    expect(LIB.flatMap(book => book.pages).filter(page => page.href === '/hapon')).toHaveLength(1);
+    expect(read('src/main.jsx')).toContain('path="/hapon"');
+    expect(existsSync(resolve(root, 'public/menu/img/hapon.svg'))).toBe(true);
+  });
+});
+
 describe('the old /333 link', () => {
   it('is only a redirect to /aircon, never a second page', () => {
     const main = read('src/main.jsx');

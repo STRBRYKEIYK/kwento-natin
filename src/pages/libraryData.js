@@ -8,6 +8,7 @@ export const LIB = [
     { title: '5:55 · Limang Pandama', blurb: 'Limang pandama, isang puso. Buksan mo isa-isa hanggang sa pang-anim.', href: '/555', made: '2026-11-16', stamp: 'NOV 16', img: '/menu/img/oras.jpg', iw: 600, ih: 450 },
     { title: '12:12 · Para Kay Chicaaa', blurb: "Isang kanta mula sa puso at munting sulat para sa babaeng mahal ko. Para sa'yo, Chicaaa ko.", href: '/ilychicaaa', made: '2026-11-24', stamp: 'NOV 24', img: '/menu/img/oras-1212.png', iw: 679, ih: 416 },
     { title: '12:12 · Labindalawang Bituin', blurb: '12 munting bituin, 12 sorpresa. Buksan mo bawat isa para sa nakatagong lambing ni Chico.', href: '/1212-stars', made: '2026-11-24', stamp: 'NOV 24', img: '/menu/img/oras-1212.png', iw: 679, ih: 416 },
+    { title: '12:12 · Hapon Natin', blurb: 'Isang picnic para sa dalawa, isang bulaklak, at liham ni Chico sa gitna ng araw. Tabi muna tayo, asawa ko.', href: '/hapon', made: '2026-11-27', stamp: 'NOV 27', img: '/menu/img/hapon.svg', iw: 1200, ih: 900 },
   ] },
   { id: 'petsa', no: '03', title: 'PETSA', lines: ['PETSA'], ts: 0.2, sub: 'MGA ALAALA NG MGA DATE NATIN', theme: 'char', w: 58, h: 188, pages: [
     { title: 'Agosto 6', blurb: 'Ang unang date natin — anniversary natin. 15 litrato.', href: '/menu/petsa?d=0', made: '2026-08-06', stamp: 'AGO 6', img: '/assets/photos/photo_1@08-08-2026_14-13-20_thumb.jpg', iw: 400, ih: 533 },
