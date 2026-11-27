@@ -11,6 +11,8 @@ describe('the supplied motorcycle viewer', () => {
     const model = container.querySelector('model-viewer');
     const reset = screen.getByRole('button', { name: 'IBALIK ANG TINGIN' });
     expect(model).toHaveAttribute('src', '/public/models/biyahe-scooter.glb');
+    expect(model).toHaveAttribute('camera-orbit', '180deg 75deg 105%');
+    expect(model).not.toHaveAttribute('camera-controls');
     expect(reset).toBeDisabled();
     fireEvent(model, new CustomEvent('progress', { detail: { totalProgress: 0.6 } }));
     expect(screen.getByRole('progressbar')).toHaveAttribute('value', '60');
@@ -19,7 +21,7 @@ describe('the supplied motorcycle viewer', () => {
     expect(reset).toBeEnabled();
     model.cameraOrbit = '100deg 90deg 150%';
     fireEvent.click(reset);
-    expect(model.cameraOrbit).toBe('45deg 75deg 105%');
+    expect(model.cameraOrbit).toBe('180deg 75deg 105%');
   });
 
   it('recovers from a failed model request with a fresh viewer', async () => {

@@ -4,7 +4,7 @@ import BiyaheScene from './BiyaheScene.jsx';
 import { loadMotorcycleViewer } from './motorcycleViewerRuntime.js';
 
 const MODEL = `${import.meta.env.DEV ? '/public' : ''}/models/biyahe-scooter.glb`;
-const ORBIT = '45deg 75deg 105%';
+const ORBIT = '180deg 75deg 105%';
 
 export default function BiyaheMotorcycle({ fallback = null, mode = 'ride', moment = 'maagang-alis' }) {
   const viewer = useRef(null);
@@ -42,6 +42,13 @@ export default function BiyaheMotorcycle({ fallback = null, mode = 'ride', momen
     };
   }, [attempt]);
 
+  useEffect(() => {
+    if (mode !== 'ride' || !viewer.current) return;
+    viewer.current.cameraOrbit = ORBIT;
+    viewer.current.fieldOfView = '30deg';
+    viewer.current.jumpCameraToGoal?.();
+  }, [mode, loaded, attempt]);
+
   function retry() {
     setLoaded(false);
     setFailed(false);
@@ -60,7 +67,7 @@ export default function BiyaheMotorcycle({ fallback = null, mode = 'ride', momen
     <BiyaheScene mode={mode} moment={moment}>
     <model-viewer key={attempt} ref={viewer} src={attempt ? `${MODEL}?retry=${attempt}` : MODEL} poster={poster}
       alt="ANG MOTOR NA SCOOTER PARA SA PANGARAP NA BIYAHE NINA CHICO AT CHICA."
-      camera-controls disable-pan disable-zoom touch-action="pan-y" loading="eager" reveal="auto"
+      camera-controls={mode === 'pause' ? '' : undefined} disable-pan disable-zoom touch-action="pan-y" loading="eager" reveal="auto"
       camera-orbit={ORBIT} field-of-view="30deg" min-camera-orbit="auto 35deg auto" max-camera-orbit="auto 100deg auto"
       environment-image="neutral" exposure="1.15" shadow-intensity="0.8" shadow-softness="1" interaction-prompt="none">
       <div slot="progress-bar" />
@@ -76,7 +83,7 @@ export default function BiyaheMotorcycle({ fallback = null, mode = 'ride', momen
       <button type="button" onClick={retry}>SUBUKAN ULIT</button>
     </div>}
     <div className="bh-model-controls">
-      <span>{loaded ? 'HILAIN PARA PAIKUTIN' : 'TWO HELMETS, ONE ADVENTURE'}</span>
+      <span>{loaded ? (mode === 'ride' ? 'NAKAPIRME HABANG BUMIBIYAHE' : 'HILAIN PARA PAIKUTIN') : 'TWO HELMETS, ONE ADVENTURE'}</span>
       <button type="button" onClick={resetView} disabled={!loaded}>IBALIK ANG TINGIN</button>
     </div>
   </div>;

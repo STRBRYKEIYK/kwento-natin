@@ -23,10 +23,18 @@ describe('ride controls connected to the actual motorcycle stage', () => {
       await user.click(screen.getByRole('button', { name: 'HINTO MUNA SA VIEW' }));
       expect(scene()).toHaveAttribute('data-mode', 'pause');
       expect(scene()).toHaveAttribute('data-moment', 'magandang-view');
+      expect(viewer).toHaveAttribute('camera-controls');
+      viewer.cameraOrbit = '20deg 90deg 150%';
+      viewer.fieldOfView = '45deg';
+      viewer.jumpCameraToGoal = vi.fn();
       await user.click(screen.getByRole('button', { name: 'TULOY SA BIYAHE' }));
       expect(scene()).toHaveAttribute('data-mode', 'ride');
       expect(scene()).toHaveAttribute('data-moment', 'maagang-alis');
       expect(container.querySelector('model-viewer')).toBe(viewer);
+      expect(viewer).not.toHaveAttribute('camera-controls');
+      expect(viewer.cameraOrbit).toBe('180deg 75deg 105%');
+      expect(viewer.fieldOfView).toBe('30deg');
+      expect(viewer.jumpCameraToGoal).toHaveBeenCalled();
       expect(screen.getByRole('button', { name: 'IBALIK ANG TINGIN' })).toBeEnabled();
     }
     for (const [code, moment] of [['02', 'munting-kainan'], ['04', 'extra-yakap']]) {

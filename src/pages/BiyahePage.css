@@ -439,6 +439,10 @@
   cursor: grabbing;
 }
 
+.biyahe-page .bh-3d-stage[data-mode='ride'] model-viewer {
+  cursor: default;
+}
+
 .biyahe-page .bh-model-fallback {
   position: absolute;
   top: 0;
