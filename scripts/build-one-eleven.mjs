@@ -4,6 +4,12 @@ import { mediaUrl } from '../functions/src/shared/media.js';
 const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
 const invitations = [
   {
+    path: 'lego-house',
+    title: '3:33 · A LEGO HOUSE — PARA SA CHICAAAA KO',
+    description: 'ONE LITTLE PIECE AT A TIME. MAY TAHANAN TAYONG BINUBUO, MAY MGA PANGARAP TAYONG TUTUPARIN, AT MAY PAGMAMAHAL TAYONG PATULOY NA AALAGAAN.',
+    image: 'https://chica.keicodes.dev/menu/img/lego-house.svg',
+  },
+  {
     path: 'pangako',
     title: '2:22 · PANGAKO — PARA SA CHICAAA KO',
     description: 'MGA PANGAKO NATIN. BALANSE, PAGKAKAISA, TIYAGA, AT TIWALA SA TAMANG PANAHON NI LORD. IKAW AT AKO, MAGKASAMA.',

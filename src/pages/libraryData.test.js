@@ -63,10 +63,17 @@ describe('REGALO book index', () => {
 });
 
 describe('ORAS-ORAS book index', () => {
+  it('adds the 3:33 LEGO house after PANGAKO with its own route, cover, and preview', () => {
+    expect(LIB.flatMap(book => book.pages).filter(page => page.href === '/lego-house')).toHaveLength(1);
+    expect(LIB_BY_ID.oras.pages.at(-1)).toMatchObject({ title: '3:33 · A LEGO HOUSE', href: '/lego-house' });
+    expect(read('src/main.jsx')).toContain('path="/lego-house"');
+    expect(read('scripts/build-one-eleven.mjs')).toContain("path: 'lego-house'");
+    expect(existsSync(resolve(root, 'public/menu/img/lego-house.svg'))).toBe(true);
+  });
   it('lists 2:22 PANGAKO once in ORAS-ORAS with a real cover, route, and preview', () => {
     const entries = LIB.flatMap(book => book.pages).filter(page => page.href === '/pangako');
     expect(entries).toHaveLength(1);
-    expect(LIB_BY_ID.oras.pages.at(-1)).toMatchObject({ title: '2:22 · PANGAKO', href: '/pangako' });
+    expect(LIB_BY_ID.oras.pages.find(page => page.href === '/pangako')).toMatchObject({ title: '2:22 · PANGAKO', href: '/pangako' });
     expect(read('src/main.jsx')).toContain('path="/pangako"');
     expect(read('scripts/build-one-eleven.mjs')).toContain("path: 'pangako'");
     expect(existsSync(resolve(root, 'public/menu/img/pangako.svg'))).toBe(true);

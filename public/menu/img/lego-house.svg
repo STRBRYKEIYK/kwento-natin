@@ -1,0 +1,223 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-label="3:33 PM A LEGO HOUSE — ISANG MUNTING TAHANANG BINUO MULA SA MALILIIT NA PIECES, PARA SA CHICAAA KO.">
+  <defs>
+    <radialGradient id="lhBg" cx="50%" cy="42%" r="64%">
+      <stop offset="0%" stop-color="#fdf8ef" />
+      <stop offset="56%" stop-color="#f2e6d5" />
+      <stop offset="100%" stop-color="#e4d2ba" />
+    </radialGradient>
+    <radialGradient id="lhSunbeam" cx="50%" cy="38%" r="48%">
+      <stop offset="0%" stop-color="#fff8e8" stop-opacity="0.92" />
+      <stop offset="55%" stop-color="#f3cf95" stop-opacity="0.28" />
+      <stop offset="100%" stop-color="#f3cf95" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="lhRoofMain" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#cf5d42" />
+      <stop offset="100%" stop-color="#a83e27" />
+    </linearGradient>
+    <linearGradient id="lhRoofHighlight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e3795d" />
+      <stop offset="100%" stop-color="#bd4a31" />
+    </linearGradient>
+    <linearGradient id="lhWallCream" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fbf5ea" />
+      <stop offset="100%" stop-color="#ebe0cd" />
+    </linearGradient>
+    <linearGradient id="lhWallShade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e4d5be" />
+      <stop offset="100%" stop-color="#d5c2a6" />
+    </linearGradient>
+    <linearGradient id="lhWindowGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffe7aa" />
+      <stop offset="100%" stop-color="#e5aa52" />
+    </linearGradient>
+    <linearGradient id="lhDoorWood" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7c4f34" />
+      <stop offset="100%" stop-color="#533320" />
+    </linearGradient>
+    <linearGradient id="lhBaseSage" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#68846c" />
+      <stop offset="100%" stop-color="#48604d" />
+    </linearGradient>
+    <radialGradient id="lhGroundShadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3a271b" stop-opacity="0.28" />
+      <stop offset="68%" stop-color="#3a271b" stop-opacity="0.09" />
+      <stop offset="100%" stop-color="#3a271b" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Warm Sunlit Gallery Paper Backdrop -->
+  <rect width="1200" height="900" fill="#e6d6bf" />
+  <rect x="48" y="44" width="1104" height="812" rx="28" fill="url(#lhBg)" stroke="#c7b092" stroke-width="1.5" />
+  <rect x="66" y="62" width="1068" height="776" rx="20" fill="none" stroke="#b84a32" stroke-opacity="0.18" stroke-width="1" />
+
+  <!-- Subtle Architectural Drafting Ticks -->
+  <g stroke="#9b8168" stroke-opacity="0.22" stroke-width="1">
+    <line x1="120" y1="120" x2="152" y2="120" />
+    <line x1="120" y1="120" x2="120" y2="152" />
+    <line x1="1080" y1="120" x2="1048" y2="120" />
+    <line x1="1080" y1="120" x2="1080" y2="152" />
+    <line x1="120" y1="780" x2="152" y2="780" />
+    <line x1="120" y1="780" x2="120" y2="748" />
+    <line x1="1080" y1="780" x2="1048" y2="780" />
+    <line x1="1080" y1="780" x2="1080" y2="748" />
+  </g>
+
+  <!-- Recessed Gallery Arch & Afternoon 3:33 PM Sunbeam -->
+  <path d="M294 786 V362 C294 196 430 110 600 110 C770 110 906 196 906 362 V786" fill="url(#lhSunbeam)" stroke="#b84a32" stroke-opacity="0.18" stroke-width="1.5" />
+  <path d="M316 786 V366 C316 214 442 132 600 132 C758 132 884 214 884 366 V786" fill="none" stroke="#9b8168" stroke-opacity="0.16" stroke-width="1" stroke-dasharray="4 8" />
+
+  <!-- Top Eyebrow -->
+  <text x="600" y="176" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" letter-spacing="7" fill="#7d6452">ORAS-ORAS · PARA SA CHICAAA KO</text>
+
+  <!-- Soft 3:33 PM Watermark -->
+  <text x="600" y="314" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="146" letter-spacing="-4" fill="#b84a32" fill-opacity="0.11">3:33 PM</text>
+
+  <!-- Ground Shadow under Baseplate -->
+  <ellipse cx="600" cy="602" rx="228" ry="26" fill="url(#lhGroundShadow)" />
+
+  <!-- Miniature Brick-Built House Illustration -->
+  <g transform="translate(600 456)">
+    <!-- Sage Green Interlocking Baseplate -->
+    <rect x="-198" y="114" width="396" height="24" rx="5" fill="url(#lhBaseSage)" stroke="#394c3d" stroke-width="1.5" />
+    <!-- Baseplate Studs -->
+    <g fill="#7a987e" stroke="#3c5040" stroke-width="1">
+      <rect x="-184" y="106" width="22" height="8" rx="2" />
+      <rect x="-152" y="106" width="22" height="8" rx="2" />
+      <rect x="130" y="106" width="22" height="8" rx="2" />
+      <rect x="162" y="106" width="22" height="8" rx="2" />
+    </g>
+
+    <!-- Brick Chimney on Right Roof Slope -->
+    <g>
+      <rect x="70" y="-142" width="44" height="72" rx="2" fill="#b84a32" stroke="#7d2f1e" stroke-width="1.5" />
+      <line x1="70" y1="-118" x2="114" y2="-118" stroke="#7d2f1e" stroke-opacity="0.55" stroke-width="1.2" />
+      <line x1="70" y1="-94" x2="114" y2="-94" stroke="#7d2f1e" stroke-opacity="0.55" stroke-width="1.2" />
+      <rect x="65" y="-152" width="54" height="12" rx="2" fill="#cf5d42" stroke="#7d2f1e" stroke-width="1.5" />
+      <rect x="74" y="-160" width="14" height="8" rx="2" fill="#e07458" stroke="#7d2f1e" stroke-width="1.2" />
+      <rect x="96" y="-160" width="14" height="8" rx="2" fill="#e07458" stroke="#7d2f1e" stroke-width="1.2" />
+      <!-- Subtle Floating Heart Piece Above Chimney -->
+      <path d="M92 -174 C92 -184 78 -188 78 -178 C78 -170 92 -163 92 -163 C92 -163 106 -170 106 -178 C106 -188 92 -184 92 -174 Z" fill="#c8563c" fill-opacity="0.82" />
+    </g>
+
+    <!-- Main House Wall Body (Stacked Cream Brick Courses) -->
+    <rect x="-132" y="-32" width="264" height="146" rx="3" fill="url(#lhWallCream)" stroke="#b39c82" stroke-width="1.5" />
+    <!-- Subtle Right Wall Side Depth -->
+    <rect x="96" y="-32" width="36" height="146" fill="url(#lhWallShade)" />
+    <!-- Horizontal Brick Course Seams -->
+    <g stroke="#b8a187" stroke-opacity="0.5" stroke-width="1.1">
+      <line x1="-132" y1="-4" x2="132" y2="-4" />
+      <line x1="-132" y1="24" x2="132" y2="24" />
+      <line x1="-132" y1="52" x2="132" y2="52" />
+      <line x1="-132" y1="80" x2="132" y2="80" />
+      <!-- Vertical Staggered Brick Joints -->
+      <line x1="-88" y1="-32" x2="-88" y2="-4" />
+      <line x1="-22" y1="-32" x2="-22" y2="-4" />
+      <line x1="44" y1="-32" x2="44" y2="-4" />
+      <line x1="96" y1="-32" x2="96" y2="114" />
+      <line x1="-108" y1="-4" x2="-108" y2="24" />
+      <line x1="70" y1="-4" x2="70" y2="24" />
+      <line x1="-88" y1="24" x2="-88" y2="52" />
+      <line x1="56" y1="24" x2="56" y2="52" />
+      <line x1="-104" y1="52" x2="-104" y2="80" />
+      <line x1="68" y1="52" x2="68" y2="80" />
+      <line x1="-76" y1="80" x2="-76" y2="114" />
+      <line x1="52" y1="80" x2="52" y2="114" />
+    </g>
+
+    <!-- Warm Ochre Accent Corner Bricks -->
+    <rect x="-132" y="24" width="26" height="28" fill="#e5b357" stroke="#b38432" stroke-width="1.2" />
+    <rect x="-132" y="80" width="38" height="34" fill="#d8a246" stroke="#a6772a" stroke-width="1.2" />
+    <rect x="96" y="-4" width="36" height="28" fill="#e0ab4e" stroke="#a8792c" stroke-width="1.2" />
+    <rect x="96" y="52" width="36" height="28" fill="#cf983c" stroke="#9d6f24" stroke-width="1.2" />
+
+    <!-- Stepped Terracotta Brick Roof (Built of Little Interlocking Plates) -->
+    <g stroke="#7d2f1e" stroke-width="1.4">
+      <!-- Bottom Roof Tier -->
+      <rect x="-164" y="-48" width="328" height="20" rx="2.5" fill="url(#lhRoofMain)" />
+      <!-- Second Roof Tier -->
+      <rect x="-140" y="-68" width="280" height="20" rx="2.5" fill="url(#lhRoofHighlight)" />
+      <!-- Third Roof Tier -->
+      <rect x="-114" y="-88" width="228" height="20" rx="2.5" fill="url(#lhRoofMain)" />
+      <!-- Fourth Roof Tier -->
+      <rect x="-88" y="-108" width="176" height="20" rx="2.5" fill="url(#lhRoofHighlight)" />
+      <!-- Fifth Roof Tier -->
+      <rect x="-62" y="-128" width="124" height="20" rx="2.5" fill="url(#lhRoofMain)" />
+      <!-- Roof Ridge Cap -->
+      <rect x="-36" y="-146" width="72" height="18" rx="2.5" fill="#d9674c" />
+      <!-- Ridge Brick Studs -->
+      <rect x="-26" y="-154" width="16" height="8" rx="2" fill="#e88267" />
+      <rect x="10" y="-154" width="16" height="8" rx="2" fill="#e88267" />
+      <!-- Stepped Side Studs on Roof Tiers -->
+      <rect x="-156" y="-55" width="12" height="7" rx="1.5" fill="#e1775c" />
+      <rect x="144" y="-55" width="12" height="7" rx="1.5" fill="#c75338" />
+      <rect x="-132" y="-75" width="12" height="7" rx="1.5" fill="#e1775c" />
+      <rect x="120" y="-75" width="12" height="7" rx="1.5" fill="#c75338" />
+      <rect x="-106" y="-95" width="12" height="7" rx="1.5" fill="#e1775c" />
+      <rect x="94" y="-95" width="12" height="7" rx="1.5" fill="#c75338" />
+      <rect x="-80" y="-115" width="12" height="7" rx="1.5" fill="#e1775c" />
+      <rect x="68" y="-115" width="12" height="7" rx="1.5" fill="#c75338" />
+      <rect x="-54" y="-135" width="12" height="7" rx="1.5" fill="#e1775c" />
+      <rect x="42" y="-135" width="12" height="7" rx="1.5" fill="#c75338" />
+    </g>
+
+    <!-- Gable Attic Round Window -->
+    <circle cx="0" cy="-88" r="18" fill="#5e3a25" stroke="#fbf5ea" stroke-width="4" />
+    <circle cx="0" cy="-88" r="13" fill="url(#lhWindowGlow)" />
+    <line x1="0" y1="-101" x2="0" y2="-75" stroke="#5e3a25" stroke-width="2" />
+    <line x1="-13" y1="-88" x2="13" y2="-88" stroke="#5e3a25" stroke-width="2" />
+
+    <!-- Front Walnut Door & Little Brass Handle -->
+    <g>
+      <rect x="-28" y="34" width="56" height="80" rx="4" fill="#fbf5ea" stroke="#8d684f" stroke-width="1.5" />
+      <rect x="-22" y="40" width="44" height="74" rx="2" fill="url(#lhDoorWood)" />
+      <!-- Upper Door Light -->
+      <rect x="-13" y="49" width="26" height="22" rx="1.5" fill="url(#lhWindowGlow)" stroke="#3e2415" stroke-width="1.2" />
+      <line x1="0" y1="49" x2="0" y2="71" stroke="#3e2415" stroke-width="1.4" />
+      <!-- Brass Doorknob -->
+      <circle cx="13" cy="84" r="3.4" fill="#f3d284" />
+      <!-- Little Brick Doorstep -->
+      <rect x="-34" y="108" width="68" height="8" rx="1.5" fill="#d2bfa4" stroke="#967f66" stroke-width="1.2" />
+    </g>
+
+    <!-- Left & Right Sunlit Warm Windows with Brick Flower Boxes -->
+    <g>
+      <!-- Left Window -->
+      <rect x="-102" y="10" width="54" height="52" rx="3" fill="#ffffff" stroke="#8c6c56" stroke-width="1.6" />
+      <rect x="-96" y="16" width="42" height="40" fill="url(#lhWindowGlow)" />
+      <line x1="-75" y1="16" x2="-75" y2="56" stroke="#ffffff" stroke-width="3" />
+      <line x1="-96" y1="36" x2="-54" y2="36" stroke="#ffffff" stroke-width="3" />
+      <rect x="-106" y="61" width="62" height="10" rx="2" fill="#8b593c" stroke="#5c3924" stroke-width="1.2" />
+      <!-- Little Brick Blossoms -->
+      <circle cx="-90" cy="57" r="5" fill="#c8563c" />
+      <circle cx="-75" cy="56" r="5.5" fill="#e5b357" />
+      <circle cx="-60" cy="57" r="5" fill="#68846c" />
+
+      <!-- Right Window -->
+      <rect x="44" y="10" width="46" height="52" rx="3" fill="#ffffff" stroke="#8c6c56" stroke-width="1.6" />
+      <rect x="50" y="16" width="34" height="40" fill="url(#lhWindowGlow)" />
+      <line x1="67" y1="16" x2="67" y2="56" stroke="#ffffff" stroke-width="3" />
+      <line x1="50" y1="36" x2="84" y2="36" stroke="#ffffff" stroke-width="3" />
+      <rect x="40" y="61" width="54" height="10" rx="2" fill="#8b593c" stroke="#5c3924" stroke-width="1.2" />
+      <circle cx="56" cy="57" r="5" fill="#68846c" />
+      <circle cx="70" cy="56" r="5.5" fill="#c8563c" />
+      <circle cx="82" cy="57" r="4.5" fill="#e5b357" />
+    </g>
+
+    <!-- Two Loose Little Pieces Waiting to Snap Together Beside the House -->
+    <g transform="translate(-174 86)">
+      <rect x="0" y="6" width="34" height="16" rx="2" fill="#cf5d42" stroke="#7d2f1e" stroke-width="1.2" />
+      <rect x="5" y="0" width="9" height="6" rx="1.5" fill="#e1775c" stroke="#7d2f1e" stroke-width="1" />
+      <rect x="20" y="0" width="9" height="6" rx="1.5" fill="#e1775c" stroke="#7d2f1e" stroke-width="1" />
+    </g>
+    <g transform="translate(148 88)">
+      <rect x="0" y="6" width="32" height="14" rx="2" fill="#e5b357" stroke="#9d6f24" stroke-width="1.2" />
+      <rect x="5" y="0" width="9" height="6" rx="1.5" fill="#f3cd7e" stroke="#9d6f24" stroke-width="1" />
+      <rect x="18" y="0" width="9" height="6" rx="1.5" fill="#f3cd7e" stroke="#9d6f24" stroke-width="1" />
+    </g>
+  </g>
+
+  <!-- Editorial Title & Dedication -->
+  <text x="600" y="688" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-weight="700" font-size="60" letter-spacing="8" fill="#261c16">A LEGO HOUSE</text>
+  <line x1="454" y1="714" x2="746" y2="714" stroke="#b84a32" stroke-opacity="0.45" stroke-width="1.2" />
+  <text x="600" y="756" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="600" letter-spacing="6" fill="#6b5545">3:33 PM · ONE LITTLE PIECE AT A TIME</text>
+</svg>

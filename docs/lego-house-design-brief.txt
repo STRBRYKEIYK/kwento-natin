@@ -1,0 +1,21 @@
+ANTIGRAVITY DESIGN TASK
+
+Implement the page UI/UX for 3:33 PM · A LEGO HOUSE. User explicitly requested Antigravity for all style/design. Codex integrates and verifies. You own ONLY src/pages/LegoHousePage.jsx, src/pages/LegoHousePage.css, public/menu/img/lego-house.svg. Do not edit any other files. You are not alone in the codebase; preserve others' edits. Do not deploy.
+
+Read AGENTS.md and use TabiPage/PangakoPage for integration references. Create a distinctive polished romantic editorial page around the EXISTING supplied LEGO house GLB. Do not create or replace the 3D house. Accept a houseStage prop and render prominently; Codex supplies model-viewer integration. Design scoped responsive CSS for desktop/mobile, accessible focus styles, reduced motion, Link to /, 3:33 PM identity, readable ALL CAPS copy, and a tasteful small interaction inspired by framing little dreams together (no invented past memories). Include an SVG cover/fallback of a house built of little pieces. Use local fonts if desired. No new dependencies. Include an accessible open/close letter with focus management. Preserve this exact FULL letter, including stretched spellings and emoji:
+
+3:33 PM POOOO, ASAWAAAA KOOOO! ❤️
+
+CHICAAAA KOOOO, ALAM MO POOOO, NAIISIP KO LANG KUNG GAANO KAGANDA YUNG MAY MGA PANGARAP TAYONG UNTI-UNTING BINUBUO NANG MAGKASAMAAAA. PARANG MGA MUNTING PIECES NA ISA-ISA NATING PINAGDUDUGTONG, HANGGANG SA UNTI-UNTING NAGKAKAROON NG HUGIS YUNG BUHAY NA MATAGAL NA NATING GUSTOOOO. 🥹
+
+AT ALAM MO POOOO, ASAWAAAA? KAPAG MAY MGA BAGAY NA HINDI NABUO NANG TAMA, PWEDE NAMAN NATIN YUNG AYUSIN AT BUUIN ULIT NANG MAS MAINGATTTT. AT KAPAG MAY MGA BAGAY NAMANG NABUO NATIN NANG MAGANDA, GUSTO KO PONG I-FRAME YUN AT ISABIT SA WALL NG FUTURE HOME NATINNNN, PARA MAY MGA MUNTING PAALALA TAYO NG LAHAT NG PINAGSIKAPAN AT NATUPAD NATINNNN. ❤️
+
+KASI CHICAAAA KOOOO, HINDI LANG YUNG MAGANDANG KALALABASAN ANG MAHALAGA SA AKIN, KUNDI YUNG PAGKAKATAONG MAKASAMA KA HABANG BINUBUO NATIN YUNNNN. SA BAWAT BAGONG PLANO, BAWAT NATUTUTUNAN, AT BAWAT PANGARAP NA SABAY NATING INAAABOTTTT.
+
+AT BALANG ARAW POOOO, GUSTO KONG MAKATABI KA HABANG TINITINGNAN NATIN YUNG MGA NAKA-FRAME SA WALL, TAPOS SASABIHIN KO LANG, “ASAWAAAA KOOOO, TINGNAN MO POOOO, ANG DAMI NA PALA NATING NABUO NANG MAGKASAMAAAA.” 🥹
+
+3:33 PM — ONE LITTLE PIECE AT A TIME, MAY TAHANAN TAYONG BINUBUO, MAY MGA PANGARAP TAYONG TUTUPARIN, AT MAY PAGMAMAHAL TAYONG PATULOY NA AALAGAANNNN.
+
+MAHAL NA MAHAL KITAAAA, CHICAAAA KOOOO. MWUAAAAAAAA! ❤️
+
+Implement your three owned files now. Return a concise design rationale and integration notes. Model and routing remain Codex's responsibility.
