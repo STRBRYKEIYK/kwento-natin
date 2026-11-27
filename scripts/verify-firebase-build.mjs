@@ -7,7 +7,10 @@ const root = resolve('.firebase-hosting');
 const manifest = JSON.parse(await readFile('firebase.sources.json', 'utf8'));
 const config = JSON.parse(await readFile('firebase.json', 'utf8'));
 const required = ['index.html', 'one-minute-eleven-memories/index.html', 'date/index.html', 'date/places.json', 'date/five/index.html', '555/index.html', 'vouchers/index.html', 'second/index.html', 'ilychicaaa/index.html', 'ilychicaaa-original/index.html', 'oras/messages.json'];
+required.push('tabi/index.html', 'models/chica-y-chico.glb');
 for (const file of required) await access(resolve(root, 'main', file));
+const tabi = await readFile(resolve(root, 'main/tabi/index.html'), 'utf8');
+assert.ok(tabi.includes('<title>1:11 · TABI MUNA TAYO — PARA SA CHICAAA KO</title>'), 'The TABI invitation is missing');
 const aircon = await readFile(resolve(root, 'main/aircon/index.html'), 'utf8');
 assert.ok(aircon.includes('<title>AIRCON · TAYO MUNA</title>'), 'The AIRCON invitation is missing from the Firebase build');
 const mainSite = config.hosting.find(site => site.site === 'chica-keicodes-dev');
@@ -52,5 +55,9 @@ async function walk(directory) {
 await walk(root);
 assert.ok(Object.keys(catalog.objects).length>1000,'The complete media catalog is missing');
 assert.ok(Object.values(catalog.objects).every(o=>o.verified && o.bytes>0 && o.md5),'An unverified cloud object was published');
-assert.ok(total < 25 * 1024**2,'The six hosting bundles unexpectedly exceed 25 MB');
+// The supplied couple model has its own budget; preserve the existing limit
+// for the rest of the six sites so unrelated bundle growth still fails.
+const coupleModel = await stat(resolve(root, 'main/models/chica-y-chico.glb'));
+assert.ok(coupleModel.size < 12 * 1024**2, 'The optimized couple model exceeds 12 MB');
+assert.ok(total - coupleModel.size < 25 * 1024**2,'The six hosting bundles excluding the couple model unexpectedly exceed 25 MB');
 console.log(`Verified six sites, API routing, recordings, albums, and shared messages (${count} files, ${Math.round(total / 1024 ** 2)} MB).`);

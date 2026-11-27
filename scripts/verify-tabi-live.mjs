@@ -1,0 +1,21 @@
+import assert from 'node:assert/strict';
+
+const origin = 'https://chica.keicodes.dev';
+const page = await fetch(`${origin}/tabi`, { cache: 'no-store' });
+assert.ok(page.ok, `TABi returned HTTP ${page.status}`);
+const html = await page.text();
+assert.ok(html.includes('1:11 · TABI MUNA TAYO — PARA SA CHICAAA KO'), 'The live invitation is outdated');
+const entry = html.match(/<script[^>]+src="([^"]+)"/);
+assert.ok(entry, 'Missing application script');
+const app = await fetch(new URL(entry[1], origin));
+assert.ok(app.ok, `Application script returned HTTP ${app.status}`);
+assert.ok((await app.text()).includes('/tabi'), 'The deployed app does not contain the /tabi route');
+const response = await fetch(`${origin}/models/chica-y-chico.glb?finish=soft-matte-v1`, { headers: { Range: 'bytes=0-65535' } });
+assert.ok(response.ok, `Couple model returned HTTP ${response.status}`);
+const bytes = Buffer.from(await response.arrayBuffer());
+assert.equal(bytes.toString('ascii', 0, 4), 'glTF', 'The model URL returned something other than a GLB');
+const length = bytes.readUInt32LE(12);
+assert.ok(length + 20 <= bytes.length, 'The returned model header is incomplete');
+const model = JSON.parse(bytes.subarray(20, 20 + length).toString());
+assert.ok(model.materials.every(material => material.extensions?.KHR_materials_specular?.specularFactor === 0.25), 'The live model is missing the softer finish');
+console.log(`Verified ${page.url}: invitation, application route, and softer-finish GLB are publicly accessible.`);
