@@ -1,8 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" fill="none">
   <defs>
-    <linearGradient id="sky" x2="1200" y2="900" gradientUnits="userSpaceOnUse"><stop stop-color="#fff0c9"/><stop offset="1" stop-color="#f2bc83"/></linearGradient>
-    <linearGradient id="tea" x2="0" y2="1"><stop stop-color="#e49c4c"/><stop offset="1" stop-color="#a64727"/></linearGradient>
-    <pattern id="check" width="100" height="100" patternUnits="userSpaceOnUse"><rect width="100" height="100" fill="#f9e5c0"/><path d="M0 25H100M25 0V100" stroke="#bb644f" stroke-width="50" opacity=".22"/></pattern>
+    <linearGradient id="sky" x2="1200" y2="900" gradientUnits="userSpaceOnUse"><stop stop-color="#f6e5b8"/><stop offset="1" stop-color="#d4a564"/></linearGradient>
+    <linearGradient id="tea" x2="0" y2="1"><stop stop-color="#e2b054"/><stop offset="1" stop-color="#984522"/></linearGradient>
+    <linearGradient id="glass"><stop stop-color="#fff9e8" stop-opacity=".95"/><stop offset=".24" stop-color="#fff9e8" stop-opacity=".24"/><stop offset=".8" stop-color="#fff9e8" stop-opacity=".42"/><stop offset="1" stop-color="#fff9e8" stop-opacity=".95"/></linearGradient>
+    <pattern id="check" width="100" height="100" patternUnits="userSpaceOnUse"><rect width="100" height="100" fill="#f4efd7"/><path d="M0 25H100M25 0V100" stroke="#586e4b" stroke-width="50" opacity=".29"/><path d="M0 50H100M50 0V100" stroke="#fff9e9" stroke-opacity=".6" stroke-width="2"/></pattern>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".55" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".06"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter>
     <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="12" dy="24" stdDeviation="14" flood-color="#6c3826" flood-opacity=".17"/></filter>
     <filter id="soft"><feGaussianBlur stdDeviation="8"/></filter>
   </defs>
@@ -16,7 +18,7 @@
   </g>
   <g transform="rotate(-12 310 470)" filter="url(#shadow)">
     <ellipse cx="307" cy="548" rx="115" ry="41" fill="#fdf3d8"/><ellipse cx="307" cy="548" rx="96" ry="30" stroke="#bd694c" stroke-width="2"/>
-    <path d="M226 370 240 521Q307 554 374 521L388 370" fill="#fef6df" fill-opacity=".73" stroke="#fff9e9" stroke-width="5"/>
+    <path d="M226 370 240 521Q307 554 374 521L388 370" fill="url(#glass)" stroke="#fff9e9" stroke-width="5"/>
     <path d="m240 408 11 103q56 24 112 0l10-103Z" fill="url(#tea)" opacity=".88"/>
     <ellipse cx="307" cy="409" rx="67" ry="23" fill="#f2bc68"/>
     <g fill="#fff2ce" fill-opacity=".63" stroke="#fff6da" stroke-width="2"><rect x="262" y="395" width="34" height="32" rx="7" transform="rotate(18 262 395)"/><rect x="314" y="405" width="32" height="30" rx="7" transform="rotate(-14 314 405)"/></g>
@@ -27,7 +29,7 @@
   </g>
   <g transform="translate(410 -25) rotate(9 307 470)" filter="url(#shadow)">
     <ellipse cx="307" cy="548" rx="115" ry="41" fill="#fdf3d8"/><ellipse cx="307" cy="548" rx="96" ry="30" stroke="#bd694c" stroke-width="2"/>
-    <path d="M226 370 240 521Q307 554 374 521L388 370" fill="#fef6df" fill-opacity=".73" stroke="#fff9e9" stroke-width="5"/>
+    <path d="M226 370 240 521Q307 554 374 521L388 370" fill="url(#glass)" stroke="#fff9e9" stroke-width="5"/>
     <path d="m240 408 11 103q56 24 112 0l10-103Z" fill="url(#tea)" opacity=".88"/>
     <ellipse cx="307" cy="409" rx="67" ry="23" fill="#f2bc68"/>
     <g fill="#fff2ce" fill-opacity=".63" stroke="#fff6da" stroke-width="2"><rect x="262" y="395" width="34" height="32" rx="7" transform="rotate(18 262 395)"/><rect x="314" y="405" width="32" height="30" rx="7" transform="rotate(-14 314 405)"/></g>
@@ -49,5 +51,7 @@
     <path d="M939 534c-59-1-72-64-55-108l40 23 18-36 21 36 38-25c20 65-9 112-62 110Z" fill="#be514d"/>
     <path d="M939 534c-15-44-11-78 3-121l21 36 38-25c20 65-9 112-62 110Z" fill="#db8070"/>
   </g>
+  <g opacity=".16" fill="#5d6c43" filter="url(#soft)" transform="rotate(25 1160 40)"><path d="M1200 0q-180 80-180 240 130-40 180-240ZM1200 60q-260 40-290 200 150-10 290-200ZM1200 180q-150 100-100 220 100-60 100-220Z"/></g>
   <g stroke="#6c4b36" stroke-width="2" stroke-linecap="round" opacity=".5"><path d="m118 170 7 11m17-22-2 13m-34 23 14 1M1040 788l9 10m11-23-1 13"/></g>
+  <rect width="1200" height="900" fill="transparent" filter="url(#grain)" opacity=".38"/>
 </svg>

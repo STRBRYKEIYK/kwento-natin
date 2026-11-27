@@ -13,10 +13,22 @@ function Heart() {
   return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20S3 14.8 3 8.6C3 3.5 9 2.4 12 6.6c3-4.2 9-3.1 9 2C21 14.8 12 20 12 20Z" stroke="currentColor" strokeWidth="1.4" /></svg>;
 }
 
+function PicnicIcon({ type }) {
+  if (type === 'flower') return <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 28V15m0 8c-6 0-8-4-8-6 5 0 8 3 8 6Zm0-5c6 0 8-4 8-6-5 0-8 3-8 6ZM16 15C9 15 7 9 8 5l5 3 3-5 3 5 5-3c1 7-2 10-8 10Z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" /></svg>;
+  if (type === 'rest') return <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="m7 10 2 18h14l2-18H7Zm3 5h12M19 18l4-15M5 28h22" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" /><path d="m12 18 3 3m3-1 2 3" stroke="currentColor" strokeWidth="2" /></svg>;
+  return <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="4" y="7" width="24" height="18" rx="1" stroke="currentColor" strokeWidth="1.3" /><path d="m4 8 12 10L28 8M4 25l9-9m15 9-9-9" stroke="currentColor" strokeWidth="1.3" /><path d="M16 23s-3-1.8-3-4c0-1.7 2-2 3-.6 1-1.4 3-1.1 3 .6 0 2.2-3 4-3 4Z" fill="currentColor" /></svg>;
+}
+
+const SURPRISES = [['rest', 'Isang pahinga', 'Yung isang baso, sa’yo.'], ['flower', 'Isang bulaklak', 'Para sa ngiti mo.'], ['letter', 'Isang sulat', 'May gusto akong sabihin.']];
+
 export default function HaponPage() {
   const [note, setNote] = useState(null);
   const [visited, setVisited] = useState([]);
   const titleRef = useRef(null);
+  const readingRef = useRef(null);
+  const picnicRef = useRef(null);
+  const picnicTitleRef = useRef(null);
+  const [reveal, setReveal] = useState(0);
 
   useEffect(() => {
     const previousTitle = document.title;
@@ -25,12 +37,21 @@ export default function HaponPage() {
   }, []);
 
   useEffect(() => {
-    if (note) titleRef.current?.focus({ preventScroll: true });
-  }, [note]);
+    if (!note) return;
+    titleRef.current?.focus({ preventScroll: true });
+    readingRef.current?.scrollIntoView?.({ block: 'start', behavior: window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+  }, [note, reveal]);
 
   function openNote(next) {
     setNote(next);
+    setReveal(previous => previous + 1);
     setVisited(previous => previous.includes(next) ? previous : [...previous, next]);
+  }
+
+  function returnToPicnic() {
+    setNote(null);
+    picnicTitleRef.current?.focus({ preventScroll: true });
+    picnicRef.current?.scrollIntoView?.({ block: 'start', behavior: window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
   }
 
   return (
@@ -43,14 +64,11 @@ export default function HaponPage() {
         </header>
 
         <main>
-          <section className="hp-hero" aria-labelledby="hp-heading">
+          <section className="hp-hero" ref={picnicRef} aria-labelledby="hp-heading">
             <div className="hp-copy">
-              <p className="hp-eyebrow">12:12 PM · PARA SA’YO, NGAYONG HAPON</p>
-              <h1 id="hp-heading">Sa gitna ng araw,<br /><em>ikaw ang<br />pahinga ko.</em></h1>
-              <p className="hp-intro">Chicaaa ko, nagtira po ako ng isang lugar sa tabi ko. May malamig na inumin, isang bulaklak, at mga salitang gusto kong ibulong sa’yo.</p>
+              <p className="hp-eyebrow"><span className="hp-sun" aria-hidden="true">☼</span> 12:12 PM · PARA SA CHICAAA KO</p>
+              <h1 id="hp-heading" ref={picnicTitleRef} tabIndex={-1}>Sa gitna ng araw,<em>ikaw ang<br />pahinga ko.</em></h1>
               <p className="hp-hand">Dito ka muna, asawa. Tayo muna. ♡</p>
-              <a className="hp-primary" href="#hp-note" onClick={() => openNote('letter')}>Tabi muna tayo <Heart /></a>
-              <p className="hp-footnote">ISANG HAPON. DALAWANG BASO. IKAW ANG KASAMA.</p>
             </div>
 
             <div className="hp-picnic">
@@ -58,15 +76,26 @@ export default function HaponPage() {
                 <img src={picnic} width="1200" height="900" alt="Isang picnic para sa dalawa: dalawang baso ng iced tea, isang pulang tulip, at sobre na may pusong selyo sa ilalim ng araw." />
                 <div className="hp-clock" aria-hidden="true">12:12<span>HAPON NATIN</span></div>
                 <span className="hp-scribble" aria-hidden="true">yung katabi ko, sa’yo.</span>
-                <a href="#hp-note" className={`hp-pin hp-pin-drink${visited.includes('rest') ? ' hp-visited' : ''}`} onClick={() => openNote('rest')} aria-label="Buksan ang munting pahinga"><span>♡</span> PAHINGA</a>
-                <a href="#hp-note" className={`hp-pin hp-pin-flower${visited.includes('flower') ? ' hp-visited' : ''}`} onClick={() => openNote('flower')} aria-label="Buksan ang bulaklak mo"><span>♡</span> BULAKLAK</a>
-                <a href="#hp-note" className={`hp-pin hp-pin-letter${visited.includes('letter') ? ' hp-visited' : ''}`} onClick={() => openNote('letter')} aria-label="Buksan ang sulat ni Chico"><span>♡</span> SULAT MO</a>
+                <button type="button" className={`hp-pin hp-pin-drink${visited.includes('rest') ? ' hp-visited' : ''}`} onClick={() => openNote('rest')} aria-controls="hp-note" aria-label="Buksan ang munting pahinga"><span>♡</span></button>
+                <button type="button" className={`hp-pin hp-pin-flower${visited.includes('flower') ? ' hp-visited' : ''}`} onClick={() => openNote('flower')} aria-controls="hp-note" aria-label="Buksan ang bulaklak mo"><span>♡</span></button>
+                <button type="button" className={`hp-pin hp-pin-letter${visited.includes('letter') ? ' hp-visited' : ''}`} onClick={() => openNote('letter')} aria-controls="hp-note" aria-label="Buksan ang sulat ni Chico"><Heart /></button>
               </div>
-              <div className="hp-caption"><span>PINDUTIN ANG MGA MUNTING LAMBING</span><span>PARA SA CHICAAA KO <Heart /></span></div>
+              <div className="hp-caption"><span>ISANG HAPON. DALAWANG BASO.</span><span className="hp-caption-hand">ikaw ang kasama. ♡</span></div>
+            </div>
+
+            <div className="hp-invitation">
+              <nav className="hp-explore" aria-label="Buksan ang mga lambing">
+                {SURPRISES.map(([id, label, detail]) => <button key={id} type="button" onClick={() => openNote(id)} aria-controls="hp-note" aria-pressed={note === id}>
+                  <PicnicIcon type={id} /><span className="hp-explore-copy"><span>{label}</span><small>{detail}</small></span><span className="hp-explore-mark" aria-hidden="true">{visited.includes(id) ? '♥' : '+'}</span>
+                </button>)}
+              </nav>
+              <p className="hp-intro">Chicaaa ko, nagtira po ako ng isang lugar sa tabi ko. May malamig na inumin, isang bulaklak, at mga salitang gusto kong ibulong sa’yo.</p>
+              <button className="hp-primary" type="button" aria-controls="hp-note" onClick={() => openNote('letter')}>Tabi muna tayo <Heart /></button>
             </div>
           </section>
 
-          <section className="hp-reading" id="hp-note" aria-label="Mga lambing ni Chico" hidden={!note}>
+          <section className="hp-reading" ref={readingRef} id="hp-note" aria-label="Mga lambing ni Chico" hidden={!note}>
+            <div className="hp-reading-top"><span>MUNTING LAMBING · PARA SA’YO LANG</span><button type="button" onClick={returnToPicnic}>Balik sa picnic <span aria-hidden="true">×</span></button></div>
             <nav className="hp-note-nav" aria-label="Pumili ng lambing">
               {[['rest', 'Isang pahinga'], ['flower', 'Isang bulaklak'], ['letter', 'Isang sulat']].map(([id, label]) => (
                 <button key={id} type="button" aria-pressed={note === id} onClick={() => openNote(id)}>{label} <span aria-hidden="true">{visited.includes(id) ? '♥' : '♡'}</span></button>
@@ -74,7 +103,7 @@ export default function HaponPage() {
             </nav>
             {note === 'letter' ? (
               <article className="hp-letter">
-                <div className="hp-letter-top"><span>12:12 PM · ISANG LIHAM SA GITNA NG ARAW</span><Heart /></div>
+                <div className="hp-letter-top"><span>12:12 PM · ISANG LIHAM SA GITNA NG ARAW</span><span className="hp-letter-seal"><Heart /></span></div>
                 <h2 ref={titleRef} tabIndex={-1}>Chicaaaa koooo,</h2>
                 <p>12:12 POOOO, ASAWAAAA KOOOO. Tabi po muna tayo. Kahit dito lang muna sa munting picnic na ’to, gusto kitang makasama ngayong hapon. Yung isang baso, sa’yo. Yung bulaklak, sa’yo rin. At yung Chico na gustong-gusto kang makausap? Sa’yo po ’yon. ♡</p>
                 <p>Gusto lang kitang singitan ng konting lambing sa gitna ng araw mo. Kumain ka na po ba, mahal? Sana may masarap kang nakain at may kahit saglit kang pahinga. Kung marami ka pang gagawin mamaya, nandito muna itong munting sulat na puwede mong balikan kapag gusto mong huminga.</p>
@@ -96,6 +125,7 @@ export default function HaponPage() {
               </article>
             )}
             <p className="hp-reading-footer">{visited.length === 3 ? 'SA’YO LAHAT NG LAMBING NA ’TO, ASAWA.' : 'DAHAN-DAHAN LANG. SA’YO ANG ORAS NA ’TO.'}</p>
+            <button type="button" className="hp-return" onClick={returnToPicnic}>Balik muna sa picnic <Heart /></button>
           </section>
         </main>
 
