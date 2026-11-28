@@ -57,7 +57,7 @@ export default function KwintasModel() {
     <model-viewer key={attempt} ref={viewer} class="kw-model-viewer"
       src={attempt ? `${MODEL}?retry=${attempt}` : MODEL}
       alt="ANG DALAWANG MONOGRAM NA KWINTAS NINA CHICO AT CHICA, MAGKATABI."
-      camera-controls disable-pan touch-action="pan-y" loading="lazy" reveal="auto"
+      camera-controls disable-pan touch-action="pan-y" loading="eager" reveal="auto"
       camera-orbit={NECKLACE_ORBIT} field-of-view="30deg"
       min-camera-orbit="auto 5deg 60%" max-camera-orbit="auto 85deg 160%"
       environment-image="neutral" exposure="1.1" shadow-intensity="0.6" shadow-softness="1" interaction-prompt="none">

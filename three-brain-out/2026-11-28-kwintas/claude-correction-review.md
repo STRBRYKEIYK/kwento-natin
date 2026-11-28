@@ -1,0 +1,1 @@
+﻿The findings above stand as the review output. Since this is a read-only review (no implementation to plan), there are no edits to approve — the deliverable is the three findings, which I've reported inline.

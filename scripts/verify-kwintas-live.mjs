@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { mediaUrl } from '../functions/src/shared/media.js';
+import { NECKLACE_ORDER } from '../src/pages/kwintasOrder.js';
 
 async function get(url) {
   const response = await fetch(url, { signal: AbortSignal.timeout(30000) });
@@ -10,6 +11,9 @@ async function get(url) {
 }
 
 const localModel = await readFile('public/models/kwintas.glb');
+const storyFile = (await readdir('.firebase-hosting/main/assets')).find(name => /^KwintasPage-.*\.js$/.test(name));
+assert.ok(storyFile, 'Built necklace page missing');
+const localStory = await readFile(`.firebase-hosting/main/assets/${storyFile}`);
 for (const host of ['https://chica.keicodes.dev', 'https://chica-keicodes-dev.web.app']) {
   const page = await get(`${host}/kwintas`);
   assert.ok(page.text.includes('<title>11:11 · ANG KWINTAS NATIN — PARA SA CHICAAAA KO</title>'), 'Necklace title missing');
@@ -28,7 +32,14 @@ for (const host of ['https://chica.keicodes.dev', 'https://chica-keicodes-dev.we
     return result.text;
   };
   const story = await chunk('KwintasPage');
+  assert.equal(createHash('sha256').update(story).digest('hex'), createHash('sha256').update(localStory).digest('hex'), 'Live story differs from the verified build');
   assert.ok(story.includes('ANG KWINTAS NATIN') && story.includes('CHICAAAA KOOOO, ASAWAAAA KOOOO,'), 'Story or letter missing');
+  for (const order of NECKLACE_ORDER) {
+    for (const fragment of order.meaning.split('"').filter(fragment => fragment.length > 5)) {
+      assert.ok(story.includes(fragment), `${order.name} complete meaning missing`);
+    }
+  }
+  assert.ok(!/MNGBUNDLE2LESS|Snake \(Best Seller\)|20–22|16–18|Feature on Socials/.test(story), 'Unwanted order specifications remain');
   for (const name of ['necklaces-together.jpg', 'keith-hexagon.jpg', 'jersey-oval.jpg', 'necklace-portrait.jpg', 'jersey-design.png', 'keith-design.png']) {
     assert.ok(story.includes(mediaUrl('/assets/kwintas/' + name)), `Showcase missing: ${name}`);
   }

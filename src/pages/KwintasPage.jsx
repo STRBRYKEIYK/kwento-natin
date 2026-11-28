@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { mediaUrl } from '../media.js';
+import { NECKLACE_ORDER } from './kwintasOrder.js';
 import '../library/styles.css';
 import './KwintasPage.css';
+
+const ORDER_BY_NAME = Object.fromEntries(NECKLACE_ORDER.map((item) => [item.name, item]));
 
 function resolveKwintasMedia(path) {
   const resolved = mediaUrl(path);
@@ -450,18 +453,54 @@ export default function KwintasPage({ necklaceStage = null }) {
         </header>
 
         <main>
-          {/* SECTION 1: 11:11 EDITORIAL HERO + LEAD VISUALIZATION */}
-          <section className="kw-hero" aria-labelledby="kw-hero-title">
-            <div className="kw-hero-copy">
-              <p className="kw-eyebrow">
-                <span className="kw-eyebrow-rule" aria-hidden="true" />
-                11:11 · SULAT · MULA SA CHICOOO MO
+          {/* SECTION 1: TOP INTERACTIVE 3D MODEL SHOWCASE (FIRST ON DESKTOP & MOBILE) */}
+          <section
+            ref={stageSectionRef}
+            id="kw-3d-stage"
+            className="kw-stage-section kw-stage-top"
+            aria-labelledby="kw-hero-title"
+          >
+            <div className="kw-stage-header kw-stage-top-header">
+              <div>
+                <p className="kw-eyebrow">
+                  <span className="kw-eyebrow-rule" aria-hidden="true" />
+                  11:11 · SULAT · MULA SA CHICOOO MO
+                </p>
+                <h1 id="kw-hero-title" className="kw-title">
+                  ANG KWINTAS NATIN
+                </h1>
+                <p className="kw-subtitle">DALAWANG HUGIS, ISANG PUSO.</p>
+              </div>
+              <p className="kw-stage-hint">
+                3D NA SILIP · HILAIN PARA PAIKUTIN · KURUTIN PARA ILAPIT
               </p>
+            </div>
 
-              <h1 id="kw-hero-title" className="kw-title">
-                ANG KWINTAS NATIN
-              </h1>
-              <p className="kw-subtitle">DALAWANG HUGIS, ISANG PUSO.</p>
+            <div className="kw-vitrine">
+              <div className="kw-vitrine-frame" aria-hidden="true" />
+              <div className="kw-vitrine-top">
+                <span>11:11 · DALAWANG KWINTAS</span>
+                <strong>JERSEY (OVAL) &amp; KEITH (HEXAGON)</strong>
+              </div>
+
+              <div className="kw-stage-slot">
+                {necklaceStage || (
+                  <div className="kw-stage-placeholder" role="status">
+                    <PairedFramesEmblem />
+                    <p>WALA PANG NAKALATAG NA 3D NA SILIP SA SANDALING ITO.</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </section>
+
+          {/* SECTION 2: 11:11 EDITORIAL INTRO + LINEN VISUALIZATION (SECOND VISUAL) */}
+          <section className="kw-hero" aria-labelledby="kw-linen-title">
+            <div className="kw-hero-copy">
+              <p className="kw-section-kicker">BISWAL NA LARAWAN · OVAL AT HEXAGON</p>
+              <h2 id="kw-linen-title" className="kw-section-title">
+                DALAWANG PANGALAN <em>SA LINEN.</em>
+              </h2>
 
               <p className="kw-lede">
                 ISANG OVAL NA MAY PANGALAN MO PARA SA AKIN, AT ISANG HEXAGON NA MAY PANGALAN KO PARA
@@ -550,18 +589,20 @@ export default function KwintasPage({ necklaceStage = null }) {
             </figure>
           </section>
 
-          {/* SECTION 2: AUG 28 APPROVED DESIGN STUDY (TWO ACTUAL MOCKUP DRAWINGS ON IVORY) */}
+          {/* SECTION 3: AUG 28 APPROVED DESIGN STUDY & FULL NAME MEANINGS */}
           <section className="kw-pair-section" aria-labelledby="kw-pair-title">
             <div className="kw-pair-head">
               <div>
-                <p className="kw-section-kicker">AGOSTO 28, 2026 · APRUBADONG DISENYO</p>
+                <p className="kw-section-kicker">
+                  AGOSTO 28, 2026 · APRUBADONG DISENYO AT BUONG KAHULUGAN NG MGA PANGALAN
+                </p>
                 <h2 id="kw-pair-title" className="kw-section-title">
                   ANG DALOY NG <em>MGA KURBA.</em>
                 </h2>
                 <p className="kw-section-intro">
                   KINABUKASAN MATAPOS IPAGAWA NOONG AGOSTO 27, ITO ANG DALAWANG AKTWAL NA GUHIT NA
-                  INAPRUBAHAN — MAGKAIBA ANG HUGIS NG OVAL AT HEXAGON, PERO IISA ANG LAMBOT AT
-                  HARMONYA NG BAWAT LINYA.
+                  INAPRUBAHAN — KASAMA ANG BUONG KAHULUGAN NG MGA PANGALAN AT PERSONAL NA
+                  SIMBOLISMONG PINILI PARA SA PARES NATIN.
                 </p>
               </div>
               <p className="kw-pair-note">
@@ -570,44 +611,52 @@ export default function KwintasPage({ necklaceStage = null }) {
             </div>
 
             <div className="kw-pair-grid">
-              {DESIGN_MOCKUPS.map((item, index) => (
-                <article key={item.id} className="kw-pendant-card">
-                  <button
-                    type="button"
-                    className="kw-design-trigger"
-                    onClick={(event) => openLightbox(index + 1, event.currentTarget)}
-                    aria-label={`PALAKIHIN ANG APRUBADONG GUHIT: ${item.title}`}
-                  >
-                    <img
-                      src={resolveKwintasMedia(item.src)}
-                      alt={item.alt}
-                      decoding="async"
-                    />
-                    <span className="kw-design-zoom-pill" aria-hidden="true">
-                      TINGNAN NANG MALAPITAN
-                    </span>
-                  </button>
+              {DESIGN_MOCKUPS.map((item, index) => {
+                const order = ORDER_BY_NAME[item.name];
+                return (
+                  <article key={item.id} className="kw-pendant-card">
+                    <button
+                      type="button"
+                      className="kw-design-trigger"
+                      onClick={(event) => openLightbox(index + 1, event.currentTarget)}
+                      aria-label={`PALAKIHIN ANG APRUBADONG GUHIT: ${item.title}`}
+                    >
+                      <img
+                        src={resolveKwintasMedia(item.src)}
+                        alt={item.alt}
+                        decoding="async"
+                      />
+                      <span className="kw-design-zoom-pill" aria-hidden="true">
+                        TINGNAN NANG MALAPITAN
+                      </span>
+                    </button>
 
-                  <div className="kw-pendant-top">
-                    <div className="kw-pendant-meta">
-                      <span>{item.kicker}</span>
-                      <h3>{item.name}</h3>
+                    <div className="kw-pendant-top">
+                      <div className="kw-pendant-meta">
+                        <span>{item.kicker}</span>
+                        <h3>{order ? order.name : item.name}</h3>
+                      </div>
+                      <span className="kw-pendant-wearer">{item.wearer}</span>
                     </div>
-                    <span className="kw-pendant-wearer">{item.wearer}</span>
-                  </div>
 
-                  <p className="kw-pendant-desc">{item.description}</p>
+                    <p className="kw-pendant-desc">{item.description}</p>
 
-                  <div className="kw-pendant-symbol">
-                    <span>{item.symbolLabel}</span>
-                    <p>{item.symbolCopy}</p>
-                  </div>
-                </article>
-              ))}
+                    <div className="kw-pendant-symbol">
+                      <span>BUONG KAHULUGAN NG PANGALAN · PERSONAL NA SIMBOLISMO NG PARES</span>
+                      {order && (
+                        <blockquote className="kw-order-meaning">
+                          <p>{order.meaning}</p>
+                        </blockquote>
+                      )}
+                      <p className="kw-symbol-note">{item.symbolCopy}</p>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </section>
 
-          {/* SECTION 3: SEPT 11 ACTUAL PHOTOS */}
+          {/* SECTION 4: SEPT 11 ACTUAL PHOTOS (PERMANENT GALLERY, INDEPENDENT OF 3D MODEL) */}
           <section
             ref={gallerySectionRef}
             id="kw-gallery"
@@ -668,46 +717,6 @@ export default function KwintasPage({ necklaceStage = null }) {
                   </figcaption>
                 </figure>
               ))}
-            </div>
-          </section>
-
-          {/* SECTION 4: 3D CLOSE-UP STAGE */}
-          <section
-            ref={stageSectionRef}
-            id="kw-3d-stage"
-            className="kw-stage-section"
-            aria-labelledby="kw-stage-title"
-          >
-            <div className="kw-stage-header">
-              <div>
-                <p className="kw-section-kicker">3D NA SILIP · MALAPITANG TINGIN</p>
-                <h2 id="kw-stage-title" className="kw-section-title">
-                  SILIPIN SA BAWAT <em>ANGGULO.</em>
-                </h2>
-                <p className="kw-section-intro">
-                  PAIKUTIN AT SILIPIN NANG MALAPITAN ANG DALAWANG KULAY-GINTONG KWINTAS — ANG OVAL
-                  NA JERSEY AT ANG HEXAGON NA KEITH — HABANG MARAHANG TUMATAMA ANG LIWANAG SA BAWAT
-                  KURBA.
-                </p>
-              </div>
-              <p className="kw-stage-hint">HILAIN PARA PAIKUTIN · KURUTIN PARA ILAPIT</p>
-            </div>
-
-            <div className="kw-vitrine">
-              <div className="kw-vitrine-frame" aria-hidden="true" />
-              <div className="kw-vitrine-top">
-                <span>11:11 · DALAWANG KWINTAS</span>
-                <strong>JERSEY (OVAL) &amp; KEITH (HEXAGON)</strong>
-              </div>
-
-              <div className="kw-stage-slot">
-                {necklaceStage || (
-                  <div className="kw-stage-placeholder" role="status">
-                    <PairedFramesEmblem />
-                    <p>WALA PANG NAKALATAG NA 3D NA SILIP SA SANDALING ITO.</p>
-                  </div>
-                )}
-              </div>
             </div>
           </section>
 

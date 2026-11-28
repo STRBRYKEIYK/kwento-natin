@@ -1,0 +1,11 @@
+LATEST USER STEERING OVERRIDES the prior brief: "DONT INCLUDE THE DETAILS LIKE THE ORDER DETAILS ONLY THE NAME MEANINGS".
+
+Antigravity owns src/pages/KwintasPage.jsx and .css ONLY. You are not alone; don't revert others, edit tests/data, commit, deploy or run tests/build. Make targeted cleanup, do not rewrite whole files.
+
+KEEP your just-implemented layout: main FIRST section is actual interactive 3D with id kw-3d-stage and title ANG KWINTAS NATIN. Main SECOND section contains permanent linen showcase. Maintain6images, lightbox and letter,5timelinechapters,wearer/shape labels already part of necklace story.
+
+REMOVE all newly added order details: entire details/summary receipt record, prices, discounts, code, Rush/service descriptions, FeatureOnSocials,OriginalDesign,CoupleSet,Gold/Snake chain specifications and lengths,notes PerfectForMen/Women. No receipt/specification UI. Remove unusedformatPesohelper andallunusedreceiptCSS. Fix all intro/label text that promises order specifications/details.
+
+KEEP ONLY the COMPLETE original NAME MEANINGS in each of the2design cards, always visible. Existing data import NECKLACE_ORDER may remain temporarily but Codex is reducing module to name+meaning only; only access .name and .meaning from it. Contextual item.name/wearer existing DESIGN_MOCKUPS data is fine. Attribute English full meanings softly as personal symbolism / the meanings chosen for the pair, not as verified etymology. Do not reintroduce order words in section intro; say BUONG KAHULUGAN NG MGA PANGALAN. Full meanings remain exactly from module (don't shorten): Jersey Geirr's island,sturdy island home,earth,vast untamed sea,resilience,deep roots,infinite possibility; Keith Gaelic wood/forest,groundedstrength,sturdytree,quietresilience,steadygrowth,deeplyrootedcalmspirit.
+
+Preserve all existing romantic story and gallery outside requested cleanup. Return concise summary.

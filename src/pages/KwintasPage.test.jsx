@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
 import KwintasPage from './KwintasPage.jsx';
 import KwintasModel from './KwintasModel.jsx';
+import { NECKLACE_ORDER } from './kwintasOrder.js';
 
 vi.mock('@google/model-viewer', () => ({ ModelViewerElement: class {} }));
 
@@ -12,6 +13,29 @@ function renderPage(stage = <KwintasModel />) {
 }
 
 describe('11:11 necklace story', () => {
+  it('leads with the actual 3D stage, followed immediately by the linen showcase', () => {
+    const { container } = renderPage();
+    const sections = [...container.querySelector('main').children].filter(element => element.tagName === 'SECTION');
+    expect(sections[0]).toHaveAttribute('id', 'kw-3d-stage');
+    expect(sections[0].querySelector('model-viewer')).not.toBeNull();
+    const linen = sections[1].querySelector('img');
+    expect(linen).toHaveAttribute('alt', expect.stringContaining('LINEN'));
+    expect(container.querySelectorAll('model-viewer')).toHaveLength(1);
+    expect(container.querySelectorAll('main img')).toHaveLength(6);
+  });
+
+  it('shows both full name meanings without order specifications or receipt details', () => {
+    renderPage(<div>3D STAGE</div>);
+    for (const order of NECKLACE_ORDER) {
+      const card = screen.getAllByRole('heading', { name: order.name, exact: true })
+        .map(heading => heading.closest('article')).find(article => article && !article.closest('details'));
+      expect(card).not.toBeNull();
+      expect(card).toHaveTextContent(order.meaning);
+    }
+    expect(document.querySelector('details')).toBeNull();
+    expect(document.querySelector('main').textContent).not.toMatch(/MNGBUNDLE2LESS|Original Design|RUSH|Snake \(Best Seller\)|20–22|16–18|Feature on Socials|₱/i);
+  });
+
   it('keeps every showcase image rendered through model loading, errors, retry and success', async () => {
     const user = userEvent.setup();
     const { container } = renderPage();
