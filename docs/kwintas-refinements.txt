@@ -1,0 +1,14 @@
+Refine your existing Antigravity files ONLY: src/pages/KwintasPage.jsx, src/pages/KwintasPage.css, public/menu/img/kwintas.svg. You are not alone; do not revert others, change integration/tests, commit, deploy or use other services. Return concise completion.
+
+LATEST USER DIRECTIVE: THE TITLE SHOULD ANG KWINTAS NATIN. Change visible h1 to ANG KWINTAS NATIN, all page branding and document.title to 11:11 · ANG KWINTAS NATIN — PARA SA CHICAAAA KO, cover SVG title/art copy likewise. Codex changes library and link preview.
+
+Additional showcase assets are now staged and cataloged, ready via mediaUrl (original supplied PNGs are black drawings on transparent backgrounds, not blank):
+- /assets/kwintas/jersey-design.png is the OVAL JERSEY mockup (suot ni CHICO).
+- /assets/kwintas/keith-design.png is the HEXAGON KEITH mockup (suot ni CHICA).
+Add a polished permanent design-study showcase for these TWO actual approved mockups on LIGHT/IVORY backgrounds; contain rather than crop the square transparent originals. Keep the four other showcase images permanently mounted. All SIX images should be visible within main (when scrolled), enlargable in the lightbox, separate from 3D. These mockups should enrich the Aug28 design story. Avoid too much product-like labeling.
+
+Fix story factual detail: Sept5 support email did NOT say picked up already. It said tracking expected to update within24–48h and pickup expected by tomorrow. Page currently says NAI-PICKUP NA, twice (timeline and letter). Correct softly to waiting for shipping update, support reassurance, Sept6 1:48PM arrival. Don't publish order/tracking IDs or email screenshots. Any invented paraphrased quotations for Aug27/Aug28 should be explicitly marked DIWA or personal reflection, not presented as literal dated quotations.
+
+Improve existing lightbox accessibility: trap keyboard Tab/ShiftTab inside dialog (including wrapping ends), background inert while open and restore on close/unmount; prevent background document scrolling while open and restore exact previous overflow. Keep Escape, arrows, backdrop click and opener focus restoration. Can use native dialog or implement in existing modal as you judge. Keep the letter fold shortcut from firing while modal is open.
+
+Remove implementation-oriented copy from user-facing UI: no statements about being separate from the gallery, renderer availability, permanent mounting, WebGL, or model failure in the story intro. The 3D stage title and romantic invite should simply describe looking at the necklaces closely. Fallback status when no stage can stay concise. Codex owns actual model error message. Do not weaken reduced motion/focus styles or nonzero model height.

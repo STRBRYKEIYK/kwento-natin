@@ -4,6 +4,12 @@ import { mediaUrl } from '../functions/src/shared/media.js';
 const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
 const invitations = [
   {
+    path: 'kwintas',
+    title: '11:11 · ANG KWINTAS NATIN — PARA SA CHICAAAA KO',
+    description: 'PANGALAN KO, MALAPIT SA PUSO MO. PANGALAN MO, MALAPIT SA AKIN. ANG KWENTO NG DALAWANG MONOGRAM AT ISANG LIHAM MULA SA CHICOOO MO.',
+    image: 'https://chica.keicodes.dev/assets/kwintas/necklace-portrait.jpg',
+  },
+  {
     path: 'biyahe',
     title: '11:11 PM · BIYAHE NATIN — PARA SA ASAWAAAA KO',
     description: 'TWO HELMETS, ONE ADV 160 RS, COUNTLESS ROADS TO EXPLORE. BAWAT KILOMETRO, MAGKASAMA. ISANG BIYAHENG PINAPANGARAP NINA CHICO AT CHICA.',

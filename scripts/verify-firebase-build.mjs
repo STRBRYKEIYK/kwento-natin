@@ -12,6 +12,7 @@ required.push('pangako/index.html', 'models/pangako-ring.glb', 'menu/img/pangako
 required.push('biyahe/index.html', 'models/biyahe-scooter.glb', 'menu/img/biyahe.svg');
 required.push('scenes/biyahe-ride-realistic.png');
 required.push('scenes/biyahe-stop-realistic.png');
+required.push('kwintas/index.html', 'models/kwintas.glb', 'menu/img/kwintas.svg');
 for (const file of required) await access(resolve(root, 'main', file));
 const tabi = await readFile(resolve(root, 'main/tabi/index.html'), 'utf8');
 assert.ok(tabi.includes('<title>1:11 · TABI MUNA TAYO — PARA SA CHICAAA KO</title>'), 'The TABI invitation is missing');
@@ -25,6 +26,8 @@ assert.ok(matamis.includes('<title>10:10 · MATAMIS</title>'), 'The MATAMIS invi
 const hiling = await readFile(resolve(root, 'main/hiling/index.html'), 'utf8');
 assert.ok(hiling.includes('<title>11:11 · HILING — SA LAHAT NG HILING, IKAW.</title>'), 'The HILING invitation must survive consolidation');
 const biyahe = await readFile(resolve(root, 'main/biyahe/index.html'), 'utf8');
+const kwintas = await readFile(resolve(root, 'main/kwintas/index.html'), 'utf8');
+assert.ok(kwintas.includes('<title>11:11 · ANG KWINTAS NATIN — PARA SA CHICAAAA KO</title>'), 'The KWINTAS invitation is missing');
 assert.ok(biyahe.includes('<title>11:11 PM · BIYAHE NATIN — PARA SA ASAWAAAA KO</title>'), 'The 11:11 BIYAHE invitation is missing');
 for (const source of manifest.sources) await access(resolve(root, source.name, source.mount, 'index.html'));
 assert.equal(config.hosting.length, 6);
@@ -70,8 +73,10 @@ assert.ok(coupleModel.size < 12 * 1024**2, 'The optimized couple model exceeds 1
 const ringModel = await stat(resolve(root, 'main/models/pangako-ring.glb'));
 assert.ok(ringModel.size < 10 * 1024**2, 'The optimized ring model exceeds 10 MB');
 const scooterModel = await stat(resolve(root, 'main/models/biyahe-scooter.glb'));
+const necklaceModel = await stat(resolve(root, 'main/models/kwintas.glb'));
+assert.ok(necklaceModel.size < 13 * 1024**2, 'The optimized necklace model exceeds 13 MB');
 assert.ok(scooterModel.size < 13 * 1024**2, 'The optimized scooter model exceeds 13 MB');
 const rideScenery = await stat(resolve(root, 'main/scenes/biyahe-ride-realistic.png'));
 const stopScenery = await stat(resolve(root, 'main/scenes/biyahe-stop-realistic.png'));
-assert.ok(total - coupleModel.size - ringModel.size - scooterModel.size - rideScenery.size - stopScenery.size < 25 * 1024**2,'The six hosting bundles excluding the supplied models and generated scenery unexpectedly exceed 25 MB');
+assert.ok(total - coupleModel.size - ringModel.size - scooterModel.size - necklaceModel.size - rideScenery.size - stopScenery.size < 25 * 1024**2,'The six hosting bundles excluding the supplied models and generated scenery unexpectedly exceed 25 MB');
 console.log(`Verified six sites, API routing, recordings, albums, and shared messages (${count} files, ${Math.round(total / 1024 ** 2)} MB).`);

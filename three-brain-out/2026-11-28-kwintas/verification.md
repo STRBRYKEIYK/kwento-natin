@@ -1,0 +1,10 @@
+ANG KWINTAS NATIN — 2026-11-28 (Asia/Manila)
+
+- Antigravity created and refined the page, CSS and cover. Latest user title applied to page, Library metadata and share preview.
+- Claude Opus supplied story grounding and independent integration review. Its loading-boundary concern was addressed with a local Suspense boundary around the model. Its possible dev-URL issue was checked against this repository's `publicDir: false`: `/public/models/kwintas.glb` returned 206 with `glTF` bytes, and the local Draco wrapper returned JavaScript. The six images are mapped to verified Firebase Storage objects, so their absence from Git is intentional.
+- 85 frontend tests passed. The 19 focused feature checks include title/index placement, six permanent showcase images throughout model errors/retry/load, letter focus/fold, keyboard chapter navigation, model camera reset, lightbox navigation/focus trap, and scroll/inert cleanup.
+- 7 backend tests passed; consolidation and six-site Firebase bundle checks passed. Production build passed after the final title and copy corrections. The generated invitation uses the correct ANG KWINTAS NATIN title and Storage image preview.
+- GLB is 12,136,948 bytes, valid GLB v2 with Draco geometry. The original 156,499,980-byte Downloads file remains present. Simplification was disabled; source/output bounds match. Triangle counts are 4,994,542 source and 4,994,540 web copy.
+- All six showcase images match their supplied originals byte for byte. Their JPEG/PNG signatures and public range downloads were verified. Transparent design originals use light backgrounds in the page and lightbox.
+- Browser visual verification is incomplete: computer-use stopped because it could not confidently determine the active Windows browser URL. No further browser control was attempted.
+- Website changes are local and build-ready; no Hosting deployment was performed. Assets were added through the existing create-only, checksum-verified Storage workflow. Raw chat and email screenshots were not included in the hosting build.

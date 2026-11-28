@@ -97,6 +97,21 @@ describe('ORAS-ORAS book index', () => {
   });
 });
 
+describe('necklace letter in SULAT', () => {
+  it('adds the 11:11 story once as the final SULAT page, preserving the older letters', () => {
+    expect(LIB_BY_ID.sulat.pages.map(page => page.href)).toEqual(['/second', '/third', '/kwintas']);
+    expect(LIB_BY_ID.sulat.pages.at(-1)).toMatchObject({ title: '11:11 · Ang Kwintas Natin', made: '2026-11-28' });
+    expect(LIB.flatMap(book => book.pages).filter(page => page.href === '/kwintas')).toHaveLength(1);
+    expect(LIB_BY_ID.oras.pages.some(page => page.href === '/kwintas')).toBe(false);
+    expect(read('src/main.jsx')).toContain('path="/kwintas"');
+    expect(read('scripts/build-one-eleven.mjs')).toContain("path: 'kwintas'");
+    expect(existsSync(resolve(root, 'public/menu/img/kwintas.svg'))).toBe(true);
+    for (const file of ['necklaces-together.jpg', 'keith-hexagon.jpg', 'jersey-oval.jpg', 'necklace-portrait.jpg', 'jersey-design.png', 'keith-design.png']) {
+      expect(mediaObject('/assets/kwintas/' + file)?.verified).toBe(true);
+    }
+  });
+});
+
 describe('the old /333 link', () => {
   it('is only a redirect to /aircon, never a second page', () => {
     const main = read('src/main.jsx');

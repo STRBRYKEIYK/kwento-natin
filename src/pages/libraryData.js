@@ -2,6 +2,7 @@ export const LIB = [
   { id: 'sulat', no: '01', title: 'SULAT', lines: ['SULAT'], ts: 0.2, sub: "MGA LIHAM PARA SA'YO", theme: 'ink', w: 68, h: 198, pages: [
     { title: 'Para sa Chica ko', blurb: 'Isang sulat na walang occasion. Gusto lang kitang sabihan ulit, kasama ang Long Drive sa background.', href: '/second', made: '2026-10-17', stamp: 'OKT 17', img: '/menu/img/second.jpg', iw: 600, ih: 600 },
     { title: 'Kwento Natin', blurb: 'Isang munting liham, mga litrato natin, at playlist ng mga kanta, para sa bawat pahina ng atin.', href: '/third', made: '2026-11-05', stamp: 'NOV 5', img: '/menu/img/binondo.jpg', iw: 480, ih: 640, frame: true, photo: 'binondo' },
+    { title: '11:11 · Ang Kwintas Natin', blurb: 'PANGALAN KO, MALAPIT SA PUSO MO. PANGALAN MO, MALAPIT SA AKIN. ANG KWENTO NG DALAWANG MONOGRAM, MGA LITRATO, AT ISANG LIHAM PARA SA CHICAAAA KO.', href: '/kwintas', made: '2026-11-28', stamp: 'NOV 28', img: '/menu/img/kwintas.svg', iw: 1200, ih: 900 },
   ] },
   { id: 'oras', no: '02', title: 'ORAS-ORAS', lines: ['ORAS-', 'ORAS'], ts: 0.17, sub: 'PARA SA 1:11, 2:22 AT IBA PA', theme: 'red', w: 62, h: 214, fs: 16, pages: [
     { title: 'Mga Oras Natin', blurb: "Lahat ng 10:10, 11:11 at 5:55 na pinadala ko sa'yo, nandito na. Pumili ka ng oras, buksan mo isa-isa.", href: '/oras', made: '2026-11-16', stamp: 'NOV 16', img: '/menu/img/oras-lib.jpg', iw: 600, ih: 450 },

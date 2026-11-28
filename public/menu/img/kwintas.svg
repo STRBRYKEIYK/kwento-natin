@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-label="11:11 ANG KWINTAS NATIN — DALAWANG KULAY-GINTONG MONOGRAM NA KWINTAS, ISANG OVAL AT ISANG HEXAGON, PARA SA CHICAAAA KO.">
+  <defs>
+    <radialGradient id="kwLinenBg" cx="50%" cy="40%" r="66%">
+      <stop offset="0%" stop-color="#fdfaf4" />
+      <stop offset="56%" stop-color="#f4ece0" />
+      <stop offset="100%" stop-color="#e7dbc8" />
+    </radialGradient>
+    <radialGradient id="kwHalo" cx="50%" cy="46%" r="48%">
+      <stop offset="0%" stop-color="#fffdf8" stop-opacity="0.96" />
+      <stop offset="54%" stop-color="#e5c886" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#d4ad5c" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="kwGoldBright" x1="12%" y1="8%" x2="88%" y2="92%">
+      <stop offset="0%" stop-color="#f6e3aa" />
+      <stop offset="26%" stop-color="#d7af58" />
+      <stop offset="52%" stop-color="#9e7428" />
+      <stop offset="76%" stop-color="#e6c373" />
+      <stop offset="100%" stop-color="#87601e" />
+    </linearGradient>
+    <linearGradient id="kwGoldSheen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff5d4" />
+      <stop offset="45%" stop-color="#cfa34b" />
+      <stop offset="100%" stop-color="#7c5719" />
+    </linearGradient>
+    <linearGradient id="kwChainGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b48a3a" stop-opacity="0.4" />
+      <stop offset="50%" stop-color="#cfa44f" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#b48a3a" stop-opacity="0.4" />
+    </linearGradient>
+    <radialGradient id="kwPendantShadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3a2a19" stop-opacity="0.24" />
+      <stop offset="68%" stop-color="#3a2a19" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#3a2a19" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="kwLinenWeave" width="16" height="16" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="16" y2="0" stroke="#9d8364" stroke-opacity="0.06" stroke-width="1" />
+      <line x1="0" y1="0" x2="0" y2="16" stroke="#9d8364" stroke-opacity="0.05" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <!-- Warm Ivory Linen Backdrop -->
+  <rect width="1200" height="900" fill="#e4d6c1" />
+  <rect x="44" y="42" width="1112" height="816" rx="28" fill="url(#kwLinenBg)" stroke="#c7b295" stroke-width="1.5" />
+  <rect x="44" y="42" width="1112" height="816" rx="28" fill="url(#kwLinenWeave)" />
+  <rect x="64" y="62" width="1072" height="776" rx="20" fill="none" stroke="#9f7932" stroke-opacity="0.26" stroke-width="1.2" />
+
+  <!-- Fine Archival Corner Registration Marks -->
+  <g stroke="#9a7531" stroke-opacity="0.42" stroke-width="1.2">
+    <path d="M98 124 V96 H126" fill="none" />
+    <path d="M1102 124 V96 H1074" fill="none" />
+    <path d="M98 776 V804 H126" fill="none" />
+    <path d="M1102 776 V804 H1074" fill="none" />
+  </g>
+
+  <!-- Subtle Museum Arch & Radiant Linen Glow -->
+  <path d="M274 794 V358 C274 186 418 102 600 102 C782 102 926 186 926 358 V794" fill="url(#kwHalo)" stroke="#a98238" stroke-opacity="0.22" stroke-width="1.4" />
+  <path d="M298 794 V362 C298 206 432 126 600 126 C768 126 902 206 902 362 V794" fill="none" stroke="#a98238" stroke-opacity="0.14" stroke-width="1" stroke-dasharray="3 9" />
+
+  <!-- Top Editorial Eyebrow -->
+  <text x="600" y="170" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" letter-spacing="7" fill="#775c38">SULAT · PARA SA CHICAAAA KO</text>
+
+  <!-- Soft 11:11 Watermark -->
+  <text x="600" y="302" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="144" letter-spacing="-4" fill="#a88035" fill-opacity="0.13">11:11</text>
+
+  <!-- Draped Delicate Gold Chains -->
+  <g fill="none" stroke-linecap="round">
+    <!-- Left Chain to Oval Pendant -->
+    <path d="M358 124 C382 222 446 286 502 324" stroke="url(#kwChainGrad)" stroke-width="3.2" stroke-dasharray="5 5" />
+    <path d="M622 124 C598 214 552 284 508 324" stroke="url(#kwChainGrad)" stroke-width="2.6" stroke-dasharray="5 5" opacity="0.72" />
+    <!-- Right Chain to Hexagonal Pendant -->
+    <path d="M578 124 C606 218 652 286 694 324" stroke="url(#kwChainGrad)" stroke-width="2.6" stroke-dasharray="5 5" opacity="0.72" />
+    <path d="M842 124 C818 222 754 286 700 324" stroke="url(#kwChainGrad)" stroke-width="3.2" stroke-dasharray="5 5" />
+  </g>
+
+  <!-- Soft Surface Shadows Under Both Pendants -->
+  <ellipse cx="505" cy="574" rx="88" ry="16" fill="url(#kwPendantShadow)" />
+  <ellipse cx="697" cy="574" rx="96" ry="16" fill="url(#kwPendantShadow)" />
+
+  <!-- LEFT PENDANT: OVAL MONOGRAM FRAME (JERSEY — WORN BY CHICO) -->
+  <g transform="translate(505 446)">
+    <!-- Tapered Bail & Jump Ring -->
+    <path d="M-8 -118 C-11 -134 -6 -144 0 -144 C6 -144 11 -134 8 -118 Z" fill="url(#kwGoldBright)" stroke="#7c5719" stroke-width="1.3" />
+    <circle cx="0" cy="-114" r="6.5" fill="none" stroke="url(#kwGoldBright)" stroke-width="3.5" />
+
+    <!-- Outer Double Oval Capsule Frame -->
+    <rect x="-64" y="-102" width="128" height="204" rx="64" fill="none" stroke="#7c5719" stroke-opacity="0.28" stroke-width="15" transform="translate(2 4)" />
+    <rect x="-64" y="-102" width="128" height="204" rx="64" fill="none" stroke="url(#kwGoldBright)" stroke-width="11.5" />
+    <rect x="-53" y="-91" width="106" height="182" rx="53" fill="none" stroke="url(#kwGoldSheen)" stroke-width="4.2" />
+
+    <!-- Fluid Inner Sculpted Curves Inside Oval -->
+    <g fill="none" stroke="url(#kwGoldBright)" stroke-width="7.2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="-10" y1="-87" x2="-10" y2="87" />
+      <path d="M-10 -80 C28 -80 46 -56 46 -30 C46 -6 24 8 -10 8" />
+      <path d="M-10 8 C30 8 50 28 50 52 C50 76 24 88 -16 86 C-42 84 -49 62 -46 38" />
+      <path d="M-46 -26 C-46 -58 -32 -78 -10 -80" />
+    </g>
+    <!-- Crisp Specular Highlight -->
+    <rect x="-64" y="-102" width="128" height="204" rx="64" fill="none" stroke="#fff9e2" stroke-opacity="0.62" stroke-width="1.6" />
+  </g>
+
+  <!-- RIGHT PENDANT: HEXAGONAL MONOGRAM FRAME (KEITH — WORN BY CHICA) -->
+  <g transform="translate(697 446)">
+    <!-- Tapered Bail & Jump Ring -->
+    <path d="M-8 -118 C-11 -134 -6 -144 0 -144 C6 -144 11 -134 8 -118 Z" fill="url(#kwGoldBright)" stroke="#7c5719" stroke-width="1.3" />
+    <circle cx="0" cy="-114" r="6.5" fill="none" stroke="url(#kwGoldBright)" stroke-width="3.5" />
+
+    <!-- Outer Double Hexagon Frame (Pointy Top & Bottom) -->
+    <polygon points="0,-104 92,-52 92,52 0,104 -92,52 -92,-52" fill="none" stroke="#7c5719" stroke-opacity="0.26" stroke-width="15" stroke-linejoin="round" transform="translate(2 4)" />
+    <polygon points="0,-104 92,-52 92,52 0,104 -92,52 -92,-52" fill="none" stroke="url(#kwGoldBright)" stroke-width="11.5" stroke-linejoin="round" />
+    <polygon points="0,-90 79,-45 79,45 0,90 -79,45 -79,-45" fill="none" stroke="url(#kwGoldSheen)" stroke-width="4.2" stroke-linejoin="round" />
+
+    <!-- Harmonizing Fluid Inner Curves Inside Hexagon -->
+    <g fill="none" stroke="url(#kwGoldBright)" stroke-width="7.2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="-18" y1="-78" x2="-18" y2="78" />
+      <path d="M-74 0 H68" />
+      <path d="M-18 -66 C26 -66 54 -44 54 -18 C54 -4 36 0 -18 0" />
+      <path d="M-18 0 C32 0 58 18 58 40 C58 62 28 74 -18 72" />
+      <line x1="68" y1="-38" x2="68" y2="38" />
+    </g>
+    <!-- Crisp Specular Highlight -->
+    <polygon points="0,-104 92,-52 92,52 0,104 -92,52 -92,-52" fill="none" stroke="#fff9e2" stroke-opacity="0.6" stroke-width="1.6" stroke-linejoin="round" />
+  </g>
+
+  <!-- Subtle Paired Labels Beneath Pendants -->
+  <text x="505" y="616" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" letter-spacing="5" fill="#7c5c26">JERSEY · OVAL</text>
+  <text x="697" y="616" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" letter-spacing="5" fill="#7c5c26">KEITH · HEXAGON</text>
+
+  <!-- Editorial Title & Dedication -->
+  <text x="600" y="704" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-weight="700" font-size="54" letter-spacing="6" fill="#231c15">ANG KWINTAS NATIN</text>
+  <line x1="406" y1="730" x2="794" y2="730" stroke="#a88035" stroke-opacity="0.48" stroke-width="1.2" />
+  <text x="600" y="770" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="600" letter-spacing="6" fill="#6d563c">11:11 · DALAWANG HUGIS, ISANG PUSO</text>
+</svg>
